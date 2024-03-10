@@ -76,13 +76,14 @@ int    get_layout(int fd, t_check *err_check, t_lay *lay, char **map_str)
         	free(prev_line);
 		prev_line = ft_strdup(curr_line);
 		free(curr_line);
+		curr_line = NULL;
 		if (!prev_line)
 			return (0);
         check_layout(prev_line, err_check, lay, !lay->row);
-		if (!map_str)
+		if (!*map_str)
 			*map_str = ft_strdup(prev_line);
 		else
-			*map_str = ft_strjoin(*map_str, prev_line);
+			*map_str = ft_strjoin_gnl(*map_str, prev_line);
 		if (!map_str)
 			return(free(prev_line), 0);
 		lay->row++;
@@ -105,7 +106,7 @@ char	**check_map(int fd, t_lay *lay)
 	map = ft_split(map_str, '\n');
 	free(map_str);
 	if (!map)
-		print_error("Memory allocation failed.", map, 0);
+		print_error("Memory allocation failed.", map, map_str);
 	check_path(map, lay);
 	return (map);
 }

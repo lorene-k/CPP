@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:06:10 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/08 16:16:15 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/10 07:51:16 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	print_error(char *msg, char **map, char *str)
 		clear_map(map);
 	if (str)
 		free(str);
+	str = NULL;
 	ft_printf("Error\n%s\n", msg);
 	exit(0);
 }

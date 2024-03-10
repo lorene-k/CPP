@@ -1,0 +1,194 @@
+hELP : https://github.com/madebypixel02/so_long/blob/main/src/check.c 
+TO COMPILE : cc main.c -Lminilibx_linux -lmlx_Linux -lX11 -lXext
+
+________________________________________________________________________________________________
+                                    07/03
+- debugging check_map 
+> SEGFAULT at print_map_error
+
+- fix check_layout : (lay struct ok)
+> err_check not OK for : inv_char - inv_walls - inv_row
+
+- map_str not ok : initialized with "\U" ???
+
+                                    08/03
+- CHECK PATH FIX
+- FIX LEAKS >> for all maps
+- FIX FLOOD_FILL for min.ber
+
+==868447== Memcheck, a memory error detector
+==868447== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==868447== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==868447== Command: ./so_long maps/map_1.ber
+==868447== 
+Error
+Invalid character(s).
+==868447== 
+==868447== HEAP SUMMARY:
+==868447==     in use at exit: 65 bytes in 2 blocks
+==868447==   total heap usage: 32 allocs, 30 frees, 907 bytes allocated
+==868447== 
+==868447== 65 bytes in 2 blocks are definitely lost in loss record 1 of 1
+==868447==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==868447==    by 0x4026D1: ft_strdup (in /sgoinfre/goinfre/Perso/lkhalifa/Perso/lkhalifa/so_long/so_long)
+==868447==    by 0x403876: get_current_line (in /sgoinfre/goinfre/Perso/lkhalifa/Perso/lkhalifa/so_long/so_long)
+==868447==    by 0x40394E: get_next_line (in /sgoinfre/goinfre/Perso/lkhalifa/Perso/lkhalifa/so_long/so_long)
+==868447==    by 0x4014FE: get_layout (CHECK_check_map.c:65)
+==868447==    by 0x401693: check_map (CHECK_check_map.c:102)
+==868447==    by 0x4017D8: check_args (CHECK_check_map.c:125)
+==868447==    by 0x4011D4: main (main.c:48)
+==868447== 
+==868447== LEAK SUMMARY:
+==868447==    definitely lost: 65 bytes in 2 blocks
+==868447==    indirectly lost: 0 bytes in 0 blocks
+==868447==      possibly lost: 0 bytes in 0 blocks
+==868447==    still reachable: 0 bytes in 0 blocks
+==868447==         suppressed: 0 bytes in 0 blocks
+==868447== 
+==868447== For lists of detected and suppressed errors, rerun with: -s
+==868447== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+
+_____________________________________________________________________________________________
+                                    TESTS
+            CHECK INPUT 
+- [x] invalid args
+- [x] invalid file
+- [x] directory that ends with .ber
+
+            CHECK MAP
+- [ ] non-rectangle map
+- [ ] invalid chars
+- [ ] double P or E
+- [ ] collectibles : none, plenty
+- [ ] walls
+- [x] concatenation of map_str
+- [ ] check .ber w/ only '\n' 
+ex : 
+\n
+\n
+\n
+
+            FUNCTIONS
+CHECK_MAP
+- [x] check_args
+- [ ] check_map
+- [x] get_layout
+- [x] check_layout
+- [ ] print_map_error
+
+CHECK_PATH
+- [ ] check_path
+- [ ]  fill_path
+- [ ] flood_fill
+
+________________________________________________________________________________________________
+                                    SUJET - CONSIGNES
+GAME
+- [ ] moves : W, A, S, D keys
+- [ ] 4 directions possible (up, down, left, right)
+- [ ] no moving into walls
+- [ ] display curr number of moves in window OR terminal
+
+GRAPHIC MANAGEMENT
+- [ ] smooth window management (resizing...)
+- [ ] press ESC to close window & exit program
+- [ ] click on croix to close window
+- [ ] use images of MiniLibX
+
+MAP
+- [ ] at least 1 E, 1 C, 1 P
+- [ ] no other chars than 0, 1, C, E, P
+- [ ] rectangle map
+- [ ] valid map
+- [ ] file w/ .ber format
+- [ ] 
+
+END
+- [ ] no leaks
+- [ ] norm
+________________________________________________________________________________________________
+                                        STEPS   
+1. Parse : flood fill
+    - is map valid (right letters, collectibes, exits, walls...)
+2. Init (+ handle errors)
+3. mlx & window
+4. register hooks
+5. load textures
+6. render window
+7. handle moves
+
+
+COMMON MISTAKES
+   - Rendering all textures in every frame. This uses up memory and after a (very long) while will cause your program to crash.
+   - Not using constants to increase readability/maintainability. Although not a bug, it isn't a good habit to explicitly index into an array with a fixed number, use a plain string as an asset path, or repeat an arbitrary value as your tile size.
+   - Edge cases for map checking. Think of invalid permissions, a map with too few columns/rows, or even an empty line in the middle of the map.
+   - Going to the exit without all collectables should not end the game.
+
+    HANDLING MOVES
+When a player moves, there are two things you need to check:
+    - Is the next move valid?
+    - Does the next move cause a special event (either winning the game, collecting a collectable, or in the case of a bonus, hitting an enemy)?
+
+
+REMINDERS:
+
+1. CHECK ERRORS + HANDLE leaks
+- check que tous les xpm existent (== sprites) : images format png (+ redimensionner en pixels - ex : 50x50)
+>> mlx new window + mlx file to image
+
+?. Exit functions
+- mlx destory window 
+- mlx destroy display + free
+- sprites : mlx destory image
+- free()
+
+3. Init structure 
+- mlx-init or struct == 0
+
+3. Render
+- mlx put image to window
+- if char = X put x imge
+
+4. Interactions clavier
+- mlx key hook (mettre fonction cree dedans >> code dans cette fonction)
+>> mettre touches pour se deplacer dans fonction dans mlx key hook
++ decrementer collectibles quand 1 est pris + check if valid move >> do if is valid
+
+>> Afficher nb de moves
+- mlx string put
+
+6. a la fin du main
+- mlx loop
+- mlx hook (to close window with croix)
+
+
+REMINDERS2 :
+
+1) Checker les erreurs, gerer les leaks
+
+-que toutes les xpm soit ok mlx_new_window(), mlx_xpm_file_to_image()
+
+en fonction du besoin exit() =>
+windows : mlx_destroy_window()
+mlx : mlx_destroy_display() + free()
+sprites : mlx_destroy_image()
+
+free();
+
+2) Initialisation structure
+a NULL 0 ou la mlx mlx_init()
+
+3) render
+analyser la map et afficher en fonction de l'element mlx_put_image_to_window()
+
+4) interations avec le clavier
+mlx_key_hook(), choisir une foncitona implementer ex : ft_event_key()
+
+inserer le code pour :
+autorisation avancer personnage ou pas, et aaction si ok (mur)
+
+bonus : mlx_tring_put() : afficher sur l'ecran le nb de mouvement
+
+5) faire apparaitre les images en boucles
+mlx_loop()
+mlx_hook(), permet d'inserer une fonction pour fermer la fenetre avec la croix

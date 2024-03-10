@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:19:36 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/08 13:04:26 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/10 06:31:56 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ static void	clear_tab(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab || !*tab)
+		return ;
 	while (tab[i])
 	{
 		free(tab[i]);
 		i++;
 	}
 	free(tab);
+	*tab = 0;
 }
 
 static int	ft_wcount(const char *str, char c)
@@ -101,7 +104,7 @@ char	**ft_split(char const *s, char c)
 	int		count;
 	char	**tab;
 
-	if (!s)
+	if (!s || !c)
 		return (NULL);
 	count = 0;
 	tab = malloc(sizeof(char *) * (ft_wcount(s, c) + 1));

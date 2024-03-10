@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:37:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/07 10:12:24 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/10 06:41:58 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,11 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	str = malloc(sizeof(char) * (t_len + 1));
 	if (!str)
 		return (NULL);
-	ft_memcpy(str, s1, (len1));
-	ft_memcpy((str + len1), s2, (len2 + 1));
+	ft_memcpy_gnl(str, s1, (len1));
+	ft_memcpy_gnl((str + len1), s2, (len2 + 1));
 	str[len1 + len2] = '\0';
 	free(s1);
+	s1 = NULL;
 	return (str);
 }
 
@@ -83,7 +84,7 @@ char	*ft_substr_gnl(char *s, unsigned int start, size_t len)
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
-	ft_memcpy(str, s + start, (len));
+	ft_memcpy_gnl(str, s + start, (len));
 	str[len] = '\0';
 	return (str);
 }
