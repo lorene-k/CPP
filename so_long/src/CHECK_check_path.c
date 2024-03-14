@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 18:39:30 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/10 09:23:06 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:35:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ char    **flood_fill(char **map, t_point size, t_point cur)
     
     map[cur.x][cur.y] = 'F';
 
-    if (map[cur.x - 1][cur.y] == '0' || map[cur.x - 1][cur.y] == 'P' || map[cur.x - 1][cur.y] == 'C'
-        || map[cur.x - 1][cur.y] == 'E')
+    if (cur.x - 1 > 0 && (map[cur.x - 1][cur.y] == '0' || map[cur.x - 1][cur.y] == 'P' || map[cur.x - 1][cur.y] == 'C'
+        || map[cur.x - 1][cur.y] == 'E'))
         flood_fill(map, size, (t_point){cur.x - 1, cur.y});
-    if (map[cur.x + 1][cur.y] == '0' || map[cur.x + 1][cur.y] == 'P' || map[cur.x + 1][cur.y] == 'C'
-        || map[cur.x + 1][cur.y] == 'E')
+    if (cur.x + 1 > 0 && (map[cur.x + 1][cur.y] == '0' || map[cur.x + 1][cur.y] == 'P' || map[cur.x + 1][cur.y] == 'C'
+        || map[cur.x + 1][cur.y] == 'E'))
         flood_fill(map, size, (t_point){cur.x + 1, cur.y});
-    if (map[cur.x][cur.y - 1] == '0' || map[cur.x][cur.y - 1] == 'P' || map[cur.x][cur.y - 1] == 'C'
-        || map[cur.x][cur.y - 1] == 'E')
+    if (cur.y - 1 > 0 && (map[cur.x][cur.y - 1] == '0' || map[cur.x][cur.y - 1] == 'P' || map[cur.x][cur.y - 1] == 'C'
+        || map[cur.x][cur.y - 1] == 'E'))
         flood_fill(map, size, (t_point){cur.x, cur.y - 1});
-    if (map[cur.x][cur.y + 1] == '0' || map[cur.x][cur.y + 1] == 'P' || map[cur.x][cur.y + 1] == 'C'
-        || map[cur.x][cur.y + 1] == 'E')
+    if (cur.y + 1 > 0 && (map[cur.x][cur.y + 1] == '0' || map[cur.x][cur.y + 1] == 'P' || map[cur.x][cur.y + 1] == 'C'
+        || map[cur.x][cur.y + 1] == 'E'))
         flood_fill(map, size, (t_point){cur.x, cur.y + 1});
     return (map);
 }
