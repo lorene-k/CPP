@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CHECK_check_path.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 18:39:30 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/14 03:53:06 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:31:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char    **copy_map(char **map, t_point size)
     cpy = malloc(sizeof(char *) * (size.x + 1));
     if (!cpy)
         print_error("Memory allocation failed.", map, 0);
+    cpy[size.x] = 0;
     while (i < size.x)
     {
         cpy[i] = ft_strdup((const char *)map[i]);
@@ -36,23 +37,23 @@ char    **copy_map(char **map, t_point size)
 
 char    **flood_fill(char **map, t_point size, t_point cur)
 {
-    if (cur.x == 0 || cur.x == size.x - 1 ||  cur.y == 0 || cur.y == size.y - 1|| map[cur.x][cur.y] == 'F')
+    if (cur.x < 0 || cur.x >= size.x ||  cur.y < 0 || cur.y >= size.y || map[cur.x][cur.y] == 'F')
         return (map);
     
     map[cur.x][cur.y] = 'F';
 
-    if (cur.x - 1 >= 0 && (map[cur.x - 1][cur.y] == '0' || map[cur.x - 1][cur.y] == 'P' || map[cur.x - 1][cur.y] == 'C'
-        || map[cur.x - 1][cur.y] == 'E'))
+    if (map[cur.x - 1][cur.y] == '0' || map[cur.x - 1][cur.y] == 'P' || map[cur.x - 1][cur.y] == 'C'
+        || map[cur.x - 1][cur.y] == 'E')
         flood_fill(map, size, (t_point){cur.x - 1, cur.y});
-    if (cur.x + 1 < size.x - 1 && (map[cur.x + 1][cur.y] == '0' || map[cur.x + 1][cur.y] == 'P' || map[cur.x + 1][cur.y] == 'C'
-        || map[cur.x + 1][cur.y] == 'E'))
+    if (map[cur.x + 1][cur.y] == '0' || map[cur.x + 1][cur.y] == 'P' || map[cur.x + 1][cur.y] == 'C'
+        || map[cur.x - 1][cur.y] == 'E')
         flood_fill(map, size, (t_point){cur.x + 1, cur.y});
-    if (cur.y - 1 >= 0 && (map[cur.x][cur.y - 1] == '0' || map[cur.x][cur.y - 1] == 'P' || map[cur.x][cur.y - 1] == 'C'
-        || map[cur.x][cur.y - 1] == 'E'))
+    if (map[cur.x][cur.y - 1] == '0' || map[cur.x][cur.y - 1] == 'P' || map[cur.x][cur.y - 1] == 'C'
+        || map[cur.x - 1][cur.y] == 'E')
         flood_fill(map, size, (t_point){cur.x, cur.y - 1});
-    if (cur.y + 1 < size.y - 1 && (map[cur.x][cur.y + 1] (t_point){cur.x, cur.y + 1}== '0' || map[cur.x][cur.y + 1] == 'P' || map[cur.x][cur.y + 1] == 'C'
-        || map[cur.x][cur.y + 1] == 'E'))
-        flood_fill(map, size, );
+    if (map[cur.x][cur.y + 1] == '0' || map[cur.x][cur.y + 1] == 'P' || map[cur.x][cur.y + 1] == 'C'
+        || map[cur.x - 1][cur.y] == 'E')
+        flood_fill(map, size, (t_point){cur.x, cur.y + 1});
     return (map);
 }
 
@@ -88,6 +89,7 @@ void fill_path(char **map, t_point size, t_point start)
         }
         i++;
     }
+    clear_map(cpy);
 }
 
 /* get start & size */

@@ -2,6 +2,10 @@ hELP : https://github.com/madebypixel02/so_long/blob/main/src/check.c
 TO COMPILE : cc main.c -Lminilibx_linux -lmlx_Linux -lX11 -lXext
 
 ________________________________________________________________________________________________
+                                    14/03
+- Valgrind errors & leaks fixed
+- min.ber problem : doesn't fill 'E'
+                                    
                                     10/03
 LEAKS FIXED
 - FIX conditional move or jump in flood_fill
@@ -47,8 +51,9 @@ CHECK_MAP
 
 CHECK_PATH
 - [x] check_path
-- [ ]  fill_path
-- [ ] flood_fill
+- [x]  fill_path
+- [x] flood_fill
+- [x] clear_map
 
 ________________________________________________________________________________________________
                                     SUJET - CONSIGNES
@@ -72,7 +77,7 @@ MAP
 - [x] file w/ .ber format 
 
 END
-- [ ] no leaks
+- [ ] no leaks <<< RUN MULTIPLE TESTS (empty, awkaward, big, small maps + check all errors)
 - [ ] norm
 ________________________________________________________________________________________________
                                         STEPS   
