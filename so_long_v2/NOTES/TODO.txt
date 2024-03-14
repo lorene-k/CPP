@@ -1,0 +1,162 @@
+hELP : https://github.com/madebypixel02/so_long/blob/main/src/check.c 
+TO COMPILE : cc main.c -Lminilibx_linux -lmlx_Linux -lX11 -lXext
+
+________________________________________________________________________________________________
+                                    10/03
+LEAKS FIXED
+- FIX conditional move or jump in flood_fill
+
+>>> EXIT IS FLOOR <<<
+
+                                    08/03
+- CHECK PATH FIX OK
+- FIX LEAKS >> for all maps OK
+- FIX FLOOD_FILL for min.ber OK                                   
+                                    
+                                    07/03
+- debugging check_map 
+> SEGFAULT at print_map_error OK
+
+- fix check_layout : (lay struct ok) OK
+> err_check not OK for : inv_char - inv_walls - inv_row OK
+
+- map_str not ok : initialized with "\U" ??? OK
+_____________________________________________________________________________________________
+                                    TESTS
+            CHECK INPUT 
+- [x] invalid args
+- [x] invalid file
+- [x] directory that ends with .ber
+
+            CHECK MAP
+- [x] non-rectangle map
+- [x] invalid chars
+- [x] double P or E
+- [x] collectibles : none, plenty
+- [x] walls
+- [x] concatenation of map_str
+- [x] check .ber w/ only '\n' 
+
+            FUNCTIONS
+CHECK_MAP
+- [x] check_args
+- [x] check_map
+- [x] get_layout
+- [x] check_layout
+- [x] print_map_error
+
+CHECK_PATH
+- [x] check_path
+- [ ]  fill_path
+- [ ] flood_fill
+
+________________________________________________________________________________________________
+                                    SUJET - CONSIGNES
+GAME
+- [ ] moves : W, A, S, D keys
+- [ ] 4 directions possible (up, down, left, right)
+- [ ] no moving into walls
+- [ ] display curr number of moves in window OR terminal
+
+GRAPHIC MANAGEMENT
+- [ ] smooth window management (resizing...)
+- [ ] press ESC to close window & exit program
+- [ ] click on croix to close window
+- [ ] use images of MiniLibX
+
+MAP
+- [x] at least 1 E, 1 C, 1 P
+- [x] no other chars than 0, 1, C, E, P
+- [x] rectangle map
+- [x] valid map
+- [x] file w/ .ber format 
+
+END
+- [ ] no leaks
+- [ ] norm
+________________________________________________________________________________________________
+                                        STEPS   
+1. Parse : flood fill
+    - is map valid (right letters, collectibes, exits, walls...)
+2. Init (+ handle errors)
+3. mlx & window
+4. register hooks
+5. load textures
+6. render window
+7. handle moves
+
+
+COMMON MISTAKES
+   - Rendering all textures in every frame. This uses up memory and after a (very long) while will cause your program to crash.
+   - Not using constants to increase readability/maintainability. Although not a bug, it isn't a good habit to explicitly index into an array with a fixed number, use a plain string as an asset path, or repeat an arbitrary value as your tile size.
+   - Edge cases for map checking. Think of invalid permissions, a map with too few columns/rows, or even an empty line in the middle of the map.
+   - Going to the exit without all collectables should not end the game.
+
+    HANDLING MOVES
+When a player moves, there are two things you need to check:
+    - Is the next move valid?
+    - Does the next move cause a special event (either winning the game, collecting a collectable, or in the case of a bonus, hitting an enemy)?
+
+
+REMINDERS:
+
+1. CHECK ERRORS + HANDLE leaks
+- check que tous les xpm existent (== sprites) : images format png (+ redimensionner en pixels - ex : 50x50)
+>> mlx new window + mlx file to image
+
+?. Exit functions
+- mlx destory window 
+- mlx destroy display + free
+- sprites : mlx destory image
+- free()
+
+3. Init structure 
+- mlx-init or struct == 0
+
+3. Render
+- mlx put image to window
+- if char = X put x imge
+
+4. Interactions clavier
+- mlx key hook (mettre fonction cree dedans >> code dans cette fonction)
+>> mettre touches pour se deplacer dans fonction dans mlx key hook
++ decrementer collectibles quand 1 est pris + check if valid move >> do if is valid
+
+>> Afficher nb de moves
+- mlx string put
+
+6. a la fin du main
+- mlx loop
+- mlx hook (to close window with croix)
+
+
+REMINDERS2 :
+
+1) Checker les erreurs, gerer les leaks
+
+-que toutes les xpm soit ok mlx_new_window(), mlx_xpm_file_to_image()
+
+en fonction du besoin exit() =>
+windows : mlx_destroy_window()
+mlx : mlx_destroy_display() + free()
+sprites : mlx_destroy_image()
+
+free();
+
+2) Initialisation structure
+a NULL 0 ou la mlx mlx_init()
+
+3) render
+analyser la map et afficher en fonction de l'element mlx_put_image_to_window()
+
+4) interations avec le clavier
+mlx_key_hook(), choisir une foncitona implementer ex : ft_event_key()
+
+inserer le code pour :
+autorisation avancer personnage ou pas, et aaction si ok (mur)
+
+bonus : mlx_tring_put() : afficher sur l'ecran le nb de mouvement
+
+5) faire apparaitre les images en boucles
+mlx_loop()
+mlx_hook(), permet d'inserer une fonction pour fermer la fenetre avec la croix
