@@ -19,8 +19,8 @@ LFT				=	libft.a
 HEADER			=	$(SRC_DIR)so_long.h
 
 SRC_FLS			=	main.c \
-					CHECK_check_map.c \
-					CHECK_check_path.c \
+					check_map.c \
+					check_path.c \
 					init_structs.c \
 					utils_check.c \
 
