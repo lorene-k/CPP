@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/14 03:35:05 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:34:56 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 # define WIDTH 800
 # define HEIGHT 600
 
-# include "../minilibx_linux/mlx.h"
+# define WHITE 0xFFFFFF
+# define RED 0x00FF0000
+
+# include "../mlx_linux/mlx.h"
 # include "libft/ft_printf/ft_printf.h"
 # include "libft/get_next_line/get_next_line.h"
 # include "libft/libft_src/libft.h"
@@ -29,7 +32,6 @@
 # include <stdlib.h>
 # include <string.h>
 
-/* CHECK LAYOUT */
 typedef struct s_lay
 {
 	int		row;
@@ -39,7 +41,6 @@ typedef struct s_lay
 	int		play;
 }			t_lay;
 
-/* CHECK VALID MAP */
 typedef struct s_check
 {
 	int		inv_char;
@@ -50,14 +51,12 @@ typedef struct s_check
 	int		inv_row;
 }			t_check;
 
-/* GET COORDINATES */
 typedef struct s_point
 {
 	int		x;
 	int		y;
 }			t_point;
 
-/* IMG STRUCT */
 typedef struct s_img
 {
 	void	*img;
@@ -67,25 +66,22 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
-// typedef struct s_play
-// {
-// 	int pos_x;
-// 	int pos_y;
-
-// } t_play;
-
-/*
-typedef struct s_data
+typedef struct s_play
 {
-	void *mlx; // MLX pointer
-	void *win; // MLX window pointer
+	t_point	*pos;
+	int		moves;
+}			t_play;
+
+typedef struct s_game
+{
+	void	*mlx;
+	void	*win;
 	t_img	img;
+	t_lay	*lay;
+	char	**map;
+	t_play	player;
 	// void *textures[5];	// MLX image pointers (on the stack)
-	// t_map *map;        // Map pointer (contains map details
-			- preferably kept on the stack)
-}			t_data;
-*/
-/* SUPPORT */
+}			t_game;
 
 /* CHECK MAP */
 int			get_layout(int fd, t_check *err_check, t_lay *lay, char **map_str);
@@ -113,5 +109,12 @@ int			ft_strchr_sl(char *s, char c);
 /* INIT STRUCTS */
 t_lay		init_lay(void);
 t_check		init_check(void);
+
+/* INIT GAME */
+int			on_destroy(t_game *game);
+int			on_keypress(int keysym, t_game *game);
+void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
+int		display_image(t_game *game);
+int			init_game(char **map, t_lay *lay);
 
 #endif // SO_LONG_H

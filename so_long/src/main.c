@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:51:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/14 17:37:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:29:45 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	main(int ac, char **av)
 {
 	char	**map;
-	t_lay	layout;
+	t_lay	lay;
 
-	layout = init_lay();
-	map = check_args(ac, av, &layout);
-	if (map)
-		printf("PARSING OK\n\n"); //REMOVE
-	// init_game(map, layout);
-	clear_map(map);
+	lay = init_lay();
+	map = check_args(ac, av, &lay);
+	// if (map)
+	// 	printf("PARSING OK\n\n");
+	if (init_game(map, &lay))
+		print_error("MLX problem.", map, 0);
 	return (0);
 }

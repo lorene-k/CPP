@@ -11,45 +11,50 @@ NAME			=	so_long
 SRC_DIR			=	src/
 OBJ_DIR			=	objs/
 LFT_DIR			=	src/libft/
-MLX_DIR			=	minilibx_linux/
+MLX_DIR			=	mlx_linux/
 
 # ------------  SOURCES  ----------------------------------------------------- #
 LFT				=	libft.a
+MLX				=	libmlx_Linux.a
 
-HEADER			=	$(SRC_DIR)so_long.h
+I_SRC			= 	-I/$(SRC_DIR)
+I_MLX			=	-I/$(MLX_DIR)
+INCLUDES		=	$(I_SRC) -I/usr/include $(I_MLX) 
 
 SRC_FLS			=	main.c \
 					check_map.c \
 					check_path.c \
 					init_structs.c \
 					utils_check.c \
+					init_game.c \
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
 OBJS			=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o, $(SRCS))
 
 # ------------  FLAGS  -------------------------------------------------------- #
-LFLAGS			=	-L./$(LFT_DIR)
+LFLAGS			=	-L./$(LFT_DIR) -lft
 CFLAGS			=	-Wall -Wextra -Werror -g
 MAKE_FLAGS		=	-s -C
-MLX_FLAGS		=	-ldl -Imlx -Lminilibx_linux/ -lm -lbsd -lXext -lX11 -Wl,-rpath=./bass/,-rpath=./mlx/,-rpath=./delay/
+MLX_FLAGS		=	-L./$(MLX_DIR) -lmlx_Linux -L/usr/lib $(I_MLX) -lXext -lX11 -lm -lz
 RM_FLAGS		=	-rf
 
 # ------------  COMMANDS  ------------------------------------------------------- #
 CC				=	cc
 MK				=	make all
-MC				=	make fclean
+MFC				=	make fclean
+MC				=	make clean
 RM				=	rm $(RM_FLAGS)
 
 # ------------  RULES  ------------------------------------------------------- #
 all:				${NAME}
 
-$(NAME):			$(OBJS) $(LFT)
-					@$(CC) $(CFLAGS) -o ./$(NAME) $(OBJS) $(LFLAGS) -lft
+$(NAME):			$(OBJS) $(LFT) $(MLX)
+					@$(CC) $(CFLAGS) -o ./$(NAME) $(OBJS) $(LFLAGS) $(MLX_FLAGS)
 					@echo "$(GREEN)Compiled $(NAME)"
 
 $(OBJ_DIR)%.o: 		$(SRC_DIR)%.c | $(OBJ_DIR)
-					@$(CC) $(CFLAGS) -c $< -o $@
+					@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 					@if [ "$(PRINTED_MSG)" = "false" ]; then \
 					echo "$(DEFAULT)Object files created"; \
 					PRINTED_MSG := true; \
@@ -61,16 +66,22 @@ $(OBJ_DIR):
 
 $(LFT):
 					@$(MK) $(MAKE_FLAGS) $(LFT_DIR)
+					@echo "$(GREEN)Compiled $(LFT)"
+
+$(MLX):
+					@$(MK) $(MAKE_FLAGS) $(MLX_DIR)
+					@echo "$(GREEN)Compiled $(MLX)"
 
 clean:	
 					@$(RM) $(OBJ_DIR)
-					@$(MC) $(MAKE_FLAGS) $(LFT_DIR)
+					@$(MFC) $(MAKE_FLAGS) $(LFT_DIR)
+					@$(MC) $(MAKE_FLAGS) $(MLX_DIR)
 					@echo "$(YELLOW)Cleaned objects & libft"
 
 fclean:				clean 
 					@$(RM) $(NAME)
 					@echo "$(YELLOW)Cleaned executable"
 
-re:				fclean all
+re:					fclean all
 
-.PHONY: 		all clean fclean re
+.PHONY: 			all clean fclean re
