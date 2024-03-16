@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:37:03 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/15 17:37:35 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/16 04:58:46 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	display_image(t_game *game)
 	return (0);
 }
 
-int	init_game(char **map, t_lay *lay)
+void	init_game(char **map, t_lay *lay)
 {
 	t_game	game;
 	t_point	size;
@@ -63,15 +63,15 @@ int	init_game(char **map, t_lay *lay)
 		print_error("Memory allocation failed", map, 0);
 	clear_map(map);
 	game.lay = lay;
+	ft_printf("%d ; %d \n", lay->col, lay->row); //REMOVE
 	game.mlx = mlx_init();
 	if (!(game.mlx))
-		return (1);
+		print_error("MLX initialization failed.", game.map, 0);
 	game.win = mlx_new_window(game.mlx, HEIGHT, WIDTH, "Game");
 	if (!game.win)
-		return (mlx_destroy_display(game.mlx), free(game.mlx), 1);
-	mlx_loop_hook(game.mlx, &display_image, &game); // FRAME RENDERING
+		on_destroy(&game); //SHOULD PRINT ERROR HERE
+	// mlx_loop_hook(game.mlx, &display_image, &game); // FRAME RENDERING
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, &on_keypress, &game);
 	mlx_hook(game.win, DestroyNotify, StructureNotifyMask, &on_destroy, &game);
 	mlx_loop(game.mlx);
-	return (0);
 }

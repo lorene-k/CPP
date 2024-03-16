@@ -51,7 +51,7 @@ all:				${NAME}
 
 $(NAME):			$(OBJS) $(LFT) $(MLX)
 					@$(CC) $(CFLAGS) -o ./$(NAME) $(OBJS) $(LFLAGS) $(MLX_FLAGS)
-					@echo "$(GREEN)Compiled $(NAME)"
+					@echo "$(DEFAULT)Compiled $(NAME)"
 
 $(OBJ_DIR)%.o: 		$(SRC_DIR)%.c | $(OBJ_DIR)
 					@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -62,25 +62,24 @@ $(OBJ_DIR)%.o: 		$(SRC_DIR)%.c | $(OBJ_DIR)
 
 $(OBJ_DIR):
 					@mkdir -p $(OBJ_DIR)
-					@echo "$(DEFAULT)Created $(OBJ_DIR)"
+					@echo "$(YELLOW)Created $(OBJ_DIR)"
 
 $(LFT):
 					@$(MK) $(MAKE_FLAGS) $(LFT_DIR)
 					@echo "$(GREEN)Compiled $(LFT)"
 
 $(MLX):
-					@$(MK) $(MAKE_FLAGS) $(MLX_DIR)
-					@echo "$(GREEN)Compiled $(MLX)"
+					@$(MK) $(MAKE_FLAGS) $(MLX_DIR) > /dev/null
 
 clean:	
 					@$(RM) $(OBJ_DIR)
 					@$(MFC) $(MAKE_FLAGS) $(LFT_DIR)
-					@$(MC) $(MAKE_FLAGS) $(MLX_DIR)
+					@$(MC) $(MAKE_FLAGS) $(MLX_DIR) > /dev/null
 					@echo "$(YELLOW)Cleaned objects & libft"
 
 fclean:				clean 
 					@$(RM) $(NAME)
-					@echo "$(YELLOW)Cleaned executable"
+					@echo "$(YELLOW)Cleaned $(NAME)"
 
 re:					fclean all
 

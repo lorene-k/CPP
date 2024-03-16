@@ -3,20 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   DO_clear_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:25:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/15 11:43:42 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/16 04:18:55 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// int	on_destroy(t_data *data)
-// {
-// 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-// 	mlx_destroy_display(data->mlx_ptr);
-// 	free(data->mlx_ptr);
-// 	exit(0);
-// 	return (0);
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:51:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/15 16:29:45 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/16 04:49:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ int	main(int ac, char **av)
 
 	lay = init_lay();
 	map = check_args(ac, av, &lay);
-	// if (map)
-	// 	printf("PARSING OK\n\n");
-	if (init_game(map, &lay))
-		print_error("MLX problem.", map, 0);
+	if (map)
+		printf("\nPARSING OK\n\n"); //REMOVE
+	init_game(map, &lay);
 	return (0);
 }

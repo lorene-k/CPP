@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/15 17:34:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/16 04:54:19 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ t_check		init_check(void);
 int			on_destroy(t_game *game);
 int			on_keypress(int keysym, t_game *game);
 void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
-int		display_image(t_game *game);
-int			init_game(char **map, t_lay *lay);
+int			display_image(t_game *game);
+void		init_game(char **map, t_lay *lay);
 
 #endif // SO_LONG_H
