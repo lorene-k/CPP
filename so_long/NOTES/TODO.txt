@@ -34,7 +34,9 @@ LEAKS FIXED
 - map_str not ok : initialized with "\U" ??? OK
 _____________________________________________________________________________________________
                                     TESTS
-           
+- [ ] try to change image name
+- [ ] compile w/ -M -env -i
+
             CHECK MAP
 - [ ] check if invalid permissions
 - [ ] map with too few columns/rows,
