@@ -24,9 +24,11 @@ INCLUDES		=	$(I_SRC) -I/usr/include $(I_MLX)
 SRC_FLS			=	main.c \
 					check_map.c \
 					check_path.c \
+					clear.c \
+					handle_moves.c \
+					init_game.c \
 					init_structs.c \
 					utils_check.c \
-					init_game.c \
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

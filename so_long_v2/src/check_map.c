@@ -6,14 +6,16 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:25:52 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/15 16:26:39 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:26:57 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_map_error(t_check err_check, char *map_str)
+void	print_map_error(t_check err_check, char *map_str, t_lay *lay)
 {
+	if (lay->row > 500 || lay->col > 500)
+		print_error("Invalid map size.", 0, map_str);
 	if (err_check.inv_row)
 		print_error("Map is not rectangular.", 0, map_str);
 	if (err_check.inv_coll)
@@ -99,7 +101,7 @@ char	**check_map(int fd, t_lay *lay)
 	err_check = init_check();
 	if (!get_layout(fd, &err_check, lay, &map_str))
 		print_error("Memory allocation failed.", 0, map_str);
-	print_map_error(err_check, map_str);
+	print_map_error(err_check, map_str, lay);
 	map = ft_split(map_str, '\n');
 	free(map_str);
 	if (!map)

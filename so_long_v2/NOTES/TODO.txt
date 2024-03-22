@@ -5,6 +5,10 @@ HELP : https://github.com/madebypixel02/so_long/blob/main/src/check.c
 - LOOPS : https://harmless-canopy-b3a.notion.site/Les-boucles-c8eb0b92674a4926bdf3396786f61d59
 - PROTOTYPES : https://harm-smits.github.io/42docs/libs/minilibx/prototypes.html#mlx_loop_hook
 ________________________________________________________________________________________________
+                                    22/03
+- score in trop left corner >> tearing (check string_put pos)
+- moves not working >> check mlx_hook/mlx_loop_hook >> render_map (shuld redraw map at each move)
+
                                     21/03
 - PB : can't display images
 >> check mlx_xpm_file_to_img
@@ -170,3 +174,58 @@ REMINDERS:
 // 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 // 	return (0);
 // }
+
+
+// void	init_game(char **map, t_lay *lay)
+// {
+// 	t_game	game;
+// 	t_point	size;
+
+// 	size.x = lay->row;
+// 	size.y = lay->col;
+// 	game.map = copy_map(map, size);
+// 	if (!(game.map))
+// 		print_error("Memory allocation failed", map, 0);
+// 	clear_map(map);
+// 	game.lay = lay;
+// 	game.mlx = mlx_init();
+// 	if (!game.mlx)
+// 		print_error("MLX initialization failed.", game.map, 0);
+// 	// game.img = init_img(game);
+// 	// display_all(game);
+// 	game.win = mlx_new_window(game.mlx, HEIGHT, WIDTH, "SO_LONG");
+// 	// game.win = 0; // TEST HERE >> CHECK LEAKS
+// 	if (!game.win)
+// 	{
+// 		perror("Error\n");
+// 		clear_game(&game);
+// 	}
+
+// 	// mlx_loop_hook(game.mlx, &render_map, &game);
+	
+// 	mlx_hook(game.win, DestroyNotify, StructureNotifyMask, &clear_game, &game);
+// 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, &on_keypress, &game);
+// 	mlx_loop(game.mlx);
+// }
+
+
+	if (data->map[pos_y - 1][pos_x] != data->content.wall)
+	{
+		if (!(data->map[pos_y - 1][pos_x] == data->content.exit))
+		{
+			data->map[pos_y - 1][pos_x] = data->content.player;
+			data->map[pos_y][pos_x] = data->content.space;
+			data->count += 1;
+			printf("count: %d\n", data->count);
+		}
+		else
+		{
+			if (chk_collect(data) == 0)
+			{
+				printf("Felicitation vous avez gagne en : %d coup !\n",
+					data->count);
+				end(data);
+			}
+		}
+	}
+}

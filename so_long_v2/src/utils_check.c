@@ -6,26 +6,11 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:06:10 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/21 17:08:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:47:46 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	clear_map(char **tab)
-{
-	int i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	if (tab)
-		free(tab);
-	tab = 0;
-}
 
 int	print_error(char *msg, char **map, char *str)
 {
