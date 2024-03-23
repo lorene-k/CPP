@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:37:03 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/22 18:07:18 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:15:00 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	display_img(t_game *game, int x, int y) //y = height
 {
 	if (game->map[x][y] == '1')
 		mlx_put_image_to_window(game->mlx, game->win, game->img.wall,  game->img.width * y, game->img.height * x);
+	if (game->map[x][y] == '0')
+		mlx_put_image_to_window(game->mlx, game->win, game->img.floor,  game->img.width * y, game->img.height * x);
 	if (game->map[x][y] == 'C')
 		mlx_put_image_to_window(game->mlx, game->win, game->img.coll, game->img.width * y, game->img.height * x);
 	if (game->map[x][y] == 'E')
@@ -48,8 +50,10 @@ int	render_map(t_game *game)
 {
 	int x;
 	int	y;
+	char *moves;
 
 	x = 0;
+	moves = 0;
 	while (game->map[x])
 	{
 		y = 0;
@@ -60,7 +64,9 @@ int	render_map(t_game *game)
 		}
 		x++;
 	}
-	mlx_string_put(game->mlx, game->win, 15, 15, RED,ft_itoa(game->moves)); //check coordinates
+	moves = ft_itoa(game->moves);
+	mlx_string_put(game->mlx, game->win, 15, 15, RED,moves); //check coordinates
+	free(moves);
 	return (0);
 }
 

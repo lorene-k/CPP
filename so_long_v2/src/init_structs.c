@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 12:51:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/22 14:48:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 13:57:07 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ void	init_img(t_game *game)
 	{
 		mlx_destroy_image(game->mlx, game->img.wall);
 		mlx_destroy_image(game->mlx, game->img.coll);
+		mlx_destroy_image(game->mlx, game->img.play);		
+		tmp_clear(game);
+	}
+	game->img.floor = mlx_xpm_file_to_image(game->mlx, "./imgs/floor.xpm", &game->img.width, &game->img.height);
+	if (!game->img.floor)
+	{
+		mlx_destroy_image(game->mlx, game->img.wall);
+		mlx_destroy_image(game->mlx, game->img.coll);
+		mlx_destroy_image(game->mlx, game->img.play);
 		mlx_destroy_image(game->mlx, game->img.play);		
 		tmp_clear(game);
 	}
