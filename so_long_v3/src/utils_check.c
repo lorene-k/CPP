@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   utils_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:06:10 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/22 14:47:46 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:02:19 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	print_map_error(t_check err_check, char *map_str, t_lay *lay)
+{
+	if (lay->row > 500 || lay->col > 500)
+		print_error("Invalid map size.", 0, map_str);
+	if (err_check.inv_row)
+		print_error("Map is not rectangular.", 0, map_str);
+	if (err_check.inv_coll)
+		print_error("Invalid number of collectibles.", 0, map_str);
+	if (err_check.inv_exit)
+		print_error("Invalid number of exits.", 0, map_str);
+	if (err_check.inv_play)
+		print_error("Invalid number of players.", 0, map_str);
+	if (err_check.inv_walls)
+		print_error("Map is not surrounded by walls.", 0, map_str);
+	if (err_check.inv_char)
+		print_error("Invalid character(s).", 0, map_str);
+}
 
 int	print_error(char *msg, char **map, char *str)
 {

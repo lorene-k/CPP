@@ -28,6 +28,7 @@ SRC_FLS			=	main.c \
 					handle_moves.c \
 					init_game.c \
 					init_structs.c \
+					update.c \
 					utils_check.c \
 
 # ------------  FILEPATHS  --------------------------------------------------- #

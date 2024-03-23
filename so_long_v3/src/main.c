@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:51:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/21 17:29:22 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:33:54 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	main(int ac, char **av)
 
 	lay = init_lay();
 	map = check_args(ac, av, &lay);
-	// if (map)
-	// 	printf("PARSING OK\n\n");
 	init_game(map, &lay);
 	return (0);
 }

@@ -6,38 +6,22 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:25:52 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/23 14:34:14 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:42:17 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_map_error(t_check err_check, char *map_str, t_lay *lay)
-{
-	if (lay->row > 500 || lay->col > 500)
-		print_error("Invalid map size.", 0, map_str);
-	if (err_check.inv_row)
-		print_error("Map is not rectangular.", 0, map_str);
-	if (err_check.inv_coll)
-		print_error("Invalid number of collectibles.", 0, map_str);
-	if (err_check.inv_exit)
-		print_error("Invalid number of exits.", 0, map_str);
-	if (err_check.inv_play)
-		print_error("Invalid number of players.", 0, map_str);
-	if (err_check.inv_walls)
-		print_error("Map is not surrounded by walls.", 0, map_str);
-	if (err_check.inv_char)
-		print_error("Invalid character(s).", 0, map_str);
-}
-
 void	check_layout(char *line, t_check *err_check, t_lay *lay, int is_wall)
 {
 	if (!lay->col)
 		lay->col = ft_strlen(line) - 1;
-	if (lay->col > 0 && line[lay->col - 1] != '1')
+	if ((lay->col != (int)ft_strlen(line) - 1) ||
+		(lay->col > 0 && line[lay->col - 1] != '1'))
 		err_check->inv_row = 1;
-	if ((line[0] != '1') || (line[lay->col - 1] != '1')
-		|| (is_wall && count_chars(line, '1') != lay->col))
+	if ((err_check->inv_row == 0) &&
+		((line[0] != '1') || (line[lay->col - 1] != '1')
+		|| (is_wall && count_chars(line, '1') != lay->col)))
 		err_check->inv_walls = 1;
 	lay->coll += count_chars(line, 'C');
 	lay->exit += count_chars(line, 'E');
@@ -66,7 +50,10 @@ int	get_layout(int fd, t_check *err_check, t_lay *lay, char **map_str)
 		if (!curr_line)
 		{
 			if (!lay->col)
+			{
+				free(prev_line);
 				print_error("Map is empty.", 0, *map_str);
+			}
 			else
 				check_layout(prev_line, err_check, lay, 1);
 			free(prev_line);

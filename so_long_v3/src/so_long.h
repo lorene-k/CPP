@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/23 15:22:15 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:02:29 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WHITE 0xFFFFFF
 # define BLACK 0x000000
 # define RED 0xFF0000
-// # define GREEN 0x00FF00
+# define GREEN 0x00FF00
 
 # include "../mlx_linux/mlx.h"
 # include "libft/ft_printf/ft_printf.h"
@@ -86,12 +86,9 @@ typedef struct s_game
 }			t_game;
 
 /* CHECK MAP */
+void		check_layout(char *line, t_check *err_check, t_lay *lay,
+				int is_wall);
 int			get_layout(int fd, t_check *err_check, t_lay *lay, char **map_str);
-void		check_layout(char *line, t_check *err_check, t_lay *lay,
-				int is_wall);
-void		check_layout(char *line, t_check *err_check, t_lay *lay,
-				int is_wall);
-void		print_map_error(t_check err_check, char *map_str, t_lay *lay);
 char		**check_map(int fd, t_lay *lay);
 char		**check_args(int ac, char **av, t_lay *lay);
 
@@ -103,33 +100,38 @@ void		check_path(char **map, t_lay *lay);
 
 /* CLEAR */
 void		clear_map(char **tab);
-void		tmp_clear(t_game *game);
 int			clear_game(t_game *game);
+void		clear_images(t_game *game);
 
 /* HANDLE MOVES */
 void		move_up(t_game *game);
 void		move_down(t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game);
-void		update_game(t_game *game, t_point target_pos, int x, int y);
+int			on_keypress(int keysym, t_game *game);
 
-/* UTILS CHECK */
-int			print_error(char *msg, char **map, char *str);
-int			ft_strcmp_sl(char *s1, char *s2);
-int			count_chars(char *str, char c);
-int			ft_strchr_sl(char *s, char c);
+/* INIT GAME */
+void		display_img(t_game *game, int x, int y);
+int			render_map(t_game *game);
+void		display_all(t_game game);
+void		init_game(char **map, t_lay *lay);
 
 /* INIT STRUCTS */
 t_lay		init_lay(void);
 t_check		init_check(void);
 void		init_img(t_game *game);
 
-/* INIT GAME */
-int			on_keypress(int keysym, t_game *game);
-void		display_img(t_game *game, int x, int y);
-int			render_map(t_game *game);
-void		display_all(t_game game);
-void		init_game(char **map, t_lay *lay);
+/* UPDATE */
+void		update_moves(t_game *game, t_point target_pos);
+void		update_pos(char *x, char *y, char a, char b);
+void		update_game(t_game *game, t_point target_pos, int x, int y);
+
+/* UTILS CHECK */
+void		print_map_error(t_check err_check, char *map_str, t_lay *lay);
+int			print_error(char *msg, char **map, char *str);
+int			ft_strcmp_sl(char *s1, char *s2);
+int			count_chars(char *str, char c);
+int			ft_strchr_sl(char *s, char c);
 
 // void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 // int			display_image(t_game *game);

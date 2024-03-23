@@ -6,27 +6,11 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:37:03 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/23 16:04:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:01:24 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	on_keypress(int keysym, t_game *game)
-{
-
-	if (keysym == XK_Escape)
-		clear_game(game);
-	if (keysym == XK_w)
-		move_up(game);
-	if (keysym == XK_s)
-		move_down(game);
-	if (keysym == XK_a)
-		move_left(game);		
-	if (keysym == XK_d)
-		move_right(game);
-	return (0);
-}
 
 void	display_img(t_game *game, int x, int y) //y = height
 {

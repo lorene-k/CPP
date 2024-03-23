@@ -5,6 +5,18 @@ HELP : https://github.com/madebypixel02/so_long/blob/main/src/check.c
 - LOOPS : https://harmless-canopy-b3a.notion.site/Les-boucles-c8eb0b92674a4926bdf3396786f61d59
 - PROTOTYPES : https://harm-smits.github.io/42docs/libs/minilibx/prototypes.html#mlx_loop_hook
 ________________________________________________________________________________________________
+                                    23/03
+- moves fixed >> functional
+
+- BE CAREFUL : MAP INVALID IF DOESN'T END WITH NL
+- pb with inv_map.ber : floor is wall but parsing accepted
+>> fix parsing : FLOOR IS WALL >> don't fill E, check if E surrounded by at least 1 'F' in map_cpy
+- check behavior when enemy blocking exit
+- check if img deleted/bad rights/wrong name
+- check env variables
+- check if game.win == 0
+- NORM
+
                                     22/03
 - score in trop left corner >> tearing (check string_put pos)
 - moves not working >> check mlx_hook/mlx_loop_hook >> render_map (shuld redraw map at each move)
@@ -207,25 +219,3 @@ REMINDERS:
 // 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, &on_keypress, &game);
 // 	mlx_loop(game.mlx);
 // }
-
-
-	if (data->map[pos_y - 1][pos_x] != data->content.wall)
-	{
-		if (!(data->map[pos_y - 1][pos_x] == data->content.exit))
-		{
-			data->map[pos_y - 1][pos_x] = data->content.player;
-			data->map[pos_y][pos_x] = data->content.space;
-			data->count += 1;
-			printf("count: %d\n", data->count);
-		}
-		else
-		{
-			if (chk_collect(data) == 0)
-			{
-				printf("Felicitation vous avez gagne en : %d coup !\n",
-					data->count);
-				end(data);
-			}
-		}
-	}
-}

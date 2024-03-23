@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:33:37 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/23 15:26:03 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:00:26 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,36 +48,17 @@ void    move_right(t_game *game)
     update_game(game, target_pos, game->play_pos.x, game->play_pos.y);
 }
 
-void update_game(t_game *game, t_point target_pos, int x, int y)
+int	on_keypress(int keysym, t_game *game)
 {
-    if (game->map[target_pos.x][target_pos.y] != '1')
-    {
-        if (game->map[target_pos.x][target_pos.y] == '0') //floor
-        {
-            game->map[x][y] = '0';
-            game->map[target_pos.x][target_pos.y] = 'P';
-        }
-        else if (game->map[target_pos.x][target_pos.y]  == 'C') //coll
-        {
-            game->lay->coll -= 1;
-            game->map[x][y] = '0';
-            game->map[target_pos.x][target_pos.y] = 'P';
-        }
-        else if (game->map[target_pos.x][target_pos.y]  == 'N') //enem
-        {
-            ft_printf("You have lost the game :(\n");
-            clear_game(game);
-        }
-        else if (game->map[target_pos.x][target_pos.y]  == 'E') //exit
-        {
-            if (game->lay->coll == 0)
-            {    
-                game->map[target_pos.x][target_pos.y] = '0';
-                game->map[x][y] = '0';
-                ft_printf("You have won the game in %d moves!\n", game->moves);
-                clear_game(game);
-            }
-        }
-        game->moves++;
-    }
+	if (keysym == XK_Escape)
+		clear_game(game);
+	if (keysym == XK_w)
+		move_up(game);
+	if (keysym == XK_s)
+		move_down(game);
+	if (keysym == XK_a)
+		move_left(game);		
+	if (keysym == XK_d)
+		move_right(game);
+	return (0);
 }

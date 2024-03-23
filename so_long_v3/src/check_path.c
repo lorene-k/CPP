@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 18:39:30 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/15 16:29:27 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:33:06 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ char	**flood_fill(char **map, t_point size, t_point cur)
 		|| map[cur.x - 1][cur.y] == 'C' || map[cur.x - 1][cur.y] == 'E')
 		flood_fill(map, size, (t_point){cur.x - 1, cur.y});
 	if (map[cur.x + 1][cur.y] == '0' || map[cur.x + 1][cur.y] == 'P'
-		|| map[cur.x + 1][cur.y] == 'C' || map[cur.x - 1][cur.y] == 'E')
+		|| map[cur.x + 1][cur.y] == 'C' || map[cur.x + 1][cur.y] == 'E')
 		flood_fill(map, size, (t_point){cur.x + 1, cur.y});
 	if (map[cur.x][cur.y - 1] == '0' || map[cur.x][cur.y - 1] == 'P'
-		|| map[cur.x][cur.y - 1] == 'C' || map[cur.x - 1][cur.y] == 'E')
+		|| map[cur.x][cur.y - 1] == 'C' || map[cur.x][cur.y - 1] == 'E')
 		flood_fill(map, size, (t_point){cur.x, cur.y - 1});
 	if (map[cur.x][cur.y + 1] == '0' || map[cur.x][cur.y + 1] == 'P'
-		|| map[cur.x][cur.y + 1] == 'C' || map[cur.x - 1][cur.y] == 'E')
+		|| map[cur.x][cur.y + 1] == 'C' || map[cur.x][cur.y + 1] == 'E')
 		flood_fill(map, size, (t_point){cur.x, cur.y + 1});
 	return (map);
 }
@@ -63,16 +63,8 @@ void	fill_path(char **map, t_point size, t_point start)
 	int		j;
 
 	i = 0;
-	// j = 0;
 	cpy = copy_map(map, size);
 	flood_fill(cpy, size, start);
-	// while (map[i])
-	// 	printf("%s", map[i++]);
-	// printf("\n");
-	// while (cpy[j])
-	// 	printf("%s", cpy[j++]);
-	// printf("\n");
-	// i = 0;
 	while (i < size.x)
 	{
 		j = 0;
