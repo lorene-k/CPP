@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:37:03 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/23 14:59:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:04:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ void	display_img(t_game *game, int x, int y) //y = height
 		mlx_put_image_to_window(game->mlx, game->win, game->img.floor,  game->img.width * y, game->img.height * x);
 	if (game->map[x][y] == 'C')
 		mlx_put_image_to_window(game->mlx, game->win, game->img.coll, game->img.width * y, game->img.height * x);
-	if (game->map[x][y] == 'E')
+	if (game->map[x][y] == 'E' && game->lay->coll > 0)
 		mlx_put_image_to_window(game->mlx, game->win, game->img.exit, game->img.width * y, game->img.height * x);
+	if (game->map[x][y] == 'E' && game->lay->coll == 0)
+		mlx_put_image_to_window(game->mlx, game->win, game->img.exit_open, game->img.width * y, game->img.height * x);
+	if (game->map[x][y] == 'N')
+		mlx_put_image_to_window(game->mlx, game->win, game->img.enem, game->img.width * y, game->img.height * x);
 	if (game->map[x][y] == 'P')
 	{	
 		mlx_put_image_to_window(game->mlx, game->win, game->img.play, game->img.width * y, game->img.height * x);
@@ -64,9 +68,9 @@ int	render_map(t_game *game)
 		}
 		x++;
 	}
-	// moves = ft_itoa(game->moves); // BONUS
-	// mlx_string_put(game->mlx, game->win, 15, 15, RED,moves); //check coordinates
-	// free(moves);
+	moves = ft_itoa(game->moves);
+	mlx_string_put(game->mlx, game->win, 14, 20, BLACK, moves); //check coordinates
+	free(moves);
 	return (0);
 }
 
@@ -80,9 +84,8 @@ void	display_all(t_game game)
 		clear_game(&game);
 	}
 	mlx_loop_hook(game.mlx, &render_map, &game);
-	// mlx_hook(game.win, MotionNotify, StructureNotifyMask,&render_map, &game);
 	mlx_hook(game.win, DestroyNotify, StructureNotifyMask, &clear_game, &game);
-	mlx_key_hook(game.win, &on_keypress, &game);
+	mlx_hook(game.win, KeyPress, KeyPressMask, &on_keypress, &game);
 	mlx_loop(game.mlx);
 }
 

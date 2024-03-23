@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:33:37 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/23 15:00:01 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/23 15:26:03 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void update_game(t_game *game, t_point target_pos, int x, int y)
             game->map[x][y] = '0';
             game->map[target_pos.x][target_pos.y] = 'P';
         }
+        else if (game->map[target_pos.x][target_pos.y]  == 'N') //enem
+        {
+            ft_printf("You have lost the game :(\n");
+            clear_game(game);
+        }
         else if (game->map[target_pos.x][target_pos.y]  == 'E') //exit
         {
             if (game->lay->coll == 0)
@@ -74,6 +79,5 @@ void update_game(t_game *game, t_point target_pos, int x, int y)
             }
         }
         game->moves++;
-        ft_printf("Moves: %d\n", game->moves);
     }
 }

@@ -1,0 +1,14 @@
+src/a.out
+src/*.swp
+src/.DS_Store
+src/.vscode
+objs/
+minilibx_linux/*.o
+minilibx_mac/*.o
+/minilibx/obj/*.o
+*.d
+*.so
+*.a
+*.swp
+.DS_Store
+.vscode
