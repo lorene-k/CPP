@@ -1,0 +1,19 @@
+
+int i = 0;
+while (map[i])
+	printf("%s", map[i++]);
+
+	map[cur.x][cur.y] == '0' || map[cur.x][cur.y] == 'P' || map[cur.x][cur.y] == 'C'
+	map[cur.x][cur.y] != '1' || map[cur.x][cur.y] != '\n'
+
+	|| (map[cur.x][cur.y] != 'F' && map[cur.x][cur.y] != 'P' && map[cur.x][cur.y] != '0'
+        && map[cur.x][cur.y] != 'C')
+
+
+			j = 0;
+	while (map[i])
+		printf("%s", map[i++]);
+	printf("\n");
+	while (cpy[j])
+		printf("%s", cpy[j++]);
+	printf("\n");
