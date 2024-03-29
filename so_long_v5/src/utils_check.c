@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:06:10 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/28 16:44:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:32:34 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_map_error(t_check err_check, char *map_str, t_lay *lay)
 {
-	if (lay->row > 500 || lay->col > 500)
+	if (lay->row > 40 || lay->col > 70)
 		print_error("Invalid map size.", 0, map_str);
 	if (err_check.inv_row)
 		print_error("Map is not rectangular.", 0, map_str);
@@ -25,20 +25,9 @@ void	print_map_error(t_check err_check, char *map_str, t_lay *lay)
 	if (err_check.inv_play)
 		print_error("Invalid number of players.", 0, map_str);
 	if (err_check.inv_walls)
-		print_error("Map is not surrounded by walls.", 0, map_str);
+		print_error("Invalid walls.", 0, map_str);
 	if (err_check.inv_char)
 		print_error("Invalid character(s).", 0, map_str);
-}
-
-void	check_last_line(char *line, t_check *err_check, t_lay *lay)
-{
-	if ((line[lay->col] == '\0') && (count_chars(line, '1') == lay->col))
-	{
-		if (lay->col == (int)ft_strlen(line))
-			err_check->inv_row = 0;
-		if ((line[0] == '1') && (line[lay->col - 1] == '1'))
-			err_check->inv_walls = 0;
-	}
 }
 
 int	ft_strcmp_sl(char *s1, char *s2)

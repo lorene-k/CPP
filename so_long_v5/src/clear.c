@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:47:30 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/28 15:29:35 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:45:00 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	clear_game(t_game *game)
 	return (0);
 }
 
-void	clear_images(t_game *game)
+void	clear_images(t_game *game, int msg)
 {
 	if (game->img.wall)
 		mlx_destroy_image(game->mlx, game->img.wall);
@@ -60,7 +60,10 @@ void	clear_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->img.enem);
 	if (game->img.exit_open)
 		mlx_destroy_image(game->mlx, game->img.exit_open);
-	ft_printf("Error\nFile can't be opened.\n");
+	if (msg == 1)
+		ft_printf("Error\nFile can't be opened.\n");
+	else
+		ft_printf("Error\nMLX window can't be opened.\n");
 	clear_map(game->map);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);

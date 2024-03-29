@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:25:52 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/28 16:29:44 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:47:19 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	check_layout(char *line, t_check *err_check, t_lay *lay, int is_wall)
 {
 	if (!lay->col)
 		lay->col = ft_strlen(line) - 1;
-	if (((lay->col != (int)ft_strlen(line) - 1) || (lay->col > 0
-				&& line[lay->col - 1] != '1')))
+	if (lay->col && ((lay->col != (int)ft_strlen(line) - 1 && ft_strchr(line,
+					'\n')) || (lay->col != (int)ft_strlen(line)
+				&& !ft_strchr(line, '\n'))))
 		err_check->inv_row = 1;
-	if ((err_check->inv_row == 0)
-		&& ((line[0] != '1') || (line[lay->col - 1] != '1') || (!is_wall
-				&& count_chars(line, '1') != lay->col)))
+	if (!err_check->inv_row && (line[0] != '1' || line[lay->col - 1] != '1'
+			|| (is_wall && count_chars(line, '1') != lay->col)))
 		err_check->inv_walls = 1;
 	lay->coll += count_chars(line, 'C');
 	lay->exit += count_chars(line, 'E');
@@ -62,16 +62,19 @@ int	get_layout(int fd, t_check *err_check, t_lay *lay, char **map_str)
 		curr_line = get_next_line(fd);
 		if (!curr_line)
 		{
-			check_last_line(prev_line, err_check, lay);
-			free(prev_line);
 			if (!lay->col)
+			{
+				free(prev_line);
 				print_error("Map is empty.", 0, *map_str);
+			}
+			check_layout(prev_line, err_check, lay, 1);
+			free(prev_line);
 			return (1);
 		}
 		get_line(&curr_line, &prev_line, &map_str);
 		if (!*map_str)
 			return (free(prev_line), 0);
-		check_layout(prev_line, err_check, lay, lay->row);
+		check_layout(prev_line, err_check, lay, !lay->col);
 		lay->row++;
 	}
 }

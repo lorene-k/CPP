@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 20:54:51 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/28 15:24:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:59:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 void	update_moves(t_game *game, t_point target_pos)
 {
 	if (game->map[target_pos.x][target_pos.y] != 'E')
+	{
 		game->moves += 1;
+		ft_printf("Moves : %d\n", game->moves);
+	}
 	else if (game->map[target_pos.x][target_pos.y] == 'E'
 			&& game->lay->coll == 0)
+	{
 		game->moves += 1;
+		ft_printf("Moves : %d\n", game->moves);
+	}
 }
 
 void	update_pos(char *x, char *y, char a, char b)
@@ -58,7 +64,6 @@ void	update_game(t_game *game, t_point tp, int x, int y)
 				end_game(game, 1);
 		}
 		update_moves(game, tp);
-		ft_printf("Moves : %d\n", game->moves);
 		render_map(game);
 	}
 }

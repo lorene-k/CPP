@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/28 16:43:35 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:51:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void		check_path(char **map, t_lay *lay);
 /* CLEAR */
 void		clear_map(char **tab);
 int			clear_game(t_game *game);
-void		clear_images(t_game *game);
+void		clear_images(t_game *game, int msg);
 
 /* HANDLE MOVES */
 void		move_up(t_game *game);
@@ -134,7 +134,6 @@ void		update_game(t_game *game, t_point tp, int x, int y);
 
 /* UTILS CHECK */
 void		print_map_error(t_check err_check, char *map_str, t_lay *lay);
-void		check_last_line(char *line, t_check *err_check, t_lay *lay);
 int			ft_strcmp_sl(char *s1, char *s2);
 int			count_chars(char *str, char c);
 int			ft_strchr_sl(char *s, char c);

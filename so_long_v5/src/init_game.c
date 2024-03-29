@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:37:03 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/28 16:48:53 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:47:31 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ void	display_all(t_game game)
 	h = game.lay->row * game.img.h;
 	game.win = mlx_new_window(game.mlx, w, h, "SO_LONG");
 	if (!game.win)
-	{
-		perror("Error\n");
-		clear_game(&game);
-	}
+		clear_images(&game, 0);
 	render_map(&game);
 	mlx_hook(game.win, DestroyNotify, StructureNotifyMask, &clear_game, &game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, &on_keypress, &game);

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 12:51:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/28 16:43:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:46:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ void	init_img(t_game *g)
 	g->img.exit_open = put_img(g, "./imgs/exit_open.xpm");
 	if (!g->img.wall || !g->img.coll || !g->img.play || !g->img.exit
 		|| !g->img.floor || !g->img.enem || !g->img.exit_open)
-		clear_images(g);
+		clear_images(g, 1);
 }
