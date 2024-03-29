@@ -67,10 +67,10 @@ ________________________________________________________________________________
                                     TESTS
            
             CHECK MAP
-- [ ] check if invalid permissions
-- [ ] map with too few columns/rows,
-- [ ] empty line in the middle of the map
-- [ ] min.ber flood_fill (check if E replaced by F)
+- [x] check if invalid permissions
+- [x] map with too few columns/rows,
+- [x] empty line in the middle of the map
+- [x] min.ber flood_fill (check if E replaced by F)
 - [x] non-rectangle map
 - [x] invalid chars
 - [x] double P or E
@@ -92,7 +92,7 @@ GAME
 - [ ] display curr number of moves in window OR terminal
 
 GRAPHIC MANAGEMENT
-- [ ] smooth window management (resizing...)
+- [x] smooth window management (resizing...)
 - [x] press ESC to close window & exit program
 - [x] click on croix to close window
 - [ ] use images of MiniLibX
