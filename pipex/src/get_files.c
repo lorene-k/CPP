@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 16:55:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/05 17:13:08 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:10:37 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	get_out(char *out, t_data *data)
 	else
 		data->out = open(out, O_CREAT | O_RDWR | O_TRUNC, 0000644);
 	if (data->out < 0)
-		check_error(data);// ERR HERE (check if command valid before printing)
+		check_error(data); // ERR HERE (check if command valid before printing)
 }
 
 void	get_in(char **av, t_data *data)
@@ -31,10 +31,6 @@ void	get_in(char **av, t_data *data)
 		data->in = open(av[1], O_RDONLY);
 		if (data->in < 0)
 			check_error(data);
-		// check msg + look for err_code // exit code == 1 (use struct)
-		// get msg + err_code 
-		// display msg AFTER cmd not found
-		// "cat: okk: No such file or directory"
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:19:36 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/17 17:06:57 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:03:55 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static char	**ft_cpy_tab(const char *str, char **tab, char c)
 			tab[k][j++] = str[i++];
 			if (str[i] == c || str[i] == '\0')
 			{
-				tab[k][j++] = '\n';
 				tab[k][j] = '\0';
 				k++;
 			}
@@ -74,7 +73,7 @@ static char	**ft_split_words(char const *s, char c, int count, char **tab)
 			i++;
 		while (s[i] != c && s[i++])
 			len++;
-		tab[count] = malloc(sizeof(char) * (len + 2));
+		tab[count] = malloc(sizeof(char) * (len + 1));
 		if (!tab[count])
 			return (clear_tab(tab), NULL);
 		tab[count++][0] = '\0';

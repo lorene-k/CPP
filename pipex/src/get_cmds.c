@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:24:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/08 11:45:04 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:11:47 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_c_path(char **paths, char *cmd, t_data *data)
 		cmd_path = ft_strjoin(tmp, cmd);
 		free(tmp);
 		if (check_access(cmd_path, data))
-			return(cmd_path);
+			return (cmd_path);
 		free(cmd_path);
 		cmd_path = 0;
 		paths++;
@@ -52,9 +52,20 @@ char	*get_c_path(char **paths, char *cmd, t_data *data)
 
 char	*ft_getenv(char **envp)
 {
-	while (ft_strncmp("PATH", *envp, 4))
-		envp++;
-	return (*envp + 5);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (envp[i])
+	{
+		j = 0;
+		while (envp[i][j] && envp[i][j] != '=')
+			j++;
+		if (ft_strncmp("PATH", envp[i], j) == 0)
+			return (ft_strdup(envp[i] + j + 1));
+		i++;
+	}
+	return (NULL);
 }
 
 void	get_cmds(int ac, t_data *data, char **envp)

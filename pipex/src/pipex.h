@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/08 11:25:24 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:39:08 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,11 @@ typedef struct s_data
 	int **fd; //malloc here
 	pid_t	pid;
 	int		pipes;
-	char	*epath;
+	char *epath; //malloc here
 	t_cmd	cmd;
 	int		here_doc;
 	char	*limiter;
 }			t_data;
-
-
 
 /* CLEAR */
 void		close_pipes(t_data *data);
@@ -87,7 +85,7 @@ void		init_all(t_data *data);
 t_data		init_data(int ac, char **av, char **envp);
 
 /* PROCESS */
-void		parent(t_data *data, int status);
+void		parent(t_data *data, char **av, char **envp);
 void		ft_exec(t_data *data, char **envp, char *cmd);
 void		redirect(int input, int ouput);
 void		child(t_data *data, char **av, char **envp);
