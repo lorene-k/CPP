@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:27:40 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/05 17:30:29 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:06:11 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	put_child_error(t_data *data, int exit_code)
+void	put_child_error(char *msg, t_data *data, int exit_code)
 {
 	if (data->cmd.args)
 		clear_tab(data->cmd.args);
 	if (data->cmd.c_path)
 		free(data->cmd.c_path);
-	perror("pipex");
+	perror(msg);
 	exit(exit_code);
 }
 

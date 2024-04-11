@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/05 17:16:20 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:25:24 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,13 @@ typedef struct s_data
 
 
 
-
-void	check_all(t_data data); //	REMOVE
-
-
-
 /* CLEAR */
 void		close_pipes(t_data *data);
 void		close_files(t_data *data);
 void		clear_all(t_data *data);
 
 /* ERROR */
-void		put_child_error(t_data *data, int exit_code);
+void		put_child_error(char *msg, t_data *data, int exit_code);
 void		print_error(char *msg, int exit_code, t_data *data);
 void		check_error(t_data *data);
 

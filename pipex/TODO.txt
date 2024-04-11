@@ -22,9 +22,12 @@ Support « and » when the first parameter is "here_doc"
 ENOENT (2): No such file or directory
 EACCES (13): Permission denied
 _________________________________________________________________________________________________________________________________
-					TO DO
+					08/04
 
-- fix LEAKS :
+
+					TO DO
+- heredoc leak fixed in pipex >> GNL LEAKS
+- fix LEAKS
 - GNL leak in heredoc (1 byte lost) (get currentline - ft_strdup)
 
 - init struct

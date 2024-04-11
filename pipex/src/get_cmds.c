@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:24:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/05 17:49:10 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:45:04 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	check_access(char *cmd_path, t_data *data)
 		if (access(cmd_path, X_OK) == 0)
 			return (1);
 		else
-			put_child_error(data, 126);
+			put_child_error("read", data, 126);
 	}
 	else if (access(cmd_path, X_OK) == 0)
 	{
 		if (access(cmd_path, F_OK) == 0)
 			return (1);
 		else
-			put_child_error(data, 127);
+			put_child_error("exec", data, 127);
 	}
 	return (0);
 }

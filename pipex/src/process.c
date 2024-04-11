@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:28:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/06 13:12:43 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:49:15 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	parent(t_data *data, int status)
 {
 	close_pipes(data);
 	if (waitpid(-1, &status, 0) == -1)
-		print_error("pipex", status, data); // ERR_CODE //get status exit code from children, if it is != 0, exit w/ it
+		print_error("waitpid", status, data); // ERR_CODE //get status exit code from children, if it is != 0, exit w/ it
 	close_files(data);
 	clear_tab(data->cmd.paths);
 	clear_int_tab(data->fd, data->pipes);
@@ -27,17 +27,17 @@ void	ft_exec(t_data *data, char **envp, char *cmd)
 	data->cmd.args = ft_split(cmd, ' ');
 	data->cmd.c_path = get_c_path(data->cmd.paths, data->cmd.args[0], data);
 	if (!data->cmd.c_path)
-		put_child_error(data, EXIT_FAILURE); //CHECK ERR
+		put_child_error("c_path", data, EXIT_FAILURE); //CHECK ERR
 	if (execve(data->cmd.c_path, data->cmd.args, envp) == -1)
-		put_child_error(data, EXIT_FAILURE); //CHECK ERR //cmd not found : a la main
+		put_child_error("execve", data, EXIT_FAILURE); //CHECK ERR //cmd not found : a la main
 	clear_tab(data->cmd.args);
 	free(data->cmd.c_path);
 }
 
 void	redirect(int input, int ouput)
 {
-	dup2(input, 0);
-	dup2(ouput, 1);
+	dup2(input, STDIN_FILENO);
+	dup2(ouput, STDOUT_FILENO);
 }
 
 void	child(t_data *data, char **av, char **envp)

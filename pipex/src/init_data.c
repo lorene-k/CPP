@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:51:41 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/05 17:14:00 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:01:37 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_pipes(t_data *data)
 		if (pipe(data->fd[i]) < 0)
 		{
 			close_pipes(data);
-			print_error("pipex", EXIT_FAILURE, data); //CHECK ERR
+			print_error("pipes", EXIT_FAILURE, data); //CHECK ERR
 		}
 		i++;
 	}
@@ -35,12 +35,12 @@ void	get_fd(t_data *data)
 	i = -1;
 	data->fd = malloc(sizeof(int *) * data->pipes);
 	if (!data->fd)
-		print_error("pipex", EXIT_FAILURE, data); //CHECK ERR //close in & out, free paths
+		print_error("fd", EXIT_FAILURE, data); //CHECK ERR //close in & out, free paths
 	while (++i < data->pipes)
 	{
 		data->fd[i] = malloc(sizeof(int) * 2);
 		if (!data->fd[i])
-			print_error("pipex", EXIT_FAILURE, data); //CHECK ERR //close in & out, free paths, free fd's
+			print_error("fd2", EXIT_FAILURE, data); //CHECK ERR //close in & out, free paths, free fd's
 		ft_memset(data->fd[i], -1, 2);
 	}
 }
