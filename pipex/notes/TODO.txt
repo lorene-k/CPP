@@ -22,8 +22,9 @@ Support « and » when the first parameter is "here_doc"
 ENOENT (2): No such file or directory
 EACCES (13): Permission denied
 _________________________________________________________________________________________________________________________________
-					08/04
-
+					12/04
+- in get_files : open all files then treat in children?
+- 
 
 					TO DO
 - heredoc leak fixed in pipex >> GNL LEAKS

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 14:28:49 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/12 13:32:49 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:15:59 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ void	get_heredoc(t_data *data)
 		check_error(data, "heredoc_tmp"); //CHECK ERR
 	while (1)
 	{
-		write(1, "heredoc> ", 9);
+		write(1, "pipe heredoc> ", 14);
 		line = get_next_line(0);
 		if (!line)
 			print_error("malloc", EXIT_FAILURE, data); //CHECK ERR
-		if (ft_strncmp(data->limiter, line, ft_strlen(data->limiter)) == 0)
+		if (ft_strncmp(data->limiter, line, ft_strlen(data->limiter)) == 0
+			&& (ft_strlen(data->limiter) == ft_strlen(line) - 1
+			&& line[ft_strlen(line) - 1 == '\n']))
 			break ;
 		get_line(fd, line);
 	}

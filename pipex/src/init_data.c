@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:51:41 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/12 13:25:27 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:45:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	init_all(t_data *data)
 	data->i = -1;
 	data->in = -1;
 	data->out = -1;
+	data->files = 0;
 	data->pid = 0;
 	data->pipes = 0;
 	data->epath = 0;

@@ -25,3 +25,5 @@ void	check_init(t_data data)
 	clear_all(&data);
 	exit(0);
 }
+
+cat << EOF | tac >> test | cat >> test
