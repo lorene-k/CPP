@@ -25,14 +25,15 @@ SRC_FLS			=	clear.c \
 					init_data.c \
 					pipex.c \
 					process.c \
-#remove here_docu_bonus in src_fls
-B_SRC_FLS		=	clear_bonus.c \
-					get_cmds_bonus.c \
-					get_files_bonus.c \
-					here_doc_bonus.c \
-					init_data_bonus.c \
-					pipex_bonus.c \
-					process_bonus.c \
+#remove here_docu_bonus in src_fls + add "bonus" at the end of docs
+B_SRC_FLS		=	clear.c \
+					error.c \
+					get_cmds.c \
+					get_files.c \
+					heredoc_bonus.c \
+					init_data.c \
+					pipex.c \
+					process.c \
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
@@ -75,11 +76,11 @@ bonus:				$(B_OBJS) $(LFT)
 					@$(CC) $(CFLAGS) -o ./$(NAME) $(B_OBJS) $(LFLAGS)
 					@echo "$(GREEN)Compiled $(NAME)"
 
-$(B_OBJ_DIR):
-					@mkdir -p $(B_OBJ_DIR)
-
 $(B_OBJ_DIR)%.o: 	$(B_SRC_DIR)%.c | $(B_OBJ_DIR)
 					@$(CC) $(CFLAGS) $(B_INCLUDES) -c $< -o $@
+
+$(B_OBJ_DIR):
+					@mkdir -p $(B_OBJ_DIR)
 
 $(LFT):
 					@$(MK) $(MAKE_FLAGS) $(LFT_DIR)
