@@ -86,8 +86,7 @@ $(LFT):
 					@$(MK) $(MAKE_FLAGS) $(LFT_DIR)
 
 clean:	
-					@$(RM) $(OBJ_DIR)
-					@$(RM) $(B_OBJ_DIR)
+					@$(RM) $(OBJ_DIR) $(B_OBJ_DIR)
 					@$(MFC) $(MAKE_FLAGS) $(LFT_DIR)
 
 fclean:				clean 
