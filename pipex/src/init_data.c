@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:51:41 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/12 17:45:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/13 17:11:38 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	get_fd(t_data *data)
 
 void	init_all(t_data *data)
 {
-	data->i = -1;
+	data->i = 0;
 	data->in = -1;
 	data->out = -1;
 	data->files = 0;

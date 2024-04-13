@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_files.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 16:55:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/12 18:10:06 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/13 17:27:01 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,25 @@ void	get_all_files(int files, char **av, t_data *data) //clear this
 	char **tmp;
 	int i;
 	int j;
+	int n;
 
 	i = 3;
 	j = -1;
+	n = 0;
 	data->files = malloc(sizeof(int) * files);
 	while (++j < files)
 	{
 		tmp = ft_split(av[i++],' ');
-		file = tmp[1 - ft_wcount(tmp, ' ')];
+		while (tmp[n])
+			n++;
+		file = tmp[n - 1];
 		clear_tab(tmp);
 		data->files[j] = open(file, O_CREAT | O_RDWR | O_TRUNC, 0000644);
 		if (data->files[j] < 0)
-			check_error(data, file);
+		{	
+			perror(file);
+			exit(1);
+		}
 	}
 }
 
@@ -74,6 +81,6 @@ void	get_files(int ac, char **av, t_data *data)
 	check_heredoc(ac, av, data);
 	get_in(av[1], data);
 	get_out(av[ac - 1], data);
-	if (data->here_doc && ac >= 6 || ac >= 5)
+	if ((data->here_doc && ac >= 6 ) || (ac >= 5))
 		get_all_files(ac - 5 - data->here_doc, av, data);
 }
