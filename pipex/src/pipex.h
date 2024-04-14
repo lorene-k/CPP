@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/12 18:09:24 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/13 09:05:45 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_data
 	int		i;
 	int		in;
 	int		out;
-	int		*files;
 	int **fd; //malloc here
 	pid_t	pid;
 	int		pipes;
@@ -69,7 +68,6 @@ char		*ft_getenv(char **envp);
 void		get_cmds(int ac, t_data *data, char **envp);
 
 /* GET FILES */
-void		get_all_files(int files, char **av, t_data *data);
 void		get_out(char *out, t_data *data);
 void		get_in(char *in, t_data *data);
 void		check_heredoc(int ac, char **av, t_data *data);
@@ -89,7 +87,7 @@ t_data		init_data(int ac, char **av, char **envp);
 /* PROCESS */
 void		parent(t_data *data, char **av, char **envp);
 void		ft_exec(t_data *data, char **envp, char *cmd);
-void		redirect(int input, int ouput, t_data *data);
+void		redirect(int input, int output, t_data *data);
 void		child(t_data *data, char **av, char **envp);
 
 #endif // PIPEX_H

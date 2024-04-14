@@ -39,11 +39,11 @@ void	ft_exec(t_data *data, char **envp, char *cmd)
 	free(data->cmd.c_path);
 }
 
-void	redirect(int input, int ouput, t_data *data)
+void	redirect(int input, int output, t_data *data)
 {
-	if (dup2(input, STDIN_FILENO))
+	if (dup2(input, STDIN_FILENO) < 0)
 		put_child_error("pipex: dup2", data, EXIT_FAILURE);
-	if (dup2(ouput, STDOUT_FILENO))
+	if (dup2(output, STDOUT_FILENO) < 0)
 		put_child_error("pipex: dup2", data, EXIT_FAILURE);
 }
 
@@ -57,7 +57,7 @@ void	child(t_data *data, char **av, char **envp)
 		if (data->i == 0)
 			redirect(data->in, data->fd[0][1], data);
 		else
-			redirect(data->fd[data->i - 1][0], data->files[data->i - 1], data);
+			redirect(data->fd[data->i - 1][0], data->fd[data->i][1], data);
 		close_pipes(data);
 		ft_exec(data, envp, av[2 + data->i + data->here_doc]);
 	}
