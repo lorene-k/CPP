@@ -1,0 +1,389 @@
+============================================================================
+
+
+      BASIC TEST
+      NUMBER 3
+      < input grep Hello | ls -la src/ > output
+
+
+ - Bash output file:
+total 28
+drwxr-xr-x 2 lkhalifa 2023_paris   66 Apr 18 15:06 .
+drwxr-xr-x 6 lkhalifa 2023_paris  149 Apr 18 15:57 ..
+-rw-r--r-- 1 lkhalifa 2023_paris 4657 Apr 18 15:06 main.c
+-rw-r--r-- 1 lkhalifa 2023_paris  833 Apr 18 15:06 runTest.c
+-rw-r--r-- 1 lkhalifa 2023_paris 8492 Apr 18 15:06 test.c
+-rw-r--r-- 1 lkhalifa 2023_paris  427 Apr 18 15:06 utils.c
+\EOF
+
+ - Pipex output file:
+total 28
+drwxr-xr-x 2 lkhalifa 2023_paris   66 Apr 18 15:06 .
+drwxr-xr-x 6 lkhalifa 2023_paris  131 Apr 18 15:57 ..
+-rw-r--r-- 1 lkhalifa 2023_paris 4657 Apr 18 15:06 main.c
+-rw-r--r-- 1 lkhalifa 2023_paris  833 Apr 18 15:06 runTest.c
+-rw-r--r-- 1 lkhalifa 2023_paris 8492 Apr 18 15:06 test.c
+-rw-r--r-- 1 lkhalifa 2023_paris  427 Apr 18 15:06 utils.c
+\EOF
+
+ - Bash standard stream: None
+
+ - Pipex standard stream: None
+
+ - Bash exit code value: 0
+
+ - Pipex exit code value: 0
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      BASIC TEST
+      NUMBER 5
+      < input grep Hello | awk '{count++} END {print count}' > output
+
+
+ - Bash output file:
+2
+\EOF
+
+ - Pipex output file: Empty
+
+ - Bash standard stream: None
+
+ - Pipex standard stream:
+awk: cmd. line:1: '{count++}
+awk: cmd. line:1: ^ invalid char ''' in expression
+\EOF
+
+ - Bash exit code value: 0
+
+ - Pipex exit code value: 0
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      BASIC TEST
+      NUMBER 6
+      < input grep Hello | awk "{count++} END {print count}" > output
+
+
+ - Bash output file:
+2
+\EOF
+
+ - Pipex output file: Empty
+
+ - Bash standard stream: None
+
+ - Pipex standard stream:
+awk: cmd. line:1: "{count++}
+awk: cmd. line:1: ^ unterminated string
+\EOF
+
+ - Bash exit code value: 0
+
+ - Pipex exit code value: 0
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      BASIC TEST
+      NUMBER 7
+      < input grep Hello | awk '"{count++} END {print count}"' > output
+
+
+ - Bash output file:
+Hello World!
+Hello World!
+\EOF
+
+ - Pipex output file: Empty
+
+ - Bash standard stream: None
+
+ - Pipex standard stream:
+awk: cmd. line:1: '"{count++}
+awk: cmd. line:1: ^ invalid char ''' in expression
+\EOF
+
+ - Bash exit code value: 0
+
+ - Pipex exit code value: 0
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      BASIC TEST
+      NUMBER 8
+      < input grep Hello | awk "'{count++} END {print count}'" > output
+
+
+ - Bash output file: Empty
+
+ - Pipex output file: Empty
+
+ - Bash standard stream:
+awk: cmd. line:1: '{count++} END {print count}'
+awk: cmd. line:1: ^ invalid char ''' in expression
+\EOF
+
+ - Pipex standard stream:
+awk: cmd. line:1: "'{count++}
+awk: cmd. line:1: ^ unterminated string
+\EOF
+
+ - Bash exit code value: 1
+
+ - Pipex exit code value: 1
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      ERROR TEST
+      NUMBER 2
+      < input grep Hello | wc -l > output (No environment)
+
+
+ - Bash output file:
+1
+\EOF
+
+ - Pipex output file: Empty
+
+ - Bash standard stream: None
+
+ - Pipex standard stream:
+malloc: Success
+\EOF
+
+ - Bash exit code value: 0
+
+ - Pipex exit code value: 1
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      ERROR TEST
+      NUMBER 3
+      < input fizzBuzz | ls -la src/ > output
+
+
+ - Bash output file:
+total 28
+drwxr-xr-x 2 lkhalifa 2023_paris   66 Apr 18 15:06 .
+drwxr-xr-x 6 lkhalifa 2023_paris  167 Apr 18 15:57 ..
+-rw-r--r-- 1 lkhalifa 2023_paris 4657 Apr 18 15:06 main.c
+-rw-r--r-- 1 lkhalifa 2023_paris  833 Apr 18 15:06 runTest.c
+-rw-r--r-- 1 lkhalifa 2023_paris 8492 Apr 18 15:06 test.c
+-rw-r--r-- 1 lkhalifa 2023_paris  427 Apr 18 15:06 utils.c
+\EOF
+
+ - Pipex output file:
+total 28
+drwxr-xr-x 2 lkhalifa 2023_paris   66 Apr 18 15:06 .
+drwxr-xr-x 6 lkhalifa 2023_paris  149 Apr 18 15:57 ..
+-rw-r--r-- 1 lkhalifa 2023_paris 4657 Apr 18 15:06 main.c
+-rw-r--r-- 1 lkhalifa 2023_paris  833 Apr 18 15:06 runTest.c
+-rw-r--r-- 1 lkhalifa 2023_paris 8492 Apr 18 15:06 test.c
+-rw-r--r-- 1 lkhalifa 2023_paris  427 Apr 18 15:06 utils.c
+\EOF
+
+ - Bash standard stream:
+pipex: line 1: fizzBuzz: command not found
+\EOF
+
+ - Pipex standard stream:
+pipex: command not found: fizzBuzz
+\EOF
+
+ - Bash exit code value: 0
+
+ - Pipex exit code value: 127
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      ERROR TEST
+      NUMBER 4
+      < input ls -la src/ | buzzFizz > output
+
+
+ - Bash output file: Empty
+
+ - Pipex output file: Empty
+
+ - Bash standard stream:
+pipex: line 1: buzzFizz: command not found
+\EOF
+
+ - Pipex standard stream:
+pipex: command not found: buzzFizz
+\EOF
+
+ - Bash exit code value: 127
+
+ - Pipex exit code value: 127
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      ERROR TEST
+      NUMBER 5
+      < input fizzBuzz | wc -l > output (No environment)
+
+
+ - Bash output file:
+0
+\EOF
+
+ - Pipex output file: Empty
+
+ - Bash standard stream:
+pipex: line 1: fizzBuzz: command not found
+\EOF
+
+ - Pipex standard stream:
+malloc: Success
+\EOF
+
+ - Bash exit code value: 0
+
+ - Pipex exit code value: 1
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      ERROR TEST
+      NUMBER 6
+      < input grep Hello | buzzFizz > output (No environment)
+
+
+ - Bash output file: Empty
+
+ - Pipex output file: Empty
+
+ - Bash standard stream:
+pipex: line 1: buzzFizz: command not found
+\EOF
+
+ - Pipex standard stream:
+malloc: Success
+\EOF
+
+ - Bash exit code value: 127
+
+ - Pipex exit code value: 1
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      MULTIPLE COMMAND TEST
+      NUMBER 1
+      < input ls -la src/ | grep .c | wc -l > output
+
+
+ - Bash output file:
+4
+\EOF
+
+ - Pipex output file: Empty
+
+ - Bash standard stream: None
+
+ - Pipex standard stream: None
+
+ - Bash exit code value: 0
+
+ - Pipex exit code value: 0
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      MULTIPLE COMMAND TEST
+      NUMBER 2
+      < input tr -d ! | grep -v ! | sed 's/Hello/Salut/g' > output
+
+
+ - Bash output file:
+Salut World
+Salut World
+Salut World
+Salut World
+Salut World
+\EOF
+
+ - Pipex output file: Empty
+
+ - Bash standard stream: None
+
+ - Pipex standard stream:
+sed: -e expression #1, char 1: unknown command: `''
+\EOF
+
+ - Bash exit code value: 0
+
+ - Pipex exit code value: 0
+
+File permissions of output files match
+
+
+============================================================================
+
+
+      MULTIPLE COMMAND TEST
+      NUMBER 3
+      < input tr -d ! | grep -v ! | sed 's/Hello/Salut/g' | grep Salut | wc -l > output
+
+
+ - Bash output file:
+5
+\EOF
+
+ - Pipex output file: Empty
+
+ - Bash standard stream: None
+
+ - Pipex standard stream:
+sed: -e expression #1, char 1: unknown command: `''
+\EOF
+
+ - Bash exit code value: 0
+
+ - Pipex exit code value: 0
+
+File permissions of output files match
+
+
