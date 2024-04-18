@@ -1,0 +1,29 @@
+// INIT TEST 
+
+void	check_init(t_data data)
+{
+	ft_printf("fd in : %d\n", data.in);
+	ft_printf("fd out : %d\n", data.out);
+	ft_printf("pipes : %d\n", data.pipes);
+	ft_printf("epath : %s\n", data.epath);
+	ft_printf("heredoc : %d\n", data.here_doc);
+	ft_printf("limiter: %s\n", data.limiter);
+	ft_printf("cmd n : %d\n", data.cmd.n);
+
+	int i = 0;
+	int j = 0;
+	while (i < data.pipes)
+	{
+		while (j < 2)
+		{
+			ft_printf("fd[%d][%d]: %d\n", i, j, data.fd[i][j]);
+			j++;
+		}
+		i++;
+	}
+	close_pipes(&data);
+	clear_all(&data);
+	exit(0);
+}
+
+cat << EOF | tac >> test | cat >> test
