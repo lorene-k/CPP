@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:24:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/12 13:55:23 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/14 05:43:14 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,5 @@ void	get_cmds(int ac, t_data *data, char **envp)
 	data->epath = ft_getenv(envp);
 	data->cmd.paths = ft_split(data->epath, ':');
 	if (!data->cmd.paths)
-		print_error("malloc", EXIT_FAILURE, data); //ERR_CODE //close in & out + free cmd.paths
+		print_error("malloc", EXIT_SUCCESS, data); //ERR_CODE //close in & out + free cmd.paths
 }

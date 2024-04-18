@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 14:28:49 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/12 16:15:59 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/14 06:30:20 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	end_heredoc(int fd, char *line, t_data *data)
 	if (data->in == -1)
 	{
 		unlink("heredoc_tmp");
-		check_error(data, "heredoc_tmp"); //CHECK ERR
+		ft_putstr_fd("pipex: ", 2);
+		perror("heredoc_tmp");
+		exit (0);
 	}
 }
 
@@ -39,7 +41,11 @@ void	get_heredoc(t_data *data)
 
 	fd = open("heredoc_tmp", O_CREAT | O_RDWR | O_TRUNC, 0000644);
 	if (fd == -1)
-		check_error(data, "heredoc_tmp"); //CHECK ERR
+	{
+		ft_putstr_fd("pipex: ", 2);
+		perror("heredoc_tmp");	
+		exit (0);
+	}
 	while (1)
 	{
 		write(1, "pipe heredoc> ", 14);

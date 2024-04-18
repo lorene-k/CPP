@@ -2,37 +2,6 @@
 
 
       BASIC TEST
-      NUMBER 3
-      < input grep Hello | ls -la src/ > output
-
-
- - Bash output file:
-total 36
-drwxr-xr-x 2 lorene debian 4096 Apr 14 02:21 .
-drwxr-xr-x 6 lorene debian 4096 Apr 14 02:22 ..
--rw-r--r-- 1 lorene debian 4657 Apr 14 02:21 main.c
--rw-r--r-- 1 lorene debian  833 Apr 14 02:21 runTest.c
--rw-r--r-- 1 lorene debian 8492 Apr 14 02:21 test.c
--rw-r--r-- 1 lorene debian  427 Apr 14 02:21 utils.c
-\EOF
-
- - Pipex output file: Empty
-
- - Bash standard stream: None
-
- - Pipex standard stream: None
-
- - Bash exit code value: 0
-
- - Pipex exit code value: 0
-
-File permissions of output files match
-
-
-============================================================================
-
-
-      BASIC TEST
       NUMBER 5
       < input grep Hello | awk '{count++} END {print count}' > output
 
@@ -206,7 +175,7 @@ File permissions of output files match
  - Bash output file:
 total 36
 drwxr-xr-x 2 lorene debian 4096 Apr 14 02:21 .
-drwxr-xr-x 6 lorene debian 4096 Apr 14 02:22 ..
+drwxr-xr-x 6 lorene debian 4096 Apr 14 03:05 ..
 -rw-r--r-- 1 lorene debian 4657 Apr 14 02:21 main.c
 -rw-r--r-- 1 lorene debian  833 Apr 14 02:21 runTest.c
 -rw-r--r-- 1 lorene debian 8492 Apr 14 02:21 test.c
@@ -216,7 +185,7 @@ drwxr-xr-x 6 lorene debian 4096 Apr 14 02:22 ..
  - Pipex output file:
 total 36
 drwxr-xr-x 2 lorene debian 4096 Apr 14 02:21 .
-drwxr-xr-x 6 lorene debian 4096 Apr 14 02:22 ..
+drwxr-xr-x 6 lorene debian 4096 Apr 14 03:05 ..
 -rw-r--r-- 1 lorene debian 4657 Apr 14 02:21 main.c
 -rw-r--r-- 1 lorene debian  833 Apr 14 02:21 runTest.c
 -rw-r--r-- 1 lorene debian 8492 Apr 14 02:21 test.c
@@ -366,7 +335,9 @@ Salut World
 
  - Bash standard stream: None
 
- - Pipex standard stream: None
+ - Pipex standard stream:
+sed: -e expression #1, char 1: unknown command: `''
+\EOF
 
  - Bash exit code value: 0
 

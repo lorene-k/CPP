@@ -29,10 +29,8 @@ void	ft_exec(t_data *data, char **envp, char *cmd)
 {
 	data->cmd.args = ft_split(cmd, ' ');
 	data->cmd.c_path = get_c_path(data->cmd.paths, data->cmd.args[0], data);
-	if (!data->cmd.c_path)
-		put_child_error("c_path", data, EXIT_FAILURE); //CHECK ERR
 	if (execve(data->cmd.c_path, data->cmd.args, envp) == -1)
-		put_child_error("execve", data, EXIT_FAILURE); //CHECK ERR //cmd not found : a la main
+		put_cmd_error(data);
 	clear_tab(data->cmd.args);
 	free(data->cmd.c_path);
 }
@@ -49,7 +47,7 @@ void	child(t_data *data, char **av, char **envp)
 {
 	data->pid = fork();
 	if (data->pid == -1)
-		print_error("pipex", EXIT_FAILURE, data);
+		put_child_error("pipex: fork", data, EXIT_FAILURE);
 	if (data->pid == 0)
 	{
 		if (data->i == 0)

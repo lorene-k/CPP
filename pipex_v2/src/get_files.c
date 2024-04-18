@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 16:55:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/13 08:54:50 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/14 07:34:52 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	get_out(char *out, t_data *data)
 	else
 		data->out = open(out, O_CREAT | O_RDWR | O_TRUNC, 0000644);
 	if (data->out < 0)
-		check_error(data, out); // ERR HERE (check if command valid before printing)
+	{
+			ft_putstr_fd("pipex: ", 2);
+			perror(out);
+			exit (0);
+	}
 }
 
 void	get_in(char *in, t_data *data)
@@ -30,7 +34,10 @@ void	get_in(char *in, t_data *data)
 	{
 		data->in = open(in, O_RDONLY);
 		if (data->in < 0)
-			check_error(data, in);
+		{
+			ft_putstr_fd("pipex: ", 2);
+			perror(in);
+		}
 	}
 }
 

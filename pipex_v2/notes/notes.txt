@@ -1,0 +1,162 @@
+
+./pipex infile cmd1 cmd2 outfile
+handle errors like shell
+
+                    BONUS :
+Handle multiple pipes
+Support « and » when the first parameter is "here_doc"
+
+    MULTIPLE PIPES
+- check how many args
+
+    HEREDOC : ./pipex here_doc LIMITER cmd cmd outfile
+- LIMITER = word to type to end heredoc
+- heredoc ouput ALWAYS ends W/ "\n"
+- check if av1 is here_doc
+- redirect ouput of process from terminal to file : dup2(fd, STDOUT_FILENO)
+- write to temp file, then use unlink ??
+- write at the end of outfile : APPEND
+
+	ERR_CODES
+ENOENT (2): No such file or directory
+EACCES (13): Permission denied
+_________________________________________________________________________________________________________________________________
+					12/04
+- not working if parent executes last command : all cmds executed in children, cleanup in parent
+
+					TO DO
+- heredoc leak fixed in pipex >> GNL LEAKS
+- fix LEAKS
+- GNL leak in heredoc (1 byte lost) (get currentline - ft_strdup)
+
+- init struct
+- malloc int array for pids, fds, cmdsS
+- reproduce pipe behavior EXACTLY
+- study perror
+- get right error codes for exit()
+>>> TO FIND EXIT CODE : after making error, "echo$?" in terminal
+"Exit code 127 typically indicates that the command was not found or could not be executed by the 
+shell. It usually means that the shell tried to execute a command but couldn't find the executable 
+file in any of the directories listed in the PATH environment variable."
+
+>> ERROR MANAGEMENT 
+- infile fd == -1 <<
+- outfile fd == -1 <<
+- execve <<<<
+- fork <<
+- pipe <<
+- dup2 <<
+- access
+
+>> ORIGINAL OUTPUT
+- zsh: command not found: ok
+- cat: ok.txt: No such file or directory
+= print av[2], av[1], perror
+= perror(cmd, file)
+
+_________________________________________________________________________________________________________
+                    FOR TESTS
+- original function : cat Makefile | cat -e ok | cat > test.txt
+./pipex Makefile cat "cat -e ok" cat test.txt
+-[ ] Entree standard /dev/stdin (some commands dont work ex : cat)
+-[ ] VALGRIND - test in vim/terminal
+-[ ] valgrind --trace-children = yes
+-[ ] valgrind --track-fds=yes (check if fd's are closed)
+- [ ] check open fd's : ls -la /proc/$$/fd
+-[ ] tac = cat a l'envers
+-[ ] < = entree standard (ex : < Makefile cat)
+-[ ] > : out
+-[ ] Check if : input = output
+-[ ] CHECK ALL EXIT ROUTES : leaks, open fd's, error messages        
+
+_________________________________________________________________________________________________________________________________
+                    ADVICE
+- ulimit -n : to check max fd's that can be open in system (1024 - 3)
+
+- Handle file rights when you open() them. Return error if the file cannot be opened, read or written.
+Check how the shell treats infile and outfile when they do not exist, are not readable, writable etc.
+>> CHMOD
+
+_________________________________________________________________________________________________________________________________
+                    FUNCTIONS
+
+>>> pipe() takes an array of two int such as int end[2], and links them together. 
+In a pipe, what is done in end[0] is visible to end[1], and vice versa. 
+Plus, pipe() assigns an fd to each end.
+    
+>>> fork() will split our process in two sub-processes: it returns 0 for the child process, 
+a non-zero number for the parent process, or a -1 in case of error.
+Also: fork() splits the process in two parallel, simultaneous processes, 
+that happen at the same time.    
+
+>>> dup2() can swap our fds to stdin/stdout.    
+int dup2(int fd1, int fd2) : it will close fd2 and duplicate the value of fd2 to fd1, 
+or else said, it will redirect fd1 to fd2.
+
+_________________________________________________________________________________________________________________________________    
+
+>>    access: Checks whether a process has permission to access a file or directory.
+>>    unlink: Deletes a name from the filesystem.
+
+X    dup: Duplicates an existing file descriptor.
+OK    dup2: Duplicates an existing file descriptor to a specified file descriptor.
+
+OK    execve: Executes a program specified by a given file path.
+OK    exit: Exits the calling process.    
+OK    fork: Creates a new process by duplicating the calling process.
+OK    pipe: Creates a unidirectional communication pipe.
+
+X    wait: Suspends the calling process until a child process terminates.
+OK    waitpid: Waits for a specific process to terminate.
+
+
+void perror(const char *s);
+char *strerror(int errnum);
+
+int access(const char *pathname, int mode);
+int unlink(const char *pathname);
+
+int dup(int oldfd);
+int dup2(int oldfd, int newfd);
+
+int execve(const char *pathname, char *const argv[], char *const envp[]);
+void exit(int status);
+pid_t fork(void);
+int pipe(int pipefd[2]);
+
+pid_t wait(int *status);
+pid_t waitpid(pid_t pid, int *status, int options);
+
+_________________________________________________________________________________________________________________________________
+                    NOTES - MY CODE
+                    
+void	child(char **av, int *p_fd, char **envp)
+{
+	int	fd;
+
+	fd = open_file(av[1], 0);
+	if (fd == -1)
+			print_error(ERR_INFILE, 1, 1);
+	if (dup2(fd, 0) < 0)   //redirects child input to input file
+		exit(-1); // CHECK ERROR MANAGEMENT
+	if (dup2(p_fd[1], 1) < 0) //redirects child output to write end of pipe = p_fd[1] >> to send child output to parent
+		exit(-1); // CHECK ERROR MANAGEMENT
+	close(p_fd[0]);
+	ft_exec(av[2], envp);
+}
+
+void	parent(char **av, int *p_fd, char **envp)
+{
+	int	fd;
+
+	wait(NULL); // CHANGE FOR BONUS
+	fd = open_file(av[4], 0);
+	if (fd == -1)
+		print_error(ERR_OUTFILE, 1, 1);
+	if (dup2(fd, 1) < 0)    //redirects parent output to output file
+		exit(-1); // CHECK ERROR MANAGEMENT
+	if (dup2(p_fd[0], 0) < 0) //redirects parent input to the read endpipe = p_fd[0] >> for parent to read data from child
+		exit(-1); // CHECK ERROR MANAGEMENT
+	close(p_fd[1]);
+	ft_exec(av[3], envp);
+}

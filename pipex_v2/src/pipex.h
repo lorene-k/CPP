@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/14 02:08:03 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/14 08:26:34 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void		close_files(t_data *data);
 void		clear_all(t_data *data);
 
 /* ERROR */
+void		put_cmd_error(t_data *data);
 void		put_child_error(char *msg, t_data *data, int exit_code);
 void		print_error(char *msg, int exit_code, t_data *data);
-void		check_error(t_data *data, char *file);
 
 /* GET CMDS */
 int			check_access(char *cmd_path, t_data *data);
