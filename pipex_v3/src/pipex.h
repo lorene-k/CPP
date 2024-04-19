@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/18 18:01:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:40:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 typedef struct s_cmd
 {
 	int		n;
-	char **paths;
-	char **args;
+	char	**paths;
+	char	**args;
 	char	*c_path;
 }			t_cmd;
 
@@ -42,10 +42,10 @@ typedef struct s_data
 	int		i;
 	int		in;
 	int		out;
-	int **fd;
+	int		**fd;
 	pid_t	*pid;
 	int		pipes;
-	char *epath;
+	char	*epath;
 	t_cmd	cmd;
 	int		here_doc;
 	char	*limiter;
@@ -80,6 +80,7 @@ void		get_line(int fd, char *line);
 void		get_heredoc(t_data *data);
 
 /* INIT DATA */
+void		get_pids(t_data *data);
 void		get_pipes(t_data *data);
 void		get_fd(t_data *data);
 void		init_all(t_data *data);

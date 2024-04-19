@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   is_in_charset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 10:18:41 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/09 10:19:27 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:04:38 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int is_in_charset(char *charset, char c)
+int	is_in_charset(char *charset, char c)
 {
 	while (*charset)
 	{

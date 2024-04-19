@@ -6,11 +6,19 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:51:41 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/18 15:01:24 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:58:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	get_pids(t_data *data)
+{
+	data->pid = malloc(sizeof(int) * data->cmd.n);
+	if (!data->pid)
+		print_error("malloc", 0, data);
+	ft_memset(data->pid, -1, data->cmd.n);
+}
 
 void	get_pipes(t_data *data)
 {
@@ -22,7 +30,7 @@ void	get_pipes(t_data *data)
 		if (pipe(data->fd[i]) < 0)
 		{
 			close_pipes(data);
-			print_error("pipe", EXIT_FAILURE, data); //CHECK ERR
+			print_error("pipe", EXIT_FAILURE, data);
 		}
 		i++;
 	}
@@ -35,12 +43,12 @@ void	get_fd(t_data *data)
 	i = -1;
 	data->fd = malloc(sizeof(int *) * data->pipes);
 	if (!data->fd)
-		print_error("malloc", EXIT_FAILURE, data); //CHECK ERR //close in & out, free paths
+		print_error("malloc", 0, data);
 	while (++i < data->pipes)
 	{
 		data->fd[i] = malloc(sizeof(int) * 2);
 		if (!data->fd[i])
-			print_error("malloc", EXIT_FAILURE, data); //CHECK ERR //close in & out, free paths, free fd's
+			print_error("malloc", 0, data);
 		ft_memset(data->fd[i], -1, 2);
 	}
 }
@@ -64,12 +72,13 @@ void	init_all(t_data *data)
 
 t_data	init_data(int ac, char **av, char **envp)
 {
-	t_data data;
+	t_data	data;
 
 	init_all(&data);
 	get_files(ac, av, &data);
 	get_cmds(ac, &data, envp);
 	get_fd(&data);
 	get_pipes(&data);
+	get_pids(&data);
 	return (data);
 }

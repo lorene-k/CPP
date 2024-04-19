@@ -1,18 +1,17 @@
 
 
-
-
+			19/04
 DO PIDs
 + init PID w/ malloc
-
-
 
 
 LS & GREP & TAC >>> LEAKS
 
 
-
-
+FIX 
+- [ ] env -if
+- [ ] time ./pipex 
+sleep 9 | sleep 4
 
 
 

@@ -27,3 +27,9 @@ void	check_init(t_data data)
 }
 
 cat << EOF | tac >> test | cat >> test
+
+
+	// int i = 0;
+	// while (i < data->cmd.n)
+	// 	ft_printf("%d\n", i++);
+	// exit(0);

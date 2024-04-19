@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 18:11:55 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/18 17:49:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:53:30 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,6 @@ void	clear_all(t_data *data)
 		clear_int_tab(data->fd, data->pipes);
 	if (data->epath)
 		free(data->epath);
+	if (data->pid)
+		free(data->pid);
 }

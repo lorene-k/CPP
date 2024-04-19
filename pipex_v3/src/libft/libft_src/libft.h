@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:45:08 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/12 13:54:46 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:50:52 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_list
 }					t_list;
 
 void				clear_tab(char **tab);
-void				clear_int_tab(int **tab, int limit);
+void				clear_int_tab(int **tab, int size);
 int					ft_count_chars(char *str, char c);
 int					is_in_charset(char *charset, char c);
 

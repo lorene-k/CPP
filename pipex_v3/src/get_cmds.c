@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:24:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/18 17:53:18 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:31:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_access(char *cmd_path)
 {
 	if (access(cmd_path, X_OK | F_OK) == 0)
-			return (1);
+		return (1);
 	return (0);
 }
 
@@ -68,6 +68,4 @@ void	get_cmds(int ac, t_data *data, char **envp)
 	data->pipes = data->cmd.n - 1;
 	data->epath = ft_getenv(envp);
 	data->cmd.paths = ft_split(data->epath, ':');
-	if (!data->cmd.paths)
-		print_error("malloc", EXIT_FAILURE, data);
 }
