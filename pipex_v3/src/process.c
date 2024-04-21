@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:28:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/19 18:33:37 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:22:21 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,14 @@
 
 void	parent(t_data *data)
 {
-	int	status;
 	int i;
 
-	status = 0;
 	i = -1;
 	close_pipes(data);
-	while (i < data->cmd.n)
-	{
-		waitpid(data->pid[i], &status, 0); //CHECK EXIT STATUS
-		i++;
-	}
+	while (++i < data->cmd.n)
+		waitpid(data->pid[i], &data->status, 0);
 	clear_all(data);
-	exit(WEXITSTATUS(status));
+	exit(WEXITSTATUS(data->status)); //last child status
 }
 
 void	ft_exec(t_data *data, char **envp, char *cmd)

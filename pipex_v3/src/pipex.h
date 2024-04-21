@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/19 17:40:27 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:50:33 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ typedef struct s_data
 	int		in;
 	int		out;
 	int		**fd;
+	int		status;
 	pid_t	*pid;
 	int		pipes;
 	char	*epath;
 	t_cmd	cmd;
 	int		here_doc;
 	char	*limiter;
-	int		inv_infile;
 }			t_data;
 
 /* CLEAR */

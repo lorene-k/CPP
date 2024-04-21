@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_files.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 16:55:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/18 15:28:35 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:39:28 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	get_out(char *out, t_data *data)
 	if (data->out < 0)
 	{
 		check_error(out);
-		if (!data->inv_infile)
-			close(data->in);
 		exit(1);
 	}
 }
@@ -35,10 +33,7 @@ void	get_in(char *in, t_data *data)
 	{
 		data->in = open(in, O_RDONLY);
 		if (data->in < 0)
-		{
 			check_error(in);
-			data->inv_infile = 1;
-		}
 	}
 }
 

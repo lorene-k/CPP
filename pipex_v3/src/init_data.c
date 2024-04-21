@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:51:41 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/19 16:58:27 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:10:58 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	get_pids(t_data *data)
 	data->pid = malloc(sizeof(int) * data->cmd.n);
 	if (!data->pid)
 		print_error("malloc", 0, data);
-	ft_memset(data->pid, -1, data->cmd.n);
+	// data->status = malloc(sizeof(int) * data->cmd.n);
+	// if (!data->status)
+	// 	print_error("malloc", 0, data);
 }
 
 void	get_pipes(t_data *data)
@@ -29,7 +31,11 @@ void	get_pipes(t_data *data)
 	{
 		if (pipe(data->fd[i]) < 0)
 		{
-			close_pipes(data);
+			while (i--)
+			{
+				close(data->fd[i][0]);
+				close(data->fd[i][1]);
+			}
 			print_error("pipe", EXIT_FAILURE, data);
 		}
 		i++;
@@ -49,7 +55,6 @@ void	get_fd(t_data *data)
 		data->fd[i] = malloc(sizeof(int) * 2);
 		if (!data->fd[i])
 			print_error("malloc", 0, data);
-		ft_memset(data->fd[i], -1, 2);
 	}
 }
 
@@ -58,16 +63,12 @@ void	init_all(t_data *data)
 	data->i = -1;
 	data->in = -1;
 	data->out = -1;
-	data->pid = 0;
-	data->pipes = 0;
-	data->epath = 0;
 	data->cmd.n = 0;
 	data->cmd.paths = 0;
 	data->cmd.args = 0;
 	data->cmd.c_path = 0;
 	data->here_doc = 0;
 	data->limiter = 0;
-	data->inv_infile = 0;
 }
 
 t_data	init_data(int ac, char **av, char **envp)
