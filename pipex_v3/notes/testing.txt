@@ -33,3 +33,5 @@ cat << EOF | tac >> test | cat >> test
 	// while (i < data->cmd.n)
 	// 	ft_printf("%d\n", i++);
 	// exit(0);
+
+	lsof -c ./pipex | wc -l

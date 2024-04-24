@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 14:28:49 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/18 15:47:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:49:14 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	end_heredoc(int fd, char *line, t_data *data)
 	free(line);
 	get_next_line(fd);
 	close(fd);
-	data->in = open("heredoc_tmp", O_RDONLY);
+	data->in = open(HEREDOC, O_RDONLY);
 	if (data->in == -1)
 	{
-		unlink("heredoc_tmp");
-		check_error("heredoc_tmp");
+		unlink(HEREDOC);
+		check_error(HEREDOC);
 	}
 }
 
@@ -37,18 +37,18 @@ void	get_heredoc(t_data *data)
 	int		fd;
 	char	*line;
 
-	fd = open("heredoc_tmp", O_CREAT | O_RDWR | O_TRUNC, 0000644);
+	fd = open(HEREDOC, O_CREAT | O_RDWR | O_TRUNC, 0000644);
 	if (fd == -1)
-		check_error("heredoc_tmp"); //CHECK ERR
+		check_error(HEREDOC);
 	while (1)
 	{
 		write(1, "pipe heredoc> ", 14);
 		line = get_next_line(0);
 		if (!line)
-			print_error("malloc", EXIT_FAILURE, data); //CHECK ERR
+			print_error("malloc", EXIT_FAILURE, data);
 		if (ft_strncmp(data->limiter, line, ft_strlen(data->limiter)) == 0
 			&& (ft_strlen(data->limiter) == ft_strlen(line) - 1
-			&& line[ft_strlen(line) - 1 == '\n']))
+				&& line[ft_strlen(line) - 1 == '\n']))
 			break ;
 		get_line(fd, line);
 	}

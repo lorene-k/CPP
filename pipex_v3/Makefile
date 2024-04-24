@@ -26,14 +26,14 @@ SRC_FLS			=	clear.c \
 					pipex.c \
 					process.c \
 #remove here_docu_bonus in src_fls + add "bonus" at the end of docs
-B_SRC_FLS		=	clear.c \
-					error.c \
-					get_cmds.c \
-					get_files.c \
+B_SRC_FLS		=	clear_bonus.c \
+					error_bonus.c \
+					get_cmds_bonus.c \
+					get_files_bonus.c \
 					heredoc_bonus.c \
-					init_data.c \
-					pipex.c \
-					process.c \
+					init_data_bonus.c \
+					pipex_bonus.c \
+					process_bonus.c \
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

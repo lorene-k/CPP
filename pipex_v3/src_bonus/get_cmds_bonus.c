@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:24:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/18 15:46:27 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:04:53 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,8 @@
 
 int	check_access(char *cmd_path)
 {
-	if (access(cmd_path, F_OK) == 0)
-	{
-		if (access(cmd_path, X_OK) == 0)
-			return (1);
-	}
-	else if (access(cmd_path, X_OK) == 0)
-	{
-		if (access(cmd_path, F_OK) == 0)
-			return (1);
-	}
+	if (access(cmd_path, X_OK | F_OK) == 0)
+		return (1);
 	return (0);
 }
 
@@ -76,6 +68,4 @@ void	get_cmds(int ac, t_data *data, char **envp)
 	data->pipes = data->cmd.n - 1;
 	data->epath = ft_getenv(envp);
 	data->cmd.paths = ft_split(data->epath, ':');
-	if (!data->cmd.paths)
-		print_error("malloc", EXIT_FAILURE, data);
 }

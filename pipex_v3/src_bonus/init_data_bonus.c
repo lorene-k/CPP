@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:51:41 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/18 15:01:24 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:10:58 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	get_pids(t_data *data)
+{
+	data->pid = malloc(sizeof(int) * data->cmd.n);
+	if (!data->pid)
+		print_error("malloc", 0, data);
+	// data->status = malloc(sizeof(int) * data->cmd.n);
+	// if (!data->status)
+	// 	print_error("malloc", 0, data);
+}
 
 void	get_pipes(t_data *data)
 {
@@ -21,8 +31,12 @@ void	get_pipes(t_data *data)
 	{
 		if (pipe(data->fd[i]) < 0)
 		{
-			close_pipes(data);
-			print_error("pipe", EXIT_FAILURE, data); //CHECK ERR
+			while (i--)
+			{
+				close(data->fd[i][0]);
+				close(data->fd[i][1]);
+			}
+			print_error("pipe", EXIT_FAILURE, data);
 		}
 		i++;
 	}
@@ -35,13 +49,12 @@ void	get_fd(t_data *data)
 	i = -1;
 	data->fd = malloc(sizeof(int *) * data->pipes);
 	if (!data->fd)
-		print_error("malloc", EXIT_FAILURE, data); //CHECK ERR //close in & out, free paths
+		print_error("malloc", 0, data);
 	while (++i < data->pipes)
 	{
 		data->fd[i] = malloc(sizeof(int) * 2);
 		if (!data->fd[i])
-			print_error("malloc", EXIT_FAILURE, data); //CHECK ERR //close in & out, free paths, free fd's
-		ft_memset(data->fd[i], -1, 2);
+			print_error("malloc", 0, data);
 	}
 }
 
@@ -50,26 +63,23 @@ void	init_all(t_data *data)
 	data->i = -1;
 	data->in = -1;
 	data->out = -1;
-	data->pid = 0;
-	data->pipes = 0;
-	data->epath = 0;
 	data->cmd.n = 0;
 	data->cmd.paths = 0;
 	data->cmd.args = 0;
 	data->cmd.c_path = 0;
 	data->here_doc = 0;
 	data->limiter = 0;
-	data->inv_infile = 0;
 }
 
 t_data	init_data(int ac, char **av, char **envp)
 {
-	t_data data;
+	t_data	data;
 
 	init_all(&data);
 	get_files(ac, av, &data);
 	get_cmds(ac, &data, envp);
 	get_fd(&data);
 	get_pipes(&data);
+	get_pids(&data);
 	return (data);
 }

@@ -1,12 +1,12 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:28:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/11 18:08:28 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:22:21 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 void	parent(t_data *data)
 {
-	int status;
+	int i;
 
-	status = 0;
+	i = -1;
 	close_pipes(data);
-	if (waitpid(-1, &status, 0) == -1)
-		print_error("waitpid", status, data);
+	while (++i < data->cmd.n)
+		waitpid(data->pid[i], &data->status, 0);
 	clear_all(data);
-	exit(WEXITSTATUS(status));
+	exit(WEXITSTATUS(data->status)); //last child status
 }
 
 void	ft_exec(t_data *data, char **envp, char *cmd)
 {
 	data->cmd.args = ft_split(cmd, ' ');
 	data->cmd.c_path = get_c_path(data->cmd.paths, data->cmd.args[0]);
-	if (execve(data->cmd.c_path, data->cmd.args, envp) == -1)
-	{
-		ft_putstr_fd("pipex: command not found: ", 2);
-		ft_putendl_fd(cmd, 2);
-		exit(127);
+	if (!data->cmd.c_path)
+	{	
+		clear_tab(data->cmd.args);
+		clear_all(data);
+		put_cmd_error(cmd);
 	}
+	if (execve(data->cmd.c_path, data->cmd.args, envp) < 0)
+		put_cmd_error(cmd);
 }
 
 void	redirect(int input, int output, t_data *data)
@@ -45,14 +47,14 @@ void	redirect(int input, int output, t_data *data)
 
 void	child(t_data *data, char **av, char **envp)
 {
-	data->pid = fork();
-	if (data->pid == -1)
-		print_error("pipex", EXIT_FAILURE, data);
-	if (data->pid == 0)
+	data->pid[data->i] = fork();
+	if (data->pid[data->i] == -1)
+		print_error("fork", EXIT_FAILURE, data);
+	if (data->pid[data->i] == 0)
 	{
 		if (data->i == 0)
 			redirect(data->in, data->fd[0][1], data);
-		else if (data->i == data->cmd.n - 1)
+		else if (data->i == data->pipes)
 			redirect(data->fd[data->i - 1][0], data->out, data);
 		else
 			redirect(data->fd[data->i - 1][0], data->fd[data->i][1], data);

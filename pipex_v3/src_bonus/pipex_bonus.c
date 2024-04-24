@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 15:06:35 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/14 02:10:42 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/21 18:11:05 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av, char **envp)
 	t_data	data;
 
 	if (ac < 5)
-		return(ft_putstr_fd("pipex : Invalid number of arguments\n", 2), 0);
+		return (ft_putstr_fd("pipex : Invalid number of arguments\n", 2), 0);
 	data = init_data(ac, av, envp);
 	while (++data.i < data.cmd.n)
 		child(&data, av, envp);

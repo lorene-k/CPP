@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 18:11:55 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/12 16:50:52 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:15:18 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,12 @@
 void	close_pipes(t_data *data)
 {
 	int	i;
-	int	j;
 
-	i = 0;
-	j = 0;
-	while (i < data->pipes)
+	i = -1;
+	while (++i < data->pipes)
 	{
-		while (j < 2)
-		{
-			close(data->fd[i][j]);
-			j++;
-		}
-		i++;
+		close(data->fd[i][0]);
+		close(data->fd[i][1]);
 	}
 }
 
@@ -49,4 +43,6 @@ void	clear_all(t_data *data)
 		clear_int_tab(data->fd, data->pipes);
 	if (data->epath)
 		free(data->epath);
+	if (data->pid)
+		free(data->pid);
 }

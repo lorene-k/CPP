@@ -1,5 +1,17 @@
 
 
+			20/04
+- pbs fixed
+- do PIPEX TESTER
+- error msgs not in right order if cmd not found >> FIXED
+- do status tab ?
+
+
+			19/04
+- pipex fixed
+- pid tab added
+- status tab not added yet
+
 			19/04
 DO PIDs
 + init PID w/ malloc

@@ -6,11 +6,20 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:27:40 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/18 15:40:40 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:11:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	put_cmd_error(char *cmd)
+{
+	ft_putstr_fd("pipex: command not found: ", 2);
+	ft_putendl_fd(cmd, 2);
+	if (errno == EACCES)
+		exit(126);
+	exit(127);
+}
 
 void	print_error(char *msg, int exit_code, t_data *data)
 {

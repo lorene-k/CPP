@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 19:23:39 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/05 18:00:49 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:50:45 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	clear_tab(char **tab)
 	tab = 0;
 }
 
-void	clear_int_tab(int **tab, int limit)
+void	clear_int_tab(int **tab, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (i < limit)
+	while (i < size)
 	{
 		free(tab[i]);
 		i++;

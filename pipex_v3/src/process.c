@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:28:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/21 18:22:21 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:12:10 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	parent(t_data *data)
 	close_pipes(data);
 	while (++i < data->cmd.n)
 		waitpid(data->pid[i], &data->status, 0);
+	put_in_error(data);
 	clear_all(data);
 	exit(WEXITSTATUS(data->status)); //last child status
 }
@@ -29,13 +30,9 @@ void	ft_exec(t_data *data, char **envp, char *cmd)
 	data->cmd.args = ft_split(cmd, ' ');
 	data->cmd.c_path = get_c_path(data->cmd.paths, data->cmd.args[0]);
 	if (!data->cmd.c_path)
-	{	
-		clear_tab(data->cmd.args);
-		clear_all(data);
-		put_cmd_error(cmd);
-	}
+		put_cmd_error(data->cmd.args[0], data);
 	if (execve(data->cmd.c_path, data->cmd.args, envp) < 0)
-		put_cmd_error(cmd);
+		put_cmd_error(data->cmd.args[0], data);
 }
 
 void	redirect(int input, int output, t_data *data)
@@ -58,6 +55,8 @@ void	child(t_data *data, char **av, char **envp)
 			redirect(data->fd[data->i - 1][0], data->out, data);
 		else
 			redirect(data->fd[data->i - 1][0], data->fd[data->i][1], data);
+		if (data->in < 0 && data->i == 0)	
+			exit(0);
 		ft_exec(data, envp, av[2 + data->i + data->here_doc]);
 	}
 }

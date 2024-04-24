@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 18:11:55 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/21 17:15:18 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:58:52 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,6 @@ void	clear_all(t_data *data)
 		free(data->epath);
 	if (data->pid)
 		free(data->pid);
+	if (data->infile)
+		free(data->infile);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/18 15:41:49 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:50:33 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define PIPEX_H
 
-# define CMD_FAILURE 127
+# define HEREDOC "heredoc_tmp"
 
 # include "libft/ft_printf/ft_printf.h"
 # include "libft/get_next_line/get_next_line.h"
@@ -32,8 +32,8 @@
 typedef struct s_cmd
 {
 	int		n;
-	char **paths; //malloc here - OK
-	char **args;  //malloc here
+	char	**paths;
+	char	**args;
 	char	*c_path;
 }			t_cmd;
 
@@ -42,14 +42,14 @@ typedef struct s_data
 	int		i;
 	int		in;
 	int		out;
-	int **fd; //malloc here
-	pid_t	pid;
+	int		**fd;
+	int		status;
+	pid_t	*pid;
 	int		pipes;
-	char *epath; //malloc here
+	char	*epath;
 	t_cmd	cmd;
 	int		here_doc;
 	char	*limiter;
-	int		inv_infile;
 }			t_data;
 
 /* CLEAR */
@@ -58,6 +58,7 @@ void		close_files(t_data *data);
 void		clear_all(t_data *data);
 
 /* ERROR */
+void		put_cmd_error(char *cmd);
 void		print_error(char *msg, int exit_code, t_data *data);
 void		check_error(char *file);
 
@@ -79,6 +80,7 @@ void		get_line(int fd, char *line);
 void		get_heredoc(t_data *data);
 
 /* INIT DATA */
+void		get_pids(t_data *data);
 void		get_pipes(t_data *data);
 void		get_fd(t_data *data);
 void		init_all(t_data *data);

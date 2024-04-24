@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/21 17:50:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:11:45 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 # define PIPEX_H
 
 # define HEREDOC "heredoc_tmp"
+# define UNEXISTING_FILE ": no such file or directory"
+# define BAD_ACCESS ": permission denied"
+# define INVALID_COMMAND ": command not found"
 
 # include "libft/ft_printf/ft_printf.h"
 # include "libft/get_next_line/get_next_line.h"
@@ -50,6 +53,8 @@ typedef struct s_data
 	t_cmd	cmd;
 	int		here_doc;
 	char	*limiter;
+	int		in_err;
+	char 	*infile;
 }			t_data;
 
 /* CLEAR */
@@ -58,9 +63,12 @@ void		close_files(t_data *data);
 void		clear_all(t_data *data);
 
 /* ERROR */
-void		put_cmd_error(char *cmd);
+void		print_file_error(char *file, char *str);
+void		put_in_error(t_data *data);
+void		put_cmd_error(char *cmd, t_data *data);
 void		print_error(char *msg, int exit_code, t_data *data);
-void		check_error(char *file);
+void		check_error(char *file, int fd, t_data *data);
+
 
 /* GET CMDS */
 int			check_access(char *cmd_path);

@@ -2,45 +2,6 @@
 
 
       BASIC TEST
-      NUMBER 3
-      < input grep Hello | ls -la src/ > output
-
-
- - Bash output file:
-total 28
-drwxr-xr-x 2 lkhalifa 2023_paris   66 Apr 18 15:06 .
-drwxr-xr-x 6 lkhalifa 2023_paris  149 Apr 18 15:57 ..
--rw-r--r-- 1 lkhalifa 2023_paris 4657 Apr 18 15:06 main.c
--rw-r--r-- 1 lkhalifa 2023_paris  833 Apr 18 15:06 runTest.c
--rw-r--r-- 1 lkhalifa 2023_paris 8492 Apr 18 15:06 test.c
--rw-r--r-- 1 lkhalifa 2023_paris  427 Apr 18 15:06 utils.c
-\EOF
-
- - Pipex output file:
-total 28
-drwxr-xr-x 2 lkhalifa 2023_paris   66 Apr 18 15:06 .
-drwxr-xr-x 6 lkhalifa 2023_paris  131 Apr 18 15:57 ..
--rw-r--r-- 1 lkhalifa 2023_paris 4657 Apr 18 15:06 main.c
--rw-r--r-- 1 lkhalifa 2023_paris  833 Apr 18 15:06 runTest.c
--rw-r--r-- 1 lkhalifa 2023_paris 8492 Apr 18 15:06 test.c
--rw-r--r-- 1 lkhalifa 2023_paris  427 Apr 18 15:06 utils.c
-\EOF
-
- - Bash standard stream: None
-
- - Pipex standard stream: None
-
- - Bash exit code value: 0
-
- - Pipex exit code value: 0
-
-File permissions of output files match
-
-
-============================================================================
-
-
-      BASIC TEST
       NUMBER 5
       < input grep Hello | awk '{count++} END {print count}' > output
 
@@ -54,13 +15,12 @@ File permissions of output files match
  - Bash standard stream: None
 
  - Pipex standard stream:
-awk: cmd. line:1: '{count++}
-awk: cmd. line:1: ^ invalid char ''' in expression
+awk: 1: unexpected character '''
 \EOF
 
  - Bash exit code value: 0
 
- - Pipex exit code value: 0
+ - Pipex exit code value: 2
 
 File permissions of output files match
 
@@ -82,13 +42,12 @@ File permissions of output files match
  - Bash standard stream: None
 
  - Pipex standard stream:
-awk: cmd. line:1: "{count++}
-awk: cmd. line:1: ^ unterminated string
+awk: line 1: runaway string constant "{count++} ...
 \EOF
 
  - Bash exit code value: 0
 
- - Pipex exit code value: 0
+ - Pipex exit code value: 2
 
 File permissions of output files match
 
@@ -111,13 +70,13 @@ Hello World!
  - Bash standard stream: None
 
  - Pipex standard stream:
-awk: cmd. line:1: '"{count++}
-awk: cmd. line:1: ^ invalid char ''' in expression
+awk: 1: unexpected character '''
+awk: line 1: runaway string constant "{count++} ...
 \EOF
 
  - Bash exit code value: 0
 
- - Pipex exit code value: 0
+ - Pipex exit code value: 2
 
 File permissions of output files match
 
@@ -135,18 +94,17 @@ File permissions of output files match
  - Pipex output file: Empty
 
  - Bash standard stream:
-awk: cmd. line:1: '{count++} END {print count}'
-awk: cmd. line:1: ^ invalid char ''' in expression
+awk: 1: unexpected character '''
+awk: 1: unexpected character '''
 \EOF
 
  - Pipex standard stream:
-awk: cmd. line:1: "'{count++}
-awk: cmd. line:1: ^ unterminated string
+awk: line 1: runaway string constant "'{count++} ...
 \EOF
 
- - Bash exit code value: 1
+ - Bash exit code value: 2
 
- - Pipex exit code value: 1
+ - Pipex exit code value: 2
 
 File permissions of output files match
 
@@ -167,13 +125,11 @@ File permissions of output files match
 
  - Bash standard stream: None
 
- - Pipex standard stream:
-malloc: Success
-\EOF
+ - Pipex standard stream: None
 
  - Bash exit code value: 0
 
- - Pipex exit code value: 1
+ - Pipex exit code value: 0
 
 File permissions of output files match
 
@@ -187,27 +143,27 @@ File permissions of output files match
 
 
  - Bash output file:
-total 28
-drwxr-xr-x 2 lkhalifa 2023_paris   66 Apr 18 15:06 .
-drwxr-xr-x 6 lkhalifa 2023_paris  167 Apr 18 15:57 ..
--rw-r--r-- 1 lkhalifa 2023_paris 4657 Apr 18 15:06 main.c
--rw-r--r-- 1 lkhalifa 2023_paris  833 Apr 18 15:06 runTest.c
--rw-r--r-- 1 lkhalifa 2023_paris 8492 Apr 18 15:06 test.c
--rw-r--r-- 1 lkhalifa 2023_paris  427 Apr 18 15:06 utils.c
+total 36
+drwxr-xr-x 2 lorene debian 4096 Apr 22 10:42 .
+drwxr-xr-x 6 lorene debian 4096 Apr 22 12:27 ..
+-rw-r--r-- 1 lorene debian 4657 Apr 22 10:42 main.c
+-rw-r--r-- 1 lorene debian  833 Apr 22 10:42 runTest.c
+-rw-r--r-- 1 lorene debian 8492 Apr 22 10:42 test.c
+-rw-r--r-- 1 lorene debian  427 Apr 22 10:42 utils.c
 \EOF
 
  - Pipex output file:
-total 28
-drwxr-xr-x 2 lkhalifa 2023_paris   66 Apr 18 15:06 .
-drwxr-xr-x 6 lkhalifa 2023_paris  149 Apr 18 15:57 ..
--rw-r--r-- 1 lkhalifa 2023_paris 4657 Apr 18 15:06 main.c
--rw-r--r-- 1 lkhalifa 2023_paris  833 Apr 18 15:06 runTest.c
--rw-r--r-- 1 lkhalifa 2023_paris 8492 Apr 18 15:06 test.c
--rw-r--r-- 1 lkhalifa 2023_paris  427 Apr 18 15:06 utils.c
+total 36
+drwxr-xr-x 2 lorene debian 4096 Apr 22 10:42 .
+drwxr-xr-x 6 lorene debian 4096 Apr 22 12:27 ..
+-rw-r--r-- 1 lorene debian 4657 Apr 22 10:42 main.c
+-rw-r--r-- 1 lorene debian  833 Apr 22 10:42 runTest.c
+-rw-r--r-- 1 lorene debian 8492 Apr 22 10:42 test.c
+-rw-r--r-- 1 lorene debian  427 Apr 22 10:42 utils.c
 \EOF
 
  - Bash standard stream:
-pipex: line 1: fizzBuzz: command not found
+pipex: fizzBuzz: command not found
 \EOF
 
  - Pipex standard stream:
@@ -216,7 +172,7 @@ pipex: command not found: fizzBuzz
 
  - Bash exit code value: 0
 
- - Pipex exit code value: 127
+ - Pipex exit code value: 0
 
 File permissions of output files match
 
@@ -234,7 +190,7 @@ File permissions of output files match
  - Pipex output file: Empty
 
  - Bash standard stream:
-pipex: line 1: buzzFizz: command not found
+pipex: buzzFizz: command not found
 \EOF
 
  - Pipex standard stream:
@@ -263,16 +219,14 @@ File permissions of output files match
  - Pipex output file: Empty
 
  - Bash standard stream:
-pipex: line 1: fizzBuzz: command not found
+pipex: fizzBuzz: command not found
 \EOF
 
- - Pipex standard stream:
-malloc: Success
-\EOF
+ - Pipex standard stream: None
 
  - Bash exit code value: 0
 
- - Pipex exit code value: 1
+ - Pipex exit code value: 0
 
 File permissions of output files match
 
@@ -290,39 +244,12 @@ File permissions of output files match
  - Pipex output file: Empty
 
  - Bash standard stream:
-pipex: line 1: buzzFizz: command not found
+pipex: buzzFizz: command not found
 \EOF
-
- - Pipex standard stream:
-malloc: Success
-\EOF
-
- - Bash exit code value: 127
-
- - Pipex exit code value: 1
-
-File permissions of output files match
-
-
-============================================================================
-
-
-      MULTIPLE COMMAND TEST
-      NUMBER 1
-      < input ls -la src/ | grep .c | wc -l > output
-
-
- - Bash output file:
-4
-\EOF
-
- - Pipex output file: Empty
-
- - Bash standard stream: None
 
  - Pipex standard stream: None
 
- - Bash exit code value: 0
+ - Bash exit code value: 127
 
  - Pipex exit code value: 0
 
@@ -355,7 +282,7 @@ sed: -e expression #1, char 1: unknown command: `''
 
  - Bash exit code value: 0
 
- - Pipex exit code value: 0
+ - Pipex exit code value: 1
 
 File permissions of output files match
 
@@ -372,7 +299,9 @@ File permissions of output files match
 5
 \EOF
 
- - Pipex output file: Empty
+ - Pipex output file:
+0
+\EOF
 
  - Bash standard stream: None
 

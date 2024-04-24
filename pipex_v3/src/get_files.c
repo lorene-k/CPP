@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 16:55:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/21 17:39:28 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:00:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	get_out(char *out, t_data *data)
 		data->out = open(out, O_CREAT | O_RDWR | O_TRUNC, 0000644);
 	if (data->out < 0)
 	{
-		check_error(out);
+		check_error(out, 1, data);
+		put_in_error(data);
 		exit(1);
 	}
 }
@@ -33,7 +34,7 @@ void	get_in(char *in, t_data *data)
 	{
 		data->in = open(in, O_RDONLY);
 		if (data->in < 0)
-			check_error(in);
+			check_error(in, 0, data);
 	}
 }
 

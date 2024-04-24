@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:51:41 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/21 18:10:58 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:53:40 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	init_all(t_data *data)
 	data->cmd.c_path = 0;
 	data->here_doc = 0;
 	data->limiter = 0;
+	data->in_err = -1;
 }
 
 t_data	init_data(int ac, char **av, char **envp)
