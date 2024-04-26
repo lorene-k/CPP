@@ -1,6 +1,7 @@
-
-
-			20/04
+			25/04
+./pipex Makefileskdhf cat KLDnvklzd test
+>> LEAKS
+			24/04
 - pbs fixed
 - do PIPEX TESTER
 - error msgs not in right order if cmd not found >> FIXED

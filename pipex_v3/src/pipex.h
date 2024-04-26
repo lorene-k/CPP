@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/24 13:11:45 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:11:34 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # define PIPEX_H
 
 # define HEREDOC "heredoc_tmp"
-# define UNEXISTING_FILE ": no such file or directory"
-# define BAD_ACCESS ": permission denied"
+# define UNEXISTING_FILE ": No such file or directory"
+# define BAD_ACCESS ": Permission denied"
 # define INVALID_COMMAND ": command not found"
 
 # include "libft/ft_printf/ft_printf.h"
@@ -46,7 +46,7 @@ typedef struct s_data
 	int		in;
 	int		out;
 	int		**fd;
-	int		status;
+	int		*status;
 	pid_t	*pid;
 	int		pipes;
 	char	*epath;
@@ -54,21 +54,21 @@ typedef struct s_data
 	int		here_doc;
 	char	*limiter;
 	int		in_err;
-	char 	*infile;
+	int		out_err;
 }			t_data;
 
 /* CLEAR */
 void		close_pipes(t_data *data);
+void		clear_child(t_data *data);
 void		close_files(t_data *data);
 void		clear_all(t_data *data);
 
 /* ERROR */
-void		print_file_error(char *file, char *str);
-void		put_in_error(t_data *data);
+void		print_file_error(char *file, char *str, int file_err);
+void		put_in_error(t_data *data, char *in);
 void		put_cmd_error(char *cmd, t_data *data);
 void		print_error(char *msg, int exit_code, t_data *data);
-void		check_error(char *file, int fd, t_data *data);
-
+void		check_error(char *file, int n, t_data *data);
 
 /* GET CMDS */
 int			check_access(char *cmd_path);
@@ -77,7 +77,8 @@ char		*ft_getenv(char **envp);
 void		get_cmds(int ac, t_data *data, char **envp);
 
 /* GET FILES */
-void		get_out(char *out, t_data *data);
+void		do_out_error(char *out, t_data *data, char *in, int ac);
+void		get_out(char *out, t_data *data, char *in, int ac);
 void		get_in(char *in, t_data *data);
 void		check_heredoc(int ac, char **av, t_data *data);
 void		get_files(int ac, char **av, t_data *data);

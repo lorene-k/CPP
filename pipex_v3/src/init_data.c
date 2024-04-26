@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:51:41 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/24 12:53:40 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:50:50 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	get_pids(t_data *data)
 	data->pid = malloc(sizeof(int) * data->cmd.n);
 	if (!data->pid)
 		print_error("malloc", 0, data);
-	// data->status = malloc(sizeof(int) * data->cmd.n);
-	// if (!data->status)
-	// 	print_error("malloc", 0, data);
+	data->status = malloc(sizeof(int) * data->cmd.n);
+	if (!data->status)
+		print_error("malloc", 0, data);
 }
 
 void	get_pipes(t_data *data)
@@ -70,6 +70,7 @@ void	init_all(t_data *data)
 	data->here_doc = 0;
 	data->limiter = 0;
 	data->in_err = -1;
+	data->out_err = -1;
 }
 
 t_data	init_data(int ac, char **av, char **envp)

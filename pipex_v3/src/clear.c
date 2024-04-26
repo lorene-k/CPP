@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 18:11:55 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/24 12:58:52 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:13:06 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,26 @@ void	close_pipes(t_data *data)
 	}
 }
 
+void	clear_child(t_data *data)
+{
+	if (data->cmd.paths)
+		clear_tab(data->cmd.paths);
+	if (data->fd)
+		clear_int_tab(data->fd, data->pipes);
+	if (data->epath)
+		free(data->epath);
+	if (data->pid)
+		free(data->pid);
+	if (data->status)
+		free(data->status);
+	exit (1);
+}
+
 void	close_files(t_data *data)
 {
-	if (data->in)
+	if (data->in_err == -1)
 		close(data->in);
-	if (data->out)
+	if (data->out_err == -1)
 		close(data->out);
 	if (data->here_doc)
 		unlink("heredoc_tmp");
@@ -45,6 +60,4 @@ void	clear_all(t_data *data)
 		free(data->epath);
 	if (data->pid)
 		free(data->pid);
-	if (data->infile)
-		free(data->infile);
 }

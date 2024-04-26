@@ -64,7 +64,7 @@ all:				${NAME}
 
 $(NAME):			$(OBJS) $(LFT)
 					@$(CC) $(CFLAGS) -o ./$(NAME) $(OBJS) $(LFLAGS)
-					@echo "$(GREEN)Compiled $(NAME)"
+					@echo "$(GREEN)Compiled $(NAME)$(DEFAULT)"
 
 $(OBJ_DIR)%.o: 		$(SRC_DIR)%.c | $(OBJ_DIR)
 					@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -74,7 +74,7 @@ $(OBJ_DIR):
 
 bonus:				$(B_OBJS) $(LFT)
 					@$(CC) $(CFLAGS) -o ./$(NAME) $(B_OBJS) $(LFLAGS)
-					@echo "$(GREEN)Compiled $(NAME)"
+					@echo "$(GREEN)Compiled $(NAME)$(DEFAULT)"
 
 $(B_OBJ_DIR)%.o: 	$(B_SRC_DIR)%.c | $(B_OBJ_DIR)
 					@$(CC) $(CFLAGS) $(B_INCLUDES) -c $< -o $@

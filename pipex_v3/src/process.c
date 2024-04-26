@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:28:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/24 13:12:10 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:15:37 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 void	parent(t_data *data)
 {
 	int i;
+	int status;
 
 	i = -1;
 	close_pipes(data);
 	while (++i < data->cmd.n)
-		waitpid(data->pid[i], &data->status, 0);
-	put_in_error(data);
+		waitpid(data->pid[i], &data->status[i], 0);
 	clear_all(data);
-	exit(WEXITSTATUS(data->status)); //last child status
+	status = data->status[i - 1];
+	free(data->status);
+	exit(WEXITSTATUS(status));
 }
 
 void	ft_exec(t_data *data, char **envp, char *cmd)
@@ -55,8 +57,8 @@ void	child(t_data *data, char **av, char **envp)
 			redirect(data->fd[data->i - 1][0], data->out, data);
 		else
 			redirect(data->fd[data->i - 1][0], data->fd[data->i][1], data);
-		if (data->in < 0 && data->i == 0)	
-			exit(0);
+		if ((data->in_err >= 0 && data->i == 0) || (data->out_err > 0 && data->i == data->pipes))
+			clear_child(data);
 		ft_exec(data, envp, av[2 + data->i + data->here_doc]);
 	}
 }
