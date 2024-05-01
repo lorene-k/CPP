@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:28:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/25 17:44:41 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:39:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void	child(t_data *data, char **av, char **envp)
 				&& data->i == data->pipes))
 			clear_child(data);
 		close_files(data);
-		ft_exec(data, envp, av[2 + data->i + data->here_doc]);
+		ft_exec(data, envp, av[2 + data->i]);
 	}
 }

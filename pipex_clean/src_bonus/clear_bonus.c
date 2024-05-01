@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear.c                                            :+:      :+:    :+:   */
+/*   clear_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 18:11:55 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/25 17:14:04 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:35:31 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	close_pipes(t_data *data)
 {
@@ -44,6 +44,8 @@ void	close_files(t_data *data)
 		close(data->in);
 	if (data->out_err == -1)
 		close(data->out);
+	if (data->here_doc)
+		unlink(HEREDOC);
 }
 
 void	clear_all(t_data *data)

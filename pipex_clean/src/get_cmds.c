@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:24:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/21 18:04:53 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:38:30 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_getenv(char **envp)
 
 void	get_cmds(int ac, t_data *data, char **envp)
 {
-	data->cmd.n = ac - data->here_doc - 3;
+	data->cmd.n = ac - 3;
 	data->pipes = data->cmd.n - 1;
 	data->epath = ft_getenv(envp);
 	data->cmd.paths = ft_split(data->epath, ':');

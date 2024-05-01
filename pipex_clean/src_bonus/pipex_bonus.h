@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/25 17:05:39 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:33:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,13 @@ void		get_cmds(int ac, t_data *data, char **envp);
 void		do_out_error(char *out, t_data *data, char *in, int ac);
 void		get_out(char *out, t_data *data, char *in, int ac);
 void		get_in(char *in, t_data *data);
+void		check_heredoc(int ac, char **av, t_data *data);
 void		get_files(int ac, char **av, t_data *data);
+
+/* HEREDOC BONUS */
+void		end_heredoc(int fd, char *line, t_data *data);
+void		get_line(int fd, char *line);
+void		get_heredoc(t_data *data);
 
 /* INIT DATA */
 void		get_pids(t_data *data);

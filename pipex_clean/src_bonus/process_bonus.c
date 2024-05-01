@@ -6,11 +6,11 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 18:28:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/25 17:11:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:56:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	parent(t_data *data)
 {
@@ -27,6 +27,8 @@ void	parent(t_data *data)
 void	ft_exec(t_data *data, char **envp, char *cmd)
 {
 	data->cmd.args = ft_split(cmd, ' ');
+	if (!data->cmd.paths)
+		print_file_error(data->cmd.args[0], UNEXISTING_FILE, 1);
 	data->cmd.c_path = get_c_path(data->cmd.paths, data->cmd.args[0]);
 	if (!data->cmd.c_path)
 		put_cmd_error(data->cmd.args[0], data);

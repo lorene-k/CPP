@@ -6,16 +6,19 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 14:28:49 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/25 14:56:06 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:39:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	end_heredoc(int fd, char *line, t_data *data)
 {
-	free(line);
-	get_next_line(fd);
+	if (line)
+	{
+		free(line);
+		get_next_line(fd);
+	}
 	close(fd);
 	data->in = open(HEREDOC, O_RDONLY);
 	if (data->in == -1)
@@ -44,11 +47,10 @@ void	get_heredoc(t_data *data)
 	{
 		write(1, "pipe heredoc> ", 14);
 		line = get_next_line(0);
-		if (!line)
-			print_error("malloc", EXIT_FAILURE, data);
-		if (ft_strncmp(data->limiter, line, ft_strlen(data->limiter)) == 0
-			&& (ft_strlen(data->limiter) == ft_strlen(line) - 1
-				&& line[ft_strlen(line) - 1 == '\n']))
+		if (!line || (ft_strncmp(data->limiter, line,
+					ft_strlen(data->limiter)) == 0
+				&& (ft_strlen(data->limiter) == ft_strlen(line) - 1
+					&& line[ft_strlen(line) - 1 == '\n'])))
 			break ;
 		get_line(fd, line);
 	}

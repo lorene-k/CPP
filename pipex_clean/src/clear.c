@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_bonus.c                                      :+:      :+:    :+:   */
+/*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 18:11:55 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/25 17:14:22 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:36:10 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	close_files(t_data *data)
 		close(data->in);
 	if (data->out_err == -1)
 		close(data->out);
-	if (data->here_doc)
-		unlink(HEREDOC);
 }
 
 void	clear_all(t_data *data)
