@@ -1,0 +1,48 @@
+    RULES
+eat, think or sleep
+(alternatively doing 1 at a time)
+
+as many forks as philos
+all must eat
+no communication
+1 philo uses 2 forks
+
+eat >> sleep >> think 
+
+Each philosopher has a number ranging from 1 to number_of_philosophers
+Philosopher number 1 sits next to philosopher number number_of_philosophers.
+Any other philosopher number N sits between philosopher number N - 1 and philoso-
+pher number N + 1
+
+    OUTPUTS (print each state change)
+timestamp_in_ms X has taken a fork
+timestamp_in_ms X is eating
+timestamp_in_ms X is sleeping
+timestamp_in_ms X is thinking
+timestamp_in_ms X died
+
+timestamp = current timestamp in milliseconds
+X = philo number
+
+>> message announcing a philosopher died should be displayed no more than 10 ms after the actual death of the philosopher.
+>> 1 philo = 1 thread
+>> if only 1 philo, only 1 fork
+>> to prevent philosophers from duplicating forks, you should protect the forks state
+with a mutex for each of them
+
+
+    SEARCH :
+- data races: use mutex to avoid data races
+- threads
+- mutex
+
+    FUNCTIONS :
+memset, printf, malloc, free, write,
+usleep, gettimeofday, pthread_create,
+pthread_detach, pthread_join, pthread_mutex_init,
+pthread_mutex_destroy, pthread_mutex_lock,
+pthread_mutex_unlock
+
+
+https://www.codequoi.com/threads-mutex-et-programmation-concurrente-en-c/
+https://www.geeksforgeeks.org/multithreading-in-c/?ref=gcse
