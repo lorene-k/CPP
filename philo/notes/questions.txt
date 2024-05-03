@@ -1,0 +1,3 @@
+What is min number of philos?
+
+If only 1 philo & 1 fork, how does he eat? Should the prog still run?

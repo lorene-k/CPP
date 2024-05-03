@@ -1,3 +1,8 @@
+
+
+./philo [number of philos] [time to die] [time to eat] [time to sleep] ([number of times to eat])
+
+
     RULES
 eat, think or sleep
 (alternatively doing 1 at a time)
@@ -27,21 +32,14 @@ X = philo number
 >> message announcing a philosopher died should be displayed no more than 10 ms after the actual death of the philosopher.
 >> 1 philo = 1 thread
 >> if only 1 philo, only 1 fork
->> to prevent philosophers from duplicating forks, you should protect the forks state
-with a mutex for each of them
+>> to prevent philosophers from duplicating forks, you should protect the forks state with a mutex for each of them
 
-
-    SEARCH :
-- data races: use mutex to avoid data races
-- threads
-- mutex
 
     FUNCTIONS :
 memset, printf, malloc, free, write,
-usleep, gettimeofday, pthread_create,
-pthread_detach, pthread_join, pthread_mutex_init,
-pthread_mutex_destroy, pthread_mutex_lock,
-pthread_mutex_unlock
+usleep, gettimeofday, 
+pthread_create, pthread_detach, pthread_join, 
+pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
 
 
 https://www.codequoi.com/threads-mutex-et-programmation-concurrente-en-c/

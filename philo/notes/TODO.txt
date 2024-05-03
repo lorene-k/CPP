@@ -1,0 +1,34 @@
+                03/05
+- checks done
+- do PARSING : populate 2 structs
+- wath tutos & learn about threads
+
+
+
+
+CHECKING
+- [x] 4 or 5 args
+- [x] only numbers < 200 for first arg
+- [ ] check all arg limits <<
+
+PARSING - INIT STRUCTS
+- [ ] 2 structs min : philo info, program info
+- [ ] args
+- [ ] thread stuff
+- [ ] mutex stuff
+- [ ] dead flag
+
+FUNCtIONS (main)
+- [ ] CREATE THREADS
+- [ ] MONITOR PHILOS
+
+FUNCTIONS (in threads)
+- [ ] PHILO ACTIONS (eat >> sleep >> think)
+
+
+1 thread / philo
+1 fork / philo
+1 mutex / fork (used to check/change fork value)
+1 mutex to prevent that philo dies & starts eating simultaneously 
+
+

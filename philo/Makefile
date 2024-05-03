@@ -5,7 +5,7 @@ YELLOW			=	\033[0;33m
 DEFAULT			=	\033[0m
 
 # ------------  PROJECT  ----------------------------------------------------- #
-NAME			=	pipex
+NAME			=	philo
 
 # ------------  DIRECTORIES  ------------------------------------------------- #
 SRC_DIR			=	src/
@@ -15,6 +15,7 @@ B_OBJ_DIR		=	objs_bonus/
 
 # ------------  SOURCES  ----------------------------------------------------- #
 SRC_FLS			=	main.c \
+					check.c \
 
 B_SRC_FLS		=	main.c \
 
@@ -66,7 +67,6 @@ $(B_OBJ_DIR):
 
 clean:	
 					@$(RM) $(OBJ_DIR) $(B_OBJ_DIR)
-					@$(MFC) $(MAKE_FLAGS) $(LFT_DIR)
 
 fclean:				clean 
 					@$(RM) $(NAME)
