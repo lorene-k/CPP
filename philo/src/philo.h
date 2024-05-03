@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/26 17:42:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/01 18:38:31 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,5 @@
 # include <string.h>
 # include <sys/time.h>
 # include <pthread.h>
-
-
-
 
 #endif // PHILO_H
