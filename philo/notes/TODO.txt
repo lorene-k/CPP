@@ -1,3 +1,7 @@
+                06/05
+- struct draft created
+
+
                 03/05
 - checks done
 - do PARSING : populate 2 structs
@@ -5,25 +9,34 @@
 
 
 
-
-CHECKING
-- [x] 4 or 5 args
-- [x] only numbers < 200 for first arg
+                TO DO
 - [ ] check all arg limits <<
+- [ ] SEARCH : mutex & threads in C
 
-PARSING - INIT STRUCTS
-- [ ] 2 structs min : philo info, program info
-- [ ] args
-- [ ] thread stuff
-- [ ] mutex stuff
-- [ ] dead flag
+                FUNCTIONS
 
-FUNCtIONS (main)
+>> In main :
+INIT
+- [ ] PARSE ARGS
+- [ ] INIT PHILOS
+- [ ] INIT_MUTEXES
+- [ ] TIME STUFF (get_time())
+
+MONITOR
+- [ ] MONITOR PHILO DEATH
+- [ ] WAIT FOR THREADS
+- [ ] DESTROY MUTEXES
+- [ ] TIMESTAMP
+
+ACTIONS
 - [ ] CREATE THREADS
-- [ ] MONITOR PHILOS
+- [ ] PHILO EATS (>> take_fork())
+- [ ] PHILO SLEEPS
+- [ ] PHILO THINKS
+- [ ] PRINT ACTION
 
-FUNCTIONS (in threads)
-- [ ] PHILO ACTIONS (eat >> sleep >> think)
+
+ 
 
 
 1 thread / philo

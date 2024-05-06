@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:21:35 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/03 17:16:26 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:56:50 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,22 @@ static int	is_valid_arg(int ac, char **av)
 	return (1);
 }
 
-static int	is_number(char *s, char *base)
+static int	is_number(char *s)
 {
 	while (*s)
 	{
-		while (*base)
-		{
-			if (*s == *base)
-				return (1);
-			base++;
-		}
+		if ((*s < '0' || *s > '9'))
+			return (0);
 		s++;
 	}
-	return (0);
+	return (1);
 }
 
 static int	is_valid_number(char **av)
 {
 	while (*av)
 	{
-		if (!is_number(*av, "0123456789"))
+		if (!is_number(*av))
 			return (printf(INV_CHAR), 0);
 		av++;
 	}
@@ -75,7 +71,7 @@ int	check_args(int ac, char **av)
 {
 	if (!(ac == 5 || ac == 6))
 		return (printf(INV_ARG_N), 0);
-	if (!is_valid_number(av))
+	if (!is_valid_number(av + 1))
 		return (0);
 	return (is_valid_arg(ac, av));
 }

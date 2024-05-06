@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/03 16:53:17 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/06 21:03:53 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@
 # define SLEEPING "is sleeping"
 # define THINKING "is thinking"
 # define DIED "died"
+
+/* STRUCTS */
+typedef struct s_philo
+{
+    int            id;
+    pthread_t     thread_id;
+    
+}   t_philo;
+
+typedef struct s_data
+{
+    int     philos;
+    int     death_time;
+    int     eat_time;
+    int     sleep_time;
+    int     meals;
+    int     dead;
+    t_philo philosophers[200];
+    
+}   t_data;
 
 /* ERR MESSAGES */
 # define INV_ARG_N "Error : invalid number of arguments\n"

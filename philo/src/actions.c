@@ -1,29 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 16:13:03 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/06 21:24:32 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/05/06 21:16:18 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int    main(int ac, char **av)
-{
-    if (!check_args(ac, av) || !init_all(ac, av))
-        return (0);
-    return (0);
-}
-
-// all in ms :
-
-// number_of_philosophers 
-// time_to_die
-// time_to_eat 
-// time_to_sleep
-
-// optional : number_of_times_each_philosopher_must_eat
