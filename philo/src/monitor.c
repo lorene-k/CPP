@@ -6,13 +6,13 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/08 22:04:17 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/08 22:23:28 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    wait_for_philos(t_data *data)
+static void    wait_for_philos(t_data *data)
 {
     int i;
 
@@ -24,7 +24,7 @@ void    wait_for_philos(t_data *data)
     }
 }
 
-int check_meals(t_data *data)
+static int check_meals(t_data *data)
 {
     int i;
 
@@ -44,7 +44,7 @@ int check_meals(t_data *data)
     return (0);
 }
 
-int check_death(t_data *data)
+static int check_death(t_data *data)
 {
     int i;
     

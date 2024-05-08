@@ -6,13 +6,13 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/08 22:09:45 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/08 22:26:54 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	is_dead(t_philo *philo)
+static int	is_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->dead_m);
 	if (philo->dead)

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/08 22:12:50 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/08 22:26:43 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void    rest(t_philo *philo)
     usleep(philo->data->sleep_time);
 }
 
-void    finish_eating(t_philo *philo)
+static void    finish_eating(t_philo *philo)
 {
     print_status(philo, EATING);
     usleep(philo->data->eat_time);
@@ -40,7 +40,7 @@ void    update_status(t_philo *philo)
     pthread_mutex_unlock(&philo->data->meal_m);
 }
 
-void    take_forks(t_philo *philo)
+static void    take_forks(t_philo *philo)
 {
     pthread_mutex_lock(philo->l_fork);
     print_status(philo, FORK_TAKEN);
