@@ -1,6 +1,13 @@
+                08/05
+- structs init done
+>> USE MUTEX LOCK WHEN WRITING
+- started monitoring
+- threads created
+- steps done : DO ACTIONS
+- DO MONITORING
+
                 06/05
 - struct draft created
-
 
                 03/05
 - checks done
@@ -9,39 +16,47 @@
 
 
 
-                TO DO
-- [ ] check all arg limits <<
-- [ ] SEARCH : mutex & threads in C
+                QUESTIONS
+- [ ] CHECK WHAT HAPPENS IF ONLY 1 PHILO
+- [ ] What to do if philo dies ?
+- [ ] check all arg limits
+
 
                 FUNCTIONS
-
->> In main :
 INIT
-- [ ] PARSE ARGS
-- [ ] INIT PHILOS
-- [ ] INIT_MUTEXES
-- [ ] TIME STUFF (get_time())
+- [x] PARSE ARGS
+- [x] INIT PHILOS
+- [x] INIT_MUTEXES
+- [x] GET_TIME
 
 MONITOR
 - [ ] MONITOR PHILO DEATH
-- [ ] WAIT FOR THREADS
-- [ ] DESTROY MUTEXES
+- [x] WAIT FOR THREADS
+- [x] DESTROY MUTEXES
 - [ ] TIMESTAMP
 
 ACTIONS
-- [ ] CREATE THREADS
+- [x] CREATE THREADS
 - [ ] PHILO EATS (>> take_fork())
 - [ ] PHILO SLEEPS
 - [ ] PHILO THINKS
 - [ ] PRINT ACTION
 
 
+
+// all in ms :
+
+// number_of_philosophers 
+// time_to_die
+// time_to_eat 
+// time_to_sleep
+
+// optional : number_of_times_each_philosopher_must_eat
  
+
 
 
 1 thread / philo
 1 fork / philo
 1 mutex / fork (used to check/change fork value)
 1 mutex to prevent that philo dies & starts eating simultaneously 
-
-

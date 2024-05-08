@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:13:03 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/06 21:24:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:33:10 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 int    main(int ac, char **av)
 {
-    if (!check_args(ac, av) || !init_all(ac, av))
+    t_data data;
+    
+    if (!check_args(ac, av))
         return (0);
+    if (init_structs(ac, av, &data))
+        return (destroy_mutexes(data), 0);
+    init_threads(&data); //PROTECT
+    monitor(&data); //PROTECT
     return (0);
 }
 
-// all in ms :
-
-// number_of_philosophers 
-// time_to_die
-// time_to_eat 
-// time_to_sleep
-
-// optional : number_of_times_each_philosopher_must_eat
+//destroy mutexes

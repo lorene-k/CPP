@@ -16,6 +16,8 @@ B_OBJ_DIR		=	objs_bonus/
 # ------------  SOURCES  ----------------------------------------------------- #
 SRC_FLS			=	main.c \
 					check.c \
+					init.c \
+					utils.c \
 
 B_SRC_FLS		=	main.c \
 

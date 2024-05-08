@@ -24,12 +24,12 @@ pthread_detach
 pthread_mutex_init
 >> in main thread, before using locks, use pthread_mutex_init(&mutex, NULL);
 
-pthread_mutex_destroy
->> in main thread, after using locks, use pthread_mutex_destroy(&mutex);
-
 pthread_mutex_lock
 pthread_mutex_t mutex;
 pthread_mutex_lock(&mutex);
 
 pthread_mutex_unlock
   // unlock to make the critical section available to other threads
+
+pthread_mutex_destroy
+>> in main thread, after using locks, use pthread_mutex_destroy(&mutex);
