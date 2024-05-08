@@ -4,7 +4,12 @@
 - started monitoring
 - threads created
 - steps done : DO ACTIONS
-- DO MONITORING
+TO DO :
+>> monitor : handle exits (meals eaten & death)
+>> actions : test & correct
+>> init_threads : check usleep + monitor death with timestamp
+(if (current_time - last_meal) > death_time ; then philo dead)
+(check in main or in threads?)
 
                 06/05
 - struct draft created
@@ -18,7 +23,7 @@
 
                 QUESTIONS
 - [ ] CHECK WHAT HAPPENS IF ONLY 1 PHILO
-- [ ] What to do if philo dies ?
+- [x] What to do if philo dies ? >> "simulation stops"
 - [ ] check all arg limits
 
 

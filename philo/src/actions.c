@@ -6,36 +6,55 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/08 19:30:45 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/08 22:12:50 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    eat(t_philo *philo)
+void    think(t_philo *philo)
 {
-    
+    print_status(philo, THINKING);
 }
 
-void    sleep(t_philo *philo)
+void    rest(t_philo *philo)
 {
-    
+    print_status(philo, SLEEPING);
+    usleep(philo->data->sleep_time);
+}
+
+void    finish_eating(t_philo *philo)
+{
+    print_status(philo, EATING);
+    usleep(philo->data->eat_time);
+    pthread_mutex_unlock(&philo->l_fork);
+    pthread_mutex_unlock(&philo->r_fork);
+}
+
+void    update_status(t_philo *philo)
+{
+    pthread_mutex_lock(&philo->data->meal_m);
+    philo->meals_eaten++;
+    philo->last_meal_time = get_time(philo->data);
+    // philo->eating = 1;
+    pthread_mutex_unlock(&philo->data->meal_m);
 }
 
 void    take_forks(t_philo *philo)
-{}
-
-void    update_status(t_philo *philo)
-{}
-
-void    finish_eating(t_philo *philo)
-{}
-
-void    think(t_philo *philo)
 {
-    
+    pthread_mutex_lock(philo->l_fork);
+    print_status(philo, FORK_TAKEN);
+    // handle solo philo case
+    pthread_mutex_lock(philo->r_fork);
+    print_status(philo, FORK_TAKEN);
 }
 
+void    eat(t_philo *philo)
+{
+    take_forks(philo);
+    update_status(philo);
+    finish_eating(philo);
+}
 
 // THINK 
 // - print msg
@@ -64,13 +83,3 @@ void    think(t_philo *philo)
 // - usleep(eat_time)
 // - eating = 0 // use mutex here <<
 // - unlock forks
-
-
-
-// CAS PARTICULIER 1 PHILO 
-// if (philo->num_of_philos == 1)
-// 	{
-// 		ft_usleep(philo->time_to_die);
-// 		pthread_mutex_unlock(philo->r_fork);
-// 		return ;
-// 	}

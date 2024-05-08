@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/08 19:32:44 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/08 22:13:09 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ typedef struct s_philo
 {
 	int				id;
 	int				dead;
-	int				eating;
+	int				eating; //use this ??
 	int				meals_eaten;
 	int				last_meal_time;
 	t_data			*data;
 	pthread_t		thread;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
+	
 }					t_philo;
 
 typedef struct s_data
@@ -61,6 +62,7 @@ typedef struct s_data
 	int				error;
 	t_philo			philo[200];
 	pthread_mutex_t	forks[200];
+	pthread_mutex_t	meal_m;
 	pthread_mutex_t	dead_m;
 	pthread_mutex_t	print_m;
 }					t_data;
@@ -76,7 +78,7 @@ int					init_threads(t_data *data);
 
 /* ACTIONS */
 void				eat(t_philo *philo);
-void				sleep(t_philo *philo);
+void				rest(t_philo *philo);
 void				think(t_philo *philo);
 
 /* MONITOR */
@@ -85,7 +87,7 @@ void				monitor(t_data *data);
 
 /* UTILS */
 void				destroy_mutexes(t_data *data);
-void				print_status(t_data *data, int id, char *s);
+void				print_status(t_philo *philo, char *s);
 int					get_time(t_data *data);
 int					ft_atoi(const char *str);
 

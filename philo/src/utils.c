@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:44:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/08 19:32:01 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/08 22:12:18 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,19 @@ void	destroy_mutexes(t_data *data)
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&data->meal_m);
+	pthread_mutex_destroy(&data->dead_m);
+	pthread_mutex_destroy(&data->print_m);
 }
 
-void	print_status(t_data *data, int id, char *s)
+void	print_status(t_philo *philo, char *s)
 {
 	size_t	time;
 
-	pthread_mutex_lock(&data->print_m);
-	time = get_time(data) - data->start_time; //check where to put start time (in philos or data struct?)
-	printf("%zd %d %s\n", time, id, s);
-	pthread_mutex_unlock(&data->print_m);
+	pthread_mutex_lock(&philo->data->print_m);
+	time = get_time(philo->data) - philo->data->start_time; //check where to put start time (in philos or data struct?)
+	printf("%zd %d %s\n", time, philo->id, s);
+	pthread_mutex_unlock(&philo->data->print_m);
 }
 
 int	get_time(t_data *data)
