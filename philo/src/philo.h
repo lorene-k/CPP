@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/08 22:27:03 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:38:29 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,34 +37,36 @@
 # define THREAD_ERR "Error : pthread_create() crashed\n"
 
 /* STRUCTS */
+
 typedef struct s_philo
 {
 	int				id;
 	int				dead;
-	int eating; //use this ??
-	int				meals_eaten;
+	int				eating;
+	int				meals_to_eat;
 	int				last_meal_time;
-	t_data			*data;
-	pthread_t		thread;
-	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*r_fork;
-
-}					t_philo;
-
-typedef struct s_data
-{
 	int				n_philo;
 	int				death_time;
 	int				eat_time;
 	int				sleep_time;
 	int				start_time;
-	int				meals;
 	int				error;
-	t_philo			philo[200];
-	pthread_mutex_t	forks[200];
+	pthread_t		thread;
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	time_m;
 	pthread_mutex_t	meal_m;
 	pthread_mutex_t	dead_m;
 	pthread_mutex_t	print_m;
+}					t_philo;
+
+typedef struct s_data
+{
+	t_philo			*philo;
+	pthread_mutex_t	forks[200];
+	// pthread_mutex_t	meal_m;
+	// pthread_mutex_t	dead_m;		use philo mutex or not?
+	// pthread_mutex_t	print_m;
 }					t_data;
 
 /* CHECK & INIT */
@@ -76,9 +78,10 @@ void				*routine(void *p);
 int					init_threads(t_data *data);
 
 /* ACTIONS */
-void				think(t_philo *philo);
-void				rest(t_philo *philo);
+void				rest_and_think(t_philo *philo);
+void				finish_eating(t_philo *philo);
 void				update_status(t_philo *philo);
+void				take_forks(t_philo *philo);
 void				eat(t_philo *philo);
 
 /* MONITOR */
@@ -87,7 +90,7 @@ void				monitor(t_data *data);
 /* UTILS */
 void				destroy_mutexes(t_data *data);
 void				print_status(t_philo *philo, char *s);
-int					get_time(t_data *data);
+int					get_time(t_philo *philo);
 int					ft_atoi(const char *str);
 
 #endif // PHILO_H

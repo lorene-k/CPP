@@ -1,3 +1,14 @@
+                09/05
+- init thread ok >> check usleep TIME
+- actions : check usleep TIME
+- solo philo case >> CHECK
+- death case & timing >> CHECK & adjust
+- note : if even, time_to_die must be = time_to_eat + time_to_sleep + x (if odd, time_to_eat * 2)
+>>> START TESTING
+- INIT STRUCTS OK 
+- THREADED FUNCTIONS NOT COMPILING >> WRONG ORDER >> STILL NOT WORKING
+>> FOCUS : init_threads, actions, monitor
+
                 08/05
 - structs init done
 >> USE MUTEX LOCK WHEN WRITING
@@ -5,9 +16,9 @@
 - threads created
 - steps done : DO ACTIONS
 TO DO :
->> monitor : handle exits (meals eaten & death)
->> actions : test & correct
->> init_threads : check usleep + monitor death with timestamp
+>> monitor : handle exits (meals eaten & death) + monitor death with timestamp
+>> actions : check usleep TIME
+>> init_threads : check usleep 
 (if (current_time - last_meal) > death_time ; then philo dead)
 (check in main or in threads?)
 
@@ -17,14 +28,33 @@ TO DO :
                 03/05
 - checks done
 - do PARSING : populate 2 structs
-- wath tutos & learn about threads
+- watch tutos & learn about threads
 
 
 
-                QUESTIONS
-- [ ] CHECK WHAT HAPPENS IF ONLY 1 PHILO
-- [x] What to do if philo dies ? >> "simulation stops"
-- [ ] check all arg limits
+
+
+
+
+                TO DO
+- [ ] check time between philo death and msg printed 
+- [ ] check odd/even numbers to adjust usleep in routine
+- [ ] protectinit_threads & monitor in main ? 
+- [ ] check where to put start time (in philos or data struct?)
+- [ ] protect pthread_join ?
+- [ ] check if thread should be created for check_meals
+- [ ] adjust times according to odd or even number of philos?
+
+
+
+
+
+
+
+
+
+
+
 
 
                 FUNCTIONS
@@ -35,17 +65,64 @@ INIT
 - [x] GET_TIME
 
 MONITOR
-- [ ] MONITOR PHILO DEATH
+- [x] MONITOR PHILO DEATH
 - [x] WAIT FOR THREADS
 - [x] DESTROY MUTEXES
-- [ ] TIMESTAMP
+- [x] TIMESTAMP
 
 ACTIONS
 - [x] CREATE THREADS
-- [ ] PHILO EATS (>> take_fork())
-- [ ] PHILO SLEEPS
-- [ ] PHILO THINKS
-- [ ] PRINT ACTION
+- [x] PHILO EATS (>> take_fork())
+- [x] PHILO SLEEPS
+- [x] PHILO THINKS
+- [x] PRINT ACTION
+
+
+
+
+                PLAN ACTIONS : 
+// THINK 
+// - print msg
+
+// SLEEP
+// - print msg 
+// - usleep
+
+// EAT //take fork 1 THEN fork 2
+
+// 1. TAKE FORKS
+// - lock 1st fork
+// - print msg (fork_taken)
+// - handle solo case
+// - lock 2nd fork 
+// - print msg (fork_taken)
+
+// 2. UPDATE STATUS
+// - lock meal mutex
+// - meals_eaten++
+// - last_meal_time = get_time()
+// - eating = 1
+// unlock meal mutex
+
+// 3. FINISH EATING
+// - print msg (is eating)
+// - usleep(eat_time)
+// - eating = 0 // lock mutex here <<
+// - unlock forks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -64,4 +141,4 @@ ACTIONS
 1 thread / philo
 1 fork / philo
 1 mutex / fork (used to check/change fork value)
-1 mutex to prevent that philo dies & starts eating simultaneously 
+1 mutex to prevent that philo dies & starts eating simultaneously
