@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/08 22:26:43 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:56:24 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    rest(t_philo *philo)
 static void    finish_eating(t_philo *philo)
 {
     print_status(philo, EATING);
-    usleep(philo->data->eat_time);
+    usleep(philo->data->eat_time); //maybe put last meal time here
     pthread_mutex_unlock(&philo->l_fork);
     pthread_mutex_unlock(&philo->r_fork);
 }
@@ -36,7 +36,7 @@ void    update_status(t_philo *philo)
     pthread_mutex_lock(&philo->data->meal_m);
     philo->meals_eaten++;
     philo->last_meal_time = get_time(philo->data);
-    // philo->eating = 1;
+    // philo->eating = 1; FOR CHECK DEATH
     pthread_mutex_unlock(&philo->data->meal_m);
 }
 
