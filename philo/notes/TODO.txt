@@ -1,4 +1,12 @@
                 09/05
+- compiles !
+>> make it work
+>> FIXING DATA RACE INEND_THREADS
+
+>> CORRECT END_THREADS in monitor (correct mutex) >> data race
+
+
+                09/05
 - init thread ok >> check usleep TIME
 - actions : check usleep TIME
 - solo philo case >> CHECK
@@ -37,9 +45,12 @@ TO DO :
 
 
                 TO DO
+
+- [ ] check time_to_die minimum
+
 - [ ] check time between philo death and msg printed 
 - [ ] check odd/even numbers to adjust usleep in routine
-- [ ] protectinit_threads & monitor in main ? 
+- [ ] protect init_threads & monitor in main ? 
 - [ ] check where to put start time (in philos or data struct?)
 - [ ] protect pthread_join ?
 - [ ] check if thread should be created for check_meals

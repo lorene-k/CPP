@@ -16,9 +16,9 @@ SRC_FLS			=	main.c \
 					check.c \
 					init_structs.c \
 					actions.c \
-					init_threads \
+					init_threads.c \
 					monitor.c \
-					utils.c \
+					utils.c
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
@@ -40,7 +40,7 @@ MC				=	make clean
 RM				=	rm $(RM_FLAGS)
 
 # ------------  RULES  ------------------------------------------------------- #
-all:				${NAME}
+all:				$(NAME)
 
 $(NAME):			$(OBJS)
 					@$(CC) $(CFLAGS) -o ./$(NAME) $(OBJS)

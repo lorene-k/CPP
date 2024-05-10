@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/09 17:35:21 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:57:31 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	*routine(void *p)
 		usleep(philo->eat_time);
 	while (!is_dead(philo))
 	{
-		eat(philo);
+		if (eat(philo))
+			break ;
 		rest_and_think(philo);
 	}
 	return (p);
@@ -42,8 +43,7 @@ int	init_threads(t_data *data)
 	i = 0;
 	while (i < data->philo->n_philo)
 	{
-		if (pthread_create(&data->philo[i].thread, NULL, &routine,
-				&(data->philo[i])) == -1)
+		if (pthread_create(&data->philo[i].thread, NULL, &routine, &(data->philo[i])) == -1)
 			return (printf(THREAD_ERR), 1);
 		i++;
 	}

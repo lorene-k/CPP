@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:21:35 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/08 16:47:14 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:29:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static int	is_valid_arg(int ac, char **av)
 {
 	if (ft_atoi(av[1]) > 200 || ft_atoi(av[1]) < 1 || ft_atoi(av[2]) < 60
-		|| ft_atoi(av[3]) < 60 || ft_atoi(av[4]) < 60)
+		|| ft_atoi(av[3]) < 0 || ft_atoi(av[4]) < 0)
 		return (printf(INV_ARGS), 0);
-	if (ac == 6 && av[5] < 0)
+	if (ac == 6 && ft_atoi(av[5]) < 1)
 		return (printf(INV_ARGS), 0);
 	return (1);
 }

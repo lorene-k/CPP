@@ -7,3 +7,5 @@
 - custom usleep or not?
 
 - do you need thread_detach ?
+
+- if a philo dies, does the program stop immediately?
