@@ -3,20 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 14:39:12 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:05:47 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	rest_and_think(t_philo *philo)
+int	rest_and_think(t_philo *philo)
 {
 	print_status(philo, SLEEPING);
 	usleep(philo->sleep_time);
+	if (is_dead(philo))
+	{
+		print_status(philo, DIED);
+		return (1);
+	}
 	print_status(philo, THINKING);
+	return (0);
 }
 
 void	finish_eating(t_philo *philo)
@@ -57,7 +63,10 @@ int	take_forks(t_philo *philo)
 int	eat(t_philo *philo)
 {
 	if (take_forks(philo))
+	{
+		print_status(philo, DIED);
 		return (1);
+	}
 	update_status(philo);
 	finish_eating(philo);
 	return (0);

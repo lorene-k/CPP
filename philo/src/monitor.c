@@ -3,27 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 17:15:19 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:13:50 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	end_threads(t_data *data, int id)
+static void	end_threads(t_data *data)
 {
 	int i;
 
 	i = 0;
-	if (id != 0)
-		print_death(data, id);
 	while (i < data->philo->n_philo)
 	{
-		pthread_mutex_lock(&(data->philo[i]->dead_m));
+		pthread_mutex_lock(&data->philo[i].dead_m);
 		data->philo[i].dead = 1;
-		pthread_mutex_unlock(&data->philo->dead_m);
+		pthread_mutex_unlock(&data->philo[i].dead_m);
 		i++;
 	}
 }
@@ -56,7 +54,7 @@ static int	check_meals(t_data *data)
 			i++;
 		}
 		pthread_mutex_unlock(&data->philo->meal_m);
-		end_threads(data, 0);
+		end_threads(data);
 	}
 	pthread_mutex_unlock(&data->philo->meal_m);
 	return (1);
@@ -74,7 +72,7 @@ static int	check_death(t_data *data)
 			&& !(data->philo[i].eating))
 		{
 			pthread_mutex_unlock(&data->philo->time_m);
-			end_threads(data, data->philo[i].id);
+			end_threads(data);
 			return (1);
 		}
 		pthread_mutex_unlock(&data->philo->time_m);

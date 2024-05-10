@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:44:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 16:50:20 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:23:05 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,10 @@ void	destroy_mutexes(t_data *data)
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}
-	// pthread_mutex_destroy(&data->meal_m);
 	pthread_mutex_destroy(&data->philo->meal_m);
 	pthread_mutex_destroy(&data->philo->dead_m);
 	pthread_mutex_destroy(&data->philo->print_m);
 	pthread_mutex_destroy(&data->philo->time_m);
-}
-
-void	print_death(t_data *data, int id)
-{
-	size_t	time;
-
-	time = get_time(data->philo) - data->philo->start_time;
-	pthread_mutex_lock(&data->philo->print_m);
-	printf("%zd %d %s\n", time, id, DIED);
-	pthread_mutex_unlock(&data->philo->print_m);
 }
 
 void	print_status(t_philo *philo, char *s)
