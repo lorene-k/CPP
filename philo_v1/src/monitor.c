@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 17:15:19 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/10 20:20:15 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	end_threads(t_data *data, int id)
 		print_death(data, id);
 	while (i < data->philo->n_philo)
 	{
-		pthread_mutex_lock(&(data->philo[i]->dead_m));
+		pthread_mutex_lock(&data->philo[i].dead_m);
 		data->philo[i].dead = 1;
-		pthread_mutex_unlock(&data->philo->dead_m);
+		pthread_mutex_unlock(&data->philo[i].dead_m);
 		i++;
 	}
 }
