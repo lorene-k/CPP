@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 13:13:50 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:16:19 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	check_death(t_data *data)
 	while (i < data->philo->n_philo)
 	{
 		pthread_mutex_lock(&data->philo->time_m);
-		if ((get_time(&data->philo[i]) - data->philo[i].last_meal_time >= data->philo->death_time)
+		if ((get_time() - data->philo[i].last_meal_time >= data->philo->death_time)
 			&& !(data->philo[i].eating))
 		{
 			pthread_mutex_unlock(&data->philo->time_m);

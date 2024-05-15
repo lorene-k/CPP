@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:44:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 13:23:05 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/12 12:41:10 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,41 @@ void	destroy_mutexes(t_data *data)
 	while (i < data->philo->n_philo)
 	{
 		pthread_mutex_destroy(&data->forks[i]);
+		pthread_mutex_destroy(&data->philo[i].dead_m);
+		pthread_mutex_destroy(&data->philo[i].print_m);
+		pthread_mutex_destroy(&data->philo[i].meal_m);
+		pthread_mutex_destroy(&data->philo[i].time_m);
 		i++;
 	}
-	pthread_mutex_destroy(&data->philo->meal_m);
-	pthread_mutex_destroy(&data->philo->dead_m);
-	pthread_mutex_destroy(&data->philo->print_m);
-	pthread_mutex_destroy(&data->philo->time_m);
 }
 
 void	print_status(t_philo *philo, char *s)
 {
-	size_t	time;
+	int	time;
 
 	pthread_mutex_lock(&philo->print_m);
-	time = get_time(philo) - philo->start_time;
-	printf("%zd %d %s\n", time, philo->id, s);
+	time = get_time() - philo->start_time;
+	printf("%d %d %s\n", time, philo->id, s);
 	pthread_mutex_unlock(&philo->print_m);
 }
 
-int	get_time(t_philo *philo)
+int	get_time()
 {
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-	{
-		philo->error = 1;
 		return (printf(TIME_ERR), -1);
-	}
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+int	ft_usleep(int ms)
+{
+	int	start;
+
+	start = get_time();
+	while ((get_time() - start) < ms)
+		usleep(500);
+	return (0);
 }
 
 int	ft_atoi(const char *str)

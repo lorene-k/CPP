@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:02:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 13:17:35 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:11:51 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	init_philos(t_philo *philo, t_data *data)
 		philo[i].id = i + 1;
 		philo[i].dead = 0;
 		philo[i].eating = 0;
-		philo[i].start_time = get_time(philo);
+		philo[i].start_time = get_time();
 		philo[i].last_meal_time = philo[i].start_time;
 		philo[i].l_fork = &data->forks[i];
 		if (i == philo->n_philo - 1)
@@ -41,9 +41,12 @@ static void	init_mutexes(t_data *data, t_philo *philo)
 	while (i < philo->n_philo)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
+		// pthread_mutex_init(&philo[i].dead_m, NULL);
+		// pthread_mutex_init(&philo[i].print_m, NULL);
+		// pthread_mutex_init(&philo[i].meal_m, NULL);
+		// pthread_mutex_init(&philo[i].time_m, NULL);
 		i++;
 	}
-	// pthread_mutex_init(&data->meal_m, NULL);
 	pthread_mutex_init(&philo->dead_m, NULL);
 	pthread_mutex_init(&philo->print_m, NULL);
 	pthread_mutex_init(&philo->meal_m, NULL);
@@ -56,14 +59,13 @@ static void	parse_args(int ac, char **av, t_philo *philo)
 	philo->death_time = ft_atoi(av[2]);
 	philo->eat_time = ft_atoi(av[3]);
 	philo->sleep_time = ft_atoi(av[4]);
-	philo->error = 0;
 	if (ac == 6)
 		philo->meals_to_eat = ft_atoi(av[5]);
 	else
 		philo->meals_to_eat = -1;
 }
 
-int	init_structs(int ac, char **av, t_data *data)
+void	init_structs(int ac, char **av, t_data *data)
 {
 	t_philo philo[200];
 	
@@ -71,5 +73,4 @@ int	init_structs(int ac, char **av, t_data *data)
 	parse_args(ac, av, philo);
 	init_mutexes(data, philo);
 	init_philos(philo, data);
-	return (philo->error);
 }

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 13:05:07 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/12 12:03:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,13 @@ typedef struct s_data
 /* UTILS */
 void				destroy_mutexes(t_data *data);
 void				print_status(t_philo *philo, char *s);
-int					get_time(t_philo *philo);
+int					get_time();
+int	ft_usleep(int ms);
 int					ft_atoi(const char *str);
 
 /* CHECK & INIT */
 int					check_args(int ac, char **av);
-int					init_structs(int ac, char **av, t_data *data);
+void					init_structs(int ac, char **av, t_data *data);
 
 /* ACTIONS */
 int				rest_and_think(t_philo *philo);

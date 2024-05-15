@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:13:03 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 13:17:53 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/12 11:58:04 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	main(int ac, char **av)
 
 	if (!check_args(ac, av))
 		return (0);
-	if (init_structs(ac, av, &data))
-		return (destroy_mutexes(&data), 0);
+	init_structs(ac, av, &data);
 	init_threads(&data);
 	monitor(&data);
 	return (0);
