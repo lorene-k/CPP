@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/15 12:16:51 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:49:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*routine(void *p)
 
 	philo = (t_philo *)p;
 	if (philo->id % 2 == 0)
-		ft_usleep(philo->eat_time);	// FIX THIS
+		usleep(90);	// FIX THIS
 	while (!is_dead(philo))
 	{
 		if (eat(philo))

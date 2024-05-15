@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:02:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/15 12:11:51 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:43:17 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ static void	init_mutexes(t_data *data, t_philo *philo)
 	while (i < philo->n_philo)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
-		// pthread_mutex_init(&philo[i].dead_m, NULL);
-		// pthread_mutex_init(&philo[i].print_m, NULL);
-		// pthread_mutex_init(&philo[i].meal_m, NULL);
-		// pthread_mutex_init(&philo[i].time_m, NULL);
 		i++;
 	}
 	pthread_mutex_init(&philo->dead_m, NULL);
