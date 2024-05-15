@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 16:59:18 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:05:07 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,10 @@ typedef struct s_data
 {
 	t_philo			*philo;
 	pthread_mutex_t	forks[200];
-	// pthread_mutex_t	meal_m;
 }					t_data;
 
 /* UTILS */
 void				destroy_mutexes(t_data *data);
-void				print_death(t_data *data, int id);
 void				print_status(t_philo *philo, char *s);
 int					get_time(t_philo *philo);
 int					ft_atoi(const char *str);
@@ -78,13 +76,14 @@ int					check_args(int ac, char **av);
 int					init_structs(int ac, char **av, t_data *data);
 
 /* ACTIONS */
-void				rest_and_think(t_philo *philo);
+int				rest_and_think(t_philo *philo);
 void				finish_eating(t_philo *philo);
 void				update_status(t_philo *philo);
 int					take_forks(t_philo *philo);
 int					eat(t_philo *philo);
 
 /* INIT_THREADS */
+int					is_dead(t_philo *philo);
 void				*routine(void *p);
 int					init_threads(t_data *data);
 

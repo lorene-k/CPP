@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_threads.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 16:57:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:58:37 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	is_dead(t_philo *philo)
+int	is_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->dead_m);
 	if (philo->dead)
@@ -26,7 +26,7 @@ void	*routine(void *p)
 
 	philo = (t_philo *)p;
 	if (philo->id % 2 == 0)
-		usleep(philo->eat_time);
+		usleep(philo->eat_time);	// FIX THIS
 	while (!is_dead(philo))
 	{
 		if (eat(philo))

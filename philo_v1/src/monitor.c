@@ -6,19 +6,21 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
+<<<<<<< HEAD:philo_v1/src/monitor.c
 /*   Updated: 2024/05/10 20:20:15 by lkhalifa         ###   ########.fr       */
+=======
+/*   Updated: 2024/05/10 13:13:50 by lkhalifa         ###   ########.fr       */
+>>>>>>> 6cffdd0387bde4748c7cea75cf51b7551c81b00f:philo/src/monitor.c
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	end_threads(t_data *data, int id)
+static void	end_threads(t_data *data)
 {
 	int i;
 
 	i = 0;
-	if (id != 0)
-		print_death(data, id);
 	while (i < data->philo->n_philo)
 	{
 		pthread_mutex_lock(&data->philo[i].dead_m);
@@ -56,7 +58,7 @@ static int	check_meals(t_data *data)
 			i++;
 		}
 		pthread_mutex_unlock(&data->philo->meal_m);
-		end_threads(data, 0);
+		end_threads(data);
 	}
 	pthread_mutex_unlock(&data->philo->meal_m);
 	return (1);
@@ -74,7 +76,7 @@ static int	check_death(t_data *data)
 			&& !(data->philo[i].eating))
 		{
 			pthread_mutex_unlock(&data->philo->time_m);
-			end_threads(data, data->philo[i].id);
+			end_threads(data);
 			return (1);
 		}
 		pthread_mutex_unlock(&data->philo->time_m);

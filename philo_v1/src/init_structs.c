@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:02:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 16:51:18 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:17:35 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void	init_philos(t_philo *philo, t_data *data)
 		philo[i].id = i + 1;
 		philo[i].dead = 0;
 		philo[i].eating = 0;
-		philo[i].last_meal_time = get_time(philo);
+		philo[i].start_time = get_time(philo);
+		philo[i].last_meal_time = philo[i].start_time;
 		philo[i].l_fork = &data->forks[i];
 		if (i == philo->n_philo - 1)
 			break ;
@@ -55,7 +56,6 @@ static void	parse_args(int ac, char **av, t_philo *philo)
 	philo->death_time = ft_atoi(av[2]);
 	philo->eat_time = ft_atoi(av[3]);
 	philo->sleep_time = ft_atoi(av[4]);
-	philo->start_time = get_time(philo);
 	philo->error = 0;
 	if (ac == 6)
 		philo->meals_to_eat = ft_atoi(av[5]);
