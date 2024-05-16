@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:44:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/15 12:49:07 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:56:04 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ int	get_time(void)
 		return (printf(TIME_ERR), -1);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
+
+// void	ft_usleep(int ms)
+// {
+// 	long int	time;
+
+// 	time = get_time();
+// 	while (get_time() - time < ms)
+// 		usleep(ms / 10);
+// }
 
 int	ft_atoi(const char *str)
 {

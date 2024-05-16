@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/15 12:46:10 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:45:48 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ static void	wait_for_philos(t_data *data)
 	i = 0;
 	while (i < data->philo->n_philo)
 	{
-		pthread_join(data->philo[i].thread, NULL);
+		if (pthread_join(data->philo[i].thread, NULL) != 0)
+		{
+			printf(JOIN_ERR);
+			break ;
+		}
 		i++;
 	}
 }
@@ -44,7 +48,7 @@ static int	check_meals(t_data *data)
 
 	i = 0;
 	pthread_mutex_lock(&data->philo->meal_m);
-	if (data->philo->meals_to_eat != -1)
+	if (data->philo->meals_to_eat > 0)
 	{
 		while (i < data->philo->n_philo)
 		{

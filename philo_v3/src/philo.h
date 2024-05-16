@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/15 12:45:16 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:54:52 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define INV_ARGS "Error : invalid argument(s)\n"
 # define TIME_ERR "Error : gettimeofday() crashed\n"
 # define THREAD_ERR "Error : pthread_create() crashed\n"
+# define JOIN_ERR "Error : pthread_join() crashed\n"
 
 /* STRUCTS */
 typedef struct s_philo
@@ -68,6 +69,7 @@ typedef struct s_data
 void				destroy_mutexes(t_data *data);
 void				print_status(t_philo *philo, char *s);
 int					get_time(void);
+void	ft_usleep(int ms);
 int					ft_atoi(const char *str);
 
 /* CHECK & INIT */
