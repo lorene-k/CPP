@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/10 13:05:47 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:41:48 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	rest_and_think(t_philo *philo)
 {
 	print_status(philo, SLEEPING);
-	usleep(philo->sleep_time);
+	usleep(philo->sleep_time * 1000);
 	if (is_dead(philo))
 	{
 		print_status(philo, DIED);
@@ -28,7 +28,7 @@ int	rest_and_think(t_philo *philo)
 void	finish_eating(t_philo *philo)
 {
 	print_status(philo, EATING);
-	usleep(philo->eat_time);
+	usleep(philo->eat_time * 1000);
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_lock(&philo->time_m);
@@ -52,7 +52,7 @@ int	take_forks(t_philo *philo)
 	if (philo->n_philo == 1)
 	{
 		pthread_mutex_unlock(philo->l_fork);
-		usleep(philo->death_time);
+		usleep(philo->death_time * 1000);
 		return (1);
 	}
 	pthread_mutex_lock(philo->r_fork);
