@@ -1,6 +1,13 @@
                 16/05
 - timestamps ok
 - fix data races
+>> ADD 3rd STRUCT WITH GENERAL DATA NEEDED BY ALL (1 mutex for each resource, not each philo) - OK?
+>>> in routine : START THINKING IF PAIR OU IF IMPAIR & FIRST/LAST PHILO
+>> in take forks : take forks in different order if pair or impair, put down in reverse too
+>>>>>> ADAPT CODE TO NEW STRUCTS (only init structs done)
+
+                12/05
+- data races, reverted to v2 ("v3")
 
                 10/05
 - compiles !

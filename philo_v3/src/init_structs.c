@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:02:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/15 12:43:17 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:48:22 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	init_structs(int ac, char **av, t_data *data)
 {
 	t_philo philo[200];
 	
-	data->philo = philo;
 	parse_args(ac, av, philo);
 	init_mutexes(data, philo);
 	init_philos(philo, data);
+	data->philo = philo;
 }
