@@ -1,3 +1,13 @@
+                17/05
+- use custom ft_usleep : to stop prog when philo dies (don't wait for other philo to finish eating)
+- print death in monitor in case 2 philos die
+>> NOT WORKING + PB WITH pthread_join
+>> HANDLE ALL ERROS THOROUGHLY
+>> USE INDIVIDUAL MUTEXES FOR INDIV DATA (eating, meals_eaten, last_meal_time, dead)
+>> USE COMMON MUTEXES FOR COMMON DATA
+>>> dead flag changed : now common to all philos in data struct
+>>> NOTHING PRINTED IN THREADS ?????!!!
+
                 16/05
 - timestamps ok
 - fix data races

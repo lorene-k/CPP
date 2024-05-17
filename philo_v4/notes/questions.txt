@@ -1,11 +1,20 @@
+- use seperate thread to check meals? >> NOT NECESSARY
+
+- 1 mutex per variable, per function, per piece of code? >> PER VARIABLE
+
+- custom usleep or not? >> YES
+
+
+
+
 - arg limits ?
-
-- use seperate thread to check meals?
-
-- 1 mutex per variable, per function, per piece of code?
-
-- custom usleep or not?
 
 - do you need thread_detach ?
 
 - if a philo dies, does the program stop immediately?
+
+- will l_fork point to the first fork in the for array here : 	
+philo[i].l_fork = &prog->forks[i];
+philo[i].r_fork = &prog->forks[(i + 1) % data->n_philo];
+
+- can you static a function that uses a common mutex?

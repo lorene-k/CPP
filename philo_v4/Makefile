@@ -18,7 +18,8 @@ SRC_FLS			=	main.c \
 					actions.c \
 					init_threads.c \
 					monitor.c \
-					utils.c
+					utils.c \
+					error.c
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

@@ -3,48 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:44:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/16 19:15:42 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/17 19:11:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	destroy_mutexes(t_data *data)
+void	destroy_mutexes(t_prog *prog)
 {
 	int	i;
 
 	i = 0;
-	while (i < data->philo->n_philo)
+	while (i < prog->data->n_philo)
 	{
-		pthread_mutex_destroy(&data->forks[i]);
+		pthread_mutex_destroy(&prog->forks[i]);
+		pthread_mutex_destroy(&prog->philo[i].time_m);
+		pthread_mutex_destroy(&prog->philo[i].meal_m);
 		i++;
 	}
-	pthread_mutex_destroy(&data->philo->meal_m);
-	pthread_mutex_destroy(&data->philo->dead_m);
-	pthread_mutex_destroy(&data->philo->print_m);
-	pthread_mutex_destroy(&data->philo->time_m);
+	pthread_mutex_destroy(&prog->data->dead_m);
+	pthread_mutex_destroy(&prog->data->print_m);
 }
 
 void	print_status(t_philo *philo, char *s)
 {
-	size_t	time;
+	long long	time;
 
-	pthread_mutex_lock(&philo->print_m);
-	time = get_time() - philo->start_time;
-	printf("%zd %d %s\n", time, philo->id, s);
-	pthread_mutex_unlock(&philo->print_m);
+	pthread_mutex_lock(&philo->data->print_m);
+	time = get_time() - philo->data->start_time;
+	printf("%lld %d %s\n", time, philo->id, s);
+	pthread_mutex_unlock(&philo->data->print_m);
 }
 
-int	get_time(void)
+void	ft_usleep(int ms)
 {
-	struct timeval	time;
+	long long	time;
 
-	if (gettimeofday(&time, NULL) == -1)
-		return (printf(TIME_ERR), -1);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	time = get_time();
+	while (get_time() - time < ms)
+		usleep(ms * 100); //CHECK THIS
 }
 
 int	ft_atoi(const char *str)

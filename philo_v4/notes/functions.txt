@@ -33,3 +33,32 @@ pthread_mutex_unlock
 
 pthread_mutex_destroy
 >> in main thread, after using locks, use pthread_mutex_destroy(&mutex);
+
+
+
+
+
+
+// void	print_death(t_prog *prog, int id)
+// {
+// 	size_t	time;
+
+// 	pthread_mutex_lock(&prog->data->print_m);
+// 	time = get_time() - prog->data->start_time;
+// 	printf("%zd %d %s\n", time, id, DIED);
+// 	pthread_mutex_unlock(&prog->data->print_m);
+// }
+
+// static void	end_threads(t_prog *prog)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (i < prog->data->n_philo)
+// 	{
+// 		pthread_mutex_lock(&prog->data->dead_m);
+// 		prog->data->dead_id = 1;
+// 		pthread_mutex_unlock(&prog->data->dead_m);
+// 		i++;
+// 	}
+// }

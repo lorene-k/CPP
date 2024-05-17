@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_threads.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/16 16:42:20 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/17 19:25:36 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	is_dead(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->dead_m);
-	if (philo->dead)
-		return (pthread_mutex_unlock(&philo->dead_m), 1);
-	return (pthread_mutex_unlock(&philo->dead_m), 0);
+	pthread_mutex_lock(&philo->data->dead_m);
+	if (philo->data->dead_id != -1)
+		return (pthread_mutex_unlock(&philo->data->dead_m), 1);
+	return (pthread_mutex_unlock(&philo->data->dead_m), 0);
 }
 
 void	*routine(void *p)
@@ -26,7 +26,7 @@ void	*routine(void *p)
 
 	philo = (t_philo *)p;
 	if (philo->id % 2 == 0)
-		usleep(philo->eat_time / 2);	// FIX THIS
+		ft_usleep(philo->data->death_time);
 	while (!is_dead(philo))
 	{
 		if (eat(philo))
@@ -36,15 +36,18 @@ void	*routine(void *p)
 	return (p);
 }
 
-int	init_threads(t_data *data)
+int	init_threads(t_prog *prog)
 {
 	int	i;
+	int ret;
 
 	i = 0;
-	while (i < data->philo->n_philo)
+	ret = 0;
+	while (i < prog->data->n_philo)
 	{
-		if (pthread_create(&data->philo[i].thread, NULL, &routine, &(data->philo[i])) == -1)
-			return (printf(THREAD_ERR), 1);
+		ret = pthread_create(&prog->philo[i].thread, NULL, &routine, &(prog->philo[i]));
+		if (ret != 0)
+			return (check_thread(prog, ret), 1);
 		i++;
 	}
 	return (0);

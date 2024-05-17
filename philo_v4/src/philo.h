@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/16 19:13:58 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/17 19:22:12 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define PHILO_H
 
 /* ------------  LIBRARIES  ------------------------------------------------ */
+# include <errno.h>
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -42,29 +43,28 @@
 typedef struct s_data
 {
 	int				n_philo;
+	int				dead_id;
 	int				death_time;
 	int				eat_time;
 	int				sleep_time;
-	int				start_time;
+	long long		start_time;
 	int				meals_to_eat;
-	pthread_mutex_t	*time_m;
-	pthread_mutex_t	*meal_m;
-	pthread_mutex_t	*dead_m;
-	pthread_mutex_t	*print_m;
+	pthread_mutex_t	dead_m;
+	pthread_mutex_t	print_m;
 }					t_data;
 
 typedef struct s_philo
 {
 	int				id;
-	int				dead;
 	int				eating;
-	int				last_meal_time;
-	int				meals_to_eat;
+	long long		last_meal_time;
+	int				meals_eaten;
 	t_data			*data;
 	pthread_t		thread;
+	pthread_mutex_t	meal_m;
+	pthread_mutex_t time_m; //-- 1 for each philo,check in monitor with indiv philo u
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*meal_m;
 }					t_philo;
 
 typedef struct s_prog
@@ -76,14 +76,14 @@ typedef struct s_prog
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* UTILS */
-void				destroy_mutexes(t_data *data);
+void				destroy_mutexes(t_prog *prog);
 void				print_status(t_philo *philo, char *s);
-int					get_time(void);
 void				ft_usleep(int ms);
 int					ft_atoi(const char *str);
 
 /* CHECK & INIT */
 int					check_args(int ac, char **av);
+long long			get_time(void);
 void				init_structs(int ac, char **av, t_data *data, t_prog *prog);
 
 /* ACTIONS */
@@ -96,9 +96,15 @@ int					eat(t_philo *philo);
 /* INIT_THREADS */
 int					is_dead(t_philo *philo);
 void				*routine(void *p);
-int					init_threads(t_data *data);
+int					init_threads(t_prog *prog);
+
+/* ERRORS */
+void				check_thread(t_prog *prog, int ret);
+void				check_join(t_prog *prog, int ret);
 
 /* MONITOR */
-void				monitor(t_data *data);
+void				print_death(t_prog *prog, int id);
+void				wait_for_philos(t_prog *prog);
+void				monitor(t_prog *prog, t_data *data);
 
-#endif // PHILO_H
+#endif //PHILO_H
