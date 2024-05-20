@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/17 19:25:36 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:53:42 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,25 @@ void	*routine(void *p)
 	t_philo	*philo;
 
 	philo = (t_philo *)p;
+	pthread_mutex_lock(&philo->data->start_m);
+	pthread_mutex_unlock(&philo->data->start_m);
 	if (philo->id % 2 == 0)
-		ft_usleep(philo->data->death_time);
+		usleep(philo->data->eat_time);
+	// if (!(philo->data->n_philo % 2 == 0)
+	// 	&& philo->data->n_philo > 2
+	// 	&& philo->id == philo->data->n_philo)
+	// {
+	// 	usleep(philo->data->eat_time + 10);
+	// 	// usleep(10);
+	// 	// print_status(philo, THINKING);
+	// 	// rest(philo);
+	// }
 	while (!is_dead(philo))
 	{
 		if (eat(philo))
 			break ;
-		rest_and_think(philo);
+		print_status(philo, THINKING);
+		rest(philo);
 	}
 	return (p);
 }
@@ -39,16 +51,19 @@ void	*routine(void *p)
 int	init_threads(t_prog *prog)
 {
 	int	i;
-	int ret;
+	int	ret;
 
 	i = 0;
 	ret = 0;
+	// pthread_mutex_lock(&prog->data->start_m);
 	while (i < prog->data->n_philo)
 	{
-		ret = pthread_create(&prog->philo[i].thread, NULL, &routine, &(prog->philo[i]));
+		ret = pthread_create(&prog->philo[i].thread, NULL, &routine,
+				&(prog->philo[i]));
 		if (ret != 0)
 			return (check_thread(prog, ret), 1);
 		i++;
 	}
+	// pthread_mutex_unlock(&prog->data->start_m);
 	return (0);
 }

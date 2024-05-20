@@ -1,20 +1,30 @@
+                20/05
+- FIX FT_USLEEP
+- CHECK DIFF IF ODD/EVEN NUMBER OF PHILOS
+- time_m deleted
+- start mutex : in data struct lock when create threads + in philo routine (lock & unlock direct)
+>> check if all full : add flag all_full & increment it >> check if all_full == n_philo
+>>>> MONITOR NOT DETECTING DEATH ?
+>> try thales tester
+
                 17/05
 - use custom ft_usleep : to stop prog when philo dies (don't wait for other philo to finish eating)
-- print death in monitor in case 2 philos die
->> NOT WORKING + PB WITH pthread_join
->> HANDLE ALL ERROS THOROUGHLY
->> USE INDIVIDUAL MUTEXES FOR INDIV DATA (eating, meals_eaten, last_meal_time, dead)
->> USE COMMON MUTEXES FOR COMMON DATA
->>> dead flag changed : now common to all philos in data struct
->>> NOTHING PRINTED IN THREADS ?????!!!
+- print death in monitor in case 2 philos die - OK
+>> NOT WORKING + PB WITH pthread_join - OK
+>> HANDLE ALL ERROS THOROUGHLY <<
+>> USE INDIVIDUAL MUTEXES FOR INDIV DATA (eating, meals_eaten, last_meal_time, dead) - OK
+>> USE COMMON MUTEXES FOR COMMON DATA - OK
+>>> dead flag changed : now common to all philos in data struct - OK
+>>> NOTHING PRINTED IN THREADS ?????!!! <<<<<
 
                 16/05
 - timestamps ok
 - fix data races
 >> ADD 3rd STRUCT WITH GENERAL DATA NEEDED BY ALL (1 mutex for each resource, not each philo) - OK?
->>> in routine : START THINKING IF PAIR OU IF IMPAIR & FIRST/LAST PHILO
->> in take forks : take forks in different order if pair or impair, put down in reverse too
->>>>>> ADAPT CODE TO NEW STRUCTS (only init structs done)
+>>> in routine : START THINKING IF PAIR OU IF IMPAIR & FIRST/LAST PHILO <<<
+>> in take forks : take forks in different order if pair or impair, put down in reverse too <<<
+
+
 
                 12/05
 - data races, reverted to v2 ("v3")

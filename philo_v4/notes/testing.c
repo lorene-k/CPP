@@ -17,3 +17,9 @@ static void	test_init(t_data data, t_prog prog)
 	printf("death: %d\n", data.dead_id);
 	exit (0);
 }
+
+
+/* MONITOR */
+	// pthread_mutex_lock(&data->print_m);
+	// printf("eating : %d\nnow time : %lld - last meal time : %lld == %lld \n>= death time : %lld", prog->philo[0].eating, get_time(), prog->philo[0].last_meal_time, (get_time() - prog->philo[0].last_meal_time),prog->data->death_time);
+	// pthread_mutex_unlock(&data->print_m);

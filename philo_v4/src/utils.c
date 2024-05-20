@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:44:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/17 19:11:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:13:43 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	destroy_mutexes(t_prog *prog)
 	while (i < prog->data->n_philo)
 	{
 		pthread_mutex_destroy(&prog->forks[i]);
-		pthread_mutex_destroy(&prog->philo[i].time_m);
 		pthread_mutex_destroy(&prog->philo[i].meal_m);
 		i++;
 	}
 	pthread_mutex_destroy(&prog->data->dead_m);
 	pthread_mutex_destroy(&prog->data->print_m);
+	pthread_mutex_destroy(&prog->data->start_m);
 }
 
 void	print_status(t_philo *philo, char *s)
@@ -38,13 +38,17 @@ void	print_status(t_philo *philo, char *s)
 	pthread_mutex_unlock(&philo->data->print_m);
 }
 
-void	ft_usleep(int ms)
+void	ft_usleep(int ms, t_philo *philo)
 {
 	long long	time;
 
 	time = get_time();
 	while (get_time() - time < ms)
-		usleep(ms * 100); //CHECK THIS
+	{
+		usleep(100);
+		if (is_dead(philo))
+			break ;
+	}
 }
 
 int	ft_atoi(const char *str)

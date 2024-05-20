@@ -6,16 +6,28 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/17 19:21:10 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:00:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void	print_death(t_philo *philo, int i, t_data *data)
+{
+	long long	time;
+	
+	pthread_mutex_lock(&data->print_m);
+	pthread_mutex_lock(&data->dead_m);
+	data->dead_id = i;
+	time = get_time() - philo->data->start_time;
+	printf("%lld %d %s\n", time, philo->id, DIED);
+	pthread_mutex_unlock(&data->print_m);
+}
+
 void	wait_for_philos(t_prog *prog)
 {
 	int	i;
-	int ret;
+	int	ret;
 
 	i = 0;
 	ret = 0;
@@ -31,49 +43,43 @@ void	wait_for_philos(t_prog *prog)
 	}
 }
 
-static int	check_meals(t_prog *prog)
+int	check_meals(t_prog *prog)
 {
 	int	i;
 
 	i = 0;
-	
 	if (prog->data->meals_to_eat > 0)
 	{
 		while (i < prog->data->n_philo)
 		{
 			pthread_mutex_lock(&prog->philo[i].meal_m);
-			if (prog->philo[i].meals_eaten  < prog->data->meals_to_eat)
+			if (prog->philo[i].meals_eaten < prog->data->meals_to_eat)
 				return (pthread_mutex_unlock(&prog->philo[i].meal_m), 0);
 			i++;
 		}
 		pthread_mutex_unlock(&prog->philo[i].meal_m);
 	}
-	pthread_mutex_lock(&prog->data->dead_m);
-	prog->data->dead_id = 0;
-	pthread_mutex_unlock(&prog->data->dead_m); //PRINT STATUS ??
+	// pthread_mutex_lock(&prog->data->dead_m);
+	// prog->data->dead_id = 0;
+	// pthread_mutex_unlock(&prog->data->dead_m); //PRINT STATUS ??
 	return (1);
 }
 
-static int	check_death(t_prog *prog, t_data *data)
+int	check_death(t_prog *prog, t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->n_philo)
 	{
-		pthread_mutex_lock(&prog->philo[i].time_m);
 		pthread_mutex_lock(&prog->philo[i].meal_m);
-		if ((get_time() - prog->philo[i].last_meal_time >= prog->data->death_time)
-			&& !(prog->philo[i].eating))
+		if (!(prog->philo[i].eating) && 
+			(get_time() - prog->philo[i].last_meal_time >= prog->data->death_time))
 		{
-			pthread_mutex_unlock(&prog->philo[i].time_m);
 			pthread_mutex_unlock(&prog->philo[i].meal_m);
-			pthread_mutex_lock(&prog->data->dead_m);
-			prog->data->dead_id = i;
-			pthread_mutex_unlock(&prog->data->dead_m);
+			print_death(&prog->philo[i], i, data);
 			return (1);
 		}
-		pthread_mutex_unlock(&prog->philo[i].time_m);
 		pthread_mutex_unlock(&prog->philo[i].meal_m);
 		i++;
 	}
@@ -86,9 +92,8 @@ void	monitor(t_prog *prog, t_data *data)
 	{
 		if (check_death(prog, data) || check_meals(prog))
 			break ;
+		usleep(100);
 	}
-	if (prog->data->dead_id != -1)
-		print_status(prog->philo, DIED);
 	wait_for_philos(prog);
 	destroy_mutexes(prog);
 }

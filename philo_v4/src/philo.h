@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/17 19:22:12 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:55:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ typedef struct s_data
 {
 	int				n_philo;
 	int				dead_id;
-	int				death_time;
+	long long		death_time;
 	int				eat_time;
 	int				sleep_time;
 	long long		start_time;
 	int				meals_to_eat;
+	pthread_mutex_t	start_m;
 	pthread_mutex_t	dead_m;
 	pthread_mutex_t	print_m;
 }					t_data;
@@ -62,7 +63,6 @@ typedef struct s_philo
 	t_data			*data;
 	pthread_t		thread;
 	pthread_mutex_t	meal_m;
-	pthread_mutex_t time_m; //-- 1 for each philo,check in monitor with indiv philo u
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 }					t_philo;
@@ -78,18 +78,19 @@ typedef struct s_prog
 /* UTILS */
 void				destroy_mutexes(t_prog *prog);
 void				print_status(t_philo *philo, char *s);
-void				ft_usleep(int ms);
+void				ft_usleep(int ms, t_philo *philo);
 int					ft_atoi(const char *str);
 
 /* CHECK & INIT */
 int					check_args(int ac, char **av);
 long long			get_time(void);
+void				init_mutexes(t_data *data, t_prog *prog);
 void				init_structs(int ac, char **av, t_data *data, t_prog *prog);
 
 /* ACTIONS */
-int					rest_and_think(t_philo *philo);
-void				finish_eating(t_philo *philo);
-void				update_status(t_philo *philo);
+void				solo_philo(t_philo *philo);
+int					rest(t_philo *philo);
+void				drop_forks(t_philo *philo);
 int					take_forks(t_philo *philo);
 int					eat(t_philo *philo);
 
@@ -103,8 +104,10 @@ void				check_thread(t_prog *prog, int ret);
 void				check_join(t_prog *prog, int ret);
 
 /* MONITOR */
-void				print_death(t_prog *prog, int id);
+void				print_death(t_philo *philo, int i, t_data *data);
 void				wait_for_philos(t_prog *prog);
+int					check_meals(t_prog *prog);
+int					check_death(t_prog *prog, t_data *data);
 void				monitor(t_prog *prog, t_data *data);
 
 #endif //PHILO_H
