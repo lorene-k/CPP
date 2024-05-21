@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/20 17:55:39 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:53:11 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void				check_thread(t_prog *prog, int ret);
 void				check_join(t_prog *prog, int ret);
 
 /* MONITOR */
-void				print_death(t_philo *philo, int i, t_data *data);
+void				print_death(t_prog *prog, int i, t_data *data);
 void				wait_for_philos(t_prog *prog);
 int					check_meals(t_prog *prog);
 int					check_death(t_prog *prog, t_data *data);
