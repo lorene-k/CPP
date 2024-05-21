@@ -1,10 +1,12 @@
                 20/05
+- pb with print mutex in print_death in monitr
+                20/05
 - FIX FT_USLEEP
 - CHECK DIFF IF ODD/EVEN NUMBER OF PHILOS
 - time_m deleted
 - start mutex : in data struct lock when create threads + in philo routine (lock & unlock direct)
 >> check if all full : add flag all_full & increment it >> check if all_full == n_philo
->>>> MONITOR NOT DETECTING DEATH ?
+>>>> MONITOR NOT DETECTING DEATH <<<
 >> try thales tester
 
                 17/05

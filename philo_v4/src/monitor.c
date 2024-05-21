@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/20 18:00:39 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/21 21:23:48 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	print_death(t_philo *philo, int i, t_data *data)
 {
 	long long	time;
 	
-	pthread_mutex_lock(&data->print_m);
-	pthread_mutex_lock(&data->dead_m);
+	pthread_mutex_lock(&philo->data->print_m);
+	pthread_mutex_lock(&philo->data->dead_m);
 	data->dead_id = i;
 	time = get_time() - philo->data->start_time;
 	printf("%lld %d %s\n", time, philo->id, DIED);
