@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/21 21:21:21 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:10:37 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,22 @@ void	solo_philo(t_philo *philo)
 	print_status(philo, DIED);
 }
 
-int	rest(t_philo *philo)
+void	rest(t_philo *philo)
 {
 	print_status(philo, SLEEPING);
 	ft_usleep(philo->data->sleep_time, philo);
-	return (0);
 }
 
 void	drop_forks(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
-		pthread_mutex_unlock(philo->r_fork);
-	else
-		pthread_mutex_unlock(philo->l_fork);
-	if (philo->id % 2 == 0)
+	if (philo->id % 2 != 0)
 		pthread_mutex_unlock(philo->l_fork);
 	else
 		pthread_mutex_unlock(philo->r_fork);
+	if (philo->id % 2 != 0)
+		pthread_mutex_unlock(philo->r_fork);
+	else
+		pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_lock(&philo->meal_m);
 	philo->eating = 0;
 	pthread_mutex_unlock(&philo->meal_m);
@@ -43,17 +42,17 @@ void	drop_forks(t_philo *philo)
 
 int	take_forks(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
-		pthread_mutex_lock(philo->r_fork);
-	else
+	if (philo->id % 2 != 0)
 		pthread_mutex_lock(philo->l_fork);
+	else
+		pthread_mutex_lock(philo->r_fork);
 	print_status(philo, FORK_TAKEN);
 	if (philo->data->n_philo == 1)
 		return (solo_philo(philo), 1);
-	if (philo->id % 2 == 0)
-		pthread_mutex_lock(philo->l_fork);
-	else
+	if (philo->id % 2 != 0)
 		pthread_mutex_lock(philo->r_fork);
+	else
+		pthread_mutex_lock(philo->l_fork);
 	print_status(philo, FORK_TAKEN);
 	return (0);
 }
@@ -66,8 +65,8 @@ int	eat(t_philo *philo)
 	philo->meals_eaten += 1;
 	philo->eating = 1;
 	philo->last_meal_time = get_time();
-	pthread_mutex_unlock(&philo->meal_m);
 	print_status(philo, EATING);
+	pthread_mutex_unlock(&philo->meal_m);	
 	ft_usleep(philo->data->eat_time, philo);
 	drop_forks(philo);
 	return (0);

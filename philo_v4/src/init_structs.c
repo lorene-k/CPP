@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:02:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/23 05:12:53 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:24:47 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	init_philos(t_prog *prog, t_data *data)
 		prog->philo[i].l_fork = &prog->forks[i];
 		prog->philo[i].r_fork = &prog->forks[(i + 1) % data->n_philo];
 		prog->philo[i].data = data;
-		prog->philo[i].print_m = &data->print_m;
 		i++;
 	}
 }

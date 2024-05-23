@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/23 05:35:49 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:10:33 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	print_death(t_philo *philo, int i, t_data *data)
 {
 	long long	time;
 	
-	pthread_mutex_lock(philo->print_m);
+	pthread_mutex_lock(&data->print_m);
 	pthread_mutex_lock(&data->dead_m);
 	data->dead_id = i;
 	pthread_mutex_unlock(&data->dead_m);
 	time = get_time() - data->start_time;
 	printf("%lld %d %s\n", time, philo->id, DIED);
-	pthread_mutex_unlock(philo->print_m);
+	pthread_mutex_unlock(&data->print_m);
 }
 
 void	wait_for_philos(t_prog *prog)
@@ -59,10 +59,10 @@ int	check_meals(t_prog *prog)
 			i++;
 		}
 		pthread_mutex_unlock(&prog->philo[i].meal_m);
+		// pthread_mutex_lock(&prog->data->dead_m);
+		// prog->data->dead_id = 0;
+		// pthread_mutex_unlock(&prog->data->dead_m); //DONT DO THIS
 	}
-	// pthread_mutex_lock(&prog->data->dead_m);
-	// prog->data->dead_id = 0;
-	// pthread_mutex_unlock(&prog->data->dead_m); //PRINT STATUS ??
 	return (1);
 }
 
@@ -77,8 +77,8 @@ int	check_death(t_prog *prog, t_data *data)
 		if (!(prog->philo[i].eating) && 
 			(get_time() - prog->philo[i].last_meal_time >= data->death_time))
 		{
-			pthread_mutex_unlock(&prog->philo[i].meal_m);
 			print_death(&prog->philo[i], i, data);
+			pthread_mutex_unlock(&prog->philo[i].meal_m);
 			return (1);
 		}
 		pthread_mutex_unlock(&prog->philo[i].meal_m);
@@ -95,6 +95,6 @@ void	monitor(t_prog *prog, t_data *data)
 			break ;
 		usleep(100);
 	}
-	// wait_for_philos(prog);
+	wait_for_philos(prog);
 	destroy_mutexes(prog);
 }

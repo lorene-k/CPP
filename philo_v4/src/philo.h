@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/23 05:19:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:54:00 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct s_philo
 	int				meals_eaten;
 	t_data			*data;
 	pthread_t		thread;
-	pthread_mutex_t *print_m;
 	pthread_mutex_t	meal_m;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
@@ -90,7 +89,7 @@ void				init_structs(int ac, char **av, t_data *data, t_prog *prog);
 
 /* ACTIONS */
 void				solo_philo(t_philo *philo);
-int					rest(t_philo *philo);
+void				rest(t_philo *philo);
 void				drop_forks(t_philo *philo);
 int					take_forks(t_philo *philo);
 int					eat(t_philo *philo);
