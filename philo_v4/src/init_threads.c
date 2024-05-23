@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_threads.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/20 16:53:42 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/23 05:21:32 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ void	*routine(void *p)
 	pthread_mutex_unlock(&philo->data->start_m);
 	if (philo->id % 2 == 0)
 		usleep(philo->data->eat_time);
-	// if (!(philo->data->n_philo % 2 == 0)
-	// 	&& philo->data->n_philo > 2
-	// 	&& philo->id == philo->data->n_philo)
-	// {
-	// 	usleep(philo->data->eat_time + 10);
-	// 	// usleep(10);
-	// 	// print_status(philo, THINKING);
-	// 	// rest(philo);
-	// }
+	if (!(philo->data->n_philo % 2 == 0)
+		&& philo->data->n_philo > 2
+		&& philo->id == philo->data->n_philo)
+	{
+		usleep(philo->data->eat_time + 10);
+		// usleep(10);
+		// print_status(philo, THINKING);
+		// rest(philo);
+	}
 	while (!is_dead(philo))
 	{
 		if (eat(philo))

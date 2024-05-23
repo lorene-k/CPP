@@ -6,23 +6,23 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/21 12:54:04 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/23 05:35:49 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_death(t_prog *prog, int i, t_data *data)
+void	print_death(t_philo *philo, int i, t_data *data)
 {
 	long long	time;
 	
-	pthread_mutex_lock(&prog->data->print_m);
-	pthread_mutex_lock(&prog->data->dead_m);
+	pthread_mutex_lock(philo->print_m);
+	pthread_mutex_lock(&data->dead_m);
 	data->dead_id = i;
-	pthread_mutex_unlock(&prog->data->dead_m);
+	pthread_mutex_unlock(&data->dead_m);
 	time = get_time() - data->start_time;
-	printf("%lld %d %s\n", time, prog->philo[i].id, DIED);
-	pthread_mutex_unlock(&prog->data->print_m);
+	printf("%lld %d %s\n", time, philo->id, DIED);
+	pthread_mutex_unlock(philo->print_m);
 }
 
 void	wait_for_philos(t_prog *prog)
@@ -78,7 +78,7 @@ int	check_death(t_prog *prog, t_data *data)
 			(get_time() - prog->philo[i].last_meal_time >= data->death_time))
 		{
 			pthread_mutex_unlock(&prog->philo[i].meal_m);
-			print_death(prog, i, data);
+			print_death(&prog->philo[i], i, data);
 			return (1);
 		}
 		pthread_mutex_unlock(&prog->philo[i].meal_m);
@@ -95,6 +95,6 @@ void	monitor(t_prog *prog, t_data *data)
 			break ;
 		usleep(100);
 	}
-	wait_for_philos(prog);
+	// wait_for_philos(prog);
 	destroy_mutexes(prog);
 }

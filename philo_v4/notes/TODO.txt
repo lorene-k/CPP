@@ -1,5 +1,7 @@
-                20/05
+                23/05
 - pb with print mutex in print_death in monitr
+- print_m pointer added in philo struct
+
                 20/05
 - FIX FT_USLEEP
 - CHECK DIFF IF ODD/EVEN NUMBER OF PHILOS
