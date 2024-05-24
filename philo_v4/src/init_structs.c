@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:02:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/23 11:24:47 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:24:00 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	init_philos(t_prog *prog, t_data *data)
 	while (i < data->n_philo)
 	{
 		prog->philo[i].id = i + 1;
-		prog->philo[i].eating = 0;
 		prog->philo[i].last_meal_time = get_time();
 		prog->philo[i].meals_eaten = 0;
 		prog->philo[i].l_fork = &prog->forks[i];
@@ -75,7 +74,6 @@ void	init_structs(int ac, char **av, t_data *data, t_prog *prog)
 
 	prog->philo = philo;
 	prog->data = data;
-	philo->data = data;
 	parse_args(ac, av, data);
 	init_mutexes(data, prog);
 	init_philos(prog, data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/23 12:10:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:56:31 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,18 @@ int	check_meals(t_prog *prog)
 			pthread_mutex_lock(&prog->philo[i].meal_m);
 			if (prog->philo[i].meals_eaten < prog->data->meals_to_eat)
 				return (pthread_mutex_unlock(&prog->philo[i].meal_m), 0);
+			pthread_mutex_unlock(&prog->philo[i].meal_m);
 			i++;
 		}
-		pthread_mutex_unlock(&prog->philo[i].meal_m);
-		// pthread_mutex_lock(&prog->data->dead_m);
-		// prog->data->dead_id = 0;
-		// pthread_mutex_unlock(&prog->data->dead_m); //DONT DO THIS
+		pthread_mutex_lock(&prog->data->print_m);
+		pthread_mutex_lock(&prog->data->dead_m);
+		prog->data->dead_id = i;
+		// printf("meals eaten : %d \nmeals to eat : %d\n", prog->philo[0].meals_eaten, prog->data->meals_to_eat);
+		pthread_mutex_unlock(&prog->data->print_m);
+		pthread_mutex_unlock(&prog->data->dead_m);
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
 int	check_death(t_prog *prog, t_data *data)
@@ -74,8 +78,7 @@ int	check_death(t_prog *prog, t_data *data)
 	while (i < data->n_philo)
 	{
 		pthread_mutex_lock(&prog->philo[i].meal_m);
-		if (!(prog->philo[i].eating) && 
-			(get_time() - prog->philo[i].last_meal_time >= data->death_time))
+		if ((get_time() - prog->philo[i].last_meal_time >= data->death_time))
 		{
 			print_death(&prog->philo[i], i, data);
 			pthread_mutex_unlock(&prog->philo[i].meal_m);
@@ -89,8 +92,10 @@ int	check_death(t_prog *prog, t_data *data)
 
 void	monitor(t_prog *prog, t_data *data)
 {
-	while (1)
+
+	while (data->n_philo > 1 && 1)
 	{
+
 		if (check_death(prog, data) || check_meals(prog))
 			break ;
 		usleep(100);

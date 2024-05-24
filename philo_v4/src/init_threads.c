@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_threads.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/23 12:10:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:09:32 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	*routine(void *p)
 	pthread_mutex_lock(&philo->data->start_m);
 	pthread_mutex_unlock(&philo->data->start_m);
 	if (philo->id % 2 == 0)
-		usleep(philo->data->eat_time);
-	if (!(philo->data->n_philo > 2
-		&& philo->data->n_philo % 2 == 0) 
+		ft_usleep(philo->data->eat_time, philo);
+	if (philo->data->n_philo > 2
+		&& philo->data->n_philo % 2 != 0
 		&& philo->id == philo->data->n_philo)
 	{
-		usleep(philo->data->eat_time + 10);
+		ft_usleep(philo->data->eat_time + 10, philo);
 		// usleep(10);
 		// print_status(philo, THINKING);
 		// rest(philo);
@@ -42,10 +42,9 @@ void	*routine(void *p)
 	{
 		if (eat(philo))
 			break ;
-		print_status(philo, THINKING);
-		if (is_dead(philo))
+		if (is_dead(philo) || rest(philo))
 			break ;
-		rest(philo);
+		print_status(philo, THINKING);
 	}
 	return (p);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/23 12:10:37 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:28:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ void	solo_philo(t_philo *philo)
 	print_status(philo, DIED);
 }
 
-void	rest(t_philo *philo)
+int	rest(t_philo *philo)
 {
 	print_status(philo, SLEEPING);
 	ft_usleep(philo->data->sleep_time, philo);
+	if (is_dead(philo))
+		return (1);
+	return (0);
 }
 
 void	drop_forks(t_philo *philo)
@@ -35,9 +38,6 @@ void	drop_forks(t_philo *philo)
 		pthread_mutex_unlock(philo->r_fork);
 	else
 		pthread_mutex_unlock(philo->l_fork);
-	pthread_mutex_lock(&philo->meal_m);
-	philo->eating = 0;
-	pthread_mutex_unlock(&philo->meal_m);
 }
 
 int	take_forks(t_philo *philo)
@@ -61,13 +61,17 @@ int	eat(t_philo *philo)
 {
 	if (take_forks(philo))
 		return (1);
-	pthread_mutex_lock(&philo->meal_m);
-	philo->meals_eaten += 1;
-	philo->eating = 1;
-	philo->last_meal_time = get_time();
-	print_status(philo, EATING);
-	pthread_mutex_unlock(&philo->meal_m);	
-	ft_usleep(philo->data->eat_time, philo);
+	if (!is_dead(philo))
+	{
+		pthread_mutex_lock(&philo->meal_m);
+		philo->meals_eaten += 1;
+		philo->last_meal_time = get_time();
+		print_status(philo, EATING);
+		pthread_mutex_unlock(&philo->meal_m);
+		ft_usleep(philo->data->eat_time, philo);
+	}
+	else
+		return (drop_forks(philo), 1);
 	drop_forks(philo);
 	return (0);
 }

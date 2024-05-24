@@ -1,0 +1,1502 @@
+==3019761== Memcheck, a memory error detector
+==3019761== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3019761== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==3019761== Command: ..//philo 200 60 60 60 7
+==3019761== 
+==3019761== Invalid write of size 8
+==3019761==    at 0x4909117: pthread_create@@GLIBC_2.34 (pthread_create.c:747)
+==3019761==    by 0x401CF7: init_threads (init_threads.c:61)
+==3019761==    by 0x40120F: main (main.c:23)
+==3019761==  Address 0x1ffeff9080 is on thread 1's stack
+==3019761==  18736 bytes below stack pointer
+==3019761== 
+==3019761== Thread 19:
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B68: routine (init_threads.c:28)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff96d8 is on thread 1's stack
+==3019761==  16880 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B79: routine (init_threads.c:29)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff96d8 is on thread 1's stack
+==3019761==  16880 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x401B8A: routine (init_threads.c:30)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff96c0 is on thread 1's stack
+==3019761==  16904 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401BA1: routine (init_threads.c:31)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff96d8 is on thread 1's stack
+==3019761==  16880 bytes below stack pointer
+==3019761== 
+==3019761== Thread 6:
+==3019761== Invalid read of size 8
+==3019761==    at 0x401BB5: routine (init_threads.c:32)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401BC6: routine (init_threads.c:33)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401AF0: is_dead (init_threads.c:17)
+==3019761==    by 0x401C17: routine (init_threads.c:41)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B01: is_dead (init_threads.c:18)
+==3019761==    by 0x401C17: routine (init_threads.c:41)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B30: is_dead (init_threads.c:20)
+==3019761==    by 0x401C17: routine (init_threads.c:41)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x401940: take_forks (actions.c:45)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91e0 is on thread 1's stack
+==3019761==  18152 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401957: take_forks (actions.c:46)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9230 is on thread 1's stack
+==3019761==  18072 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4021C4: print_status (utils.c:35)
+==3019761==    by 0x401984: take_forks (actions.c:49)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4021DA: print_status (utils.c:36)
+==3019761==    by 0x401984: take_forks (actions.c:49)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x4021EE: print_status (utils.c:37)
+==3019761==    by 0x401984: take_forks (actions.c:49)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91e0 is on thread 1's stack
+==3019761==  18152 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x402209: print_status (utils.c:38)
+==3019761==    by 0x401984: take_forks (actions.c:49)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401989: take_forks (actions.c:50)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x4019AF: take_forks (actions.c:52)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91e0 is on thread 1's stack
+==3019761==  18152 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4019C6: take_forks (actions.c:53)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9238 is on thread 1's stack
+==3019761==  18064 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4021C4: print_status (utils.c:35)
+==3019761==    by 0x4019F3: take_forks (actions.c:56)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4021DA: print_status (utils.c:36)
+==3019761==    by 0x4019F3: take_forks (actions.c:56)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x4021EE: print_status (utils.c:37)
+==3019761==    by 0x4019F3: take_forks (actions.c:56)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91e0 is on thread 1's stack
+==3019761==  18152 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x402209: print_status (utils.c:38)
+==3019761==    by 0x4019F3: take_forks (actions.c:56)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401AF0: is_dead (init_threads.c:17)
+==3019761==    by 0x401A42: eat (actions.c:64)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B01: is_dead (init_threads.c:18)
+==3019761==    by 0x401A42: eat (actions.c:64)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B30: is_dead (init_threads.c:20)
+==3019761==    by 0x401A42: eat (actions.c:64)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x490BEF4: pthread_mutex_lock@@GLIBC_2.2.5 (pthread_mutex_lock.c:80)
+==3019761==    by 0x401A58: eat (actions.c:66)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9218 is on thread 1's stack
+==3019761==  18096 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x490BF22: lll_mutex_lock_optimized (pthread_mutex_lock.c:44)
+==3019761==    by 0x490BF22: pthread_mutex_lock@@GLIBC_2.2.5 (pthread_mutex_lock.c:93)
+==3019761==    by 0x401A58: eat (actions.c:66)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9218 is on thread 1's stack
+==3019761==  18096 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x490BF40: lll_mutex_lock_optimized (pthread_mutex_lock.c:48)
+==3019761==    by 0x490BF40: pthread_mutex_lock@@GLIBC_2.2.5 (pthread_mutex_lock.c:93)
+==3019761==    by 0x401A58: eat (actions.c:66)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9208 is on thread 1's stack
+==3019761==  18112 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x490BF4A: pthread_mutex_lock@@GLIBC_2.2.5 (pthread_mutex_lock.c:94)
+==3019761==    by 0x401A58: eat (actions.c:66)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9210 is on thread 1's stack
+==3019761==  18104 bytes below stack pointer
+==3019761== 
+==3019761== Invalid write of size 4
+==3019761==    at 0x490BF5D: pthread_mutex_lock@@GLIBC_2.2.5 (pthread_mutex_lock.c:170)
+==3019761==    by 0x401A58: eat (actions.c:66)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9210 is on thread 1's stack
+==3019761==  18104 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x490BF60: pthread_mutex_lock@@GLIBC_2.2.5 (pthread_mutex_lock.c:172)
+==3019761==    by 0x401A58: eat (actions.c:66)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9214 is on thread 1's stack
+==3019761==  18100 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x401A5D: eat (actions.c:67)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f0 is on thread 1's stack
+==3019761==  18136 bytes below stack pointer
+==3019761== 
+==3019761== Invalid write of size 4
+==3019761==    at 0x401A63: eat (actions.c:67)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f0 is on thread 1's stack
+==3019761==  18136 bytes below stack pointer
+==3019761== 
+==3019761== Invalid write of size 8
+==3019761==    at 0x401A72: eat (actions.c:68)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91e8 is on thread 1's stack
+==3019761==  18144 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4021C4: print_status (utils.c:35)
+==3019761==    by 0x401A88: eat (actions.c:69)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4021DA: print_status (utils.c:36)
+==3019761==    by 0x401A88: eat (actions.c:69)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x4021EE: print_status (utils.c:37)
+==3019761==    by 0x401A88: eat (actions.c:69)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91e0 is on thread 1's stack
+==3019761==  18152 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x402209: print_status (utils.c:38)
+==3019761==    by 0x401A88: eat (actions.c:69)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x490DA74: __pthread_mutex_unlock_usercnt (pthread_mutex_unlock.c:51)
+==3019761==    by 0x490DA74: pthread_mutex_unlock@@GLIBC_2.2.5 (pthread_mutex_unlock.c:368)
+==3019761==    by 0x401A95: eat (actions.c:70)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9218 is on thread 1's stack
+==3019761==  18096 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x490DA8C: __pthread_mutex_unlock_usercnt (pthread_mutex_unlock.c:65)
+==3019761==    by 0x490DA8C: pthread_mutex_unlock@@GLIBC_2.2.5 (pthread_mutex_unlock.c:368)
+==3019761==    by 0x401A95: eat (actions.c:70)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9214 is on thread 1's stack
+==3019761==  18100 bytes below stack pointer
+==3019761== 
+==3019761== Invalid write of size 4
+==3019761==    at 0x490DA90: __pthread_mutex_unlock_usercnt (pthread_mutex_unlock.c:62)
+==3019761==    by 0x490DA90: pthread_mutex_unlock@@GLIBC_2.2.5 (pthread_mutex_unlock.c:368)
+==3019761==    by 0x401A95: eat (actions.c:70)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9210 is on thread 1's stack
+==3019761==  18104 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x490DA97: lll_mutex_unlock_optimized (pthread_mutex_unlock.c:39)
+==3019761==    by 0x490DA97: __pthread_mutex_unlock_usercnt (pthread_mutex_unlock.c:68)
+==3019761==    by 0x490DA97: pthread_mutex_unlock@@GLIBC_2.2.5 (pthread_mutex_unlock.c:368)
+==3019761==    by 0x401A95: eat (actions.c:70)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9218 is on thread 1's stack
+==3019761==  18096 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x490DAA4: lll_mutex_unlock_optimized (pthread_mutex_unlock.c:43)
+==3019761==    by 0x490DAA4: __pthread_mutex_unlock_usercnt (pthread_mutex_unlock.c:68)
+==3019761==    by 0x490DAA4: pthread_mutex_unlock@@GLIBC_2.2.5 (pthread_mutex_unlock.c:368)
+==3019761==    by 0x401A95: eat (actions.c:70)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9208 is on thread 1's stack
+==3019761==  18112 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401A9A: eat (actions.c:71)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff91f8 is on thread 1's stack
+==3019761==  18128 bytes below stack pointer
+==3019761== 
+==3019761== Thread 12:
+==3019761== Invalid read of size 8
+==3019761==    at 0x401AF0: is_dead (init_threads.c:17)
+==3019761==    by 0x402260: ft_usleep (utils.c:49)
+==3019761==    by 0x401AA9: eat (actions.c:71)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B01: is_dead (init_threads.c:18)
+==3019761==    by 0x402260: ft_usleep (utils.c:49)
+==3019761==    by 0x401AA9: eat (actions.c:71)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B30: is_dead (init_threads.c:20)
+==3019761==    by 0x402260: ft_usleep (utils.c:49)
+==3019761==    by 0x401AA9: eat (actions.c:71)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Thread 17:
+==3019761== Invalid read of size 8
+==3019761==    at 0x401AF0: is_dead (init_threads.c:17)
+==3019761==    by 0x402260: ft_usleep (utils.c:49)
+==3019761==    by 0x401BB0: routine (init_threads.c:31)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9618 is on thread 1's stack
+==3019761==  17072 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B01: is_dead (init_threads.c:18)
+==3019761==    by 0x402260: ft_usleep (utils.c:49)
+==3019761==    by 0x401BB0: routine (init_threads.c:31)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9618 is on thread 1's stack
+==3019761==  17072 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B30: is_dead (init_threads.c:20)
+==3019761==    by 0x402260: ft_usleep (utils.c:49)
+==3019761==    by 0x401BB0: routine (init_threads.c:31)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9618 is on thread 1's stack
+==3019761==  17072 bytes below stack pointer
+==3019761== 
+==3019761== Thread 3:
+==3019761== Invalid read of size 8
+==3019761==    at 0x401969: take_forks (actions.c:48)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9118 is on thread 1's stack
+==3019761==  18352 bytes below stack pointer
+==3019761== 
+==3019761== Thread 12:
+==3019761== Invalid read of size 4
+==3019761==    at 0x4018C0: drop_forks (actions.c:33)
+==3019761==    by 0x401ACC: eat (actions.c:75)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9420 is on thread 1's stack
+==3019761==  17576 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4018D7: drop_forks (actions.c:34)
+==3019761==    by 0x401ACC: eat (actions.c:75)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9470 is on thread 1's stack
+==3019761==  17496 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x4018F6: drop_forks (actions.c:37)
+==3019761==    by 0x401ACC: eat (actions.c:75)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9420 is on thread 1's stack
+==3019761==  17576 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x40190D: drop_forks (actions.c:38)
+==3019761==    by 0x401ACC: eat (actions.c:75)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9478 is on thread 1's stack
+==3019761==  17488 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401AF0: is_dead (init_threads.c:17)
+==3019761==    by 0x401C4C: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B01: is_dead (init_threads.c:18)
+==3019761==    by 0x401C4C: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B30: is_dead (init_threads.c:20)
+==3019761==    by 0x401C4C: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4021C4: print_status (utils.c:35)
+==3019761==    by 0x40185E: rest (actions.c:24)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4021DA: print_status (utils.c:36)
+==3019761==    by 0x40185E: rest (actions.c:24)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x4021EE: print_status (utils.c:37)
+==3019761==    by 0x40185E: rest (actions.c:24)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9420 is on thread 1's stack
+==3019761==  17576 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x402209: print_status (utils.c:38)
+==3019761==    by 0x40185E: rest (actions.c:24)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401863: rest (actions.c:25)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Thread 19:
+==3019761== Invalid read of size 8
+==3019761==    at 0x4019D8: take_forks (actions.c:55)
+==3019761==    by 0x401A24: eat (actions.c:62)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9710 is on thread 1's stack
+==3019761==  16824 bytes below stack pointer
+==3019761== 
+==3019761== Thread 10:
+==3019761== Invalid read of size 8
+==3019761==    at 0x401AF0: is_dead (init_threads.c:17)
+==3019761==    by 0x402260: ft_usleep (utils.c:49)
+==3019761==    by 0x401872: rest (actions.c:25)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9378 is on thread 1's stack
+==3019761==  17744 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B01: is_dead (init_threads.c:18)
+==3019761==    by 0x402260: ft_usleep (utils.c:49)
+==3019761==    by 0x401872: rest (actions.c:25)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9378 is on thread 1's stack
+==3019761==  17744 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B30: is_dead (init_threads.c:20)
+==3019761==    by 0x402260: ft_usleep (utils.c:49)
+==3019761==    by 0x401872: rest (actions.c:25)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9378 is on thread 1's stack
+==3019761==  17744 bytes below stack pointer
+==3019761== 
+==3019761== Thread 12:
+==3019761== Invalid read of size 8
+==3019761==    at 0x401AF0: is_dead (init_threads.c:17)
+==3019761==    by 0x40187B: rest (actions.c:26)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B01: is_dead (init_threads.c:18)
+==3019761==    by 0x40187B: rest (actions.c:26)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x401B30: is_dead (init_threads.c:20)
+==3019761==    by 0x40187B: rest (actions.c:26)
+==3019761==    by 0x401C5E: routine (init_threads.c:45)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4021C4: print_status (utils.c:35)
+==3019761==    by 0x401C7F: routine (init_threads.c:47)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x4021DA: print_status (utils.c:36)
+==3019761==    by 0x401C7F: routine (init_threads.c:47)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 4
+==3019761==    at 0x4021EE: print_status (utils.c:37)
+==3019761==    by 0x401C7F: routine (init_threads.c:47)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9420 is on thread 1's stack
+==3019761==  17576 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x402209: print_status (utils.c:38)
+==3019761==    by 0x401C7F: routine (init_threads.c:47)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9438 is on thread 1's stack
+==3019761==  17552 bytes below stack pointer
+==3019761== 
+==3019761== Thread 3:
+==3019761== Invalid read of size 8
+==3019761==    at 0x4018E9: drop_forks (actions.c:36)
+==3019761==    by 0x401ACC: eat (actions.c:75)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9118 is on thread 1's stack
+==3019761==  18352 bytes below stack pointer
+==3019761== 
+==3019761== Invalid read of size 8
+==3019761==    at 0x40191F: drop_forks (actions.c:40)
+==3019761==    by 0x401ACC: eat (actions.c:75)
+==3019761==    by 0x401C35: routine (init_threads.c:43)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x1ffeff9110 is on thread 1's stack
+==3019761==  18360 bytes below stack pointer
+==3019761== 
+447 5 has taken a fork
+471 5 has taken a fork
+475 5 is eating
+476 11 has taken a fork
+476 11 has taken a fork
+476 11 is eating
+478 1 has taken a fork
+478 1 has taken a fork
+478 1 is eating
+478 13 has taken a fork
+478 13 has taken a fork
+478 13 is eating
+478 7 has taken a fork
+478 7 has taken a fork
+478 7 is eating
+479 15 has taken a fork
+479 15 has taken a fork
+479 15 is eating
+479 3 has taken a fork
+479 3 has taken a fork
+479 3 is eating
+479 9 has taken a fork
+479 9 has taken a fork
+479 9 is eating
+576 11 is sleeping
+577 1 is sleeping
+577 7 is sleeping
+577 15 is sleeping
+577 17 has taken a fork
+577 17 has taken a fork
+577 17 is eating
+578 3 is sleeping
+578 18 has taken a fork
+578 5 is sleeping
+578 21 has taken a fork
+578 21 has taken a fork
+578 21 is eating
+579 10 has taken a fork
+674 4 has taken a fork
+674 4 has taken a fork
+674 4 is eating
+792 31 has taken a fork
+792 31 has taken a fork
+792 31 is eating
+792 2 has taken a fork
+792 2 has taken a fork
+792 2 is eating
+792 9 is sleeping
+792 16 has taken a fork
+792 16 has taken a fork
+793 16 is eating
+793 22 has taken a fork
+794 11 is thinking
+794 1 is thinking
+794 1 has taken a fork
+794 25 has taken a fork
+794 25 has taken a fork
+794 25 is eating
+795 12 has taken a fork
+795 12 has taken a fork
+795 12 is eating
+795 27 has taken a fork
+795 27 has taken a fork
+795 27 is eating
+795 8 has taken a fork
+795 8 has taken a fork
+795 8 is eating
+795 14 has taken a fork
+795 29 has taken a fork
+795 29 has taken a fork
+795 29 is eating
+795 7 is thinking
+795 7 has taken a fork
+889 2 is sleeping
+889 17 is sleeping
+889 5 is thinking
+889 18 has taken a fork
+889 18 is eating
+889 16 is sleeping
+889 9 is thinking
+889 13 is sleeping
+890 4 is sleeping
+890 5 has taken a fork
+890 5 has taken a fork
+890 5 is eating
+890 12 is sleeping
+890 15 is thinking
+890 31 is sleeping
+890 3 is thinking
+890 3 has taken a fork
+890 3 has taken a fork
+890 3 is eating
+890 35 has taken a fork
+890 35 has taken a fork
+890 35 is eating
+890 10 has taken a fork
+890 10 is eating
+890 20 has taken a fork
+890 20 has taken a fork
+890 20 is eating
+890 1 has taken a fork
+890 1 is eating
+1056 14 has taken a fork
+1056 14 is eating
+1056 13 is thinking
+1056 13 has taken a fork
+1056 4 is thinking
+1057 9 has taken a fork
+1057 28 has taken a fork
+1057 29 is sleeping
+1057 33 has taken a fork
+1057 33 has taken a fork
+1057 33 is eating
+1057 30 has taken a fork
+1057 30 has taken a fork
+1057 30 is eating
+1057 12 is thinking
+1057 35 is sleeping
+1057 1 is sleeping
+1057 20 is sleeping
+1057 2 is thinking
+1057 17 is thinking
+1057 17 has taken a fork
+1057 37 has taken a fork
+1057 37 has taken a fork
+1057 37 is eating
+1057 21 is sleeping
+1058 22 has taken a fork
+1058 22 is eating
+1058 39 has taken a fork
+1058 39 has taken a fork
+1058 39 is eating
+1058 18 is sleeping
+1058 16 is thinking
+1058 41 has taken a fork
+1058 41 has taken a fork
+1058 41 is eating
+1058 25 is sleeping
+1058 24 has taken a fork
+1058 24 has taken a fork
+1058 24 is eating
+1058 26 has taken a fork
+1058 26 has taken a fork
+1058 26 is eating
+1058 8 is sleeping
+1058 7 has taken a fork
+1058 7 is eating
+1058 27 is sleeping
+1058 34 has taken a fork
+1059 31 is thinking
+1083 19 has taken a fork
+1083 19 has taken a fork
+1083 19 is eating
+1083 5 is sleeping
+1084 17 has taken a fork
+1084 17 is eating
+1084 28 has taken a fork
+1084 28 is eating
+1084 3 is sleeping
+1084 2 has taken a fork
+1084 2 has taken a fork
+1084 2 is eating
+1084 11 has taken a fork
+1084 11 has taken a fork
+1084 11 is eating
+1084 4 has taken a fork
+1084 4 has taken a fork
+1084 4 is eating
+1084 43 has taken a fork
+1084 43 has taken a fork
+1084 43 is eating
+1155 19 is sleeping
+1156 5 is thinking
+1156 10 is sleeping
+1156 18 is thinking
+1156 18 has taken a fork
+1156 9 has taken a fork
+1156 9 is eating
+1156 25 is thinking
+1156 15 has taken a fork
+1156 15 has taken a fork
+1156 15 is eating
+1156 1 is thinking
+1156 1 has taken a fork
+1156 2 is sleeping
+1156 20 is thinking
+1157 20 has taken a fork
+1157 20 has taken a fork
+1157 20 is eating
+1157 11 is sleeping
+1157 29 is thinking
+1157 29 has taken a fork
+1157 21 is thinking
+1157 39 is sleeping
+1159 35 is thinking
+1159 31 has taken a fork
+1159 31 has taken a fork
+1159 31 is eating
+1512 61 has taken a fork
+1512 61 has taken a fork
+1512 61 is eating
+1512 38 has taken a fork
+1512 1 has taken a fork
+1512 1 is eating
+1512 32 has taken a fork
+1512 33 is sleeping
+1512 34 has taken a fork
+1512 34 is eating
+1512 2 is thinking
+1512 2 has taken a fork
+1513 15 is sleeping
+1513 20 is sleeping
+1513 36 has taken a fork
+1513 36 has taken a fork
+1513 36 is eating
+1513 4 is sleeping
+1513 5 has taken a fork
+1513 5 has taken a fork
+1513 5 is eating
+1513 43 is sleeping
+1513 39 is thinking
+1513 30 is sleeping
+1513 45 has taken a fork
+1513 45 has taken a fork
+1513 45 is eating
+1513 29 has taken a fork
+1513 29 is eating
+1514 26 is sleeping
+1514 42 has taken a fork
+1514 49 has taken a fork
+1514 49 has taken a fork
+1514 49 is eating
+1514 16 has taken a fork
+1514 16 has taken a fork
+1514 16 is eating
+1514 19 is thinking
+1514 51 has taken a fork
+1514 51 has taken a fork
+1514 51 is eating
+1514 10 is thinking
+1514 10 has taken a fork
+1514 28 is sleeping
+1514 25 has taken a fork
+1514 25 has taken a fork
+1514 25 is eating
+1514 55 has taken a fork
+1514 55 has taken a fork
+1514 55 is eating
+1514 14 is sleeping
+1515 3 is thinking
+1515 8 is thinking
+1515 13 has taken a fork
+1515 13 is eating
+1515 59 has taken a fork
+1515 59 has taken a fork
+1515 59 is eating
+1515 9 is sleeping
+1515 6 has taken a fork
+1642 33 is thinking
+1691 21 has taken a fork
+1692 15 is thinking
+1692 15 has taken a fork
+1692 20 is thinking
+1692 36 is sleeping
+1692 43 is thinking
+1692 30 is thinking
+1692 30 has taken a fork
+1692 45 is sleeping
+1692 23 has taken a fork
+1692 47 has taken a fork
+1692 47 has taken a fork
+1692 47 is eating
+1692 31 is sleeping
+1692 32 has taken a fork
+1692 32 is eating
+1692 17 is sleeping
+1693 18 has taken a fork
+1693 18 is eating
+1693 49 is sleeping
+1693 48 has taken a fork
+1693 53 has taken a fork
+1693 53 has taken a fork
+1693 53 is eating
+1693 28 is thinking
+1693 28 has taken a fork
+1693 28 has taken a fork
+1693 28 is eating
+1693 51 is sleeping
+1693 57 has taken a fork
+1693 57 has taken a fork
+1693 57 is eating
+1693 14 is thinking
+1694 8 has taken a fork
+1694 8 has taken a fork
+1694 8 is eating
+1694 7 is sleeping
+1694 10 has taken a fork
+1694 10 is eating
+1694 59 is sleeping
+1694 41 is sleeping
+1694 40 has taken a fork
+1694 40 has taken a fork
+1694 40 is eating
+1694 61 is sleeping
+1694 65 has taken a fork
+1694 65 has taken a fork
+1694 65 is eating
+1695 27 is thinking
+1695 27 has taken a fork
+1695 11 is thinking
+2392 55 is sleeping
+2393 54 has taken a fork
+2393 8 is sleeping
+2393 7 is thinking
+2393 9 is thinking
+2393 9 has taken a fork
+2393 58 has taken a fork
+2393 42 has taken a fork
+2393 42 is eating
+2393 63 has taken a fork
+2393 63 has taken a fork
+2393 63 is eating
+2393 60 has taken a fork
+2393 60 has taken a fork
+2393 60 is eating
+2393 59 is thinking
+2393 41 is thinking
+2394 1 is sleeping
+2394 2 has taken a fork
+2394 2 is eating
+2394 40 is sleeping
+2394 67 has taken a fork
+2394 67 has taken a fork
+2394 67 is eating
+2394 68 has taken a fork
+2394 37 is sleeping
+2394 71 has taken a fork
+2394 71 has taken a fork
+2395 71 is eating
+2395 35 has taken a fork
+2395 35 has taken a fork
+2395 35 is eating
+2395 73 has taken a fork
+2395 73 has taken a fork
+2395 73 is eating
+2395 4 is thinking
+2395 4 has taken a fork
+2395 4 has taken a fork
+2395 4 is eating
+2395 75 has taken a fork
+2395 75 has taken a fork
+2395 75 is eating
+2395 21 has taken a fork
+2395 21 is eating
+2395 36 is thinking
+2395 36 has taken a fork
+2395 45 is thinking
+2395 45 has taken a fork
+2395 45 has taken a fork
+2395 45 is eating
+2395 79 has taken a fork
+2395 79 has taken a fork
+2395 79 is eating
+2396 29 is sleeping
+2396 81 has taken a fork
+2396 81 has taken a fork
+2396 81 is eating
+2396 30 has taken a fork
+2396 30 is eating
+2396 83 has taken a fork
+2396 83 has taken a fork
+2396 83 is eating
+2396 26 is thinking
+2396 85 has taken a fork
+2396 85 has taken a fork
+2396 85 is eating
+2396 18 is sleeping
+2396 17 is thinking
+2396 17 has taken a fork
+2396 17 has taken a fork
+2396 17 is eating
+2396 87 has taken a fork
+2524 49 is thinking
+2524 28 is sleeping
+2524 27 has taken a fork
+2524 27 is eating
+2524 95 has taken a fork
+2524 95 has taken a fork
+2524 95 is eating
+2524 57 is sleeping
+2525 58 has taken a fork
+2525 58 is eating
+2525 17 is sleeping
+2525 56 has taken a fork
+2525 56 has taken a fork
+2525 56 is eating
+2525 52 has taken a fork
+2525 52 has taken a fork
+2525 52 is eating
+2525 25 is sleeping
+2525 97 has taken a fork
+2525 97 has taken a fork
+2525 97 is eating
+2525 13 is sleeping
+2525 99 has taken a fork
+2525 99 has taken a fork
+2525 99 is eating
+2525 55 is thinking
+2525 8 is thinking
+2732 2 is sleeping
+3007 79 is sleeping
+3007 78 has taken a fork
+3007 78 has taken a fork
+3007 78 is eating
+3007 32 is sleeping
+3007 81 is sleeping
+3007 80 has taken a fork
+3007 80 has taken a fork
+3007 80 is eating
+3007 29 is thinking
+3007 29 has taken a fork
+3007 29 has taken a fork
+3007 29 is eating
+3007 16 is sleeping
+3007 15 has taken a fork
+3007 15 is eating
+3007 87 has taken a fork
+3007 87 is eating
+3007 50 has taken a fork
+3007 53 is sleeping
+3007 54 has taken a fork
+3007 54 is eating
+3008 28 is thinking
+3008 57 is thinking
+3008 17 is thinking
+3008 17 has taken a fork
+3008 17 has taken a fork
+3008 17 is eating
+3008 95 is sleeping
+3008 84 has taken a fork
+3008 84 has taken a fork
+3008 84 is eating
+3008 97 is sleeping
+3008 99 is sleeping
+3008 42 is sleeping
+3009 60 is sleeping
+3009 105 has taken a fork
+3009 105 has taken a fork
+3009 105 is eating
+3009 107 has taken a fork
+3009 107 has taken a fork
+3009 107 is eating
+3009 37 is thinking
+3009 109 has taken a fork
+3009 109 has taken a fork
+3009 109 is eating
+3009 3 has taken a fork
+3009 3 has taken a fork
+3009 3 is eating
+3009 71 is sleeping
+3009 70 has taken a fork
+3009 70 has taken a fork
+3009 70 is eating
+3009 2 is thinking
+3009 73 is sleeping
+3009 72 has taken a fork
+3009 72 has taken a fork
+3009 72 is eating
+3009 111 has taken a fork
+3010 111 has taken a fork
+3010 111 is eating
+3010 20 has taken a fork
+3010 20 has taken a fork
+3010 20 is eating
+3010 113 has taken a fork
+3010 113 has taken a fork
+3010 113 is eating
+3010 75 is sleeping
+3010 115 has taken a fork
+3010 115 has taken a fork
+3010 115 is eating
+3010 47 is sleeping
+3010 117 has taken a fork
+3010 117 has taken a fork
+3010 117 is eating
+3010 45 is sleeping
+3010 44 has taken a fork
+3010 44 has taken a fork
+3010 44 is eating
+3010 119 has taken a fork
+3010 119 has taken a fork
+3010 119 is eating
+3161 50 has taken a fork
+3161 50 is eating
+3161 89 has taken a fork
+3161 89 has taken a fork
+3161 89 is eating
+3161 53 is thinking
+3161 53 has taken a fork
+3161 26 has taken a fork
+3161 26 has taken a fork
+3161 26 is eating
+3161 58 is sleeping
+3161 94 has taken a fork
+3161 94 has taken a fork
+3161 94 is eating
+3161 56 is sleeping
+3161 96 has taken a fork
+3161 96 has taken a fork
+3161 96 is eating
+3162 95 is thinking
+3162 13 is thinking
+3162 98 has taken a fork
+3162 98 has taken a fork
+3162 98 is eating
+3162 17 is sleeping
+3162 62 has taken a fork
+3162 62 has taken a fork
+3162 62 is eating
+3162 103 has taken a fork
+3162 103 has taken a fork
+3162 103 is eating
+3162 99 is thinking
+3162 11 has taken a fork
+3162 11 has taken a fork
+3162 11 is eating
+3162 84 is sleeping
+3162 42 is thinking
+3162 97 is thinking
+3162 64 has taken a fork
+3162 64 has taken a fork
+3162 64 is eating
+3162 60 is thinking
+3162 60 has taken a fork
+3162 60 has taken a fork
+3163 60 is eating
+3163 66 has taken a fork
+3163 66 has taken a fork
+3163 66 is eating
+3163 3 is sleeping
+3163 70 is sleeping
+3163 73 is thinking
+3163 72 is sleeping
+3163 74 has taken a fork
+3163 74 has taken a fork
+3163 74 is eating
+3163 113 is sleeping
+3163 48 has taken a fork
+3163 48 is eating
+3163 115 is sleeping
+3163 47 is thinking
+3163 75 is thinking
+3163 20 is sleeping
+3163 45 is thinking
+3163 120 has taken a fork
+3164 79 is thinking
+3164 81 is thinking
+3164 32 is thinking
+3164 123 has taken a fork
+3164 123 has taken a fork
+3164 123 is eating
+3164 16 is thinking
+3164 16 has taken a fork
+3164 125 has taken a fork
+3164 125 has taken a fork
+3164 125 is eating
+3189 127 has taken a fork
+3189 127 has taken a fork
+3189 127 is eating
+3189 14 has taken a fork
+3189 14 has taken a fork
+3189 14 is eating
+3189 24 is sleeping
+3189 23 has taken a fork
+3189 55 has taken a fork
+3189 55 has taken a fork
+3189 55 is eating
+3189 27 is sleeping
+3190 53 has taken a fork
+3190 53 is eating
+3190 59 has taken a fork
+3190 25 is thinking
+3190 25 has taken a fork
+3190 57 has taken a fork
+3190 57 has taken a fork
+3190 57 is eating
+3190 52 is sleeping
+3191 9 has taken a fork
+3191 9 is eating
+3191 105 is sleeping
+3191 104 has taken a fork
+3191 107 is sleeping
+3191 106 has taken a fork
+3191 106 has taken a fork
+3191 106 is eating
+3191 35 is sleeping
+3191 36 has taken a fork
+3191 36 is eating
+3191 109 is sleeping
+3191 108 has taken a fork
+3191 108 has taken a fork
+3191 108 is eating
+3191 2 has taken a fork
+3191 2 has taken a fork
+3191 2 is eating
+3191 71 is thinking
+3191 71 has taken a fork
+3191 71 has taken a fork
+3191 71 is eating
+3191 21 is sleeping
+3191 73 has taken a fork
+3191 112 has taken a fork
+3192 114 has taken a fork
+3192 114 has taken a fork
+3192 114 is eating
+3192 117 is sleeping
+3192 44 is sleeping
+3192 118 has taken a fork
+3192 118 has taken a fork
+3192 118 is eating
+3192 78 is sleeping
+3192 79 has taken a fork
+3192 81 has taken a fork
+3192 81 has taken a fork
+3192 81 is eating
+3538 55 is sleeping
+3538 53 is sleeping
+3538 10 is sleeping
+3538 52 is thinking
+3538 52 has taken a fork
+3538 52 has taken a fork
+3538 52 is eating
+3538 98 is sleeping
+3538 25 has taken a fork
+3539 25 is eating
+3539 62 is sleeping
+3539 84 is thinking
+3539 84 has taken a fork
+3539 84 has taken a fork
+3539 84 is eating
+3539 105 is thinking
+3539 107 is thinking
+3539 35 is thinking
+3539 35 has taken a fork
+3539 109 is thinking
+3539 108 is sleeping
+3539 111 is sleeping
+3539 71 is sleeping
+3540 66 is sleeping
+3540 3 is thinking
+3540 70 is thinking
+3540 70 has taken a fork
+3540 70 has taken a fork
+3540 70 is eating
+3540 45 has taken a fork
+3540 45 has taken a fork
+3540 45 is eating
+3540 113 is thinking
+3540 116 has taken a fork
+3540 116 has taken a fork
+3540 116 is eating
+3540 119 is sleeping
+3541 120 has taken a fork
+3541 120 is eating
+3541 117 is thinking
+3541 115 is thinking
+3541 44 is thinking
+3541 72 is thinking
+3541 79 has taken a fork
+3541 79 is eating
+3541 48 is sleeping
+3541 78 is thinking
+3541 129 has taken a fork
+3541 129 has taken a fork
+3541 129 is eating
+3542 131 has taken a fork
+3542 131 has taken a fork
+3542 131 is eating
+3542 87 is sleeping
+3542 133 has taken a fork
+3542 133 has taken a fork
+3542 133 is eating
+3542 86 has taken a fork
+3542 86 has taken a fork
+3542 86 is eating
+3542 50 is sleeping
+3542 54 is sleeping
+3542 137 has taken a fork
+3542 137 has taken a fork
+3542 137 is eating
+3542 23 is eating
+3542 91 has taken a fork
+3542 91 has taken a fork
+3543 91 is eating
+3543 24 is thinking
+3543 139 has taken a fork
+3543 139 has taken a fork
+3543 139 is eating
+3543 141 has taken a fork
+3543 141 has taken a fork
+3543 141 is eating
+3543 27 is thinking
+3543 27 has taken a fork
+3543 27 has taken a fork
+3543 27 is eating
+3697 56 is thinking
+3697 56 has taken a fork
+3697 56 has taken a fork
+3698 56 is eating
+3776 96 is sleeping
+3776 97 has taken a fork
+3776 97 has taken a fork
+3776 97 is eating
+3777 57 is sleeping
+3777 25 is sleeping
+3777 9 is sleeping
+3777 64 is sleeping
+3777 37 has taken a fork
+3777 84 is sleeping
+3777 109 has taken a fork
+3777 109 has taken a fork
+3777 109 is eating
+3777 112 has taken a fork
+3777 112 is eating
+3777 110 has taken a fork
+3777 108 is thinking
+3777 60 is sleeping
+3778 111 is thinking
+3778 71 is thinking
+3778 70 is sleeping
+3778 75 has taken a fork
+3778 75 has taken a fork
+3778 75 is eating
+3778 20 is thinking
+3778 20 has taken a fork
+3778 20 has taken a fork
+3778 20 is eating
+3778 119 is thinking
+3778 119 has taken a fork
+3778 80 is sleeping
+3778 116 is sleeping
+3778 122 has taken a fork
+3778 122 has taken a fork
+3778 122 is eating
+3778 125 is sleeping
+3779 124 has taken a fork
+3779 28 has taken a fork
+3779 48 is thinking
+3779 48 has taken a fork
+3779 48 has taken a fork
+3779 48 is eating
+3779 15 is sleeping
+==3019761== Thread 182:
+==3019761== Invalid read of size 4
+==3019761==    at 0x490BEF4: pthread_mutex_lock@@GLIBC_2.2.5 (pthread_mutex_lock.c:80)
+==3019761==    by 0x401B74: routine (init_threads.c:28)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  Address 0x92ef90 is not stack'd, malloc'd or (recently) free'd
+==3019761== 
+==3019761== 
+==3019761== Process terminating with default action of signal 11 (SIGSEGV)
+==3019761==  Access not within mapped region at address 0x92EF90
+==3019761==    at 0x490BEF4: pthread_mutex_lock@@GLIBC_2.2.5 (pthread_mutex_lock.c:80)
+==3019761==    by 0x401B74: routine (init_threads.c:28)
+==3019761==    by 0x4908AC2: start_thread (pthread_create.c:442)
+==3019761==    by 0x4999A03: clone (clone.S:100)
+==3019761==  If you believe this happened as a result of a stack
+==3019761==  overflow in your program's main thread (unlikely but
+==3019761==  possible), you can try to increase the size of the
+==3019761==  main thread stack using the --main-stacksize= flag.
+==3019761==  The main thread stack size used in this run was 8388608.
+==3019761== 
+==3019761== HEAP SUMMARY:
+==3019761==     in use at exit: 53,328 bytes in 182 blocks
+==3019761==   total heap usage: 182 allocs, 0 frees, 53,328 bytes allocated
+==3019761== 
+==3019761== Thread 1:
+==3019761== 49,232 bytes in 181 blocks are possibly lost in loss record 2 of 2
+==3019761==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3019761==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==3019761==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==3019761==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==3019761==    by 0x49097B4: allocate_stack (allocatestack.c:430)
+==3019761==    by 0x49097B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==3019761==    by 0x401CF7: init_threads (init_threads.c:61)
+==3019761==    by 0x40120F: main (main.c:23)
+==3019761== 
+==3019761== LEAK SUMMARY:
+==3019761==    definitely lost: 0 bytes in 0 blocks
+==3019761==    indirectly lost: 0 bytes in 0 blocks
+==3019761==      possibly lost: 49,232 bytes in 181 blocks
+==3019761==    still reachable: 4,096 bytes in 1 blocks
+==3019761==         suppressed: 0 bytes in 0 blocks
+==3019761== Reachable blocks (those to which a pointer was found) are not shown.
+==3019761== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==3019761== 
+==3019761== For lists of detected and suppressed errors, rerun with: -s
+==3019761== ERROR SUMMARY: 14868 errors from 80 contexts (suppressed: 0 from 0)
+timeout: the monitored command dumped core

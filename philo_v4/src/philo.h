@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/23 11:54:00 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:23:34 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_data
 typedef struct s_philo
 {
 	int				id;
-	int				eating;
 	long long		last_meal_time;
 	int				meals_eaten;
 	t_data			*data;
@@ -69,8 +68,8 @@ typedef struct s_philo
 
 typedef struct s_prog
 {
-	t_philo			*philo;
 	t_data			*data;
+	t_philo			*philo;
 	pthread_mutex_t	forks[200];
 }					t_prog;
 
@@ -84,12 +83,13 @@ int					ft_atoi(const char *str);
 /* CHECK & INIT */
 int					check_args(int ac, char **av);
 long long			get_time(void);
+void				init_data(int ac, char **av, t_data *data);
 void				init_mutexes(t_data *data, t_prog *prog);
 void				init_structs(int ac, char **av, t_data *data, t_prog *prog);
 
 /* ACTIONS */
 void				solo_philo(t_philo *philo);
-void				rest(t_philo *philo);
+int					rest(t_philo *philo);
 void				drop_forks(t_philo *philo);
 int					take_forks(t_philo *philo);
 int					eat(t_philo *philo);
