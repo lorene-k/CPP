@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/24 17:28:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:32:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	take_forks(t_philo *philo)
 {
 	if (philo->id % 2 != 0)
 		pthread_mutex_lock(philo->l_fork);
-	else
+	else if (!is_dead(philo))
 		pthread_mutex_lock(philo->r_fork);
 	print_status(philo, FORK_TAKEN);
 	if (philo->data->n_philo == 1)

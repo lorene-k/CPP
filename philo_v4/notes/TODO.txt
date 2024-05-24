@@ -2,10 +2,10 @@
 - PB FOUND : DEAD_ID NOT CHANGED IN PHILO THREADS + IS_DEAD NOT WORKING (no pb with monitor) - OK
 - eat > sleep > think
 - VALGRIND ERRORS >> malloc philos ?
-+ SEGFAULTS >> PB WITH STRUCT
-
->> 2 pbs : philos dont stop when death + no death msg printed
->>>>>> can the program stop while a philo is eating?
++ PB WITH memory >> check "initializing a fixed sized array of structs on the stack"
+- PB : 100 1 died
+100 2 is eating
+>> msg printed after death
 
                 23/05
 - pb with print mutex in print_death in monitr
