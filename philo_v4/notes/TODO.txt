@@ -1,3 +1,31 @@
+                26/05
+                >> ALMOST GOOD - PBS :
+[+] Testing philo with 3 800 200 200 7
+[+] Philosopher 1 ate 3 times
+[-] Test #11 Failed: Philosopher 1 has not eaten enough times or has eaten too many times
+[-] Test #11 Failed: Failed with 3 800 200 200 7 
+
+[-] Test #13 Failed: Failed with 4 410 200 200 10 
+[-] Test #14 Failed: Philosopher 1 has not eaten enough times or has eaten too many times
+Test #14 Failed: Failed with 200 410 200 200 10 >> 1 dies too soon w/ 1 meal eaten
+[-] Test #16 Failed: Failed with 199 610 200 80 10 
+[-] Test #10 Failed: Failed with 5 800 200 200 7 
+
+ CPU usage: 168.00% 
+[-] Test #70 Failed: CPU usage is too high (168.00%) with 10 philos 
+kill : utilisation :kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... ou kill -l [sigspec]
+./test.sh: ligne 275: pid : commande introuvable
+ CPU usage: 233.50% 
+[-] Test #70 Failed: CPU usage is too high (233.50%) with 50 philos 
+
+][+] Test #21 Failed with 5 800 200 200,
+[+] Test #22 Failed with 5 800 200 150, the philosopher should stay alive for at least 40 seconds
+.][+] Test #23 Failed with 3 610 200 80, the philosopher should stay alive for at least 40 seconds
+[4...][+] Test #24 Failed with 3 610 200 200, the philosopher should stay alive for at least 40 seconds
+[1...][+] Test #25 Failed with 199 610 200 80, the philosopher should stay alive for at least 40 seconds
+[+] Test #27 Failed with 200 410 200 200, the philosopher should stay alive for at least 40 seconds
+
+
                 24/05
 - PB FOUND : DEAD_ID NOT CHANGED IN PHILO THREADS + IS_DEAD NOT WORKING (no pb with monitor) - OK
 - eat > sleep > think
@@ -36,8 +64,6 @@
 >> ADD 3rd STRUCT WITH GENERAL DATA NEEDED BY ALL (1 mutex for each resource, not each philo) - OK?
 >>> in routine : START THINKING IF PAIR OU IF IMPAIR & FIRST/LAST PHILO <<<
 >> in take forks : take forks in different order if pair or impair, put down in reverse too <<<
-
-
 
                 12/05
 - data races, reverted to v2 ("v3")
@@ -105,18 +131,6 @@ TO DO :
 - [ ] check if thread should be created for check_meals
 - [ ] adjust times according to odd or even number of philos?
 
-
-
-
-
-
-
-
-
-
-
-
-
                 FUNCTIONS
 INIT
 - [x] PARSE ARGS
@@ -128,7 +142,7 @@ MONITOR
 - [x] MONITOR PHILO DEATH
 - [x] WAIT FOR THREADS
 - [x] DESTROY MUTEXES
-- [x] TIMESTAMP
+- [x] TIME
 
 ACTIONS
 - [x] CREATE THREADS
@@ -173,31 +187,13 @@ ACTIONS
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // all in ms :
-
 // number_of_philosophers 
 // time_to_die
 // time_to_eat 
 // time_to_sleep
-
 // optional : number_of_times_each_philosopher_must_eat
  
-
-
-
 1 thread / philo
 1 fork / philo
 1 mutex / fork (used to check/change fork value)

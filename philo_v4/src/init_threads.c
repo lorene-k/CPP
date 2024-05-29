@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_threads.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/24 17:09:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:31:56 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,23 @@ int	is_dead(t_philo *philo)
 	return (pthread_mutex_unlock(&philo->data->dead_m), 0);
 }
 
-void	*routine(void *p)
+static void	sync_philos(t_philo *philo)
 {
-	t_philo	*philo;
-
-	philo = (t_philo *)p;
 	pthread_mutex_lock(&philo->data->start_m);
 	pthread_mutex_unlock(&philo->data->start_m);
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->data->eat_time, philo);
-	if (philo->data->n_philo > 2
-		&& philo->data->n_philo % 2 != 0
-		&& philo->id == philo->data->n_philo)
-	{
+	if (philo->id == philo->data->n_philo && philo->data->n_philo % 2 != 0
+		&& philo->data->n_philo > 2)
 		ft_usleep(philo->data->eat_time + 10, philo);
-		// usleep(10);
-		// print_status(philo, THINKING);
-		// rest(philo);
-	}
+}
+
+static void	*routine(void *p)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)p;
+	sync_philos(philo);
 	while (!is_dead(philo))
 	{
 		if (eat(philo))

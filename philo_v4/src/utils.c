@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:44:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/24 18:31:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:03:12 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	destroy_mutexes(t_prog *prog)
+void	clean_all(t_prog *prog)
 {
 	int	i;
 
@@ -26,6 +26,17 @@ void	destroy_mutexes(t_prog *prog)
 	pthread_mutex_destroy(&prog->data->dead_m);
 	pthread_mutex_destroy(&prog->data->print_m);
 	pthread_mutex_destroy(&prog->data->start_m);
+	free(prog->philo);
+	free(prog->forks);
+}
+
+long long	get_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) == -1)
+		return (-1);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
 void	print_status(t_philo *philo, char *s)

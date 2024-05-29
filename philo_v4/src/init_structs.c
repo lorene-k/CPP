@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:02:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/24 18:24:00 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:29:10 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-long long	get_time(void)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
-		return (-1);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
 
 static void	init_philos(t_prog *prog, t_data *data)
 {
@@ -38,7 +29,7 @@ static void	init_philos(t_prog *prog, t_data *data)
 	}
 }
 
-void	init_mutexes(t_data *data, t_prog *prog)
+static void	init_locks(t_data *data, t_prog *prog)
 {
 	int	i;
 
@@ -54,7 +45,18 @@ void	init_mutexes(t_data *data, t_prog *prog)
 	pthread_mutex_init(&data->start_m, NULL);
 }
 
-static void	parse_args(int ac, char **av, t_data *data)
+static int	get_memory(t_prog *prog, t_data *data)
+{
+	prog->philo = malloc(sizeof(t_philo) * data->n_philo);
+	if (!prog->philo)
+		return (printf(MALLOC_ERR), clean_all(prog), 1);
+	prog->forks = malloc(sizeof(pthread_mutex_t) * data->n_philo);
+	if (!prog->forks)
+		return (printf(MALLOC_ERR), clean_all(prog), 1);
+	return (0);
+}
+
+static void	init_data(int ac, char **av, t_data *data)
 {
 	data->n_philo = ft_atoi(av[1]);
 	data->death_time = (long long)ft_atoi(av[2]);
@@ -68,13 +70,13 @@ static void	parse_args(int ac, char **av, t_data *data)
 		data->meals_to_eat = -1;
 }
 
-void	init_structs(int ac, char **av, t_data *data, t_prog *prog)
+int	init_structs(int ac, char **av, t_data *data, t_prog *prog)
 {
-	t_philo	philo[200];
-
-	prog->philo = philo;
 	prog->data = data;
-	parse_args(ac, av, data);
-	init_mutexes(data, prog);
+	init_data(ac, av, data);
+	if (get_memory(prog, data))
+		return (1);
+	init_locks(data, prog);
 	init_philos(prog, data);
+	return(0);
 }
