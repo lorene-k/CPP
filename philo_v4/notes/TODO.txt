@@ -1,3 +1,33 @@
+                30/05
+- phlos synched by adjusting thinking time
+PB : 199 800 300 100
+Test #9 Failed: Simulation does not end after a death
+
+PB : Philosopher 1 has not eaten enough times or has eaten too many times
+5 800 200 200 7 - OK
+3 800 200 200 7 - OK
+7 800 200 500 7 - OK
+199 610 200 200 10 : BIG PB 
+    610 1 died
+    philo id : 1
+    meals eaten : 1 
+    meals to eat : 10
+    611 199 is sleeping
+    611 1 has taken a fork
+
+
+Philosopher 1 ate 10 times
+[+] Philosopher 2 ate 9 times
+200 410 200 80 10 - OK?
+
+philo dead too soon
+5 800 200 200
+3 610 200 200
+
+!!PROGRAM DOESN'T STOP RIGHT AFTER PHILO DEATH
+if : 200 410 200 200
+
+
                 26/05
                 >> ALMOST GOOD - PBS :
 [+] Testing philo with 3 800 200 200 7

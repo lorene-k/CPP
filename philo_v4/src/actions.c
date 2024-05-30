@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:08:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/27 11:51:01 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:06:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	solo_philo(t_philo *philo)
+static void	solo_philo(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->l_fork);
 	usleep(philo->data->death_time * 1000);
@@ -28,32 +28,32 @@ int	rest(t_philo *philo)
 	return (0);
 }
 
-void	drop_forks(t_philo *philo)
+static void	drop_forks(t_philo *philo)
 {
-	if (philo->id % 2 != 0 && !(philo->data->n_philo % 2 != 0 
-		&& philo->id == philo->data->n_philo))
+	if (philo->id % 2 != 0 && !(philo->data->n_philo % 2 != 0
+			&& philo->id == philo->data->n_philo))
 		pthread_mutex_unlock(philo->l_fork);
 	else
 		pthread_mutex_unlock(philo->r_fork);
-	if (philo->id % 2 != 0 && !(philo->data->n_philo % 2 != 0 
-		&& philo->id == philo->data->n_philo))
+	if (philo->id % 2 != 0 && !(philo->data->n_philo % 2 != 0
+			&& philo->id == philo->data->n_philo))
 		pthread_mutex_unlock(philo->r_fork);
 	else
 		pthread_mutex_unlock(philo->l_fork);
 }
 
-int	take_forks(t_philo *philo)
+static int	take_forks(t_philo *philo)
 {
-	if (philo->id % 2 != 0 && !(philo->data->n_philo % 2 != 0 
-		&& philo->id == philo->data->n_philo))
+	if (philo->id % 2 != 0 && !(philo->data->n_philo % 2 != 0
+			&& philo->id == philo->data->n_philo))
 		pthread_mutex_lock(philo->l_fork);
 	else if (!is_dead(philo))
 		pthread_mutex_lock(philo->r_fork);
 	print_status(philo, FORK_TAKEN);
 	if (philo->data->n_philo == 1)
 		return (solo_philo(philo), 1);
-	if (philo->id % 2 != 0  && !(philo->id == philo->data->n_philo
-		&& philo->data->n_philo % 2 != 0))
+	if (philo->id % 2 != 0 && !(philo->id == philo->data->n_philo
+			&& philo->data->n_philo % 2 != 0))
 		pthread_mutex_lock(philo->r_fork);
 	else
 		pthread_mutex_lock(philo->l_fork);

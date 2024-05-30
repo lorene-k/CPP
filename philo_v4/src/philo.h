@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/27 12:30:38 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:44:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,7 @@ int					check_args(int ac, char **av);
 int					init_structs(int ac, char **av, t_data *data, t_prog *prog);
 
 /* ACTIONS */
-void				solo_philo(t_philo *philo);
 int					rest(t_philo *philo);
-void				drop_forks(t_philo *philo);
-int					take_forks(t_philo *philo);
 int					eat(t_philo *philo);
 
 /* INIT_THREADS */
