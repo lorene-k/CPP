@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:44:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/30 16:02:24 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:35:00 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,12 @@ long long	get_time(void)
 void	print_status(t_philo *philo, char *s)
 {
 	long long	time;
-
+	
+	pthread_mutex_lock(&philo->data->print_m);
+	time = get_time() - philo->data->start_time;
 	if (!is_dead(philo))
-	{
-		pthread_mutex_lock(&philo->data->print_m);
-		time = get_time() - philo->data->start_time;
 		printf("%lld %d %s\n", time, philo->id, s);
-		pthread_mutex_unlock(&philo->data->print_m);
-	}
+	pthread_mutex_unlock(&philo->data->print_m);
 }
 
 void	ft_usleep(int ms, t_philo *philo)

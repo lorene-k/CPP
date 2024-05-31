@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:21:35 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/17 17:04:12 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:04:17 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	is_valid_number(char **av)
 int	check_args(int ac, char **av)
 {
 	if (!(ac == 5 || ac == 6))
-		return (printf(INV_ARG_N), 0);
+		return (printf(INV_ARG_N), 1);
 	if (!is_valid_number(av + 1))
 		return (1);
 	return (is_valid_arg(ac, av));

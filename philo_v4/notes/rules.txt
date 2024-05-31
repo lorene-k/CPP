@@ -4,15 +4,12 @@
 
 
     RULES
-eat, think or sleep
-(alternatively doing 1 at a time)
+eat >> sleep >> think 
 
 as many forks as philos
 all must eat
 no communication
 1 philo uses 2 forks
-
-eat >> sleep >> think 
 
 Each philosopher has a number ranging from 1 to number_of_philosophers
 Philosopher number 1 sits next to philosopher number number_of_philosophers.

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/30 16:44:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:31:57 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 typedef struct s_data
 {
 	int				n_philo;
-	int				dead_id;
+	int				dead_i;
 	long long		death_time;
 	int				eat_time;
 	int				sleep_time;

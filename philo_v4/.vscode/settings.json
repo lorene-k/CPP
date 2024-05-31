@@ -5,6 +5,7 @@
         "get_next_line.h": "c",
         "unistd.h": "c",
         "pthread.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "philo.h": "c"
     }
 }

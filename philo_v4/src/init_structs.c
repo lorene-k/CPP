@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:02:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/30 16:02:16 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:31:43 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	init_data(int ac, char **av, t_data *data)
 	data->eat_time = ft_atoi(av[3]);
 	data->sleep_time = ft_atoi(av[4]);
 	data->start_time = get_time();
-	data->dead_id = -1;
+	data->dead_i = -1;
 	if (ac == 6)
 		data->meals_to_eat = ft_atoi(av[5]);
 	else
