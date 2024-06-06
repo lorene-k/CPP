@@ -1,0 +1,32 @@
+    1. PARSING
+
+a.CREATE TOKENS
+>> 1 token == 1 type + 1 value (X  num = 1?)
+
+2. SCAN TOKENS
+- build tree (AST)
+- init tree
+- expand env variables (search how bash does it)
+- handle heredoc init ?
+
+2. EXEC
+- same as pipex 
+- at this stage, input should be : 
+
+>>>>>> BUILT-INS
+>>>>>> SIGNALS
+
+>>>>>> EXITS & ERROR HANDLING
+
+
+////////////////////
+cmd struct
+{
+    cmd.args = cmd str w/ flags;
+    cmd.c_path = cmd path;
+}
+
+main struct 
+{
+    t_cmd *cmd;
+}
