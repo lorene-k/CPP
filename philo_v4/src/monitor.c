@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:19:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/31 18:14:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:27:20 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	print_death(t_philo *philo, int i, t_data *data)
 {
 	long long	time;
-	
+
 	pthread_mutex_lock(&data->print_m);
 	pthread_mutex_lock(&data->dead_m);
 	data->dead_i = i;
@@ -93,10 +93,8 @@ static int	check_death(t_prog *prog, t_data *data)
 
 void	monitor(t_prog *prog, t_data *data)
 {
-
 	while (data->n_philo > 1 && 1)
 	{
-
 		if (check_death(prog, data) || check_meals(prog))
 			break ;
 		usleep(100);

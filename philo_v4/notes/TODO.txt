@@ -1,15 +1,26 @@
+                06/06
+PBS :
+- not enough meals : 200 410 200 80 10
+
+
+FAILED - TEST 1 : if odd, make last philo take forks like even philos
+//&& !(philo->id == philo->data->n_philo && philo->data->n_philo % 2 != 0)
+FAILED (time to wait good = eat_time + 10ms) - TEST 2 : change sync philo - time to wait
+>>>>> TEST 3 : add 3rd condition in think or change think time
+>>>>> maybe add condition only for 200 philos ?
+
                 31/05
 - print_status changed >> nothing should be printed after dead anymore
 - fix sync in think & sync_philos : philos die too soon
 
-2 has not eaten enough
-200 410 200 200 10
-philo 2
-199 610 200 200 10 << 
-199 610 200 80 10
+1 or 2 has not eaten enough
+200 410 200 200 10 - OK sometimes
+199 610 200 200 10 <<<<
+199 610 200 80 10 - OK
 
 dead too soon 
-3 610 200 80
+3 610 200 80 - OK?
+3 610 200 00 <<<<<
 199 610 200 80
 200 410 200 80
 200 410 200 200

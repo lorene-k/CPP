@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:16:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/31 18:13:46 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:27:12 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,16 @@ int	is_dead(t_philo *philo)
 	return (pthread_mutex_unlock(&philo->data->dead_m), 0);
 }
 
-static void think(t_philo *philo)
+static void	think(t_philo *philo)
 {
-	long long 	time_since_meal;
 	int			eat_sleep;
-	
+
 	print_status(philo, THINKING);
 	eat_sleep = philo->data->eat_time + philo->data->sleep_time;
-	time_since_meal = get_time() - philo->last_meal_time;
 	if (philo->data->n_philo % 2 != 0)
 	{
-		// if (eat_sleep < philo->data->death_time
-		// 	&& time_since_meal < philo->data->death_time)
-		// 	ft_usleep(eat_sleep, philo);
-		// else if (philo->data->eat_time * 2 < philo->data->death_time)
 		if (eat_sleep + philo->data->eat_time < philo->data->death_time)
-			ft_usleep(philo->data->eat_time + 10, philo);
-		// else if (time_since_meal + philo->data->eat_time + 10 < philo->data->death_time)
-		// 	ft_usleep(philo->data->eat_time, philo);
+			ft_usleep(philo->data->eat_time, philo); //TEST HERE (was 10)
 	}
 }
 
@@ -49,7 +41,7 @@ static void	sync_philos(t_philo *philo)
 		ft_usleep(philo->data->eat_time, philo);
 	if (philo->id == philo->data->n_philo && philo->data->n_philo % 2 != 0
 		&& philo->data->n_philo > 2)
-		ft_usleep(philo->data->eat_time + 10, philo);
+		ft_usleep(philo->data->eat_time * 2, philo); //TEST HERE (was 10)
 }
 
 static void	*routine(void *p)

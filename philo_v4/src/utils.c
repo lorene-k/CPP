@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:44:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/31 17:35:00 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:57:37 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ long long	get_time(void)
 void	print_status(t_philo *philo, char *s)
 {
 	long long	time;
-	
+
 	pthread_mutex_lock(&philo->data->print_m);
 	time = get_time() - philo->data->start_time;
 	if (!is_dead(philo))
