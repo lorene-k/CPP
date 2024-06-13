@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/31 17:31:57 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:35:17 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef struct s_prog
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* UTILS */
-void				clean_all(t_prog *prog);
 long long			get_time(void);
 void				print_status(t_philo *philo, char *s);
 void				ft_usleep(int ms, t_philo *philo);
@@ -95,6 +94,8 @@ int					init_threads(t_prog *prog);
 /* ERRORS */
 void				check_thread(t_prog *prog, int ret);
 void				check_join(t_prog *prog, int ret);
+void				clean_all(t_prog *prog);
+void				clean_init(t_prog *prog);
 
 /* MONITOR */
 void				monitor(t_prog *prog, t_data *data);

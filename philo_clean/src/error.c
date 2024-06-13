@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:55:39 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/06 13:57:53 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:35:30 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,33 @@ void	check_join(t_prog *prog, int ret)
 	else
 		printf("Unknown error");
 	pthread_mutex_unlock(&prog->data->print_m);
+}
+
+void	clean_all(t_prog *prog)
+{
+	int	i;
+
+	i = 0;
+	while (i < prog->data->n_philo)
+	{
+		pthread_mutex_destroy(&prog->forks[i]);
+		pthread_mutex_destroy(&prog->philo[i].meal_m);
+		i++;
+	}
+	pthread_mutex_destroy(&prog->data->dead_m);
+	pthread_mutex_destroy(&prog->data->print_m);
+	pthread_mutex_destroy(&prog->data->start_m);
+	free(prog->philo);
+	free(prog->forks);
+}
+
+void	clean_init(t_prog *prog)
+{
+	int	i;
+
+	i = 0;
+	if (prog->forks)
+		free(prog->philo);
+	if (prog->forks)
+	free(prog->forks);
 }

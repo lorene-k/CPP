@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 21:02:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/05/31 17:31:43 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:36:30 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ static int	get_memory(t_prog *prog, t_data *data)
 {
 	prog->philo = malloc(sizeof(t_philo) * data->n_philo);
 	if (!prog->philo)
-		return (printf(MALLOC_ERR), clean_all(prog), 1);
+		return (printf(MALLOC_ERR), clean_init(prog), 1);
 	prog->forks = malloc(sizeof(pthread_mutex_t) * data->n_philo);
 	if (!prog->forks)
-		return (printf(MALLOC_ERR), clean_all(prog), 1);
+		return (printf(MALLOC_ERR), clean_init(prog), 1);
 	return (0);
 }
 

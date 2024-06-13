@@ -6,29 +6,11 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:44:00 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/06 13:57:37 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:35:24 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	clean_all(t_prog *prog)
-{
-	int	i;
-
-	i = 0;
-	while (i < prog->data->n_philo)
-	{
-		pthread_mutex_destroy(&prog->forks[i]);
-		pthread_mutex_destroy(&prog->philo[i].meal_m);
-		i++;
-	}
-	pthread_mutex_destroy(&prog->data->dead_m);
-	pthread_mutex_destroy(&prog->data->print_m);
-	pthread_mutex_destroy(&prog->data->start_m);
-	free(prog->philo);
-	free(prog->forks);
-}
 
 long long	get_time(void)
 {
