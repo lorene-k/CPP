@@ -1,25 +1,24 @@
-    1. PARSING
+    1. PARSING (manage input)
 
-a.CREATE TOKENS
+a.TOKENIZE
 >> 1 token == 1 type + 1 value (X  num = 1?)
 
-2. SCAN TOKENS
+b. READ TOKENS
 - build tree (AST)
 - init tree
 - expand env variables (search how bash does it)
 - handle heredoc init ?
+>> EXITS & ERROR HANDLING
 
-2. EXEC
-- same as pipex 
-- at this stage, input should be : 
-
->>>>>> BUILT-INS
->>>>>> SIGNALS
-
->>>>>> EXITS & ERROR HANDLING
+    2. EXEC (manage output)
+- execute commands & output result (same as pipex) 
+- do built-ins
+- handle signals
+>> EXITS & ERROR HANDLING
 
 
 ////////////////////
+
 cmd struct
 {
     cmd.args = cmd str w/ flags;
@@ -30,3 +29,12 @@ main struct
 {
     t_cmd *cmd;
 }
+
+1. init structs / linked lists
+2. tokenize input
+3. build AST
+4. init AST
+
+5. execute commands
+6. handle built-ins
+7. do signals
