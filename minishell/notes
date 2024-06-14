@@ -1,0 +1,10 @@
+BOUCLE DANS MAIN
+    > PROMPT
+        > CHECK LINE
+        > SCAN TOKENS
+        > PARSE
+        > CHECK ERRORS (semantique / unknown token)
+        > process cmd : get/expand env + split cmd
+        > EXEC : process redirection + execute cmd
+        > REMOVE TOKEN : free all (linked lists)
+        > 
