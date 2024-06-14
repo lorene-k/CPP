@@ -7,4 +7,3 @@ BOUCLE DANS MAIN
         > process cmd : get/expand env + split cmd
         > EXEC : process redirection + execute cmd
         > REMOVE TOKEN : free all (linked lists)
-        > 
