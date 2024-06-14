@@ -23,45 +23,44 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-/* ------------  MACROS  --------------------------------------------------- */
+# include "../libft/get_next_line/get_next_line.h"
+# include "../libft/libft_src/libft.h"
 
 /* ------------  STRUCTS  -------------------------------------------------- */
-typedef struct s_token
-{
-	char	*lexeme;
-	t_token	*next;
-	t_token	*prev;
-}			t_token;
+// typedef struct s_token
+// {
+// 	char	*lexeme;
+// 	t_token	*next;
+// 	t_token	*prev;
+// }			t_token;
 
-typedef struct s_error
-{
-	char	*msg;
-	int		err_code;
-	t_error	*next;
-	t_error	*prev;
-}			t_error;
+// typedef struct s_error
+// {
+// 	char	*msg;
+// 	int		err_code;
+// 	t_error	*next;
+// 	t_error	*prev;
+// }			t_error;
 
-typedef struct s_cmd
-{
-	int		n;
-	char	**paths;
-	char	**args;
-	char	*c_path;
-}			t_cmd;
+// typedef struct s_cmd
+// {
+// 	int		n;
+// 	char	**paths;
+// 	char	**args;
+// 	char	*c_path;
+// }			t_cmd;
 
-typedef struct s_data
-{
-	int		in;
-	int		out;
-	int		**fd;
-	int		status;
-	int		pipes;
-	char	*epath;
-	pid_t	*pid;
-	t_cmd	*cmd;
-	t_error	*error;
-}			t_data;
-
-/* ------------  FUNCTIONS  ------------------------------------------------ */
+// typedef struct s_data
+// {
+// 	int		in;
+// 	int		out;
+// 	int		**fd;
+// 	int		status;
+// 	int		pipes;
+// 	char	*epath;
+// 	pid_t	*pid;
+// 	t_cmd	*cmd;
+// 	t_error	*error;
+// }			t_data;
 
 #endif //MINISHELL_H
