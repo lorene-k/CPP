@@ -17,6 +17,7 @@ LFT_DIR			=	libft/
 LFT				=	libft/libft.a
 
 SRC_FLS			=	main.c \
+					loop.c \
 					scan.c
 
 # ------------  FILEPATHS  --------------------------------------------------- #

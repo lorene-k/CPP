@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 17:40:34 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/19 20:29:30 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/06/19 20:37:06 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/06/19 20:37:53 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include "../includes/parse.h"
 
-int main(void)
+void    clear_line(t_data *data)
 {
-    t_data data;
-    
-    // init_data(&data);
-    run_loop(&data);
-    // clean_data(&data);
-    return (0);
+        // free(line);
+        // free_token(token);
+        // free_error(error);
+        // free_cmd(cmd);
 }

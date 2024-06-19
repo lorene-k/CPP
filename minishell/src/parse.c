@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 17:40:34 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/19 20:29:30 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/06/19 20:35:47 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 #include "../includes/parse.h"
 
-int main(void)
+void    parse(t_data *data, char *line)
 {
-    t_data data;
-    
-    // init_data(&data);
-    run_loop(&data);
-    // clean_data(&data);
-    return (0);
+    t_token	*token;
 }

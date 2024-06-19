@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 17:40:34 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/19 20:29:30 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/06/16 14:44:58 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/06/20 00:38:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include "../includes/parse.h"
 
-int main(void)
+
+static void scan(t_data *data)
 {
-    t_data data;
+    char    *line;
     
-    // init_data(&data);
-    run_loop(&data);
-    // clean_data(&data);
-    return (0);
+    line = readline();
+    if (!line)
+    {
+        ft_putendl_fd("exit", 1);
+        exit(0);
+    }
+    exit(2);
+}
+
+void run_loop(t_data *data)
+{
+    while (1)
+    {
+        scan(data);
+        // parse_line(data, line);
+        // check_syntax(data);
+        // parse_token(data);
+        // exec(data);
+        // clear_line(data);
+    }
 }
