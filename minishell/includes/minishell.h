@@ -15,57 +15,68 @@
 # define MINISHELL_H
 
 /* ------------  LIBRARIES  ------------------------------------------------ */
-# include <unistd.h>
+# include "../includes/parse.h"
+# include "../libft/libft_src/libft.h"
+
+# include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include <errno.h>
 # include <sys/time.h>
-
-# include "../libft/libft_src/libft.h"
-# include "../includes/parse.h"
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <unistd.h>
 
 /* ------------  STRUCTS  -------------------------------------------------- */
 typedef struct s_token
 {
-	char	*str;
-    int		type;
+	char			*str;
+	int				type;
 	struct t_token	*next;
 	struct t_token	*prev;
-}			t_token;
+}					t_token;
 
-typedef struct s_error
+// typedef struct s_error
+// {
+// 	char			*msg;
+// 	int				err_code;
+// 	struct t_error	*next;
+// 	struct t_error	*prev;
+// }					t_error;
+
+typedef struct s_env
 {
-	char	*msg;
-	int		err_code;
-	struct t_error	*next;
-	struct t_error	*prev;
-}			t_error;
+	char			*name;
+	char			*value;
+	struct t_env	*next;
+}					t_env;
 
 typedef struct s_cmd
 {
-	int		n;
-	char	**paths;
-	char	**args;
-	char	*c_path;
-}			t_cmd;
+	int				n;
+	char			**paths;
+	char			**args;
+	char			*c_path;
+}					t_cmd;
 
 typedef struct s_data
 {
-	int		in;
-	int		out;
-	int		**fd;
-	int		status;
-	int		pipes;
-	char	*epath; //linked list for path?
-	pid_t	*pid;
-    t_token	*token;
-	t_cmd	*cmd;
-	t_error	*error;
-}			t_data;
+	int				cmd_n;
+	int				in;
+	int				out;
+	int				**fd;
+	int				status;
+	int				pipes;
+	char			*epath; //linked list for path?
+	pid_t			*pid;
+	t_token			*token;
+	t_cmd			*cmd;
+	t_env			*env;
+	// t_error			*error;
+}					t_data;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
-void	run_loop(t_data *data);
-void    clear_line(t_data *data);
+void				run_loop(t_data *data);
+void				clear_all(void);
 
 #endif //MINISHELL_H

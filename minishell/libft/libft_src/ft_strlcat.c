@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:41:31 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/04/06 11:06:08 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:14:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	dst[i] = '\0';
 	return (len + ft_strlen(src));
 }
-
-// #include <stdio.h>
-// #include <string.h>
-
-// int main()
-// {
-// 	char b[0xF] = "nyan !";
-// 	ft_strlcat(((void*)0), b, 0);
-
-// 	printf("%ld\n%s", ft_strlcat(((void*)0), b, 0), b);
-// 	return (0);
-// }

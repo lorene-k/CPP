@@ -1,0 +1,42 @@
+BOUCLE DANS MAIN
+    > PROMPT
+        > CHECK LINE
+        > SCAN LINE
+        > PARSE
+        > CHECK ERRORS (semantique / unknown token)
+        > process cmd : get/expand env + split cmd
+        > EXEC : process redirection + execute cmd
+        > REMOVE TOKEN : free all (linked lists)
+
+
+    STEPS
+
+1. LEXER : scan line and tokenize
+2. PARSER : build command table 
+3. EXPAND
+>> HANDLE ERRORS
+
+4. EXEC
+5. BUILT-INS
+6. SIGNALS
+
+
+STRUCTS 
+   
+   1. SIMPLE_CMD
+    - char *cmd;
+    - char **args;
+    - int n_args; (?)
+    - t_redirect *redirection;
+
+    2. REDIRECTION
+    - int in;
+    - int out;
+    - int err;
+
+    3. DATA (cmd)
+    - cmd_n;
+    - char *in;
+    - char *out;
+    - char *err_file; (?)
+    

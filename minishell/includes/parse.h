@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/19 18:06:39 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:56:57 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 # define PARSE_H
 
-/* ------------  LIBRARIES  ------------------------------------------------ */
-# include <readline/readline.h>
-# include <readline/history.h>
+/* ------------  MACROS ---------------------------------------------------- */
+# define UKNOWN_ERR 666
+# define UNDEFINED_ERR 666
 
-# include "../libft/get_next_line/get_next_line.h"
+/* ------------  LIBRARIES  ------------------------------------------------ */
 # include "../includes/minishell.h"
 
-/* ------------  STRUCTS  -------------------------------------------------- */
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <curses.h>
+# include <term.h>
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
+void    parse_input(t_data *data, char *line);
 
 #endif //PARSE_H

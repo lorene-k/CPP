@@ -1,15 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scan.c                                             :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 17:49:17 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/19 20:38:54 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/06/20 18:05:08 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/06/20 18:07:31 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-#include "../includes/parse.h"
+#include "libft.h"
 
+int	ft_isspace(char c)
+{
+	if (c >= 7 && c <= 13)
+		return (1);
+	else
+		return (0);
+}

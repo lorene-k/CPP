@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:40:34 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/19 20:29:30 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:46:24 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int main(void)
     
     // init_data(&data);
     run_loop(&data);
-    // clean_data(&data);
+    clear_all();
     return (0);
 }

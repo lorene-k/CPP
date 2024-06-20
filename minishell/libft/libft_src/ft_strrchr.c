@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:09:13 by lkhalifa          #+#    #+#             */
-/*   Updated: 2023/11/08 18:10:55 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:53:09 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,3 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (0);
 }
-// #include <stdio.h>
-// #include <string.h>
-
-// int	main(void)
-// {
-// 	char s[] = "tripouille";
-// 	printf("%s\n", ft_strrchr(s, 0));
-// 	return (0);
-// }

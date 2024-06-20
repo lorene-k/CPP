@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:04:34 by lkhalifa          #+#    #+#             */
-/*   Updated: 2023/11/10 16:04:40 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:52:11 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ft_strlcpy(str, s + start, len + 1);
 	return (str);
 }
-
-// #include <stdio.h>
-
-// int main()
-// {
-//     char const *s = "Crepe chocolat banane";
-//     unsigned int start = 6;
-//     size_t len = 8;
-//     printf("%s", ft_substr(s, start, len));
-//     return (0);
-// }
