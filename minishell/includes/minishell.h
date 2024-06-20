@@ -22,8 +22,8 @@
 # include <errno.h>
 # include <sys/time.h>
 
-# include "../libft/get_next_line/get_next_line.h"
 # include "../libft/libft_src/libft.h"
+# include "../includes/parse.h"
 
 /* ------------  STRUCTS  -------------------------------------------------- */
 typedef struct s_token
@@ -65,7 +65,7 @@ typedef struct s_data
 }			t_data;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
-void run_loop(t_data *data);
+void	run_loop(t_data *data);
 void    clear_line(t_data *data);
 
 #endif //MINISHELL_H

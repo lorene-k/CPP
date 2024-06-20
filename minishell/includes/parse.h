@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/19 23:55:12 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:06:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# include "../libft/get_next_line/get_next_line.h"
+# include "../includes/minishell.h"
+
+/* ------------  STRUCTS  -------------------------------------------------- */
+
 /* ------------  FUNCTIONS  ------------------------------------------------ */
-void    parse(t_data *data, char *line);
 
 #endif //PARSE_H

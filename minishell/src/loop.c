@@ -6,35 +6,34 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:44:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/20 00:38:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:17:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include "../includes/parse.h"
 
-
-static void scan(t_data *data)
+static void scan(void)
 {
     char    *line;
     
-    line = readline();
+    line = readline("$minishell ");
     if (!line)
     {
         ft_putendl_fd("exit", 1);
         exit(0);
     }
-    exit(2);
+    addhistory(line);
 }
 
 void run_loop(t_data *data)
 {
     while (1)
     {
-        scan(data);
-        // parse_line(data, line);
-        // check_syntax(data);
-        // parse_token(data);
+        scan();
+        // parse(data);
         // exec(data);
-        // clear_line(data);
+        // clear(data);
+        // sig_handler(data);
     }
 }
