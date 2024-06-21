@@ -6,44 +6,32 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/20 18:23:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:25:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parse.h"
-
-static void     ft_getword(t_token *token, char *line, int *i)
-{
-    
-}
-
-static void     ft_getnum(t_token *token, char *line, int *i)
-{
-    
-}
-
-static void     ft_getchar(t_token *token, char *line, int *i)
-{
-    
-}
 
 static void     lexer(t_token *token, char *line)
 {
     int i;
 
     i = 0;
-    while (line)
+    while (line[i])
     {
+        if (i = 0)
+            init_token();
+        //addtokentolist
         while (ft_isspace(line[i]))
             i++;
-        if (ft_isalpha(line[i]))
-            ft_getword(token, line, &i);
-        if (ft_isdigit(line[i]))
-            ft_getnum(token, line, &i);
-        if (ft_isascii(line[i]))
-            ft_getchar(token, line, &i);
-        if (!(ft_isalpha(line) || ft_isdigit(line[i]) || ft_isascii(line[i])))
-            i++; // WHAT TO DO IF NOT ASCII CHARS ???
+        if (line[i] == '#') //HANDLE COMMENTS
+            break ;
+        if (ft_isalnum(line[i]))
+            ft_getconstant(token, line, &i);
+        if (ft_isspecchar(line[i]))
+            ft_getspecchar(line[i]);
+        // if (!(ft_isascii(line))) //CHECK OTHER ASCII CHARS
+        //     ft_getnonascii(line[i]);
     }
 }
 
@@ -51,7 +39,8 @@ void    parse_input(t_data *data, char *line)
 {
     t_token token;
     
-    lexer(&token, line);
+
+    lexer(&token, line); //CREATE TOKENS
     (void)data;
-    // parser(data);
+    // parser(&token, data); //PARSE TOKENS
 }

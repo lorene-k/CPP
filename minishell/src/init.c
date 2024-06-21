@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 18:05:08 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/21 14:06:43 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/06/21 17:23:44 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/parse.h"
 
-int	ft_isspace(char c)
+void    init_token(t_token *token, char *value)
 {
-	if (c == 32 || (c >= 7 && c <= 13))
-		return (1);
-	else
-		return (0);
+    token = malloc(sizeof(t_token));
+    if (!token)
+        return (NULL);
+    token->value = value;
+    token->type = 0;
+    token->next = NULL;
+    token->prev = NULL;
 }
+
+//if token > 1, lstaddback

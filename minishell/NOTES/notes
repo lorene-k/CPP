@@ -40,3 +40,10 @@ STRUCTS
     - char *out;
     - char *err_file; (?)
     
+
+LEXER
+    TYPES
+    - constants (integers, doubles, characters, strings)
+    - operators (arithmetic, logical, relational)
+    - punctuation (commas, semicolons, braces)
+    - keywords (reserved words with predefined meanings like if, while, return)

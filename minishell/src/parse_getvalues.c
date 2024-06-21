@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   parse_getvalues.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 18:05:08 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/21 14:06:43 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/06/21 12:03:44 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/06/21 17:25:03 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/parse.h"
 
-int	ft_isspace(char c)
+void    get_alpha_value(t_token *token, char *line, int *i, int type)
 {
-	if (c == 32 || (c >= 7 && c <= 13))
-		return (1);
-	else
-		return (0);
+    
 }
+
+/*
+TYPES :
+- alpha
+- digit
+- operator 
+- punctuation 
+*/

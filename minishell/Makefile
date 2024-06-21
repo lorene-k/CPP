@@ -16,10 +16,11 @@ LFT_DIR			=	libft/
 # ------------  SOURCES  ----------------------------------------------------- #
 LFT				=	libft/libft.a
 
-SRC_FLS			=	main.c \
-					prompt.c \
+SRC_FLS			=	clear.c \
+					init.c \
+					loop.c \
+					main.c \
 					parse.c \
-					clear.c
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
