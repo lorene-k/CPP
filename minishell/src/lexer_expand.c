@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:21 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/18 15:20:16 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/24 10:11:53 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ static char    *get_exit_code(void) //TEST + MERGE WITH EXEC ?
 
 static char    *expand_value(char *to_expand)
 {
-    char    *exp_value;
-
-    exp_value = ft_strdup(getenv(to_expand));
-    if (!exp_value)
-        return (ft_strjoin("$", to_expand));
-    return(exp_value);
+    return(ft_strdup(getenv(to_expand)));
 }
 
 static void    ft_expand(t_token **token, char *to_expand)
@@ -42,9 +37,9 @@ static void    ft_expand(t_token **token, char *to_expand)
     else
         expanded_value = expand_value(to_expand);
     free(to_expand);
-    if ((*token)->value)
+    if ((*token)->value && expanded_value)
         (*token)->value = ft_strjoin_memory((*token)->value, expanded_value);
-    else
+    else if (expanded_value)
     {    
         (*token)->value = ft_strdup(expanded_value);
         free(expanded_value);
@@ -88,7 +83,8 @@ int 	handle_expansion(t_token **token, char *line, int i, int *j)
             is_str = 1;
     if (is_str)
         k = handle_non_expansion(token, line, start - 1);
-    check_type(token);
+    if ((*token)->value)
+        check_type(token);
     (*j) += k;
     return (*j);
 }

@@ -1,16 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens.c                                           :+:      :+:    :+:   */
+/*   structs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/18 15:16:41 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:54:40 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	add_cmd(t_cmd **current)
+{
+	t_cmd	*cmd;
+
+	cmd = malloc(sizeof(t_cmd));
+	if (!cmd)
+	{
+		clear_cmds(current);
+		*current = 0;
+		return ;
+	}
+	cmd->in = -1;
+	cmd->out = -1;
+	cmd->next = 0;
+	cmd->name = NULL;
+	cmd->builtin = 0;
+	if (!*current)
+		*current = cmd;
+	else
+	{
+		(*current)->next = cmd;
+		*current = cmd;
+	}
+}
 
 t_token	*get_first(t_token *token)
 {

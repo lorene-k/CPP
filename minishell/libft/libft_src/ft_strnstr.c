@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 22:21:50 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/20 17:04:25 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/24 09:59:34 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	while (*big && *little && len && l_len <= len)
 	{
 		if (ft_strncmp(big, little, l_len) == 0)
+		{
 			return ((char *)big + (int)l_len);
+		}
 		big++;
 		len--;
 	}

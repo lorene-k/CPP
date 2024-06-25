@@ -39,31 +39,38 @@
 
 typedef struct s_cmd
 {
-	char	**paths;
+	int		in;
+	int		out;
+	char	*name;
 	char	**args;
+	char	**paths;
 	char	*c_path;
+	int		builtin;
+	struct s_cmd	*next;
 }			t_cmd;
 
 typedef struct s_data
 {
-	int		in;
-	int		out;
 	int		cmd_n;
 	int		**fd;
 	int		status;
 	int		pipes;
 	int		here_doc;
-	char	**envp;
 	char	*limiter;
-	int		in_err;
-	int		out_err;
+	char	*epath;
 	pid_t	*pid;
 	t_cmd	*cmd;
 	// t_env			*env;
 }			t_data;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
-void		run_loop(t_data *data);
+/* ERRORS */
+int			print_error(char *msg, int code);
+void		check_error(char *file, int n, t_data *data);
+
+void		clear_cmds(t_cmd **start);
 void		clear_all(void);
+
+void		run_loop();
 
 #endif //MINISHELL_H

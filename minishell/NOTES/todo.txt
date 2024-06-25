@@ -1,10 +1,23 @@
+                22/07
+
+                21/07
+- put .c files in directories
+- check how to get right return values
+- check that data->cmd points to 1st command in list
+- fix cmd init
+
+                20/07
+- PB : unexisiting $VAR outputs nothing >> stay null - OK
+- start parsing : parser_checker, parser_files, error
+>> ADAPT get_files : change in & out for error messages - OK
+
                 18/07
 - PB : >> - OK
 - FIX digit value - OK
 - CHECK LEAKS - OK
-- FIX quote pb (if no space between quote & char) get_str_value - OK ?
->> Norm tokenizer
->> Thoroughly test tokenizer before parsing
+- FIX quote pb (if no space between quote & char) get_str_value - OK
+>> Norm tokenizer - about OK
+>> Thoroughly test tokenizer before parsing - OK (test special cases)
 
                 16/07
 - PB w/ expand at end of unclosed quote - OK
