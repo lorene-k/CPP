@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_getvalues.c                                  :+:      :+:    :+:   */
+/*   lexer_types.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 12:03:44 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/21 17:25:03 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/06/23 18:18:36 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/06/23 18:48:00 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parse.h"
 
-void    get_alpha_value(t_token *token, char *line, int *i, int type)
+void    get_type(t_token *token, int type)
 {
-    
+    if (type == 1)
+        get_alpha_type(token);
+    if (type == 2)
+        get_digit_type(token);
+    if (type == 3)
+        get_operator_type(token);
+    if (type == 4)
+        get_punctuation_type(token);
 }
-
-/*
-TYPES :
-- alpha
-- digit
-- operator 
-- punctuation 
-*/

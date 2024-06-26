@@ -47,3 +47,63 @@ LEXER
     - operators (arithmetic, logical, relational)
     - punctuation (commas, semicolons, braces)
     - keywords (reserved words with predefined meanings like if, while, return)
+
+OPERATORS
+Arithmetic Operators:
+
++
+-
+*
+/
+%
+**
+Assignment Operators:
+
+=
++=
+-=
+*=
+/=
+%=
+**=
+Comparison Operators:
+
+-eq
+-ne
+-lt
+-gt
+-le
+-ge
+Logical Operators:
+
+&&
+||
+!
+String Operators:
+
+=
+!=
+-z
+-n
+File Test Operators:
+
+-e
+-f
+-d
+-r
+-w
+-x
+Other Operators:
+
+|
+>
+>>
+<
+<<
+&
+;
+|
+&&
+||
+()
+{}

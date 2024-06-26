@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/21 17:02:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/23 18:36:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define DOLLAR 8
 # define REDIRECT 9
 # define APPEND 10
-# define UNSPEC_CHAR 11
+# define UNSPEC_OP 11
+# define UNSPEC_PUNCT 12
 
 /* ------------  LIBRARIES  ------------------------------------------------ */
 # include "../includes/minishell.h"
@@ -39,6 +40,9 @@
 # include <term.h>
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
+void    get_type(t_token *token, int type);
+void    get_value(t_token *token, char *line, int *i, int type);
+void    lexer(t_token *token, char *line);
 void    parse_input(t_data *data, char *line);
 
 #endif //PARSE_H

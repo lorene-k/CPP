@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_isoperator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/23 18:15:13 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/06/23 17:51:24 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/06/23 17:59:49 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parse.h"
+#include "libft.h"
 
-void    parse_input(t_data *data, char *line)
+int     ft_isoperator(char c)
 {
-    t_token token;
-    
-
-    lexer(&token, line); //CREATE TOKENS
-    (void)data;
-    // parser(&token, data); //PARSE TOKENS
+    if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%'
+        || c == '=' || c == '!' || c == '&' || c == '|' || c == '^'
+        || c == '<' || c == '>')
+        return (1);
+    else
+        return (0);
 }

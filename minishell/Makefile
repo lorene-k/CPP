@@ -17,10 +17,13 @@ LFT_DIR			=	libft/
 LFT				=	libft/libft.a
 
 SRC_FLS			=	clear.c \
-					init.c \
+					lexer_types.c \
+					lexer_values.c \
+					lexer.c \
 					loop.c \
 					main.c \
 					parse.c \
+					tokens.c
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
