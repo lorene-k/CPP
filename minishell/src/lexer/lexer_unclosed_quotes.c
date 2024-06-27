@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 21:03:10 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/11 13:54:35 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:08:46 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void    handle_unclosed_quote(char quote, t_token **token, t_data *d)
         (*token)->value = ft_strjoin_memory((*token)->value, ft_strdup("\n"));
     else
         (*token)->value = ft_strdup("\n");
-    i = get_quoted_input(&buf, &(d->tmp), quote);
+    free(d->line);
+    i = get_quoted_input(&buf, &(d->line), quote);
     check_expansion(token, d);
     check_type(token); //do i need this here ? (try without - already called below) - maybe need it if other token added later ??
     check_quoted_input(buf, i, token, d);

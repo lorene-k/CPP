@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:04:02 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/11 17:51:59 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:33:46 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static void	ft_getspecchar(t_token *token, char *line, int *i, t_data *data)
 
 	is_str = 0;
 	j = *i;
-	data->line = ft_strdup(line);
 	if (ft_solo_operator(line, *i) || ft_multi_operator(line, *i)) //doesn't consider =!
 	{
 		get_value(token, line, &j, 3);

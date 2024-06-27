@@ -1,3 +1,24 @@
+                15/08
+- parser pb if builtin w/ args >> args parsed as infiles - OK
+- TEST PARSER + VALGRIND
+- RUN FUNCHECK >> PROTECT MALLOCS
+- do built-ins & check signals ?
+
+                12/08 - 14/08
+- PB : cat in | out - OK
+>> structs init - OK
+>> tokens - OK
+>>> LEAKS w/ cmd & file cleaning - OK
+- TEST VALGRIND
+IN LEXER :
+- $? - LEXER OK
+- unclosed quote leaks if expansions (middle or end of quotes) - OK
+- LEAKS : $^ (expansions) - OK
+- PB : expansion in middle of unclosed quote nl before exp >> if preceded by exp - OK?
+- PB w/ expansion that doesnt expand - OK
+IN PARSER :
+- PB : minishell: 543: command not found - OK
+
                 11/08
 - consider that operators don't need to be separated by spaces - OK
 - change makefile to put .c files in directories - OK

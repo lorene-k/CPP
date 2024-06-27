@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:15:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/11 17:52:03 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/26 22:17:21 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int check_token(t_token **token, t_cmd *cmd)
         return(get_cmd(token, cmd), 0);
     if ((*token)->type == REDIRECT)
         return(handle_redirect(token, cmd));
-    return (print_error(INV_COMMAND, (*token)->value, 127));
+    return (print_error(INV_COMMAND, (*token)->value, 127)); //unnecessary - should be handled in exec
 }
 
 static int parse_token(t_token **token, t_cmd *cmd, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/11 17:52:26 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/26 06:14:33 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void *get_prev_node(void *last, void *(*get_prev)(void *))
 {
     void	*curr;
 	
+	curr = last;
     if (!last)
         return NULL;
-	curr = last;
     while (get_prev(curr))
         curr = get_prev(curr);
     return (curr);

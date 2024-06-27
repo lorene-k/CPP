@@ -6,11 +6,24 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:21 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/11 13:54:24 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:54:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static void     get_exp_value(t_data *d, char *to_expand, char **value)
+{
+    if (*to_expand == '?')
+        *value = ft_itoa(d->status); //get data here
+    else
+    {    
+        *value = ft_strdup(getenv(to_expand));
+        if (!(*value))
+            *value = ft_strjoin_memory(ft_strdup("$"), ft_strdup(to_expand));
+    }
+    free(to_expand);
+}
 
 static void    ft_expand(t_token **token, char *to_expand, t_data *d)
 {
@@ -19,12 +32,8 @@ static void    ft_expand(t_token **token, char *to_expand, t_data *d)
     expanded_value = 0;
     if (!to_expand)
         return ; // PROTECT MALLOC
-    if (*to_expand == '?')
-        expanded_value = ft_strdup(ft_itoa(d->status)); //get data here
-    else
-        expanded_value = ft_strdup(getenv(to_expand));
-    free(to_expand);
-    if ((*token)->value && expanded_value) // pb here if exp = $?
+    get_exp_value(d, to_expand, &expanded_value);
+    if ((*token)->value && expanded_value)
         (*token)->value = ft_strjoin_memory((*token)->value, expanded_value);
     else if (expanded_value)
     {    
@@ -84,21 +93,21 @@ void    check_expansion(t_token **token, t_data *d)
  
     i = 0;
     expansion = 0;
-    while (d->tmp[i] && d->tmp[i])
+    while (d->line[i])
     {
-        if (d->tmp[i] == '$' && (d->tmp[i + 1] == '?' || ft_isalpha(d->tmp[i + 1])))
+        if (d->line[i] == '$' && (d->line[i + 1] == '?' || ft_isalpha(d->line[i + 1])))
         {
             if (i && !expansion) //retrieve input before expansion
-                (*token)->value = ft_strjoin((*token)->value, ft_substr(d->tmp, 0, i)); // get first part of quoted str (before expansion)
+                (*token)->value = ft_strjoin_memory((*token)->value, ft_substr(d->line, 0, i)); // get first part of quoted str (before expansion)
             else if (i && expansion)
-                (*token)->value = ft_strjoin_memory((*token)->value, ft_substr(d->tmp, expansion + 1, i - expansion - 1));
+                (*token)->value = ft_strjoin_memory((*token)->value, ft_substr(d->line, expansion + 1, i - expansion - 1));
             expansion = handle_expansion(token, d, 0, &i);
         }
         else
             i++;
     }
     if (expansion && (i != expansion + 1) && i != 1) // handle expansion in the middle of quoted str  (expansion at end of quoted str handled in expand)
-        (*token)->value = ft_strjoin_memory((*token)->value, ft_substr(d->tmp, expansion + 1, i - expansion - 1));
+        (*token)->value = ft_strjoin_memory((*token)->value, ft_substr(d->line, expansion + 1, i - expansion - 1));
     else if (!expansion && i != 1) // handle no expansion
-        (*token)->value = ft_strjoin_memory((*token)->value, d->tmp);
+        (*token)->value = ft_strjoin_memory((*token)->value, d->line);
 }

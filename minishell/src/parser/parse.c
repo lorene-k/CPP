@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/11 17:44:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/26 22:10:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,51 +31,54 @@
 // 	// exit(0);
 // }
 
-static void cmd_tester(t_data *data) //TEST
+static void cmd_tester(t_cmd *cmd, t_data *data) //TEST
 {
 	int i = -1;
 	int j = 0;
 	int k = 0;
+	
 	printf("CMD TESTER :\n");
-    while(data->cmd)
+    while(cmd)
 	{
-		printf("CMD %d: %s\n",++j, data->cmd->name);
-		if (data->cmd->args)
+		if (cmd->name)
+			printf("CMD %d: %s\n",++j, cmd->name);
+		if (cmd->args)
 		{
-			while (data->cmd->args[++i])
-			printf("cmd->args[%d] = %s\n", i, data->cmd->args[i]);
+			while (cmd->args[++i])
+				printf("cmd->args[%d] = %s\n", i, cmd->args[i]);
 		}
-		while (data->cmd->file)
+		t_file *currfile = cmd->file;
+		while (currfile)
 		{
-			printf("FILE %d = %s\n", ++k, data->cmd->file->name);
-			if (data->cmd->file->in)
+			if (currfile->name)
+				printf("FILE %d = %s\n", ++k, currfile->name);
+			if (currfile->in)
 				printf(("IS IN\n"));
-			else if (data->cmd->file->out)
+			else if (currfile->out)
 				printf(("IS OUT\n"));
-			if (data->cmd->file->append)
+			if (currfile->append)
 				printf("APPEND\n");
-			if (data->cmd->file->heredoc)
-				printf(("IS HEREDOC - limiter = %s\n"), data->cmd->file->limiter);
-			data->cmd->file = data->cmd->file->next;
-			
+			if (currfile->heredoc)
+				printf(("IS HEREDOC - limiter = %s\n"), currfile->limiter);
+			currfile = currfile->next;
 		}
-		data->cmd = data->cmd->next;
+		cmd = cmd->next;
 	}
 	if (data->pipes)
 		printf("PIPES : %d\t", data->pipes);
 	printf("CMD_N : %d\n", data->cmd_n);
 	printf("SUCCESS\n");
-	// exit(0);
 }
 
-static void init_data(t_data *data)
+static void init_data(t_data *data, char *line)
 {
+	data->cmd = NULL;
 	data->cmd_n = 0;
-    data->status = 0;
     data->pipes = 0;
+	data->quit = 0;
 	data->line = NULL;
-	data->tmp = NULL;
     data->epath = getenv("PATH");
+	data->line = ft_strdup(line);
 }
 
 void	parse_input(t_data *data, char *line)
@@ -83,12 +86,11 @@ void	parse_input(t_data *data, char *line)
 	t_token	*token;
 
 	token = NULL;
-	init_data(data);
+	init_data(data, line);
 	token = lexer(token, line, data);
-	free(data->line);
-	free(line);
 	// lexer_tester(token); //TEST
 	parser(token, data);
-	cmd_tester(data); //TEST
-	clear_nodes((void *)&token, sizeof(t_token));
+	if (data->cmd)
+		cmd_tester(data->cmd, data); //TEST
+	clear_parser(data, line, token);
 }

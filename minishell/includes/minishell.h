@@ -62,20 +62,25 @@ typedef struct s_data
 	int				status; //exit status
 	int				pipes;
 	char			*line;
-	char			*tmp;
 	char			*epath;
+	int				quit;
 	t_cmd			*cmd;
 }					t_data;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* UTILS */
-void				*get_first_node(t_token *token, t_cmd *cmd, t_file *file);
 void				clear_nodes(void **start, size_t n_size);
+void				clear_parser(t_data *data, char *line, t_token *token);
+void				*get_first_node(t_token *token, t_cmd *cmd, t_file *file);
 void				add_node(t_token **token, t_cmd **cmd, t_file **file);
 int					protect_memory(char **array);
 int					print_error(char *msg, char *str, int code);
 
+/* EXEC */
+void	exec(t_data *data);
+
 /* LOOP */
 void				run_loop(void);
+
 
 #endif //MINISHELL_H

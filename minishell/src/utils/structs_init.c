@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/11 18:01:17 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:58:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	init_cmds(void *node, void **current)
 	cmd->paths = NULL;
 	cmd->c_path = NULL;
 	cmd->file = NULL;
-	cmd->next = 0;
-	cmd->prev = 0;
+	cmd->next = NULL;
+	cmd->prev = NULL;
 	cmd->builtin = 0;
 	if (*current)
 	{
@@ -45,8 +45,8 @@ static void	init_files(void *node, void **current)
 	file->fd_out = 0;
 	file->heredoc = 0;
 	file->limiter = NULL;
-	file->next = 0;
-	file->prev = 0;
+	file->next = NULL;
+	file->prev = NULL;
 	if (*current)
 	{
 		((t_file *)(*current))->next = node;
@@ -60,9 +60,9 @@ static void	init_tokens(void *node, void **current)
 
 	token = (t_token *)node;
 	token->value = NULL;
-	token->type = 0;
-	token->next = 0;
-	token->prev = 0;
+	token->type = -1;
+	token->next = NULL;
+	token->prev = NULL;
 	if (*current)
 	{
 		((t_token *)(*current))->next = node;
@@ -88,9 +88,9 @@ static void	get_node(void **curr, size_t n_size, void (*init)(void *, void **))
 void	add_node(t_token **token, t_cmd **cmd, t_file **file)
 {
 	if (token)
-		get_node((void*)token, sizeof(t_token), init_tokens);
+		get_node((void **)token, sizeof(t_token), init_tokens);
 	if (cmd)
-		get_node((void *)cmd, sizeof(t_cmd), init_cmds);
+		get_node((void **)cmd, sizeof(t_cmd), init_cmds);
 	if (file)
-		get_node((void *)file, sizeof(t_file), init_files);
+		get_node((void **)file, sizeof(t_file), init_files);
 }
