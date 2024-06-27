@@ -1,26 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/21 17:23:44 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:57:52 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parse.h"
 
-void    init_token(t_token *token, char *value)
+static void    init_token(t_token **start)
 {
+    t_token *token;
+    
     token = malloc(sizeof(t_token));
     if (!token)
-        return (NULL);
-    token->value = value;
+        return ;
+    token->value = 0;
     token->type = 0;
-    token->next = NULL;
-    token->prev = NULL;
+    token->next = 0;
+    token->prev = 0;
+    *start = token;
 }
 
-//if token > 1, lstaddback
+void	add_token(t_token **start)
+{
+	t_token	*token;
+
+	if (!*start)
+	{
+		init_token(start);
+		return ;
+	}
+	token = malloc(sizeof(t_token));
+	if (!token)
+	{
+		clear_tokens(start);
+		*start = NULL;
+		return ;
+	}
+    token->value = 0;
+    token->type = 0;
+    token->next = 0;
+    token->prev = *start;
+    (*start)->next = token;
+}

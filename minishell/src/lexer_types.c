@@ -3,14 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_types.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 18:18:36 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/23 18:48:00 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:34:34 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parse.h"
+
+static void get_punctuation_type(t_token *token)
+{
+    if (*(token->value) == '$')
+        token->type = DOLLAR;
+    else if (*(token->value) == '\'')
+        token->type = QUOTE;
+    else if (*(token->value)  == '\"')
+        token->type = D_QUOTE;
+    else
+        token->type = UNSPEC_PUNC;
+}
+
+static void get_operator_type(t_token *token)
+{
+    if (*(token->value) == '>' || *(token->value) == '<') //CHECK QUOTES
+        token->type = REDIRECT;
+    else
+        token->type = UNSPEC_OP;
+}
+
+static void get_digit_type(t_token *token)
+{
+    if (!ft_strrchr(token->value, '.'))
+        token->type = INT;
+    else
+        token->type = DOUBLE;
+}
+
+static void get_alpha_type(t_token *token)
+{
+    size_t len;
+    
+    len = ft_strlen(token->value);
+    if (len == 1)
+        token->type = CHAR;
+    else if ((!(ft_strncmp("echo", token->value, len)) && len == ft_strlen("echo"))
+        || (!(ft_strncmp("cd", token->value, len)) && len == ft_strlen("cd"))
+        || (!(ft_strncmp("pwd", token->value, len)) && len == ft_strlen("pwd"))
+        || (!(ft_strncmp("export", token->value, len)) && len == ft_strlen("export"))
+        || (!(ft_strncmp("unset", token->value, len)) && len == ft_strlen("unset"))
+        || (!(ft_strncmp("env", token->value, len)) && len == ft_strlen("env"))
+        || (!(ft_strncmp("exit", token->value, len)) && len == ft_strlen("exit")))
+        token->type = KEYWORD;
+    else
+        token->type = STRING;
+}
 
 void    get_type(t_token *token, int type)
 {
@@ -23,3 +70,35 @@ void    get_type(t_token *token, int type)
     if (type == 4)
         get_punctuation_type(token);
 }
+
+/* ALPHA TYPES
+- char
+- keyword
+    > echo
+    > cd
+    > pwd
+    > export
+    > unset
+    > env
+    > env
+    > exit
+- string
+
+DIGIT TYPE
+- double (float ?)
+- int
+
+OPERATOR
+- redirect (dissociate w/ check_redirect later)
+    >: Redirect cmd output to file + overwrite
+    <: Redirect cmd input to come from a file
+    >>: Redirects cmd output to file + append
+    <<: Used for heredoc to redirect multiple lines of input to a command, using a delimiter.
+- unspec_op
+
+PUNCTUATION
+- quote
+- d_quote
+- dollar
+- unspec_punc
+ */

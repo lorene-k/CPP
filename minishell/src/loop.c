@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:44:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/20 17:54:19 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:55:51 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*display_prompt(void) //CHECK_ERR
 
 	user = getenv("USER");
 	if (!user)
-		exit(UKNOWN_ERR);
+		exit(UNKNOWN_ERR);
 	if (!getcwd(cwd, sizeof(cwd)))
 	{
 		if (errno == ERANGE)
@@ -53,21 +53,20 @@ static char	*display_prompt(void) //CHECK_ERR
     return (user_cwd);
 }
 
-static void	scan(char *line)
+static void	scan(char **line)
 {
 	char	*user_cwd;
 
 	user_cwd = display_prompt(); // MALLOC - OK
-	line = readline(user_cwd); // MALLOC (free in parse)
-	if (!line)
+	*line = readline(user_cwd); // MALLOC (free in parse)
+	if (!*line)
 	{
 		// if (EOF) //CHECK_SIGNAL (CTRL + D)
         //     exit(0);
         // exit(1);
 	}
-	add_history(line); //MALLOC - OK
+	add_history(*line); //MALLOC - OK
 	free(user_cwd);
-	// free(line);
 }
 
 void	run_loop(t_data *data)
@@ -77,10 +76,11 @@ void	run_loop(t_data *data)
 	line = NULL;
 	while (1)
 	{
-		scan(line);
-		parse(data, line);
+		scan(&line);
+		parse_input(data, line);
 		// exec(data);
-		// clear_stuff();
+		clear_tokens(&data->token);
+		free(line);
 		// sig_handler(data);
 	}
 }

@@ -6,11 +6,11 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:37:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/20 17:50:05 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:17:03 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../includes/parse.h"
 
 void    clear_all(void)
 {
@@ -19,4 +19,23 @@ void    clear_all(void)
         // free_token(token);
         // free_error(error);
         // free_cmd(cmd);
+}
+
+void	clear_tokens(t_token **start)
+{
+        t_token *current;
+        t_token *next;
+
+        if (!start|| !*start)
+                return ;
+        current = (*start);
+	while (current)
+	{
+		next = current->next;
+                if (current->value)
+                        free(current->value);
+		free(current);
+		current = next;
+	}
+        *start = NULL;
 }

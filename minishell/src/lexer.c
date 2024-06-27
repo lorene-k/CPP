@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:04:02 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/23 18:35:59 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:11:44 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,27 @@ static void     ft_getconstant(t_token *token, char *line, int *i)
     if (ft_isalpha(line[*i]))
     {
         get_value(token, line, i, 1);
-        get_alpha_type(token, 1);
+        get_type(token, 1);
     }
     else if (ft_isdigit(line[*i]))
     {
         get_value(token, line, i, 2);
-        get_num_type(token, 2);
+        get_type(token, 2);
     }
 }
 
-void     lexer(t_token *token, char *line)
+void     lexer(t_data *data, t_token *token, char *line)
 {
     int i;
 
     i = 0;
+    token = NULL;
     while (line[i])
     {
-        if (i = 0)
-            init_token();
-        //addtokentolist
+        add_token(&token);
+        if (!token)
+            return ; //PROTECT MALLOCS
+        data->token = token;
         while (ft_isspace(line[i]))
             i++;
         if (line[i] == '#') //HANDLE COMMENTS ??
@@ -60,8 +62,10 @@ void     lexer(t_token *token, char *line)
             ft_getspecchar(token, line, &i);
         // if (!(ft_isascii(line))) //CHECK NON ASCII CHARS
         //     ft_getnonascii(line[i]);
+        // printf("token value : %s\ntoken type : %d", token->value, token->type);
     }
 }
+
 
 /* LEXER
     TYPES

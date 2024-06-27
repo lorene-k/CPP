@@ -1,0 +1,13 @@
+                27/06
+- check lexer
+- check linked lists - OK >> test clear
+
+LEXER
+- [ ] handle non ascii values
+- [ ] handle comments
+- [ ] checks
+
+LOOP
+- [ ] handle errors & exit codes
+- [ ] add exec
+- [ ] handle signals 

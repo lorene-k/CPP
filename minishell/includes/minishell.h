@@ -15,7 +15,6 @@
 # define MINISHELL_H
 
 /* ------------  LIBRARIES  ------------------------------------------------ */
-# include "../includes/parse.h"
 # include "../libft/libft_src/libft.h"
 
 # include <errno.h>
@@ -26,15 +25,10 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 /* ------------  STRUCTS  -------------------------------------------------- */
-typedef struct s_token
-{
-	char			*value;
-	int				type;
-	struct t_token	*next;
-	struct t_token	*prev;
-}					t_token;
 
 // typedef struct s_error
 // {
@@ -43,6 +37,14 @@ typedef struct s_token
 // 	struct t_error	*next;
 // 	struct t_error	*prev;
 // }					t_error;
+
+typedef struct s_token
+{
+	char			*value;
+	int				type;
+	struct s_token	*next;
+	struct s_token	*prev;
+}					t_token;
 
 typedef struct s_env
 {
