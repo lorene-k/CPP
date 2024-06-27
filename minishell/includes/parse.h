@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/27 17:22:21 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:22:04 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@
 # define QUOTE 6
 # define D_QUOTE 7
 # define DOLLAR 8
-# define REDIRECT 9
-# define UNSPEC_OP 10
-# define UNSPEC_PUNC 11
+# define Q_MARK 9
+# define REDIRECT 10
+# define UNSPEC_OP 11
+# define UNSPEC_PUNC 12
+# define NON_ASCII 13
 
 /* ------------  LIBRARIES  ------------------------------------------------ */
 # include "minishell.h"
@@ -44,7 +46,7 @@ void	add_token(t_token **start);
 
 void    get_type(t_token *token, int type);
 void    get_value(t_token *token, char *line, int *i, int type);
-void     lexer(t_data *data, t_token *token, char *line);
+void    lexer(t_data *data, t_token *token, char *line);
 void    parse_input(t_data *data, char *line);
 
 #endif //PARSE_H

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 18:18:36 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/27 17:34:34 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:25:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void get_punctuation_type(t_token *token)
         token->type = QUOTE;
     else if (*(token->value)  == '\"')
         token->type = D_QUOTE;
+    else if (*(token->value)  == '?')
+        token->type = Q_MARK;
     else
         token->type = UNSPEC_PUNC;
 }

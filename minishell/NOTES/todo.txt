@@ -1,6 +1,9 @@
                 27/06
 - check lexer
 - check linked lists - OK >> test clear
+- handle non ascii values >> check if tokenize char/char or bulk by bulk
+- PB WITH DATA->tokens
+HANDLE TOKENS >> valgrind pb
 
 LEXER
 - [ ] handle non ascii values

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:37:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/27 16:17:03 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:11:05 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	clear_tokens(t_token **start)
         current = (*start);
 	while (current)
 	{
-		next = current->next;
+                printf("%s\n", current->value);
+	        next = current->next;
                 if (current->value)
                         free(current->value);
 		free(current);
