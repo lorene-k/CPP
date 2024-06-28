@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/27 19:22:04 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:52:47 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define UNDEFINED_ERR 999
 
 # define CHAR 1
-# define KEYWORD 2
-# define STRING 3 
+# define STRING 2
+# define KEYWORD 3
 # define INT 4
 # define DOUBLE 5
 # define QUOTE 6
@@ -39,14 +39,22 @@
 # include <term.h>
 
 /* ------------  STRUCTS  -------------------------------------------------- */
+typedef struct s_token
+{
+	char			*value;
+	int				type;
+	struct s_token	*next;
+	struct s_token	*prev;
+}					t_token;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 void	clear_tokens(t_token **start);
-void	add_token(t_token **start);
+t_token *get_first(t_token *token);
+void	add_token(t_token **current);
 
 void    get_type(t_token *token, int type);
 void    get_value(t_token *token, char *line, int *i, int type);
-void    lexer(t_data *data, t_token *token, char *line);
+t_token	*lexer(t_token *token, char *line);
 void    parse_input(t_data *data, char *line);
 
 #endif //PARSE_H

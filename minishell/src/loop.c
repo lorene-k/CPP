@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:44:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/27 19:22:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:32:08 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,15 @@ static void	scan(char **line)
 
 void	run_loop(t_data *data)
 {
-	char *line;
+	char	*line;
 	
 	line = NULL;
 	while (1)
 	{
 		scan(&line);
 		parse_input(data, line);
+		exit (0); //TEST
 		// exec(data);
-		clear_tokens(&data->token);
-		free(line);
-		exit (0);
 		// sig_handler(data);
 	}
 }

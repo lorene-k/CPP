@@ -38,14 +38,6 @@
 // 	struct t_error	*prev;
 // }					t_error;
 
-typedef struct s_token
-{
-	char			*value;
-	int				type;
-	struct s_token	*next;
-	struct s_token	*prev;
-}					t_token;
-
 typedef struct s_env
 {
 	char			*name;
@@ -71,7 +63,6 @@ typedef struct s_data
 	int				pipes;
 	char			*epath; //linked list for path?
 	pid_t			*pid;
-	t_token			*token;
 	t_cmd			*cmd;
 	t_env			*env;
 	// t_error			*error;

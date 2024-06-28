@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:04:02 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/27 19:22:34 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:52:08 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,32 +52,30 @@ static void     ft_getconstant(t_token *token, char *line, int *i)
     }
 }
 
-void     lexer(t_data *data, t_token *token, char *line)
+t_token     *lexer(t_token *token, char *line)
 {
     int i;
 
     i = 0;
-    token = NULL;
-    data->token = token;
     while (line[i])
     {
-        add_token(&token);
-        if (!token)
-            return ; //PROTECT MALLOCS
         while (ft_isspace(line[i]))
             i++;
-        if (line[i] == '#') //HANDLE COMMENTS ??
+        if (line[i] == '#') //HANDLE COMMENTS
             break ;
+        add_token(&token);
+        if (!token)
+            return (NULL); //PROTECT MALLOCS
         if (ft_isalnum(line[i]))
             ft_getconstant(token, line, &i);
         if (ft_isspecchar(line[i]))
             ft_getspecchar(token, line, &i);
         if (!(ft_isascii(line[i]))) //CHECK NON ASCII CHARS
             ft_getnonascii(token, line, &i);
-        printf("token value : %s - token type : %d\n", token->value, token->type); //TEST
     }
+    token = get_first(token);
+    return (token);
 }
-
 
 /* LEXER
     TYPES

@@ -1,16 +1,16 @@
-// static void lexer_tester(t_data *data) //TEST
-// {
-//     t_token *curr;
-//     t_token *next;
+static void lexer_tester(t_token *token) //TEST
+{
+    t_token *curr;
+    t_token *next;
     
-//     curr = data->token;
-//     while (curr)
-//     {
-//         next = curr->next;
-//         printf("token value : %s\ntoken type : %d\n", curr->value, curr->type); //TEST
-//         curr = next;
-//     }
-//     exit(0);
-// }
+    curr = token;
+    while (curr)
+    {
+        next = curr->next;
+        printf("token value : %s\ntoken type : %d\n", curr->value, curr->type); //TEST
+        curr = next;
+    }
+    exit(0);
+}
 
-// lexer_tester(data);
+lexer_tester(data); //TEST

@@ -1,3 +1,7 @@
+                28/06
+- null token gets added at end of the list 
+- 7649832] : anything directly before specchar (no spaces) is not tokenized
+
                 27/06
 - check lexer
 - check linked lists - OK >> test clear
