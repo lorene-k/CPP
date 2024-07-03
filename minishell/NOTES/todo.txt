@@ -1,6 +1,29 @@
+                01/07
+- FINISH LEXER
+> create $tokens (1 token = 1 variable to expand starting w/ $) 
+> handle quotes in tokens (if in quotes = 1 token ?) <<<<<
+>> specify each redirection type i token->type ? 
+
+                30/06
+- ORDER PB : ///888 >> first / not tokenized
+hellç; ;dpilkhdl)='= 
+>> hell & scnd ; not tokenized
+_ PROTECT ALL MALLOC : ft_substr & others
+
+TO DO
+
+- ENV VARIABLE EXPANSION :
+> traverse the linked list of tokens.
+> For each token starting with $, replace it with the corresponding environment variable value.
+
+- PARSING:
+> Create a linked list of command nodes.
+> For each token, determine if it is an argument, a redirection, or a pipe.
+> Construct command nodes accordingly and link them together.
+
                 28/06
-- null token gets added at end of the list 
-- 7649832] : anything directly before specchar (no spaces) is not tokenized
+- null token gets added at end of the list >> CHECK WHEN
+- 7649832] : anything directly before specchar (no spaces) >> ok (order changed in lexer)
 
                 27/06
 - check lexer
@@ -17,4 +40,4 @@ LEXER
 LOOP
 - [ ] handle errors & exit codes
 - [ ] add exec
-- [ ] handle signals 
+- [ ] handle signals

@@ -14,3 +14,5 @@ static void lexer_tester(t_token *token) //TEST
 }
 
 lexer_tester(data); //TEST
+
+IN LEXER :    printf("i = %d\nt_value = %s\nt_type = %d\n\n", i, token->value, token->type);

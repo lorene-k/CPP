@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_types.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 18:18:36 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/27 18:25:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:08:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parse.h"
-
-static void get_punctuation_type(t_token *token)
-{
-    if (*(token->value) == '$')
-        token->type = DOLLAR;
-    else if (*(token->value) == '\'')
-        token->type = QUOTE;
-    else if (*(token->value)  == '\"')
-        token->type = D_QUOTE;
-    else if (*(token->value)  == '?')
-        token->type = Q_MARK;
-    else
-        token->type = UNSPEC_PUNC;
-}
 
 static void get_operator_type(t_token *token)
 {
@@ -69,8 +55,6 @@ void    get_type(t_token *token, int type)
         get_digit_type(token);
     if (type == 3)
         get_operator_type(token);
-    if (type == 4)
-        get_punctuation_type(token);
 }
 
 /* ALPHA TYPES

@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_values.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:03:44 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/27 16:15:10 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:08:16 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parse.h"
-
-static void	get_punctuation_value(t_token *token, char *line, int *i)
-{
-	token->value = malloc(sizeof(char) + 1);
-	if (!token->value)
-		return ;
-	token->value[0] = line[*i];
-	token->value[1] = '\0';
-	*i += 1;
-}
 
 static void	get_operator_value(t_token *token, char *line, int *i)
 {
@@ -32,7 +22,10 @@ static void	get_operator_value(t_token *token, char *line, int *i)
 		*i += 2;
 	}
 	else
-		get_punctuation_value(token, line, i); //store a char into a str
+	{
+		token->value = ft_substr(line, *i, 1);
+		*i += 1;
+	}
 }
 
 static void	get_digit_value(t_token *token, char *line, int *i)
@@ -71,8 +64,6 @@ void	get_value(t_token *token, char *line, int *i, int type)
 		get_digit_value(token, line, i);
 	if (type == 3)
 		get_operator_value(token, line, i);
-	if (type == 4)
-		get_punctuation_value(token, line, i);
 }
 
 /*

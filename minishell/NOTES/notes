@@ -14,13 +14,13 @@ BOUCLE DANS MAIN
     STEPS
 
 1. LEXER : scan line and tokenize
-2. PARSER : build command table 
-3. EXPAND
+2. ENV VARIABLES
+3. PARSE : build command table w/ tokens
 >> HANDLE ERRORS
 
-4. EXEC
-5. BUILT-INS
-6. SIGNALS
+TO DO 30/06
+- tokens = expand_environment_variables(tokens)
+- commands = parse(tokens)
 
 
 STRUCTS 

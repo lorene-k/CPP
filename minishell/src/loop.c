@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:44:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/28 17:32:08 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/06/30 12:56:54 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	run_loop(t_data *data)
 	{
 		scan(&line);
 		parse_input(data, line);
-		exit (0); //TEST
 		// exec(data);
 		// sig_handler(data);
 	}

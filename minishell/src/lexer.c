@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:04:02 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/28 17:52:08 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:07:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void     ft_getnonascii(t_token *token, char *line, int *i)
 	j = 0;
 	while (!ft_isascii(line[*i + j]))
 		j++;
-	token->value = ft_substr(line, *i, j);
+	token->value = ft_substr(line, *i, j); // j - 1 <<<<
 	*i += j;
     token->type = NON_ASCII;
 }
@@ -32,10 +32,7 @@ static void     ft_getspecchar(t_token *token, char *line, int *i)
         get_type(token, 3);
     }
     else if (ft_ispunctuation(line[*i]))
-    {
-        get_value(token, line, i, 4);
-        get_type(token, 4);
-    }
+        get_punctuation(token, line, i);
 }
 
 static void     ft_getconstant(t_token *token, char *line, int *i)
@@ -61,16 +58,16 @@ t_token     *lexer(t_token *token, char *line)
     {
         while (ft_isspace(line[i]))
             i++;
-        if (line[i] == '#') //HANDLE COMMENTS
+        if (line[i] == '#') //HANDLE COMMENTS after quotes !!!
             break ;
         add_token(&token);
         if (!token)
             return (NULL); //PROTECT MALLOCS
-        if (ft_isalnum(line[i]))
-            ft_getconstant(token, line, &i);
         if (ft_isspecchar(line[i]))
-            ft_getspecchar(token, line, &i);
-        if (!(ft_isascii(line[i]))) //CHECK NON ASCII CHARS
+            ft_getspecchar(token, line, &i); //else if or if ?
+        else if (ft_isalnum(line[i]))
+            ft_getconstant(token, line, &i);
+        else if (!(ft_isascii(line[i]))) //CHECK NON ASCII CHARS
             ft_getnonascii(token, line, &i);
     }
     token = get_first(token);
@@ -106,5 +103,5 @@ t_token     *lexer(t_token *token, char *line)
 // - not handled
 // - quotes
 // - double quotes
-// - dollar
+// - expansion : dollar
 // - parentheses ?
