@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/03 16:30:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:19:29 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parse.h"
 
-// static void lexer_tester(t_token *token) //TEST
-// {
-//     t_token *curr;
-//     t_token *next;
-//     int i;
+static void lexer_tester(t_token *token) //TEST
+{
+    t_token *curr;
+    t_token *next;
+    int i;
     
-//     i = 0;
-//     curr = token;
-//     while (curr)
-//     {
-//         next = curr->next;
-//         printf("token %d value : %s\t type : %d\n\n", i, curr->value, curr->type); //TEST
-//         curr = next;
-//         i++;
-//     }
-//     // exit(0);
-// }
+    i = 0;
+    curr = token;
+    while (curr)
+    {
+        next = curr->next;
+        printf("token %d value : %s\t type : %d\n\n", i, curr->value, curr->type); //TEST
+        curr = next;
+        i++;
+    }
+    // exit(0);
+}
 
 void    parse_input(t_data *data, char *line)
 {
@@ -36,9 +36,9 @@ void    parse_input(t_data *data, char *line)
     
     token = NULL;
     token = lexer(token, line);
-    // lexer_tester(token); //TEST
+    lexer_tester(token); //TEST
     (void)data;
-    // parser(token, data); //PARSE TOKENS
+    // parser(token, data); //PARSE TOKENS >> CLEAR NULL TOKENS
     free(line);
     clear_tokens(&token);
 }

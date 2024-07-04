@@ -18,6 +18,7 @@ LFT				=	libft/libft.a
 
 SRC_FLS			=	clear.c \
 					lexer_types.c \
+					lexer_specials.c \
 					lexer_values.c \
 					lexer.c \
 					loop.c \

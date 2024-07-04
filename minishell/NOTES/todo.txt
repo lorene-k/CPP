@@ -1,3 +1,9 @@
+                04/07
+- handle var EXPANSION (get_exit_code + expand_value)
+    >> ft_substr first pat of string in quotes > expand value > add to token > keep tokenizing input (create function to add valur to token from handle_expansion + handle_d_quote) 
+- handle unclosed quotes
+- check type for quoted strings
+
                 01/07
 - FINISH LEXER
 > create $tokens (1 token = 1 variable to expand starting w/ $) 
@@ -10,17 +16,6 @@ hellç; ;dpilkhdl)='=
 >> hell & scnd ; not tokenized
 _ PROTECT ALL MALLOC : ft_substr & others
 
-TO DO
-
-- ENV VARIABLE EXPANSION :
-> traverse the linked list of tokens.
-> For each token starting with $, replace it with the corresponding environment variable value.
-
-- PARSING:
-> Create a linked list of command nodes.
-> For each token, determine if it is an argument, a redirection, or a pipe.
-> Construct command nodes accordingly and link them together.
-
                 28/06
 - null token gets added at end of the list >> CHECK WHEN
 - 7649832] : anything directly before specchar (no spaces) >> ok (order changed in lexer)
@@ -31,6 +26,17 @@ TO DO
 - handle non ascii values >> check if tokenize char/char or bulk by bulk
 - PB WITH DATA->tokens
 HANDLE TOKENS >> valgrind pb
+
+TO DO
+
+- ENV VARIABLE EXPANSION :
+> traverse the linked list of tokens.
+> For each token starting with $, replace it with the corresponding environment variable value BEFORE TOKENIZING
+
+- PARSING:
+> Create a linked list of command nodes
+> For each token, determine if it is an argument, a redirection, or a pipe
+> Construct command nodes accordingly and link them together
 
 LEXER
 - [ ] handle non ascii values

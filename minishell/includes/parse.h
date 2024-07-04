@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/01 22:07:21 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:13:19 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@
 # define KEYWORD 3
 # define INT 4
 # define DOUBLE 5
-# define EXIT_EXPANSION 6
-# define VAR_EXPANSION 7
-# define REDIRECT 8
-# define UNSPEC_OP 9
-# define UNSPEC_PUNC 10
-# define NON_ASCII 11
+# define REDIRECT 6
+# define UNSPEC_OP 7
+# define UNSPEC_PUNC 8
+# define NON_ASCII 9
 
 /* ------------  LIBRARIES  ------------------------------------------------ */
 # include "minishell.h"

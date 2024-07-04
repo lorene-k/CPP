@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:45:08 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/27 18:32:47 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:31:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int					ft_isspace(char c);
 int					ft_isspecchar(char c);
 int					ft_isoperator(char c);
 int					ft_ispunctuation(char c);
+int				ft_strrchr_index(const char *s, int c);
 
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
