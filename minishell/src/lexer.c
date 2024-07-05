@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:04:02 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/01 22:07:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:24:29 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parse.h"
+#include "../includes/minishell.h"
 
 static void     ft_getnonascii(t_token *token, char *line, int *i)
 {
@@ -32,7 +32,7 @@ static void     ft_getspecchar(t_token *token, char *line, int *i)
         get_type(token, 3);
     }
     else if (ft_ispunctuation(line[*i]))
-        get_punctuation(token, line, i);
+        get_punctuation(&token, line, i);
 }
 
 static void     ft_getconstant(t_token *token, char *line, int *i)
@@ -69,6 +69,7 @@ t_token     *lexer(t_token *token, char *line)
             ft_getconstant(token, line, &i);
         else if (!(ft_isascii(line[i]))) //CHECK NON ASCII CHARS
             ft_getnonascii(token, line, &i);
+        // printf(" TOKEN TESTER : token %d value : %s\t type : %d\n\n", i, token->value, token->type); //TEST
     }
     token = get_first(token);
     return (token);

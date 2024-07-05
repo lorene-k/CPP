@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:37:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/30 12:52:09 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:35:40 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parse.h"
 #include "../includes/minishell.h"
 
 void    clear_all(void)

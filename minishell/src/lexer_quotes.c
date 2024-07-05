@@ -1,67 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_specials.c                                   :+:      :+:    :+:   */
+/*   lexer_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 20:02:39 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/04 17:50:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:30:55 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parse.h"
+#include "../includes/minishell.h"
 
-//get_exit_code(t_token **token)
-//expand_value(t_token **token, char *to_expand) //don't forget to free(to_expand)
-
-static int 	handle_expansion(t_token **token, char *line, int i, int *j) // expand variables THEN tokenize expansion, except if within d_quotes (then, continue to tokenize until last quote)
-{
-    (*token)->value = ft_substr(line, i, j); //j - 1?
-    if (line[i + (*j) + 1] == '?')
-    { 
-        // get_exit_code(token); //get exit code & malloc str to contain value, then copy it to token value
-        j++;
-    }
-	else if (ft_isalpha(line[i + 1]))
-	{
-        while (ft_isalnum(line[i + (*j)]))
-            j++;
-        // expand_value(token, ft_substr(line, i + 1, j)) //same mechanism as get_exit_code
-	    return (j);
-    }
-    return (1);
-}
-
-static int handle_unclosed_quote() //TEST - TO DO 
+static char    *handle_unclosed_quote() //TEST - TO DO //what happens to line here ?
 {
     printf("UNCLOSED QUOTE\n");
-    return (1);
+    return ("UNCLOSED_QUOTE_TEST"); //use malloc here
+}
+
+static char    *get_quoted_value(char *line, int i, int *j, int expansion)
+{
+    char    *value;
+
+    value = NULL;
+    if (!line[i + (*j)])
+        value = handle_unclosed_quote(); //DO THIS >> return char *value;
+    else if ((*j) == 1) // handle empty str
+    {
+        (*j) += 1;
+        return (NULL);
+    }
+    if (!expansion) // handle no expansion
+        value = ft_substr(line, i + 1, (*j) - 1);
+    return (value);
 }
 
 static int  handle_double_quotes(char *line, int i, char quote, t_token **token)
 {
-    int j;
-    int expansion;
+    int     j;
+    int     expansion;
+    char    *end_str;
 
     j = 1;
     expansion = 0;
+    end_str = NULL;
     while (line[i + j] && line[i + j] != quote)
     {
         if (line[i + j] == '$'
-            && (line[i + j + 1] == '?' || ft_isalpha(line[i + j + 1])))
+            && (line[i + j + 1] == '?' || ft_isalpha(line[i + j + 1]))) //CHECK BEHAVIOR IF MULTIPLE EXPANSIONS
+        {
+            if (j != 1 && !expansion)
+                (*token)->value = ft_substr(line, i + 1, j - 1); // get first part of quoted str (before expansion)
             expansion = handle_expansion(token, line, i, &j);
+        }
         else
             j++;
     }
-    if (!line[i + j])
-        return (handle_unclosed_quote()); //DO THIS
-    else if (j == 1)
-        return (j + 1);
-    if (!expansion)
-        (*token)->value = ft_substr(line, i + 1, j - 1);
-    // else
-    //     add rest of line to token
+    if (expansion && j != expansion + 1) // handle expansion in the middle of quoted str
+        (*token)->value = ft_strjoin_memory((*token)->value, ft_substr(line, i + expansion + 1, j - expansion - 1));
+    else if (!expansion)// handle no expansion (expansion at end of quoted str handled in expand)
+        (*token)->value = get_quoted_value(line, i, &j, expansion);
     return (j);
 }
 
@@ -73,7 +71,7 @@ static int  handle_single_quotes(char *line, int i, char quote, t_token **token)
     while (line[i + j] && line[i + j] != quote)
         j++;
     if (!line[i + j])
-        return (handle_unclosed_quote()); //DO THIS
+        return (handle_unclosed_quote(), j); //DO THIS
     else if (j == 1)
         return (j + 1);
     (*token)->value = ft_substr(line, i + 1, j - 1);
@@ -88,27 +86,27 @@ static int  handle_quotes(t_token **token, char *line, int i, char quote) //chec
     j = 1;
     quote_n = 1;
     if (quote == '\"')
-        j = handle_double_quotes(line, i, quote, token); // TEST
+        j = handle_double_quotes(line, i, quote, token);
     else
-        j = handle_single_quotes(line, i, quote, token); //HANDLE TYPE
+        j = handle_single_quotes(line, i, quote, token);
     //check_type (token, quote);
     return (j + 1);
 }
 
-void	get_punctuation(t_token *token, char *line, int *i)
+void	get_punctuation(t_token **token, char *line, int *i)
 {
-	int	j;
+    int j;
 
-	j = 0;
+    j = 0;
 	if (line[*i] == '\'' || line [*i] == '\"')
-		*i += handle_quotes(&token, line, *i, line[*i]);
+		*i += handle_quotes(token, line, *i, line[*i]);
 	else if (line[*i] == '$'
         && (line[*i + 1] == '?' || ft_isalpha(line[*i + 1])))
-		*i += handle_expansion(&token, line, *i);
+		*i += handle_expansion(token, line, *i, &j) + 1;
 	else
 	{
-		token->value = ft_substr(line, *i, 1);
-        token->type = UNSPEC_PUNC;
+		(*token)->value = ft_substr(line, *i, 1);
+        (*token)->type = UNSPEC_PUNC;
 		*i += 1;
 	}
 }

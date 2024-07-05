@@ -6,11 +6,11 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/04 16:19:29 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:16:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parse.h"
+#include "../includes/minishell.h"
 
 static void lexer_tester(t_token *token) //TEST
 {
@@ -23,7 +23,7 @@ static void lexer_tester(t_token *token) //TEST
     while (curr)
     {
         next = curr->next;
-        printf("token %d value : %s\t type : %d\n\n", i, curr->value, curr->type); //TEST
+        printf("LEXER TESTER : token %d value : %s\t type : %d\n\n", i, curr->value, curr->type); //TEST
         curr = next;
         i++;
     }

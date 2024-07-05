@@ -6,12 +6,11 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:40:34 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/27 16:27:53 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:33:22 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include "../includes/parse.h"
 
 int main(void)
 {

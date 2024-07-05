@@ -1,14 +1,20 @@
+                05/07
+- handle var EXPANSION
+    >> expand value
+    >> exit code
+
+- handle unclosed quotes <<<
+- check type for quoted strings <<<
+- protect mallocs !
+
                 04/07
-- handle var EXPANSION (get_exit_code + expand_value)
-    >> ft_substr first pat of string in quotes > expand value > add to token > keep tokenizing input (create function to add valur to token from handle_expansion + handle_d_quote) 
-- handle unclosed quotes
-- check type for quoted strings
+- started quote handling
 
                 01/07
 - FINISH LEXER
-> create $tokens (1 token = 1 variable to expand starting w/ $) 
-> handle quotes in tokens (if in quotes = 1 token ?) <<<<<
->> specify each redirection type i token->type ? 
+> handle var expansion
+> handle quotes in tokens (if in quotes = 1 token)
+>> specify each redirection type i token->type ?? 
 
                 30/06
 - ORDER PB : ///888 >> first / not tokenized

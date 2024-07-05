@@ -6,13 +6,17 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/04 17:13:19 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:05:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 
 # define PARSE_H
+
+/* ------------  LIBRARIES  ------------------------------------------------ */
+# include <curses.h>
+# include <term.h>
 
 /* ------------  MACROS ---------------------------------------------------- */
 # define UNKNOWN_ERR 666
@@ -28,12 +32,6 @@
 # define UNSPEC_PUNC 8
 # define NON_ASCII 9
 
-/* ------------  LIBRARIES  ------------------------------------------------ */
-# include "minishell.h"
-
-# include <curses.h>
-# include <term.h>
-
 /* ------------  STRUCTS  -------------------------------------------------- */
 typedef struct s_token
 {
@@ -43,14 +41,18 @@ typedef struct s_token
 	struct s_token	*prev;
 }					t_token;
 
+typedef struct s_data t_data;
+
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 void	clear_tokens(t_token **start);
 t_token *get_first(t_token *token);
 void	add_token(t_token **current);
 
-void	get_punctuation(t_token *token, char *line, int *i);
+int 	handle_expansion(t_token **token, char *line, int i, int *j);
+void	get_punctuation(t_token **token, char *line, int *i);
 void    get_type(t_token *token, int type);
 void    get_value(t_token *token, char *line, int *i, int type);
+
 t_token	*lexer(t_token *token, char *line);
 void    parse_input(t_data *data, char *line);
 

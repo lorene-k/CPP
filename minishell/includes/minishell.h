@@ -15,8 +15,6 @@
 # define MINISHELL_H
 
 /* ------------  LIBRARIES  ------------------------------------------------ */
-# include "../libft/libft_src/libft.h"
-
 # include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -28,16 +26,10 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# include "../libft/libft_src/libft.h"
+# include "parse.h"
+
 /* ------------  STRUCTS  -------------------------------------------------- */
-
-// typedef struct s_error
-// {
-// 	char			*msg;
-// 	int				err_code;
-// 	struct t_error	*next;
-// 	struct t_error	*prev;
-// }					t_error;
-
 typedef struct s_env
 {
 	char			*name;
@@ -61,11 +53,10 @@ typedef struct s_data
 	int				**fd;
 	int				status;
 	int				pipes;
-	char			*epath; //linked list for path?
+	char			*epath;
 	pid_t			*pid;
 	t_cmd			*cmd;
 	t_env			*env;
-	// t_error			*error;
 }					t_data;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
