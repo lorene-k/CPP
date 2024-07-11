@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:21 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/05 18:20:15 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:17:48 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ static void    ft_expand(t_token **token, char *to_expand)
     if ((*token)->value)
         (*token)->value = ft_strjoin_memory((*token)->value, expanded_value);
     else
+    {    
         (*token)->value = ft_strdup(expanded_value);
+        free(expanded_value);
+    }
 }
 
 int 	handle_expansion(t_token **token, char *line, int i, int *j)
@@ -52,7 +55,7 @@ int 	handle_expansion(t_token **token, char *line, int i, int *j)
     k = 0;
     if (line[start] == '?')
     {
-        k += 1; //CHECK THIS 
+        k += 1;
         ft_expand(token, ft_substr(line, start, k));
     }
 	else if (ft_isalpha(line[start]))

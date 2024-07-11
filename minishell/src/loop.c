@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:44:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/05 15:36:28 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:02:12 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char *prompt_str(char *user, char *cwd)
         return (NULL);
     ft_strlcpy(user_cwd, user, ft_strlen(user) + 1);
     ft_strlcat(user_cwd, ":~", ft_strlen(user) + 3);
-    ft_strlcat(user_cwd, cwd, ft_strlen(cwd) + 1);
+    ft_strlcat(user_cwd, cwd, ft_strlen(cwd) + 1); //check this
     ft_strlcat(user_cwd, "$ ", ft_strlen(cwd) + 3);
     return (user_cwd);
 }

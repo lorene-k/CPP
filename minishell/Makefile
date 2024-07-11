@@ -51,7 +51,7 @@ RM				=	rm $(RM_FLAGS)
 # ------------  RULES  ------------------------------------------------------- #
 all:				${NAME}
 
-$(NAME):			$(OBJS) $(LFT)
+$(NAME):			$(OBJ_DIR) $(OBJS) $(LFT)
 					@$(CC) $(CFLAGS) -o ./$(NAME) $(OBJS) $(LFLAGS) $(LIB_FLAGS)
 					@echo "$(GREEN)Compiled $(NAME)$(DEFAULT)"
 
@@ -65,7 +65,7 @@ $(LFT):
 					@$(MK) $(MAKE_FLAGS) $(LFT_DIR)
 
 clean:	
-					@$(RM) $(OBJ_DIR) $(B_OBJ_DIR)
+					@$(RM) $(OBJ_DIR)
 					@$(MFC) $(MAKE_FLAGS) $(LFT_DIR)
 					@echo "$(YELLOW)Cleaned $(OBJ_DIR)$(DEFAULT)"
 

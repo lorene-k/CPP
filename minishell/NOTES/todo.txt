@@ -1,10 +1,27 @@
+>> HANDLE EXPANSION IF UNCLOSED QUOTE
+- add expansion flag
+- i = (ft_strchr_index(buf, '$')
+- if (i == -1)
+    return (0);
+- (*token)->value = ft_strjoin_memory((*token)->value, ft_strdup(buf + i));
+handle_expansion(token, buf, i, 0);
+return (1);
+
+                07/07
+OK - unclosed quote : parse nl ? (include in token ?)
+OK - pb with make re : make: *** No rule to make target `objs', needed by `objs/clear.o'.
+>> do check quoted type
+>> handle exit code expansion
+>> THEN parse : create commands, handle redirections, clean null tokens
+
                 05/07
 - handle var EXPANSION
-    >> expand value
-    >> exit code
+    >> expand value - OK
+    >> exit code <<
 
-- handle unclosed quotes <<<
-- check type for quoted strings <<<
+- handle unclosed quotes >> pb if multiple quotes (doesn't always give prompt back)
+ex : "hello my name is" lorene" - OK
+- check type for quoted strings
 - protect mallocs !
 
                 04/07

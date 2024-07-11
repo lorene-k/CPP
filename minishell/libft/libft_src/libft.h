@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:45:08 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/05 13:48:42 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:12:51 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int					ft_isspecchar(char c);
 int					ft_isoperator(char c);
 int					ft_ispunctuation(char c);
 
+int					ft_strchr_index(const char *s, int c);
 int					ft_strrchr_index(const char *s, int c);
 char				*ft_strjoin_memory(char *s1, char *s2);
 

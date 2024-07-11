@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:13:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2023/11/08 17:18:54 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:37:03 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,19 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (0);
 }
-// #include <stdio.h>
-// #include <string.h>
 
-// int	main(void)
-// {
-// 	char *s = "Hello";
-// 	char l = 'j';
-// 	char *z = strchr(s, l);
-// 	printf("%p\n", ft_strchr(s, 0));
-// 	printf("%p\n", (void *)z);
-// 	return (0);
-// }
+int		ft_strchr_index(const char *s, int c)
+{
+	size_t		i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((int)i);
+		i++;
+	}
+	if (*s == (char)c)
+		return ((int)i);
+	return (-1);
+}

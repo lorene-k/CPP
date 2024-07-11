@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_types.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 18:18:36 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/05 15:36:09 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:41:40 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void get_operator_type(t_token *token)
 
 static void get_digit_type(t_token *token)
 {
-    if (!ft_strrchr(token->value, '.'))
+    if (!ft_strchr(token->value, '.'))
         token->type = INT;
     else
         token->type = DOUBLE;
