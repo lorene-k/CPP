@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/05 18:05:25 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/16 22:18:00 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,20 @@ void	clear_tokens(t_token **start);
 t_token *get_first(t_token *token);
 void	add_token(t_token **current);
 
+int		check_quotes(char *line, int start, int k);
+int 	check_operator(char *line, int i, int *j);
+int		check_digit(char *line, int i, int *j);
+
+void    check_type(t_token **token);
+void    handle_unclosed_quote(char quote, t_token **token);
+int		get_quoted_value(char *line, int i, int *j, t_token **token);
+
 int 	handle_expansion(t_token **token, char *line, int i, int *j);
-void	get_punctuation(t_token **token, char *line, int *i);
+void    check_expansion(t_token **token, char *tmp);
+
+int		get_punctuation(t_token **token, char *line, int *i);
 void    get_type(t_token *token, int type);
-void    get_value(t_token *token, char *line, int *i, int type);
+int    	get_value(t_token *token, char *line, int *i, int type);
 
 t_token	*lexer(t_token *token, char *line);
 void    parse_input(t_data *data, char *line);

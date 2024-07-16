@@ -1,24 +1,49 @@
->> HANDLE EXPANSION IF UNCLOSED QUOTE
-- add expansion flag
-- i = (ft_strchr_index(buf, '$')
-- if (i == -1)
-    return (0);
-- (*token)->value = ft_strjoin_memory((*token)->value, ft_strdup(buf + i));
-handle_expansion(token, buf, i, 0);
-return (1);
+                17/07
+>> CHECK LEAKS
+>> Norm tokenizer
+>> Thoroughly test tokenizer before parsing
+
+                16/07
+- PB w/ expand at end of unclosed quote - OK
+>>>>>>> handle non expandable variables ($xxx)
+- PB : DISSOCIATE IF IN QUOTES OR NOT TO EVENTUALLY CONSIDER CLOSING QUOTE - OK
+- PB : $67 - OK
+- fix empty quoted string >> segfault - OK
+- check if i need to handle expansions within () - NOPE
+- CHECK TYPES >> STR for non expandable expansions not in QUOTES - OK
+- CHECK TYPES FOR EXPANDED VALUES NOT IN QUOTES - OK
+
+                15/07
+- PB : "é"§'ç!)à&é" >> NON ASCII chars - OK
+- PB w/ expansion in unclosed quotes - OK
+- FIX LEXER_CHECK (segfaults) because 0 instead of *j - OK
+>> do check quoted type - OK >> TEST
+
+                12-14/07
+- LOGIC PB : no check if strings are separated by spaces >> correct it by verifying before tokenizing
+    >> for digits (check operator & punctuation) - OK
+> if no space, value = string - OK
+>> PB with check_quoted_input - OK
+- PB with is_str flag in get_punctuation : set to 1 for '$' - OK
+- PB : null tokens always created with type 2 = STR - OK
+- PB : 1 null token always created (pb w/ loop ?) - OK (line = not null terminated str?)
+
+                11/07
+- expansion handled if unclosed quotes - OK
+> handle multiple expansions if unclosed quotes >> loop - OK
+>> TEST strategy n°2 (get_quoted_value) - OK
+PB : nothing tokenized between expansions - OK
 
                 07/07
 OK - unclosed quote : parse nl ? (include in token ?)
 OK - pb with make re : make: *** No rule to make target `objs', needed by `objs/clear.o'.
->> do check quoted type
 >> handle exit code expansion
->> THEN parse : create commands, handle redirections, clean null tokens
+>> THEN parse : CHECK IF VALID STRINGS, clean null tokens, create commands, handle redirections
 
                 05/07
 - handle var EXPANSION
     >> expand value - OK
     >> exit code <<
-
 - handle unclosed quotes >> pb if multiple quotes (doesn't always give prompt back)
 ex : "hello my name is" lorene" - OK
 - check type for quoted strings
@@ -49,6 +74,7 @@ _ PROTECT ALL MALLOC : ft_substr & others
 - handle non ascii values >> check if tokenize char/char or bulk by bulk
 - PB WITH DATA->tokens
 HANDLE TOKENS >> valgrind pb
+
 
 TO DO
 

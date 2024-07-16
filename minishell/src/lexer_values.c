@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_values.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:03:44 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/05 15:36:15 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:20:26 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,46 @@
 
 static void	get_operator_value(t_token *token, char *line, int *i)
 {
-	if ((line[*i] == '!' && line[*i + 1] == '=') || ((line[*i] == line[*i + 1])
-			&& (line[*i] == '*' || line[*i] == '&' || line[*i] == '|'
-				|| line[*i] == '>' || line[*i] == '<')))
-	{
-		token->value = ft_substr(line, *i, 2);
-		*i += 2;
-	}
-	else
-	{
-		token->value = ft_substr(line, *i, 1);
-		*i += 1;
-	}
-}
-
-static void	get_digit_value(t_token *token, char *line, int *i)
-{
 	int	j;
 
 	j = 0;
-	while (ft_isdigit(line[*i + j]))
-		j++;
-	if (line[*i + j] == '.')
-	{
-		j++;
-		while (ft_isdigit(line[*i + j]))
-			j++;
-	}
+	check_operator(line, *i, &j);
 	token->value = ft_substr(line, *i, j);
 	*i += j;
 }
 
-static void	get_alpha_value(t_token *token, char *line, int *i)
+static int	get_digit_value(t_token *token, char *line, int *i)
 {
 	int	j;
 
 	j = 0;
-	while (ft_isalpha(line[*i + j]))
+	if (check_digit(line, *i, &j))
+		return (1);
+	token->value = ft_substr(line, *i, j);
+	*i += j;
+	return (0);
+}
+
+static void	get_str_value(t_token *token, char *line, int *i)
+{
+	int	j;
+
+	j = 0;
+	while (line[*i + j] && !ft_isspace(line[*i + j]))
 		j++;
 	token->value = ft_substr(line, *i, j);
 	*i += j;
 }
 
-void	get_value(t_token *token, char *line, int *i, int type)
+int	get_value(t_token *token, char *line, int *i, int type)
 {
 	if (type == 1)
-		get_alpha_value(token, line, i);
+		get_str_value(token, line, i);
 	if (type == 2)
-		get_digit_value(token, line, i);
+		return (get_digit_value(token, line, i)); //BROKEN HERE (was return (1))
 	if (type == 3)
 		get_operator_value(token, line, i);
+	return (0);
 }
 
 /*

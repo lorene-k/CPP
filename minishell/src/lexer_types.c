@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 18:18:36 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/07 15:41:40 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/15 23:52:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void get_operator_type(t_token *token)
 {
-    if (*(token->value) == '>' || *(token->value) == '<') //CHECK QUOTES
+    if (*(token->value) == '>' || *(token->value) == '<')
         token->type = REDIRECT;
     else
         token->type = UNSPEC_OP;
@@ -28,7 +28,7 @@ static void get_digit_type(t_token *token)
         token->type = DOUBLE;
 }
 
-static void get_alpha_type(t_token *token)
+static void get_str_type(t_token *token)
 {
     size_t len;
     
@@ -50,12 +50,18 @@ static void get_alpha_type(t_token *token)
 void    get_type(t_token *token, int type)
 {
     if (type == 1)
-        get_alpha_type(token);
+        get_str_type(token);
     if (type == 2)
         get_digit_type(token);
     if (type == 3)
         get_operator_type(token);
 }
+
+/*CHECK QUOTED TYPE : 
+- if is digit : check if num
+- if is operator && ft_strlen < 2 : check if operator
+- else : is str*/
+
 
 /* ALPHA TYPES
 - char
