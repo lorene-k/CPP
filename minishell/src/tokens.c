@@ -6,13 +6,13 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/05 15:36:39 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:16:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_token *get_first(t_token *token)
+t_token	*get_first(t_token *token)
 {
 	t_token	*first;
 
@@ -20,8 +20,8 @@ t_token *get_first(t_token *token)
 		return (NULL);
 	first = token;
 	while (first->prev)
-        first = first->prev;
-    return (first);
+		first = first->prev;
+	return (first);
 }
 
 void	add_token(t_token **current)
@@ -35,16 +35,16 @@ void	add_token(t_token **current)
 		*current = 0;
 		return ;
 	}
-    token->value = 0;
-    token->type = 0;
-    token->next = 0;
-    token->prev = 0;
-    if (!*current)
-        *current = token;
-    else
-    {   
-        (*current)->next = token;
-        token->prev = *current;
-        *current = token;
-    }
+	token->value = 0;
+	token->type = 0;
+	token->next = 0;
+	token->prev = 0;
+	if (!*current)
+		*current = token;
+	else
+	{
+		(*current)->next = token;
+		token->prev = *current;
+		*current = token;
+	}
 }

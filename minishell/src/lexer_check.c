@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 22:12:40 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/16 13:08:45 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:16:19 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,27 @@ int	check_quotes(char *line, int start, int k)
 }
 
 //CHECK IF IS OPERATOR + GET OPERATOR VALUE
-int check_operator(char *line, int i, int *j)
+int	check_operator(char *line, int i, int *j)
 {
-	if ((!line[i + 2] || ft_isspace(line[i + 2]))
-		&& ((line[i] == '!' && line[i + 1] == '=') || ((line[i] == line[i + 1])
-		&& (line[i] == '*' || line[i] == '&' || line[i] == '|'
-		|| line[i] == '>' || line[i] == '<'))))
+	if (line[i] && ft_isoperator(line[i]) && (!line[i + 1]
+			|| ft_isspace(line[i + 1])))
 	{
-		(*j) += 2;
+		(*j) += 1;
 		return (0);
 	}
-	else if (ft_isoperator(line[i]) && (!line[i + 1] || ft_isspace(line[i + 1])))
-	{	
-		(*j) += 1;
+	else if ((!line[i + 2] || ft_isspace(line[i + 2])) && ((line[i] == '!'
+				&& line[i + 1] == '=') || ((line[i] == line[i + 1])
+				&& (line[i] == '*' || line[i] == '&' || line[i] == '|'
+					|| line[i] == '>' || line[i] == '<'))))
+	{
+		(*j) += 2;
 		return (0);
 	}
 	return (1);
 }
 
 //CHECK IF IS DIGIT + GET DIGIT VALUE
-int check_digit(char *line, int i, int *j)
+int	check_digit(char *line, int i, int *j)
 {
 	if (!ft_isdigit(line[i]) && !ft_issign(line[i]))
 		return (1);
@@ -61,7 +62,8 @@ int check_digit(char *line, int i, int *j)
 		(*j)++;
 	while (ft_isdigit(line[i + (*j)]))
 		(*j)++;
-	if (line[i + (*j)] && (!ft_isspace(line[i + (*j)]) && !(line[i + (*j)] == '.')))
+	if (line[i + (*j)] && (!ft_isspace(line[i + (*j)])
+			&& !(line[i + (*j)] == '.')))
 		return (1);
 	if (line[i + (*j)] == '.')
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:44:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/07 18:02:12 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:39:35 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static char *prompt_str(char *user, char *cwd)
 {
-    size_t     user_cwd_len;
-    char    *user_cwd;
+    size_t	user_cwd_len;
+    char	*user_cwd;
 
-    user_cwd_len = ft_strlen(user) + ft_strlen(cwd) + 4;
+    user_cwd_len = ft_strlen(user) + ft_strlen(cwd) + 5;
     user_cwd = malloc(sizeof(char) * user_cwd_len);
     if (!user_cwd)
         return (NULL);
     ft_strlcpy(user_cwd, user, ft_strlen(user) + 1);
     ft_strlcat(user_cwd, ":~", ft_strlen(user) + 3);
-    ft_strlcat(user_cwd, cwd, ft_strlen(cwd) + 1); //check this
-    ft_strlcat(user_cwd, "$ ", ft_strlen(cwd) + 3);
+    ft_strlcat(user_cwd, cwd, ft_strlen(user) + ft_strlen(cwd) + 3); //check this
+    ft_strlcat(user_cwd, "$ ", ft_strlen(user) + ft_strlen(cwd) + 5);
     return (user_cwd);
 }
 
@@ -52,7 +52,7 @@ static char	*display_prompt(void) //CHECK_ERR
     return (user_cwd);
 }
 
-static void	scan(char **line)
+static void	get_input(char **line)
 {
 	char	*user_cwd;
 
@@ -75,7 +75,7 @@ void	run_loop(t_data *data)
 	line = NULL;
 	while (1)
 	{
-		scan(&line);
+		get_input(&line);
 		parse_input(data, line);
 		// exec(data);
 		// sig_handler(data);

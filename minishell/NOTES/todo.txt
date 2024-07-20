@@ -1,5 +1,8 @@
-                17/07
->> CHECK LEAKS
+                18/07
+- PB : >> - OK
+- FIX digit value - OK
+- CHECK LEAKS - OK
+- FIX quote pb (if no space between quote & char) get_str_value - OK ?
 >> Norm tokenizer
 >> Thoroughly test tokenizer before parsing
 
@@ -14,7 +17,7 @@
 - CHECK TYPES FOR EXPANDED VALUES NOT IN QUOTES - OK
 
                 15/07
-- PB : "é"§'ç!)à&é" >> NON ASCII chars - OK
+- PB : "é"§'ç!à&é" >> NON ASCII chars - OK
 - PB w/ expansion in unclosed quotes - OK
 - FIX LEXER_CHECK (segfaults) because 0 instead of *j - OK
 >> do check quoted type - OK >> TEST

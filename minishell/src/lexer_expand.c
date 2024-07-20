@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:21 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/16 22:25:30 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:20:16 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ static int handle_non_expansion(t_token **token, char *line, int i)
     return (j);
 }
 
-int 	handle_expansion(t_token **token, char *line, int i, int *j) //HANDLE QUOTES AS LAST CHAR
+//EXPAND VARIABLES + HANDLE EXP AT END OF QUOTED STR
+int 	handle_expansion(t_token **token, char *line, int i, int *j)
 {
     int     start;
     int     k;
@@ -81,7 +82,7 @@ int 	handle_expansion(t_token **token, char *line, int i, int *j) //HANDLE QUOTE
         while (ft_isalnum(line[start + k]))
             k++;
     }
-    if (!check_quotes(line, start, k))//HANDLE QUOTES
+    if (!check_quotes(line, start, k))
             ft_expand(token, ft_substr(line, start, k));
         else
             is_str = 1;
@@ -92,7 +93,8 @@ int 	handle_expansion(t_token **token, char *line, int i, int *j) //HANDLE QUOTE
     return (*j);
 }
 
-void    check_expansion(t_token **token, char *tmp) // IF IN QUOTES
+ // HANDLE EXPANSION IF IN QUOTES
+void    check_expansion(t_token **token, char *tmp)
 {
     int    i;
     int    expansion;
