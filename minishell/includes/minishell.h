@@ -39,9 +39,12 @@
 
 typedef struct s_cmd
 {
-	int		in;
-	int		out;
 	char	*name;
+	char 	*infile;
+	char 	*outfile;
+	int		in_fd;
+	int		out_fd;
+	int		append;
 	char	**args;
 	char	**paths;
 	char	*c_path;
@@ -66,6 +69,7 @@ typedef struct s_data
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* ERRORS */
+int			protect_memory(char **array);
 int			print_error(char *msg, char *str, int code);
 void		print_file_error(char *file, char *str, int file_err);
 void		check_error(char *file, int n, t_data *data);

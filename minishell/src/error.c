@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:27:37 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/27 11:36:49 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:01:04 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ void	print_file_error(char *file, char *str, int file_err)
 		ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(file, 2);
 	ft_putendl_fd(str, 2);
+}
+
+int		protect_memory(char **array)
+{
+	if (!array)
+	{
+        clear_tab(array);
+		return (print_error(MALLOC_ERR, NULL, 1));
+	}
+	return (0);
 }
 
 // void	put_cmd_error(char *cmd, t_data *data)

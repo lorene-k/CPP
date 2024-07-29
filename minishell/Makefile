@@ -28,8 +28,8 @@ SRC_FLS			=	clear.c \
 					loop.c \
 					main.c \
 					parse.c \
+					parser_builder.c \
 					parser_checker.c \
-					parser_files.c \
 					structs.c
 
 # ------------  FILEPATHS  --------------------------------------------------- #

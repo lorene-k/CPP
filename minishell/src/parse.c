@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/28 19:16:41 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:43:06 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,13 @@ static void cmd_tester(t_cmd *cmd) //TEST
 	t_cmd *curr;
 
 	curr = cmd;
-	printf("CMD TESTER : cmd->name = %s\n", curr->name);
-	// while (curr)
-	// {
-	// 	printf("IN LOOP cmd tester :\n");
-	// 	next = curr->next;
-	// 	printf("CMD TESTER : cmd in/out = %d\n", cmd->in); //TEST
-	// 	curr = next;
-	// }
+	printf("CMD TESTER :\ncmd->name = %s\n\n", curr->name);
+	
+	int i = -1;
+    while (cmd->args[++i])
+        printf("cmd->args[%d] = %s\n", i, cmd->args[i]);
+	if (cmd->infile)
+		printf("INFILE = %s\")
 	// exit(0);
 }
 

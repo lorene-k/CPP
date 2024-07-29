@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_files.c                                     :+:      :+:    :+:   */
+/*   exec_files_draft.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 10:38:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/24 23:10:25 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/07/29 16:06:57 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/07/29 16:07:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,4 @@ void		get_file(char *file, t_cmd *cmd, int type, t_data *data)
 		get_heredoc(file, cmd, data); // DO THIS
 	if (type == 4)
 		get_out(file, cmd, 2, data);
-}
-
-void check_redirect(t_token *token, t_cmd *cmd, t_data *data)
-{
-	if (token->value[0] == '<') // redirect in
-        get_file(token->next->value, cmd, 1, data);
-    else if (token->value[0] == '>') // redirect out
-        get_file(token->next->value, cmd, 2, data);
-    else if (token->value[0] == '<' && token->value[1] == '<') // heredoc
-        get_file(token->next->value, cmd, 3, data);
-    else
-        get_file(token->next->value, cmd, 4, data); // append out
 }

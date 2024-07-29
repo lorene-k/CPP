@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/28 21:19:35 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:20:18 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ t_token	*get_first_token(t_token *last)
 	return (curr);
 }
 
+static void init_cmd(t_cmd *cmd)
+{
+	cmd->name = NULL;
+	cmd->infile = NULL;
+	cmd->outfile = NULL;
+	cmd->in_fd = -1;
+	cmd->out_fd = -1;
+	cmd->append = 0;
+	cmd->next = 0;
+	cmd->prev = 0;
+	cmd->builtin = 0;
+}
+
 void	add_cmd(t_cmd **current)
 {
 	t_cmd	*cmd;
@@ -47,12 +60,7 @@ void	add_cmd(t_cmd **current)
 		*current = 0;
 		return ;
 	}
-	cmd->in = -1;
-	cmd->out = -1;
-	cmd->next = 0;
-	cmd->prev = 0;
-	cmd->name = NULL;
-	cmd->builtin = 0;
+	init_cmd(cmd);
 	if (!*current)
 		*current = cmd;
 	else

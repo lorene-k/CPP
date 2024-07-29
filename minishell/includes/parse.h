@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/28 20:48:07 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:25:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@
 # define UNKNOWN_ERR 666
 # define UNDEFINED_ERR 999
 
-
 # define HEREDOC ".heredoc_tmp"
 # define UNEXISTING_FILE ": No such file or directory"
 # define BAD_ACCESS ": Permission denied"
 # define INV_COMMAND ": command not found"
-# define REDIRECT_ERR "syntax error near unexpected token `newline'"
+# define REDIRECT_ERR "syntax error near unexpected token `newline'" //change "newline" according to following token
 # define MALLOC_ERR "memory can't be allocated"
 
 /* ------------  STRUCTS  -------------------------------------------------- */
@@ -64,8 +63,8 @@ t_token					*get_first_token(t_token *last);
 void					add_token(t_token **current);
 
 /* PARSER */
-void					get_file(char *file, t_cmd *cmd, int type, t_data *data);
-void					check_redirect(t_token *token, t_cmd *cmd, t_data *data);
+int					    handle_redirect(t_token **token, t_cmd *cmd, t_data *data);
+void					get_cmd(t_token **token, t_cmd *cmd, t_data *data);
 int						parser(t_token *token, t_data *data);
 
 /* LEXER */
