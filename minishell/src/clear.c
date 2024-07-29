@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:37:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/24 18:55:06 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:10:07 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void clear_cmds(t_cmd **start)
 
 void	clear_all(void)
 {
-	rl_clear_history();
+	// rl_clear_history();
 	clear_history();
 }
 

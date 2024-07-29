@@ -1,10 +1,25 @@
-                22/07
+                27-28/07
+- fix invalid 1st str > error.c - OK
+- TOKENIZER PBS : &'"é - OK 
+- PB in lexer : cmd with args - OK
+- do "if 1st token = str" case - OK
+- fix check_cmd_args - OK
+- seems like token does not move to next if moved outside parser > added **token
+- check how to merge "get_first" functions (with void * ?)
+- test & parse whole line
+
+                22-23/07
+- change back to rl_clear_history
+- check if file names needed in structs
+- do get_cmd
+- handle errors
+- parsing planned : check 1st token, then parse to create cmd until eventual pipe in loop
 
                 21/07
-- put .c files in directories
-- check how to get right return values
-- check that data->cmd points to 1st command in list
-- fix cmd init
+- put .c files in directories <<
+- check how to get right return values <<
+- check that data->cmd points to 1st command in list <<
+- fix cmd init 
 
                 20/07
 - PB : unexisiting $VAR outputs nothing >> stay null - OK

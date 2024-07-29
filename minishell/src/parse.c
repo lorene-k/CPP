@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/24 22:32:35 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/28 19:16:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,16 @@
 static void cmd_tester(t_cmd *cmd) //TEST
 {
 	t_cmd *curr;
-	t_cmd *next;
 
 	curr = cmd;
-	while (curr)
-	{
-		next = curr->next;
-		printf("CMD TESTER : cmd in/out = %d\n", cmd->in); //TEST
-		curr = next;
-	}
+	printf("CMD TESTER : cmd->name = %s\n", curr->name);
+	// while (curr)
+	// {
+	// 	printf("IN LOOP cmd tester :\n");
+	// 	next = curr->next;
+	// 	printf("CMD TESTER : cmd in/out = %d\n", cmd->in); //TEST
+	// 	curr = next;
+	// }
 	// exit(0);
 }
 

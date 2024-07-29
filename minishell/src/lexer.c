@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:04:02 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/18 16:24:50 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/28 20:42:00 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,14 @@ static void	ft_getspecchar(t_token *token, char *line, int *i)
 
 	is_str = 0;
 	j = *i;
-	if (ft_isoperator(line[*i]) && (line[*i] == line[*i + 1]
-			|| ft_isspace(line[*i + 1]) || !line[*i + 1])) //doesn't consider =!
+	if (ft_isoperator(line, *i)) //doesn't consider =!
 	{
 		get_value(token, line, &j, 3);
 		get_type(token, 3);
 	}
 	else if (ft_ispunctuation(line[*i]))
 		is_str = get_punctuation(&token, line, &j);
-	if (is_str || (!ft_ispunctuation(line[*i]) && !ft_isoperator(line[*i])))
+	if (is_str || (!ft_ispunctuation(line[*i]) && !ft_isoperator(line, *i)))
 		ft_getconstant(token, line, &j);
 	*i = j;
 }
@@ -75,7 +74,7 @@ t_token	*lexer(t_token *token, char *line)
 			ft_getconstant(token, line, &i);
 		// printf(" TOKEN TESTER : token %d value : %s\t type : %d\n\n", i, token->value, token->type); //TEST
 	}
-	token = get_first(token);
+	token = get_first_token(token);
 	return (token);
 }
 

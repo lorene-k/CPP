@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/24 22:51:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/28 20:48:07 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,13 @@
 # define UNKNOWN_ERR 666
 # define UNDEFINED_ERR 999
 
-// # define CHAR 1
-// # define STRING 2
-// # define KEYWORD 3
-// # define INT 4
-// # define DOUBLE 5
-// # define REDIRECT 6
-// # define PIPE 7
-// # define UNSPEC_OP 8
-// # define UNSPEC_PUNC 9
 
 # define HEREDOC ".heredoc_tmp"
 # define UNEXISTING_FILE ": No such file or directory"
 # define BAD_ACCESS ": Permission denied"
 # define INV_COMMAND ": command not found"
-# define REDIRECT_ERR ": syntax error near unexpected token `newline'"
-# define MALLOC_ERR ": malloc error"
+# define REDIRECT_ERR "syntax error near unexpected token `newline'"
+# define MALLOC_ERR "memory can't be allocated"
 
 /* ------------  STRUCTS  -------------------------------------------------- */
 typedef enum {
@@ -68,7 +59,8 @@ typedef struct s_cmd	t_cmd;
 /* STRUCTS */
 void					add_cmd(t_cmd **current);
 void					clear_tokens(t_token **start);
-t_token					*get_first(t_token *token);
+t_cmd					*get_first_cmd(t_cmd *last);
+t_token					*get_first_token(t_token *last);
 void					add_token(t_token **current);
 
 /* PARSER */

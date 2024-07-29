@@ -6,20 +6,22 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:27:37 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/24 22:59:45 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:36:49 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int print_error(char *msg, int code)
+int print_error(char *msg, char *str, int code)
 {
-    ft_putstr_fd("minishell", 2);
+    ft_putstr_fd("minishell: ", 2);
+	if (str)
+		ft_putstr_fd(str, 2);
     ft_putendl_fd(msg, 2);
     return(code);
 }
 
-static void	print_file_error(char *file, char *str, int file_err)
+void	print_file_error(char *file, char *str, int file_err)
 {
 	if (file_err)
 		ft_putstr_fd("minishell: ", 2);

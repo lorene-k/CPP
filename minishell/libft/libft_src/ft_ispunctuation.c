@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 17:51:24 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/23 18:05:26 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:46:15 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int     ft_ispunctuation(char c)
 {
-    if (c == '\'' || c == '"' || c == '$' || c == '?'
-        || (ft_isascii(c) && !ft_isoperator(c)))
+    if (c == '\'' || c == '"' || c == '$' || c == '?')
         return (1);
     else
         return (0);

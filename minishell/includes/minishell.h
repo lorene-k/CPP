@@ -47,13 +47,14 @@ typedef struct s_cmd
 	char	*c_path;
 	int		builtin;
 	struct s_cmd	*next;
+	struct s_cmd	*prev;
 }			t_cmd;
 
 typedef struct s_data
 {
 	int		cmd_n;
 	int		**fd;
-	int		status;
+	int		status; //exit status
 	int		pipes;
 	int		here_doc;
 	char	*limiter;
@@ -65,7 +66,8 @@ typedef struct s_data
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* ERRORS */
-int			print_error(char *msg, int code);
+int			print_error(char *msg, char *str, int code);
+void		print_file_error(char *file, char *str, int file_err);
 void		check_error(char *file, int n, t_data *data);
 
 void		clear_cmds(t_cmd **start);

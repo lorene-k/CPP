@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 22:12:40 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/18 15:16:19 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/07/28 11:57:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int	check_quotes(char *line, int start, int k)
 //CHECK IF IS OPERATOR + GET OPERATOR VALUE
 int	check_operator(char *line, int i, int *j)
 {
-	if (line[i] && ft_isoperator(line[i]) && (!line[i + 1]
-			|| ft_isspace(line[i + 1])))
+	if (ft_isoperator(line, i))
 	{
 		(*j) += 1;
 		return (0);
