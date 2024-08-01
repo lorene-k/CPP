@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/29 16:20:18 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:58:33 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ t_token	*get_first_token(t_token *last)
 	return (curr);
 }
 
-static void init_cmd(t_cmd *cmd)
+static void	init_cmd(t_cmd *cmd)
 {
 	cmd->name = NULL;
 	cmd->infile = NULL;
 	cmd->outfile = NULL;
+	cmd->args = NULL;
+	cmd->paths = NULL;
+	cmd->c_path = NULL;
 	cmd->in_fd = -1;
 	cmd->out_fd = -1;
 	cmd->append = 0;

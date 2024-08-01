@@ -1,9 +1,11 @@
                 01/08
-- check how to merge "get_first" functions (with void * ?)
 - test & parse whole line
-    >> how to treat random string ? (ex : echo -n "hello")
-    >> handle line w/ no redirect operators
-    >> test infile & outfile
+    >> how to treat random string ? (ex : echo -n "hello") > infile - OK
+    >> handle line w/ no redirect operators - OK
+    >> test infile & outfile w/ no pipes - OK
+- check how to merge "get_first" functions (with void * ?)
+- handle pipes
+- handle unclosed pipe in parser
 
                 29/07
 - token does not evolve outside of parser : added **token - OK

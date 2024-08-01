@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 16:08:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:12:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,17 @@
 
 static void cmd_tester(t_data *data) //TEST
 {
-	t_cmd *cmd;
-	t_cmd *curr;
-
-	cmd = data->cmd;
-	curr = cmd;
-	printf("CMD TESTER :\ncmd->name = %s\n\n", curr->name);
-	
+	printf("CMD TESTER :\ncmd->name = %s\n", data->cmd->name);
 	int i = -1;
-    while (cmd->args[++i])
-    {    printf("cmd->args[%d] = %s\n", i, cmd->args[i]);}
-	if (cmd->infile)
-		printf("INFILE = %s\n", cmd->infile);
-	if (cmd->outfile)
-		printf("OUTFILE = %s\n", cmd->outfile);
+    if (data->cmd->args)
+	{
+		while (data->cmd->args[++i])
+        printf("cmd->args[%d] = %s\n", i, data->cmd->args[i]);
+	}
+	if (data->cmd->infile)
+		printf("INFILE = %s\n", data->cmd->infile);
+	if (data->cmd->outfile)
+		printf("OUTFILE = %s\n", data->cmd->outfile);
 	printf("SUCCESS\n");
 	// exit(0);
 }

@@ -39,44 +39,44 @@
 
 typedef struct s_cmd
 {
-	char	*name;
-	char 	*infile;
-	char 	*outfile;
-	int		in_fd;
-	int		out_fd;
-	int		append;
-	char	**args;
-	char	**paths;
-	char	*c_path;
-	int		builtin;
+	char			*name;
+	char			*infile; // input for echo
+	char			*outfile;
+	int				in_fd;
+	int				out_fd;
+	int				append;
+	char			**args;
+	char			**paths;
+	char			*c_path;
+	int				builtin;
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
-}			t_cmd;
+}					t_cmd;
 
 typedef struct s_data
 {
-	int		cmd_n;
-	int		**fd;
-	int		status; //exit status
-	int		pipes;
-	int		here_doc;
-	char	*limiter;
-	char	*epath;
-	pid_t	*pid;
-	t_cmd	*cmd;
+	int				cmd_n;
+	int				**fd;
+	int status; //exit status
+	int				pipes;
+	int				here_doc;
+	char			*limiter;
+	char			*epath;
+	pid_t			*pid;
+	t_cmd			*cmd;
 	// t_env			*env;
-}			t_data;
+}					t_data;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* ERRORS */
-int			protect_memory(char **array);
-int			print_error(char *msg, char *str, int code);
-void		print_file_error(char *file, char *str, int file_err);
-void		check_error(char *file, int n, t_data *data);
+int					protect_memory(char **array);
+int					print_error(char *msg, char *str, int code);
+void				print_file_error(char *file, char *str, int file_err);
+void				check_error(char *file, int n, t_data *data);
 
-void		clear_cmds(t_cmd **start);
-void		clear_all(t_data *data);
+void				clear_cmds(t_cmd **start);
+void				clear_all(t_data *data);
 
-void		run_loop();
+void				run_loop(void);
 
 #endif //MINISHELL_H

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:38:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 16:09:40 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:28:11 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static void	check_cmd_args(t_token **token, t_cmd *cmd)
 
 	i = -1;
 	arg_n = 1;
-	(*token) = (*token)->next;
 	curr = (*token);
 	while (curr->next && curr->type == STRING && *(curr->next->value) == '-')
 	{
@@ -73,12 +72,12 @@ void	get_cmd(t_token **token, t_cmd *cmd)
 	cmd->name = ft_strdup((*token)->value);
 	if ((*token)->type == KEYWORD)
 		cmd->builtin = 1;
-	if ((*token)->next && (*token)->next->type == STRING
-		&& *((*token)->next->value) == '-')
-		check_cmd_args(token, cmd);
-	else if ((*token)->next && (*token)->next->type == STRING)
-	{	
+	if ((*token)->next && (*token)->next->type == STRING)
+	{
 		(*token) = (*token)->next;
-		cmd->infile = ft_strdup((*token)->value);
+		if (*((*token)->value) == '-')
+			check_cmd_args(token, cmd);
+		if (*token)
+			cmd->infile = ft_strdup((*token)->value);
 	}
 }
