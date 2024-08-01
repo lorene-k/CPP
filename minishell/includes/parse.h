@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/29 16:25:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:50:32 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void					add_token(t_token **current);
 
 /* PARSER */
 int					    handle_redirect(t_token **token, t_cmd *cmd, t_data *data);
-void					get_cmd(t_token **token, t_cmd *cmd, t_data *data);
+void					get_cmd(t_token **token, t_cmd *cmd);
 int						parser(t_token *token, t_data *data);
 
 /* LEXER */

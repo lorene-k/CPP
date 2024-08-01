@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:38:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/29 16:41:50 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:09:40 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ static void	parse_redirect(t_token **token, t_cmd *cmd, t_data *data)
 {
 	(*token) = (*token)->next;
 	if ((*token)->prev->value[0] == '<')
-		cmd->infile = ft_strdup((*token));
+		cmd->infile = ft_strdup((*token)->value);
 	else if ((*token)->prev->value[0] == '>')
 	{
-		cmd->outfile = ft_strdup((*token));
+		cmd->outfile = ft_strdup((*token)->value);
 		if ((*token)->prev->value[1] == '>')
 			cmd->append = 1;
 	}
 	else
 	{
-		cmd->infile = HEREDOC;
+		// cmd->infile = HEREDOC; //check_this
 		data->here_doc = 1;
-		data->limiter = *token;
+		data->limiter = ft_strdup((*token)->value);
 	}
 }
 
@@ -68,7 +68,7 @@ static void	check_cmd_args(t_token **token, t_cmd *cmd)
 	}
 }
 
-void	get_cmd(t_token **token, t_cmd *cmd, t_data *data)
+void	get_cmd(t_token **token, t_cmd *cmd)
 {
 	cmd->name = ft_strdup((*token)->value);
 	if ((*token)->type == KEYWORD)
@@ -77,5 +77,8 @@ void	get_cmd(t_token **token, t_cmd *cmd, t_data *data)
 		&& *((*token)->next->value) == '-')
 		check_cmd_args(token, cmd);
 	else if ((*token)->next && (*token)->next->type == STRING)
-		get_file((*token)->next->value, cmd, 1, data);
+	{	
+		(*token) = (*token)->next;
+		cmd->infile = ft_strdup((*token)->value);
+	}
 }

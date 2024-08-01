@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:15:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/29 16:34:22 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:51:51 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 // 	}
 // }
 
-static void init_data(t_data *data, t_token *token, t_cmd *cmd)
+static void init_data(t_data *data, t_cmd *cmd)
 {
     data->status = 0;
 	data->here_doc = 0;
@@ -44,7 +44,7 @@ static void init_data(t_data *data, t_token *token, t_cmd *cmd)
 static int check_token(t_token **token, t_cmd *cmd, t_data *data)
 {
     if ((*token)->type == STRING  || (*token)->type == KEYWORD)
-        return(get_cmd(token, cmd, data), 0);
+        return(get_cmd(token, cmd), 0);
     if ((*token)->type == REDIRECT)
         return(handle_redirect(token, cmd, data));
     return (print_error(INV_COMMAND, (*token)->value, 127));
@@ -55,7 +55,7 @@ int    parser(t_token *token, t_data *data)
     t_cmd  *cmd;
     
     cmd = NULL;
-    init_data(data, token, cmd);
+    init_data(data, cmd);
     while (token)
     {
         if (!token->value)

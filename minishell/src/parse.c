@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/29 16:43:06 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:08:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,23 @@
 // 	// exit(0);
 // }
 
-static void cmd_tester(t_cmd *cmd) //TEST
+static void cmd_tester(t_data *data) //TEST
 {
+	t_cmd *cmd;
 	t_cmd *curr;
 
+	cmd = data->cmd;
 	curr = cmd;
 	printf("CMD TESTER :\ncmd->name = %s\n\n", curr->name);
 	
 	int i = -1;
     while (cmd->args[++i])
-        printf("cmd->args[%d] = %s\n", i, cmd->args[i]);
+    {    printf("cmd->args[%d] = %s\n", i, cmd->args[i]);}
 	if (cmd->infile)
-		printf("INFILE = %s\")
+		printf("INFILE = %s\n", cmd->infile);
+	if (cmd->outfile)
+		printf("OUTFILE = %s\n", cmd->outfile);
+	printf("SUCCESS\n");
 	// exit(0);
 }
 
@@ -54,7 +59,7 @@ void	parse_input(t_data *data, char *line)
 	token = lexer(token, line);
 	// lexer_tester(token); //TEST
 	parser(token, data);
-	cmd_tester(data->cmd); //TEST
+	cmd_tester(data); //TEST
 	free(line);
 	clear_tokens(&token);
 }

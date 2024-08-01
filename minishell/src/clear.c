@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:37:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/23 10:10:07 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:11:33 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static void clear_data(t_data *data)
+{
+	// clear_fds
+	// clear_pids
+	// clear_epath
+	if (data->limiter)
+		free(data->limiter);
+}
 
 static void clear_node(t_cmd *cmd)
 {
@@ -40,10 +49,11 @@ void clear_cmds(t_cmd **start)
 	*start = NULL;
 }
 
-void	clear_all(void)
+void	clear_all(t_data *data)
 {
-	// rl_clear_history();
-	clear_history();
+	clear_cmds(&(data->cmd));
+	clear_data(data);
+	rl_clear_history();
 }
 
 void	clear_tokens(t_token **start)

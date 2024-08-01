@@ -75,7 +75,7 @@ void		print_file_error(char *file, char *str, int file_err);
 void		check_error(char *file, int n, t_data *data);
 
 void		clear_cmds(t_cmd **start);
-void		clear_all(void);
+void		clear_all(t_data *data);
 
 void		run_loop();
 

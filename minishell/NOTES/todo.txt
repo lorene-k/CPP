@@ -1,12 +1,14 @@
-                29/07
-- token does not evolve outside of parser : added **token - OK
-- fix check_cmd_args - OK
-- check if files should be opened in parsing or exec >> just get names & open later : change parser_files - OK
+                01/08
 - check how to merge "get_first" functions (with void * ?)
 - test & parse whole line
     >> how to treat random string ? (ex : echo -n "hello")
     >> handle line w/ no redirect operators
     >> test infile & outfile
+
+                29/07
+- token does not evolve outside of parser : added **token - OK
+- fix check_cmd_args - OK
+- check if files should be opened in parsing or exec >> just get names & open later : change parser_files - OK
 
                 27-28/07
 - fix invalid 1st str > error.c - OK
