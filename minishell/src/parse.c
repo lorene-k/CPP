@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 17:12:39 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:52:35 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,19 @@ static void cmd_tester(t_data *data) //TEST
 {
 	printf("CMD TESTER :\ncmd->name = %s\n", data->cmd->name);
 	int i = -1;
-    if (data->cmd->args)
+	int j = -1;
+    while(data->cmd)
 	{
-		while (data->cmd->args[++i])
-        printf("cmd->args[%d] = %s\n", i, data->cmd->args[i]);
-	}
-	if (data->cmd->infile)
-		printf("INFILE = %s\n", data->cmd->infile);
-	if (data->cmd->outfile)
-		printf("OUTFILE = %s\n", data->cmd->outfile);
+		if (data->cmd->args)
+		{
+			while (data->cmd->args[++i])
+			printf("cmd->args[%d] = %s\n", i, data->cmd->args[i]);
+		}
+		if (data->cmd->infile)
+			printf("INFILE = %s\n", data->cmd->infile);
+		if (data->cmd->outfile)
+			printf("OUTFILE = %s\n", data->cmd->outfile);
+		}
 	printf("SUCCESS\n");
 	// exit(0);
 }

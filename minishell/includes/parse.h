@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 16:59:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:42:48 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@
 # define UNEXISTING_FILE ": No such file or directory"
 # define BAD_ACCESS ": Permission denied"
 # define INV_COMMAND ": command not found"
-# define REDIRECT_ERR "syntax error near unexpected token `newline'"
-	//change "newline" according to following token
+# define INV_TOKEN "syntax error near unexpected token `newline'"
 # define MALLOC_ERR "memory can't be allocated"
 
 /* ------------  STRUCTS  -------------------------------------------------- */

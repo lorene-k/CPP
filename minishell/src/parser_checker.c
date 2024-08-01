@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:15:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 17:18:16 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:50:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ int    parser(t_token *token, t_data *data)
             if (token)
                 token = token->next;
         }
-        // if (token->type == PIPE && !token->next)
-        //     handle_unclosed_pipe();
+        if (token && token->type == PIPE && !token->next)
+            return (print_error(INV_TOKEN, NULL, 2));
+        else if (token && token->type == PIPE)
+            token = token->next;
         data->cmd_n++;
     }
     data->pipes = data->cmd_n - 1;

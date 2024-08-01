@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:38:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 17:28:11 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:46:56 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	parse_redirect(t_token **token, t_cmd *cmd, t_data *data)
 int	handle_redirect(t_token **token, t_cmd *cmd, t_data *data)
 {
 	if (!(*token)->next || (*token)->next->type != STRING)
-		return (print_error(REDIRECT_ERR, NULL, 2)); //CHECK_ERROR_HANDLING - adapt mesg & exit code to diff cases
+		return (print_error(INV_TOKEN, NULL, 2)); //CHECK_ERROR_HANDLING - adapt msg & exit code to diff cases
 	else if ((*token)->next && (*token)->next->type == STRING)
 		parse_redirect(token, cmd, data);
 	return (0);
