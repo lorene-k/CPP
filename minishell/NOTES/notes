@@ -3,7 +3,7 @@ BOUCLE DANS MAIN
         > GET LINE 
         > LEXER
         > PARSER
-        > EXEC
+        > EXEC : consider that if noinfile/outfile, use standard stream
         > CLEAR ALL
 HANDLE SIGNALS
 - in loop

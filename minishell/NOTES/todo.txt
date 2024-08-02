@@ -1,9 +1,13 @@
+                02/08
+- check how to merge "get_first" functions (with void * ?)
+- implement linked list of files in case of multiple redirections
++ consider multiple heredocs
+
                 01/08
 - test & parse whole line
     >> how to treat random string ? (ex : echo -n "hello") > infile - OK
     >> handle line w/ no redirect operators - OK
     >> test infile & outfile w/ no pipes - OK
-- check how to merge "get_first" functions (with void * ?)
 - handle pipes - OK
 
                 29/07

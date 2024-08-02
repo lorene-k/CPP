@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 17:52:35 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:06:28 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@
 
 static void cmd_tester(t_data *data) //TEST
 {
-	printf("CMD TESTER :\ncmd->name = %s\n", data->cmd->name);
 	int i = -1;
-	int j = -1;
+	int j = 0;
+	printf("CMD TESTER :\n");
     while(data->cmd)
 	{
+		printf("CMD %d: %s\n",++j, data->cmd->name);
 		if (data->cmd->args)
 		{
 			while (data->cmd->args[++i])
@@ -47,7 +48,11 @@ static void cmd_tester(t_data *data) //TEST
 			printf("INFILE = %s\n", data->cmd->infile);
 		if (data->cmd->outfile)
 			printf("OUTFILE = %s\n", data->cmd->outfile);
-		}
+		data->cmd = data->cmd->next;
+	}
+	if (data->pipes)
+		printf("PIPES : %d\t", data->pipes);
+	printf("CMD_N : %d\n", data->cmd_n);
 	printf("SUCCESS\n");
 	// exit(0);
 }

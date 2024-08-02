@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:15:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 17:50:25 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:45:35 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,23 @@ static int check_token(t_token **token, t_cmd *cmd, t_data *data)
     return (print_error(INV_COMMAND, (*token)->value, 127));
 }
 
+static int parse_token(t_token **token, t_cmd *cmd, t_data *data)
+{
+    while ((*token) && (*token)->type != PIPE)
+    {
+        if (check_token(token, cmd, data))
+            return (1);                     //HANDLE ERROR HERE
+        if (*token)
+            (*token) = (*token)->next;
+    }
+    if ((*token) && (*token)->type == PIPE && !(*token)->next)
+        return (print_error(INV_TOKEN, NULL, 2));
+    else if ((*token) && (*token)->type == PIPE)
+        (*token) = (*token)->next;
+    data->cmd_n++;
+    return (0);
+}
+
 int    parser(t_token *token, t_data *data)
 {
     t_cmd  *cmd;
@@ -63,18 +80,8 @@ int    parser(t_token *token, t_data *data)
         add_cmd(&cmd);
         if (!cmd)
             return(print_error(MALLOC_ERR, NULL, 1)); //check exit code + err msg
-        while (token && token->type != PIPE)
-        {
-            if (check_token(&token, cmd, data))
-                return (1); //HANDLE ERROR HERE
-            if (token)
-                token = token->next;
-        }
-        if (token && token->type == PIPE && !token->next)
-            return (print_error(INV_TOKEN, NULL, 2));
-        else if (token && token->type == PIPE)
-            token = token->next;
-        data->cmd_n++;
+        if (parse_token(&token, cmd, data))
+            return (1); // return parse_token ?
     }
     data->pipes = data->cmd_n - 1;
     data->cmd = get_first_cmd(cmd);

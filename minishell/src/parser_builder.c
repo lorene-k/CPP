@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:38:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 17:46:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:40:31 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static void	check_cmd_args(t_token **token, t_cmd *cmd)
 		(*cmd->args) = NULL;
 		while (++i < arg_n)
 		{
-			cmd->args[i] = ft_strdup((*token)->value); // protect memory
+			cmd->args[i] = ft_strdup((*token)->value);
+			protect_memory(cmd->args);
 			(*token) = (*token)->next;
 		}
 	}

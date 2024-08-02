@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:44:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 16:07:55 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:34:43 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	run_loop()
 		// sig_handler(data);
 		clear_all(&data);
 	}
+	rl_clear_history();
 }
 
 /*

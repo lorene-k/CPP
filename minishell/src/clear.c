@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:37:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 16:11:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:34:31 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	clear_all(t_data *data)
 {
 	clear_cmds(&(data->cmd));
 	clear_data(data);
-	rl_clear_history();
 }
 
 void	clear_tokens(t_token **start)
