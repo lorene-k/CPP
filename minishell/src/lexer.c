@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:04:02 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/28 20:42:00 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:57:31 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,28 @@ static void	ft_getconstant(t_token *token, char *line, int *i)
 	*i = j;
 }
 
-static void	ft_getspecchar(t_token *token, char *line, int *i)
+static void	ft_getspecchar(t_token *token, char *line, int *i, t_data *data)
 {
 	int	is_str;
 	int	j;
 
 	is_str = 0;
 	j = *i;
-	if (ft_isoperator(line, *i)) //doesn't consider =!
+	data->line = ft_strdup(line);
+	if (ft_solo_operator(line, *i) || ft_multi_operator(line, *i)) //doesn't consider =!
 	{
 		get_value(token, line, &j, 3);
 		get_type(token, 3);
 	}
 	else if (ft_ispunctuation(line[*i]))
-		is_str = get_punctuation(&token, line, &j);
-	if (is_str || (!ft_ispunctuation(line[*i]) && !ft_isoperator(line, *i)))
+		is_str = get_punctuation(&token, data, &j);
+	if (is_str || (!ft_ispunctuation(line[*i]) && !ft_solo_operator(line, *i)
+		&& !ft_multi_operator(line, *i)))
 		ft_getconstant(token, line, &j);
 	*i = j;
 }
 
-t_token	*lexer(t_token *token, char *line)
+t_token	*lexer(t_token *token, char *line, t_data *data)
 {
 	int	i;
 
@@ -68,7 +70,7 @@ t_token	*lexer(t_token *token, char *line)
 		if (!token)
 			return (NULL);
 		if (ft_isspecchar(line[i])) // OR if (!ft_isalnum(line[i]))
-			ft_getspecchar(token, line, &i);
+			ft_getspecchar(token, line, &i, data);
 		else if (ft_isalnum(line[i]) || ft_issign(line[i])
 			|| !ft_isascii(line[i]))
 			ft_getconstant(token, line, &i);

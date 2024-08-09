@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:15:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/05 22:44:49 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:04:11 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-// static void	get_fd(t_data *data)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	data->fd = malloc(sizeof(int *) * data->pipes);
-// 	if (!data->fd)
-// 		print_error("malloc", 0, data); //change print error here
-// 	while (++i < data->pipes)
-// 	{
-// 		data->fd[i] = malloc(sizeof(int) * 2);
-// 		if (!data->fd[i])
-// 			print_error("malloc", 0, data);
-// 	}
-// }
 
 static void init_data(t_data *data, t_cmd *cmd)
 {
@@ -35,8 +19,6 @@ static void init_data(t_data *data, t_cmd *cmd)
     data->epath = getenv("PATH");
 	data->cmd_n = 0;
     data->cmd = cmd;
-    // get_fds
-    // get_pids
 }
 
 static int check_token(t_token **token, t_cmd *cmd)
@@ -53,7 +35,7 @@ static int parse_token(t_token **token, t_cmd *cmd, t_data *data)
     while ((*token) && (*token)->type != PIPE)
     {
         if (check_token(token, cmd))
-            return (1);                     //HANDLE ERROR HERE
+            return (1);     //HANDLE ERROR HERE
         if (*token)
             (*token) = (*token)->next;
     }
@@ -83,7 +65,7 @@ int    parser(t_token *token, t_data *data)
         cmd->file = get_first_file(cmd->file);
     }
     data->pipes = data->cmd_n - 1;
-    data->cmd = get_first_cmd(cmd); // add get_first file
+    data->cmd = get_first_cmd(cmd);
     // printf("PARSER TEST : cmd->name = %s\n", data->cmd->name);
     return (0);
 }

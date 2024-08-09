@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/05 22:32:51 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:35:22 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	init_cmds(t_cmd *cmd)
 	cmd->args = NULL;
 	cmd->paths = NULL;
 	cmd->c_path = NULL;
+	cmd->file = NULL;
 	cmd->next = 0;
 	cmd->prev = 0;
 	cmd->builtin = 0;

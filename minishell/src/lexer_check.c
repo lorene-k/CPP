@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 22:12:40 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/28 11:57:27 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:49:59 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,14 @@ int	check_quotes(char *line, int start, int k)
 }
 
 //CHECK IF IS OPERATOR + GET OPERATOR VALUE
-int	check_operator(char *line, int i, int *j)
+int	check_operator(char *line, int i, int *j) //in bash, operator can be attached to file name
 {
-	if (ft_isoperator(line, i))
+	if (ft_solo_operator(line, i))
 	{
 		(*j) += 1;
 		return (0);
 	}
-	else if ((!line[i + 2] || ft_isspace(line[i + 2])) && ((line[i] == '!'
-				&& line[i + 1] == '=') || ((line[i] == line[i + 1])
-				&& (line[i] == '*' || line[i] == '&' || line[i] == '|'
-					|| line[i] == '>' || line[i] == '<'))))
+	else if (ft_multi_operator(line, i))
 	{
 		(*j) += 2;
 		return (0);

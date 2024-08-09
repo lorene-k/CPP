@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:45:08 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/28 11:56:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/09 14:46:36 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int					is_in_charset(char *charset, char c);
 int					ft_isspace(char c);
 int					ft_issign(char c);
 int					ft_isspecchar(char c);
-int					ft_isoperator(char *line, int i);
+int     			ft_solo_operator(char *line, int i);
+int				    ft_multi_operator(char *line, int i);
 int					ft_isoperator_char(char c);
 int					ft_ispunctuation(char c);
 

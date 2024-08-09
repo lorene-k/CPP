@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/05 22:33:14 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:13:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void					add_file(t_file **current);
 void					add_token(t_token **current);
 
 /* PARSER */
+void					parse_infile(t_token **token, t_cmd *cmd);
 int						handle_redirect(t_token **token, t_cmd *cmd);
 void					get_cmd(t_token **token, t_cmd *cmd);
 int						parser(t_token *token, t_data *data);
@@ -77,17 +78,17 @@ int						check_operator(char *line, int i, int *j);
 int						check_digit(char *line, int i, int *j);
 
 void					check_type(t_token **token);
-void					handle_unclosed_quote(char quote, t_token **token);
-int						get_quoted_value(char *line, int i, int *j, t_token **token);
+void					handle_unclosed_quote(char quote, t_token **token, t_data *d);
+int						get_quoted_value(t_data *d, int i, int *j, t_token **token);
 
-int						handle_expansion(t_token **token, char *line, int i, int *j);
-void					check_expansion(t_token **token, char *tmp);
+int						handle_expansion(t_token **token, t_data *d, int i, int *j);
+void					check_expansion(t_token **token, t_data *d);
 
-int						get_punctuation(t_token **token, char *line, int *i);
+int						get_punctuation(t_token **token, t_data *d, int *i);
 void					get_type(t_token *token, int type);
 int						get_value(t_token *token, char *line, int *i, int type);
 
-t_token					*lexer(t_token *token, char *line);
+t_token					*lexer(t_token *token, char *line, t_data *data);
 void					parse_input(t_data *data, char *line);
 
 #endif //PARSE_H

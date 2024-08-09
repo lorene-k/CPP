@@ -6,61 +6,27 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:27:37 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/29 15:01:04 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/09 15:52:56 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int print_error(char *msg, char *str, int code)
+int	print_error(char *msg, char *str, int code)
 {
-    ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd("minishell: ", 2);
 	if (str)
 		ft_putstr_fd(str, 2);
-    ft_putendl_fd(msg, 2);
-    return(code);
+	ft_putendl_fd(msg, 2);
+	return (code);
 }
 
-void	print_file_error(char *file, char *str, int file_err)
-{
-	if (file_err)
-		ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(file, 2);
-	ft_putendl_fd(str, 2);
-}
-
-int		protect_memory(char **array)
+int	protect_memory(char **array)
 {
 	if (!array)
 	{
-        clear_tab(array);
+		clear_tab(array);
 		return (print_error(MALLOC_ERR, NULL, 1));
 	}
 	return (0);
-}
-
-// void	put_cmd_error(char *cmd, t_data *data)
-// {
-// 	print_file_error(cmd, INVALID_COMMAND, 0);
-// 	clear_tab(data->cmd.args);
-// 	clear_all(data);
-// 	if (errno == EACCES)
-// 		exit(126);
-// 	exit(127);
-// }
-
-void	check_error(char *file, int n, t_data *data)
-{
-	if (n == 0)
-	{
-		if (errno == EACCES)
-			print_file_error(file, BAD_ACCESS, 1);
-		else if (errno == ENOENT)
-			print_file_error(file, UNEXISTING_FILE, 1);
-	}
-	else if (errno == ENOENT)
-		print_file_error(file, UNEXISTING_FILE, 1);
-	else if (errno == EACCES)
-		print_file_error(file, BAD_ACCESS, 1);
-    clear_cmds(&(data->cmd)); //MAKE SURE CMDS ARE CLEARED FROM THE START
 }

@@ -30,20 +30,13 @@
 # include <unistd.h>
 
 /* ------------  STRUCTS  -------------------------------------------------- */
-// typedef struct s_env
-// {
-// 	char			*name;
-// 	char			*value;
-// 	struct t_env	*next;
-// }					t_env; // ??
-
 typedef struct s_file
 {
 	char			*name;
 	int				in;
 	int				out;
 	int				append;
-	int 			heredoc;
+	int 			heredoc; // not necessary
 	char			*limiter;
 	int				fd_in;
 	int				fd_out;
@@ -65,27 +58,26 @@ typedef struct s_cmd
 
 typedef struct s_data
 {
+	char			*line;
+	char			*tmp;
 	int				cmd_n;
 	int				**fd;
-	int status; //exit status
+	int				status; //exit status
 	int				pipes;
 	char			*epath;
-	pid_t			*pid;
 	t_cmd			*cmd;
-	// t_env			*env;
 }					t_data;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* ERRORS */
 int					protect_memory(char **array);
 int					print_error(char *msg, char *str, int code);
-void				print_file_error(char *file, char *str, int file_err);
-void				check_error(char *file, int n, t_data *data);
 
+/* CLEAR */
 void				clear_files(t_file **start);
 void				clear_cmds(t_cmd **start);
-void				clear_all(t_data *data);
 
+/* LOOP */
 void				run_loop(void);
 
 #endif //MINISHELL_H
