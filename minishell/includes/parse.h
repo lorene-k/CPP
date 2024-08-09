@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 17:42:48 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/05 22:33:14 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,20 @@ typedef struct s_token
 
 typedef struct s_data	t_data;
 typedef struct s_cmd	t_cmd;
+typedef struct s_file	t_file;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* STRUCTS */
-void					add_cmd(t_cmd **current);
 void					clear_tokens(t_token **start);
+t_file					*get_first_file(t_file *last);
 t_cmd					*get_first_cmd(t_cmd *last);
 t_token					*get_first_token(t_token *last);
+void					add_cmd(t_cmd **current);
+void					add_file(t_file **current);
 void					add_token(t_token **current);
 
 /* PARSER */
-int						handle_redirect(t_token **token, t_cmd *cmd, t_data *data);
+int						handle_redirect(t_token **token, t_cmd *cmd);
 void					get_cmd(t_token **token, t_cmd *cmd);
 int						parser(t_token *token, t_data *data);
 

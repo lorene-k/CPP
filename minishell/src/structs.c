@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   structs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/01 16:58:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/05 22:32:51 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+t_file	*get_first_file(t_file *last)
+{
+	t_file	*curr;
+
+	if (!last)
+		return (NULL);
+	curr = last;
+	while (curr->prev)
+		curr = curr->prev;
+	return (curr);
+}
 
 t_cmd	*get_first_cmd(t_cmd *last)
 {
@@ -36,20 +48,51 @@ t_token	*get_first_token(t_token *last)
 	return (curr);
 }
 
-static void	init_cmd(t_cmd *cmd)
+static void	init_cmds(t_cmd *cmd)
 {
 	cmd->name = NULL;
-	cmd->infile = NULL;
-	cmd->outfile = NULL;
 	cmd->args = NULL;
 	cmd->paths = NULL;
 	cmd->c_path = NULL;
-	cmd->in_fd = -1;
-	cmd->out_fd = -1;
-	cmd->append = 0;
 	cmd->next = 0;
 	cmd->prev = 0;
 	cmd->builtin = 0;
+}
+
+static void	init_files(t_file *file)
+{
+	file->name = NULL;
+	file->in = 0;
+	file->out = 0;
+	file->append = 0;
+	file->fd_in = 0;
+	file->fd_out = 0;
+	file->heredoc = 0;
+	file->limiter = NULL;
+	file->next = 0;
+	file->prev = 0;
+}
+
+void	add_file(t_file **current)
+{
+	t_file	*file;
+
+	file = malloc(sizeof(t_file));
+	if (!file)
+	{
+		clear_files(current);
+		*current = 0;
+		return ;
+	}
+	init_files(file);
+	if (!*current)
+		*current = file;
+	else
+	{
+		(*current)->next = file;
+		file->prev = *current;
+		*current = file;
+	}
 }
 
 void	add_cmd(t_cmd **current)
@@ -63,7 +106,7 @@ void	add_cmd(t_cmd **current)
 		*current = 0;
 		return ;
 	}
-	init_cmd(cmd);
+	init_cmds(cmd);
 	if (!*current)
 		*current = cmd;
 	else

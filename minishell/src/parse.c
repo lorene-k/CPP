@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/02 17:06:28 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/05 22:47:05 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static void cmd_tester(t_data *data) //TEST
 			while (data->cmd->args[++i])
 			printf("cmd->args[%d] = %s\n", i, data->cmd->args[i]);
 		}
-		if (data->cmd->infile)
-			printf("INFILE = %s\n", data->cmd->infile);
-		if (data->cmd->outfile)
-			printf("OUTFILE = %s\n", data->cmd->outfile);
+		if (data->cmd->file)
+			printf("FILE = %s\n", data->cmd->file->name);
+		if (data->cmd->file->limiter)
+			printf("LIMITER = %s\n", data->cmd->file->limiter);
 		data->cmd = data->cmd->next;
 	}
 	if (data->pipes)

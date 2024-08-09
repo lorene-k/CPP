@@ -1,7 +1,7 @@
                 02/08
 - check how to merge "get_first" functions (with void * ?)
-- implement linked list of files in case of multiple redirections
-+ consider multiple heredocs
+- implement linked list of files in case of multiple redirections - OK
++ consider multiple heredocs >> TEST
 
                 01/08
 - test & parse whole line

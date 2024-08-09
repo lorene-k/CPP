@@ -3,40 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   parser_builder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:38:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/02 17:40:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/05 22:43:57 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	parse_redirect(t_token **token, t_cmd *cmd, t_data *data)
+static void	parse_redirect(t_token **token, t_cmd *cmd)
 {
 	(*token) = (*token)->next;
+	add_file(&cmd->file);
 	if ((*token)->prev->value[0] == '<')
-		cmd->infile = ft_strdup((*token)->value);
+	{	
+		cmd->file->name = ft_strdup((*token)->value);
+		cmd->file->in = 1;
+	}
 	else if ((*token)->prev->value[0] == '>')
 	{
-		cmd->outfile = ft_strdup((*token)->value);
+		cmd->file->name = ft_strdup((*token)->value);
+		cmd->file->out = 1;
 		if ((*token)->prev->value[1] == '>')
-			cmd->append = 1;
+			cmd->file->append = 1;
 	}
 	else
 	{
 		// cmd->infile = HEREDOC; //check_this
-		data->here_doc = 1;
-		data->limiter = ft_strdup((*token)->value);
+		cmd->file->heredoc = 1;
+		cmd->file->limiter = ft_strdup((*token)->value);
 	}
+	if ((*token)->next && (*token)->next->type == REDIRECT)
+		(*token) = (*token)->next;
 }
 
-int	handle_redirect(t_token **token, t_cmd *cmd, t_data *data)
+int	handle_redirect(t_token **token, t_cmd *cmd)
 {
 	if (!(*token)->next || (*token)->next->type != STRING)
 		return (print_error(INV_TOKEN, NULL, 2)); //CHECK_ERROR_HANDLING - adapt msg & exit code to diff cases
-	else if ((*token)->next && (*token)->next->type == STRING)
-		parse_redirect(token, cmd, data);
+	while ((*token)->type == REDIRECT && (*token)->next
+		&& (*token)->next->type == STRING)
+	{
+		if ((*token)->next->value[0] == '-')
+			return (print_error(INV_TOKEN, NULL, 2));
+		else
+			parse_redirect(token, cmd);
+	}
 	return (0);
 }
 
@@ -79,6 +92,9 @@ void	get_cmd(t_token **token, t_cmd *cmd)
 		if (*((*token)->value) == '-')
 			check_cmd_args(token, cmd);
 		if (*token)
-			cmd->infile = ft_strdup((*token)->value);
+		{	
+			cmd->file->name = ft_strdup((*token)->value);
+			cmd->file->in = 1;
+		}
 	}
 }

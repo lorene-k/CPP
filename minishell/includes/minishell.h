@@ -37,18 +37,28 @@
 // 	struct t_env	*next;
 // }					t_env; // ??
 
+typedef struct s_file
+{
+	char			*name;
+	int				in;
+	int				out;
+	int				append;
+	int 			heredoc;
+	char			*limiter;
+	int				fd_in;
+	int				fd_out;
+	struct s_file	*next;
+	struct s_file	*prev;
+}					t_file;
+
 typedef struct s_cmd
 {
 	char			*name;
-	char			*infile; // input for echo
-	char			*outfile;
-	int				in_fd;
-	int				out_fd;
-	int				append;
 	char			**args;
 	char			**paths;
 	char			*c_path;
 	int				builtin;
+	t_file			*file;
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
 }					t_cmd;
@@ -59,8 +69,6 @@ typedef struct s_data
 	int				**fd;
 	int status; //exit status
 	int				pipes;
-	int				here_doc;
-	char			*limiter;
 	char			*epath;
 	pid_t			*pid;
 	t_cmd			*cmd;
@@ -74,6 +82,7 @@ int					print_error(char *msg, char *str, int code);
 void				print_file_error(char *file, char *str, int file_err);
 void				check_error(char *file, int n, t_data *data);
 
+void				clear_files(t_file **start);
 void				clear_cmds(t_cmd **start);
 void				clear_all(t_data *data);
 
