@@ -1,16 +1,19 @@
+                11/08
+- consider that operators don't need to be separated by spaces - OK
+- change makefile to put .c files in directories - OK
+- check how to merge "get_first" functions (with void * ?) - OK
+- check all return values <<
+
                 09/08
 - operator can be attached to file name >> change lexer - OK
 - TEST multiple heredocs - OK
 - PB w/ single commd - OK
 - check linked list if multiple redirections for 1 cmd - OK
-- PB : flags - OK
-- change makefile to put .c files in directories <<
-- check how to get right return values <<
+- PB : flags - OK 
 - expand exit codes in lexer - OK
 >> PB : if no spaces, value doesn't expand
 
                 02/08
-- check how to merge "get_first" functions (with void * ?) <<
 - implement linked list of files in case of multiple redirections - OK
 
                 01/08

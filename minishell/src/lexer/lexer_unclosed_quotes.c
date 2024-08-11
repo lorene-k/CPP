@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_unclosed_quotes.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 21:03:10 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/09 18:19:57 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/11 13:54:35 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void    check_type(t_token **token) // CHECK THIS
 {
@@ -60,10 +60,8 @@ static int    get_quoted_input(char **buf, char **tmp, char quote)
 void    handle_unclosed_quote(char quote, t_token **token, t_data *d)
 {
     char    *buf;
-    char    *tmp;
     int     i;
 
-    tmp = NULL;
     buf = NULL;
     if ((*token)->value)
         (*token)->value = ft_strjoin_memory((*token)->value, ft_strdup("\n"));

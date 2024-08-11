@@ -12,30 +12,34 @@ SRC_DIR			=	src/
 INC_DIR			= 	includes/
 OBJ_DIR			=	objs/
 LFT_DIR			=	libft/
+LEXER_DIR		=	lexer/
+PARSER_DIR		=	parser/
+UTILS_DIR		=	utils/
 
 # ------------  SOURCES  ----------------------------------------------------- #
 LFT				=	libft/libft.a
 
-SRC_FLS			=	clear.c \
-					error.c \
-					lexer_check.c \
-					lexer_expand.c \
-					lexer_quotes.c \
-					lexer_types.c \
-					lexer_unclosed_quotes.c \
-					lexer_values.c \
-					lexer.c \
+SRC_FLS			=	main.c \
 					loop.c \
-					main.c \
-					parse.c \
-					parser_checker.c \
-					parser_cmds.c \
-					parser_files.c \
-					structs.c
+					$(UTILS_DIR)clear.c \
+					$(UTILS_DIR)error.c \
+					$(UTILS_DIR)structs_init.c \
+					$(UTILS_DIR)structs_get_prev.c \
+					$(LEXER_DIR)lexer_check.c \
+					$(LEXER_DIR)lexer_expand.c \
+					$(LEXER_DIR)lexer_quotes.c \
+					$(LEXER_DIR)lexer_types.c \
+					$(LEXER_DIR)lexer_unclosed_quotes.c \
+					$(LEXER_DIR)lexer_values.c \
+					$(LEXER_DIR)lexer.c \
+					$(PARSER_DIR)parse.c \
+					$(PARSER_DIR)parser_checker.c \
+					$(PARSER_DIR)parser_cmds.c \
+					$(PARSER_DIR)parser_files.c
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
-OBJS			=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o, $(SRCS))
+OBJS			=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
 
 # ------------  FLAGS  -------------------------------------------------------- #
 CFLAGS			=	-Wall -Wextra -Werror -g
@@ -66,6 +70,9 @@ $(OBJ_DIR)%.o: 		$(SRC_DIR)%.c | $(OBJ_DIR)
 
 $(OBJ_DIR):
 					@mkdir -p $(OBJ_DIR)
+					@mkdir -p $(OBJ_DIR)$(LEXER_DIR)
+					@mkdir -p $(OBJ_DIR)$(PARSER_DIR)
+					@mkdir -p $(OBJ_DIR)$(UTILS_DIR)
 
 $(LFT):
 					@$(MK) $(MAKE_FLAGS) $(LFT_DIR)

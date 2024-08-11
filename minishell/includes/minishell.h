@@ -58,24 +58,22 @@ typedef struct s_cmd
 
 typedef struct s_data
 {
-	char			*line;
-	char			*tmp;
 	int				cmd_n;
-	int				**fd;
 	int				status; //exit status
 	int				pipes;
+	char			*line;
+	char			*tmp;
 	char			*epath;
 	t_cmd			*cmd;
 }					t_data;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
-/* ERRORS */
+/* UTILS */
+void				*get_first_node(t_token *token, t_cmd *cmd, t_file *file);
+void				clear_nodes(void **start, size_t n_size);
+void				add_node(t_token **token, t_cmd **cmd, t_file **file);
 int					protect_memory(char **array);
 int					print_error(char *msg, char *str, int code);
-
-/* CLEAR */
-void				clear_files(t_file **start);
-void				clear_cmds(t_cmd **start);
 
 /* LOOP */
 void				run_loop(void);

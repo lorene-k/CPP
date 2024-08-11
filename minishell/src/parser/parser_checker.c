@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:15:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/09 17:04:11 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:52:03 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-
-static void init_data(t_data *data, t_cmd *cmd)
-{
-    data->status = 0;
-    data->pipes = 0;
-    data->epath = getenv("PATH");
-	data->cmd_n = 0;
-    data->cmd = cmd;
-}
+#include "../../includes/minishell.h"
 
 static int check_token(t_token **token, t_cmd *cmd)
 {
@@ -52,20 +43,19 @@ int    parser(t_token *token, t_data *data)
     t_cmd  *cmd;
     
     cmd = NULL;
-    init_data(data, cmd);
     while (token)
     {
         if (!token->value)
             token = token->next;
-        add_cmd(&cmd);
+        add_node(0, &cmd, 0);
         if (!cmd)
             return(print_error(MALLOC_ERR, NULL, 1)); //check exit code + err msg
         if (parse_token(&token, cmd, data))
             return (1); // return parse_token ?
-        cmd->file = get_first_file(cmd->file);
+        cmd->file = get_first_node(0, 0, cmd->file);
     }
     data->pipes = data->cmd_n - 1;
-    data->cmd = get_first_cmd(cmd);
+    data->cmd = get_first_node(0, cmd, 0);
     // printf("PARSER TEST : cmd->name = %s\n", data->cmd->name);
     return (0);
 }

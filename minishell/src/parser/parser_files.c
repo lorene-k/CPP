@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_files.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 16:41:42 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/09 17:14:06 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:52:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 static void	parse_heredoc(t_token **token, t_cmd *cmd)
 {
@@ -40,7 +40,7 @@ void parse_infile(t_token **token, t_cmd *cmd)
 static void	parse_redirect(t_token **token, t_cmd *cmd)
 {
 	(*token) = (*token)->next;
-	add_file(&cmd->file);
+	add_node(0, 0, &(cmd->file));
 	if ((*token)->prev->value[0] == '<' && !(*token)->prev->value[1])
 		parse_infile(token, cmd);
 	else if ((*token)->prev->value[0] == '>')

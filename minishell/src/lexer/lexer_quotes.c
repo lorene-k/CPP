@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 20:02:39 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/09 18:14:52 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/11 13:54:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 int	get_quoted_value(t_data *d, int i, int *j, t_token **token)
 {

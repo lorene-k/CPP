@@ -6,11 +6,11 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:03:44 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/07/28 11:45:17 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/11 13:54:38 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 static void	get_operator_value(t_token *token, char *line, int *i)
 {
@@ -40,7 +40,8 @@ static void	get_str_value(t_token *token, char *line, int *i)
 
 	j = 0;
 	while (line[*i + j] && !ft_isspace(line[*i + j]) && line[*i + j] != '\''
-		&& line[*i + j] != '\"')
+		&& line[*i + j] != '\"' && !ft_solo_operator(line, *i + j)
+		&& !ft_multi_operator(line, *i + j) && line[*i + j] != '|')
 		j++;
 	token->value = ft_substr(line, *i, j);
 	*i += j;

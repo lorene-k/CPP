@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:38:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/09 17:14:34 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:52:08 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 static void get_args(t_token **token, t_cmd *cmd, int arg_n)
 {
@@ -30,11 +30,9 @@ static void get_args(t_token **token, t_cmd *cmd, int arg_n)
 
 static void	check_cmd_args(t_token **token, t_cmd *cmd)
 {
-	int		i;
 	int		arg_n;
 	t_token	*curr;
 
-	i = -1;
 	arg_n = 1;
 	curr = (*token);
 	while (curr->next && curr->type == STRING && *(curr->next->value) == '-')
@@ -59,7 +57,7 @@ void	get_cmd(t_token **token, t_cmd *cmd)
 			check_cmd_args(token, cmd);
 		if (*token)
 		{	
-			add_file(&cmd->file);
+			add_node(0, 0, &(cmd->file));
 			parse_infile(token, cmd);
 		}
 	}

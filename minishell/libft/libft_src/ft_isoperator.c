@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isoperator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 17:51:24 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/09 17:07:40 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/11 13:35:49 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int     ft_solo_operator(char *line, int i)
     if ((line[i] && ft_isoperator_char(line[i]))
         && (!line[i + 1] || ft_isspace(line[i + 1])))
         return (1);
-    if ((line[i] && ft_isredirect_char(line[i]))
+    if ((line[i] && (ft_isredirect_char(line[i]) || line[i] == '|'))
         && (!line[i + 1] || ft_isalnum(line[i + 1])
         || ft_isspace(line[i + 1])))
         return (1);

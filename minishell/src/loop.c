@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:44:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/09 17:51:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:44:24 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static char	*display_prompt(void) //CHECK_ERR
     return (user_cwd);
 }
 
+//LEAKS IN READLINE
 static void	get_input(char **line)
 {
 	char	*user_cwd;
@@ -81,14 +82,7 @@ void	run_loop()
 		parse_input(&data, line);
 		// exec(data);
 		// sig_handler(data);
-		clear_cmds(&(data.cmd));
+		clear_nodes((void *)&(data.cmd), sizeof(t_cmd));
 	}
 	clear_history(); //change to rl_clear_history
 }
-
-/*
-DISPLAY 
-user:path$
-
-LEAKS IN READLINE 
-*/

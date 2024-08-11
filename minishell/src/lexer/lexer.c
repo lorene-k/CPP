@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:04:02 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/09 17:57:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:51:59 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 static void	ft_getconstant(t_token *token, char *line, int *i)
 {
@@ -66,7 +66,7 @@ t_token	*lexer(t_token *token, char *line, t_data *data)
 			i++;
 		if (line[i] == '#')
 			break ;
-		add_token(&token);
+		add_node(&token, 0, 0);
 		if (!token)
 			return (NULL);
 		if (ft_isspecchar(line[i])) // OR if (!ft_isalnum(line[i]))
@@ -76,7 +76,7 @@ t_token	*lexer(t_token *token, char *line, t_data *data)
 			ft_getconstant(token, line, &i);
 		// printf(" TOKEN TESTER : token %d value : %s\t type : %d\n\n", i, token->value, token->type); //TEST
 	}
-	token = get_first_token(token);
+	token = get_first_node(token, 0, 0);
 	return (token);
 }
 
