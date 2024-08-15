@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/26 18:15:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:43:51 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ typedef struct s_file	t_file;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* PARSER */
-void					parse_infile(t_token **token, t_cmd *cmd);
+int						parse_infile(t_token **token, t_cmd *cmd);
 int						handle_redirect(t_token **token, t_cmd *cmd);
-void					get_cmd(t_token **token, t_cmd *cmd);
-int						parser(t_token *token, t_data *data);
+int						get_cmd(t_token **token, t_cmd *cmd);
+void					parser(t_token *token, t_data *data);
 
 /* LEXER */
 int						check_quotes(char *line, int start, int k);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:37:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/26 21:19:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:42:59 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ void	clear_parser(t_data *data, char *line, t_token *token)
 	if (data->line)
 		free(data->line);
 	data->line = NULL;
-	clear_nodes((void **)&token, sizeof(t_token));
+	data->status = 0;
+	if (token)
+		clear_nodes((void **)&token, sizeof(t_token));
 }

@@ -1,8 +1,15 @@
+                16/08
+- PB in lexer : null token added if last char isspace
+- check how to dissociate files & other args (if needed ?)
+
                 15/08
 - parser pb if builtin w/ args >> args parsed as infiles - OK
 - TEST PARSER + VALGRIND
 - RUN FUNCHECK >> PROTECT MALLOCS
-- do built-ins & check signals ?
+ERROR MANAGEMENT
+- store every exit status from print error in data->status - OK
+- check data->status : if error stored, quit program after parsing
+- funcheck pb w/ line = readline
 
                 12/08 - 14/08
 - PB : cat in | out - OK

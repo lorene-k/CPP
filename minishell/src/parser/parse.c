@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:33:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/26 22:10:41 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:18:44 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ void	parse_input(t_data *data, char *line)
 	init_data(data, line);
 	token = lexer(token, line, data);
 	// lexer_tester(token); //TEST
-	parser(token, data);
+	if (token)
+		parser(token, data);
 	if (data->cmd)
 		cmd_tester(data->cmd, data); //TEST
 	clear_parser(data, line, token);

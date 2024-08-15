@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 22:12:40 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/11 13:54:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/15 13:08:56 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	check_quotes(char *line, int start, int k)
 	if (!line[start + k] || ft_isspace(line[start + k]))
 		return (0);
 	pre_line = ft_substr(line, 0, start);
+	if (!pre_line)
+		return(print_error(MALLOC_ERR, NULL, 2));
 	if (line[start + k] == '\'' || line[start + k] == '\"')
 	{
 		if (ft_count_chars(pre_line, line[start + k]) % 2 == 0)

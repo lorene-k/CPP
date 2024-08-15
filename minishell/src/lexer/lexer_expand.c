@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_expand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:55:21 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/26 19:54:39 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/15 13:10:30 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,9 @@ int 	handle_expansion(t_token **token, t_data *d, int i, int *j)
 {
     int     start;
     int     k;
-    int     is_str;
 
     start = i + (*j) + 1;
     k = 0;
-    is_str = 0;
     if (d->line[start] == '?')
         k += 1;
 	else if (ft_isalpha(d->line[start]))
@@ -74,10 +72,8 @@ int 	handle_expansion(t_token **token, t_data *d, int i, int *j)
             k++;
     }
     if (!check_quotes(d->line, start, k))
-            ft_expand(token, ft_substr(d->line, start, k), d);
-        else
-            is_str = 1;
-    if (is_str)
+        ft_expand(token, ft_substr(d->line, start, k), d);
+    else
         k = handle_non_expansion(token, d->line, start - 1);
     if ((*token)->value)
         check_type(token);

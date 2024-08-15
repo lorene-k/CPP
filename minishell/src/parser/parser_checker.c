@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:15:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/26 22:17:21 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:30:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 static int check_token(t_token **token, t_cmd *cmd)
 {
     if ((*token)->type == STRING  || (*token)->type == KEYWORD)
-        return(get_cmd(token, cmd), 0);
+        return(get_cmd(token, cmd));
     if ((*token)->type == REDIRECT)
         return(handle_redirect(token, cmd));
     return (print_error(INV_COMMAND, (*token)->value, 127)); //unnecessary - should be handled in exec
 }
 
-static int parse_token(t_token **token, t_cmd *cmd, t_data *data)
+static int parse_token(t_token **token, t_cmd *cmd, t_data *data) //loop on single cmd (before pipe)
 {
     while ((*token) && (*token)->type != PIPE)
     {
         if (check_token(token, cmd))
-            return (1);     //HANDLE ERROR HERE
-        if (*token)
+        {
+            cmd->file = get_first_node(0, 0, cmd->file); 
+            return (1);
+        }
+        if (*token && (*token)->type != PIPE)
             (*token) = (*token)->next;
     }
     if ((*token) && (*token)->type == PIPE && !(*token)->next)
@@ -35,29 +38,29 @@ static int parse_token(t_token **token, t_cmd *cmd, t_data *data)
     else if ((*token) && (*token)->type == PIPE)
         (*token) = (*token)->next;
     data->cmd_n++;
+    cmd->file = get_first_node(0, 0, cmd->file);
     return (0);
 }
 
-int    parser(t_token *token, t_data *data)
+void    parser(t_token *token, t_data *data) // loop on tokens
 {
     t_cmd  *cmd;
     
     cmd = NULL;
     while (token)
     {
-        if (!token->value)
-            token = token->next;
         add_node(0, &cmd, 0);
-        if (!cmd)
-            return(print_error(MALLOC_ERR, NULL, 1)); //check exit code + err msg
+        if (!token->value || !token->type || !cmd) // check funcheck
+        {
+            print_error(MALLOC_ERR, NULL, 1);  //check exit code + err msg
+            break ;
+        }
         if (parse_token(&token, cmd, data))
-            return (1); // return parse_token ?
-        cmd->file = get_first_node(0, 0, cmd->file);
+            break ;
     }
     data->pipes = data->cmd_n - 1;
     data->cmd = get_first_node(0, cmd, 0);
     // printf("PARSER TEST : cmd->name = %s\n", data->cmd->name);
-    return (0);
 }
 
 /*

@@ -73,8 +73,9 @@ void				clear_nodes(void **start, size_t n_size);
 void				clear_parser(t_data *data, char *line, t_token *token);
 void				*get_first_node(t_token *token, t_cmd *cmd, t_file *file);
 void				add_node(t_token **token, t_cmd **cmd, t_file **file);
-int					protect_memory(char **array);
 int					print_error(char *msg, char *str, int code);
+int					protect_tab_memory(char **array);
+int					protect_str_memory(char *str);
 
 /* EXEC */
 void	exec(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:04:02 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/26 18:33:46 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:17:29 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ t_token	*lexer(t_token *token, char *line, t_data *data)
 			break ;
 		add_node(&token, 0, 0);
 		if (!token)
-			return (NULL);
+		{
+			print_error(MALLOC_ERR, NULL, 0);
+			break ;
+		}
 		if (ft_isspecchar(line[i])) // OR if (!ft_isalnum(line[i]))
 			ft_getspecchar(token, line, &i, data);
 		else if (ft_isalnum(line[i]) || ft_issign(line[i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_types.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 18:18:36 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/11 13:54:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:51:37 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void get_str_type(t_token *token)
 
 void    get_type(t_token *token, int type)
 {
+    if (!token->value)
+        return ;
     if (type == 1)
         get_str_type(token);
     if (type == 2)
