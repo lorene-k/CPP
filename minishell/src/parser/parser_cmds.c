@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:38:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/15 16:41:29 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/15 18:17:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	check_cmd_flags(t_token **token, t_cmd *cmd)
 		arg_n++;
 	}
 	if (arg_n)
-		get_args(token, cmd, arg_n);
+		get_cmd_flags(token, cmd, arg_n);
 }
 
 static int	is_cmd_arg(t_token *token)
