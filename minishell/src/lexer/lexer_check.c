@@ -6,13 +6,13 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 22:12:40 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/15 13:08:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:08:59 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_quotes(char *line, int start, int k)
+int	check_quotes(char *line, int start, int k, t_data *d)
 {
 	char	*pre_line;
 
@@ -20,7 +20,7 @@ int	check_quotes(char *line, int start, int k)
 		return (0);
 	pre_line = ft_substr(line, 0, start);
 	if (!pre_line)
-		return(print_error(MALLOC_ERR, NULL, 2));
+		return (print_error(MALLOC_ERR, NULL, 2, d));
 	if (line[start + k] == '\'' || line[start + k] == '\"')
 	{
 		if (ft_count_chars(pre_line, line[start + k]) % 2 == 0)
@@ -36,7 +36,7 @@ int	check_quotes(char *line, int start, int k)
 }
 
 //CHECK IF IS OPERATOR + GET OPERATOR VALUE
-int	check_operator(char *line, int i, int *j) //in bash, operator can be attached to file name
+int	check_operator(char *line, int i, int *j)
 {
 	if (ft_solo_operator(line, i))
 	{
@@ -60,8 +60,8 @@ int	check_digit(char *line, int i, int *j)
 		(*j)++;
 	while (ft_isdigit(line[i + (*j)]))
 		(*j)++;
-	if (line[i + (*j)] && (!ft_isspace(line[i + (*j)])
-			&& !(line[i + (*j)] == '.')))
+	if (line[i + (*j)] && (!ft_isspace(line[i + (*j)]) && !(line[i
+					+ (*j)] == '.')))
 		return (1);
 	if (line[i + (*j)] == '.')
 	{

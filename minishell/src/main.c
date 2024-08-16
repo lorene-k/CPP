@@ -6,15 +6,15 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 17:40:34 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/15 14:35:40 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:04:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int main()
+int	main(void)
 {
-    run_loop();
-    rl_clear_history();
-    return (0);
+	run_loop();
+	rl_clear_history();
+	return (0);
 }

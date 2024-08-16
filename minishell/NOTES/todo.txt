@@ -1,10 +1,18 @@
                 16/08
-- PB in lexer : null token added if last char isspace
-- check how to dissociate files & other args (if needed ?)
+- store every exit status from print error in data->status - OK
+- PB in lexer : null token added if last char isspace >> not a pb if only last token
 - PB : funcheck pb w/ line = readline
-- store every exit status from print error in data->status
-- change malloc error to display malloc : ...
-- check data->status : if error stored, quit program after parsing
+
+NORM
+- lexer_expand
+- lexer_quotes
+
+EXEC
+- check how to dissociate files & other args (if needed ?)
+
+ERROR MANAGEMENT
+- change malloc error to display malloc : ... ?
+- check data->status : if error stored, quit program after parsing >> exec
 
                 15/08
 - parser pb if builtin w/ args >> args parsed as infiles - OK

@@ -2,6 +2,7 @@
     "files.associations": {
         "minishell.h": "c",
         "parse.h": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "errno.h": "c"
     }
 }

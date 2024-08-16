@@ -3,40 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   structs_get_prev.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/26 06:14:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:03:22 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void *get_prev_file(void *node)
+static void	*get_prev_file(void *node)
 {
-    return ((t_file *)node)->prev;
+	return (((t_file *)node)->prev);
 }
 
-static void *get_prev_cmd(void *node)
+static void	*get_prev_cmd(void *node)
 {
-    return ((t_cmd *)node)->prev;
+	return (((t_cmd *)node)->prev);
 }
 
-static void *get_prev_token(void *node)
+static void	*get_prev_token(void *node)
 {
-    return ((t_token *)node)->prev;
+	return (((t_token *)node)->prev);
 }
 
-static void *get_prev_node(void *last, void *(*get_prev)(void *))
+static void	*get_prev_node(void *last, void *(*get_prev)(void *))
 {
-    void	*curr;
-	
+	void	*curr;
+
 	curr = last;
-    if (!last)
-        return NULL;
-    while (get_prev(curr))
-        curr = get_prev(curr);
-    return (curr);
+	if (!last)
+		return (NULL);
+	while (get_prev(curr))
+		curr = get_prev(curr);
+	return (curr);
 }
 
 void	*get_first_node(t_token *token, t_cmd *cmd, t_file *file)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 11:09:59 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/06/26 16:58:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:02:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	init_cmds(void *node, void **current)
 {
-	t_cmd *cmd;
-	
+	t_cmd	*cmd;
+
 	cmd = (t_cmd *)node;
 	cmd->name = NULL;
 	cmd->args = NULL;
@@ -34,8 +34,8 @@ static void	init_cmds(void *node, void **current)
 
 static void	init_files(void *node, void **current)
 {
-	t_file *file;
-	
+	t_file	*file;
+
 	file = (t_file *)node;
 	file->name = NULL;
 	file->in = 0;
@@ -56,7 +56,7 @@ static void	init_files(void *node, void **current)
 
 static void	init_tokens(void *node, void **current)
 {
-	t_token *token;
+	t_token	*token;
 
 	token = (t_token *)node;
 	token->value = NULL;

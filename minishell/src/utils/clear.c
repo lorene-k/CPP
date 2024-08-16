@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:37:06 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/15 15:42:59 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:03:54 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	clear_file(t_file **current, t_file **next)
 static void	clear_cmd(t_cmd **current, t_cmd **next)
 {
 	*next = (*current)->next;
-	clear_nodes((void *)&(*current)->file, sizeof(t_file)); //check syntax
+	clear_nodes((void *)&(*current)->file, sizeof(t_file));
 	clear_tab((*current)->args);
 	clear_tab((*current)->paths);
 	if ((*current)->name)
@@ -50,7 +50,7 @@ void	clear_nodes(void **start, size_t n_size)
 {
 	void	*current;
 	void	*next;
-	
+
 	if (!start || !*start)
 		return ;
 	current = *start;

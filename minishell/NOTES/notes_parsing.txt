@@ -1,29 +1,3 @@
-SIGNALS 
-- Avoid using more than one global variable to indicate a received signal. Consider the implications: this approach ensures that your signal handler will not access your main data structures.
->> global variable = number of a received signal
-- handle ctrl-C, ctrl-D and ctrl-\
-
-BUILT-INS
-◦ echo with option -n
-◦ cd with only a relative or absolute path ◦ pwd with no options
-◦ export with no options
-◦ unset with no options
-◦ env with no options or arguments
-◦ exit with no options
-
-
-BOUCLE DANS MAIN
-    > PROMPT
-        > GET LINE 
-        > LEXER
-        > PARSER
-        > EXEC : consider that if noinfile/outfile, use standard stream
-        > CLEAR ALL
-HANDLE SIGNALS
-- in loop
-- in heredoc
-
-
 PT 1 STEPS
 1. LEXER : scan line and tokenize
 2. ENV VARIABLES

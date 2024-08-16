@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 20:02:39 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/11 13:54:27 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:02:01 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,13 @@ static int	handle_double_quotes(t_data *d, int i, t_token **token, int *unclosed
 	j = 1;
 	expansion = get_quoted_value(d, i, &j, token);
 	if (expansion && j != expansion + 1 && j != 1)
-		(*token)->value = ft_strjoin_memory((*token)->value, ft_substr(d->line, i
-					+ expansion + 1, j - expansion - 1));
+		(*token)->value = ft_strjoin_memory((*token)->value, ft_substr(d->line, i + expansion + 1, j - expansion - 1));
 	else if (!expansion && j != 1)
 		(*token)->value = ft_substr(d->line, i + 1, j - 1);
 	if (!(d->line[i + j]))
 	{
 		*unclosed_quote += 1;
-		handle_unclosed_quote(d->line[i], token, d); //change this
+		handle_unclosed_quote(d->line[i], token, d);
 	}
 	return (j);
 }
@@ -102,7 +101,7 @@ int	get_punctuation(t_token **token, t_data *d, int *i)
 	else if (!d->line[*i + 1] || ft_isspace(d->line[*i + 1]))
 	{
 		(*token)->value = ft_substr(d->line, *i, 1);
-		(*token)->type = UNSPEC_PUNC;
+		(*token)->type = T_UNSPEC_PUNC;
 		*i += 1;
 	}
 	else if (d->line[*i + 1] && !ft_isspace(d->line[*i + 1]))

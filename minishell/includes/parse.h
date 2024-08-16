@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:04:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/15 15:43:51 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:00:34 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 # include <term.h>
 
 /* ------------  MACROS ---------------------------------------------------- */
-# define UNKNOWN_ERR 666
-# define UNDEFINED_ERR 999
-
 # define HEREDOC ".heredoc_tmp"
 # define UNEXISTING_FILE ": No such file or directory"
 # define BAD_ACCESS ": Permission denied"
@@ -31,23 +28,23 @@
 # define MALLOC_ERR "memory can't be allocated"
 
 /* ------------  STRUCTS  -------------------------------------------------- */
-typedef enum
+typedef enum e_type
 {
-	CHAR,
-	STRING,
-	KEYWORD,
-	INT,
-	DOUBLE,
-	REDIRECT,
-	PIPE,
-	UNSPEC_OP,
-	UNSPEC_PUNC
-}						token_type;
+	T_CHAR,
+	T_STRING,
+	T_KEYWORD,
+	T_INT,
+	T_DOUBLE,
+	T_REDIRECT,
+	T_PIPE,
+	T_UNSPEC_OP,
+	T_UNSPEC_PUNC
+}						t_type;
 
 typedef struct s_token
 {
 	char				*value;
-	token_type			type;
+	t_type				type;
 	struct s_token		*next;
 	struct s_token		*prev;
 }						t_token;
@@ -58,21 +55,24 @@ typedef struct s_file	t_file;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* PARSER */
-int						parse_infile(t_token **token, t_cmd *cmd);
-int						handle_redirect(t_token **token, t_cmd *cmd);
-int						get_cmd(t_token **token, t_cmd *cmd);
+int						parse_infile(t_token **token, t_cmd *cmd, t_data *d);
+int						handle_redirect(t_token **token, t_cmd *cmd, t_data *d);
+int						get_cmd(t_token **token, t_cmd *cmd, t_data *d);
 void					parser(t_token *token, t_data *data);
 
 /* LEXER */
-int						check_quotes(char *line, int start, int k);
+int						check_quotes(char *line, int start, int k, t_data *d);
 int						check_operator(char *line, int i, int *j);
 int						check_digit(char *line, int i, int *j);
 
 void					check_type(t_token **token);
-void					handle_unclosed_quote(char quote, t_token **token, t_data *d);
-int						get_quoted_value(t_data *d, int i, int *j, t_token **token);
+void					handle_unclosed_quote(char quote, t_token **token,
+							t_data *d);
+int						get_quoted_value(t_data *d, int i, int *j,
+							t_token **token);
 
-int						handle_expansion(t_token **token, t_data *d, int i, int *j);
+int						handle_expansion(t_token **token, t_data *d, int i,
+							int *j);
 void					check_expansion(t_token **token, t_data *d);
 
 int						get_punctuation(t_token **token, t_data *d, int *i);
