@@ -4,29 +4,42 @@ GREEN			=	\033[0;32m
 YELLOW			=	\033[0;33m
 DEFAULT			=	\033[0m
 
-# ------------  FILES  ----------------------------------------------------- #
-NAME			=	megaphone
-SRC				=	megaphone.cpp
-OBJ				=	$(SRC:.cpp=.o)
+# ------------  PROJECT  ---------------------------------------------------- #
+NAME			=	phonebook
 
-# ------------  COMMANDS  ------------------------------------------------------- #
+# ------------  SOURCES  ---------------------------------------------------- #
+SRC_FLS			=	main.cpp \
+					contact.cpp \
+					phonebook.cpp
+
+# ------------  FILEPATHS  -------------------------------------------------- #
+SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
+OBJS			=	$(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o, $(SRCS))
+
+# ------------  FLAGS  ------------------------------------------------------ #
+RM_FLAGS		=	-rf
+CPP_FLAGS		=	-Wall -Wextra -Werror -std=c++98
+
+# ------------  COMMANDS  --------------------------------------------------- #
 CC				=	c++
-RM				=	rm -f
-CPPFLAGS		=	-Wall -Wextra -Werror -std=c++98
+RM				=	rm $(RM_FLAGS)
 
-# ------------  RULES  ------------------------------------------------------- #
+# ------------  RULES  ------------------------------------------------------ #
 all:				${NAME}
 
-$(NAME):			$(OBJ)
-					@$(CC) $(CPPFLAGS) -o $(NAME) $(OBJ)
+$(NAME):			$(OBJS)
+					@$(CC) $(CPP_FLAGS) -o $(NAME) $(OBJS)
 					@echo "$(GREEN)Compiled $(NAME)$(DEFAULT)"
 
-%.o: %.cpp
-					@$(CC) $(CPPFLAGS) -c $< -o $@
+$(OBJ_DIR)%.o:		$(SRC_DIR)%.cpp | $(OBJ_DIR)
+					@$(CC) $(CPP_FLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+					@mkdir -p $(OBJ_DIR)
 
 clean:	
-					@$(RM) $(OBJ)
-					@echo "$(YELLOW)Cleaned $(OBJ)$(DEFAULT)"
+					@$(RM) $(OBJ_DIR)
+					@echo "$(YELLOW)Cleaned $(OBJS)$(DEFAULT)"
 
 fclean:				clean
 					@$(RM) $(NAME)
