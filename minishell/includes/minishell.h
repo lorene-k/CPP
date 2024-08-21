@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/16 15:07:04 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:49:38 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_data
 	int				quit;
 	t_cmd			*cmd;
 }					t_data;
+
+struct sigaction	sa; // added for signals
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* UTILS */
