@@ -7,7 +7,6 @@
 
 class   Phonebook
 {
-
 };
 
 #endif //PHONEBOOK_HPP

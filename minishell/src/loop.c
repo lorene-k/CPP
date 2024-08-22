@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 14:44:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/16 14:02:48 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:49:28 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*display_prompt(void)
 }
 
 //LEAKS IN READLINE
-static int	get_input(char **line)
+static int	get_input(char **line, t_data *data)
 {
 	char	*user_cwd;
 
@@ -62,8 +62,11 @@ static int	get_input(char **line)
 	if (!(*line) || !(**line))
 	{
 		free(user_cwd);
-		// if (EOF) //CHECK_SIGNAL (CTRL + D)
-		// 		return (0);
+		if (EOF) //CHECK_SIGNAL (CTRL + D)
+		{	
+			data->quit = 1;
+			return (0);
+		}
 		return (1);
 	}
 	if (*line && **line)
@@ -79,17 +82,18 @@ void	run_loop(void)
 
 	line = NULL;
 	data.status = 0;
+	init_sa(sa); // added for signals
 	while (1)
 	{
-		if (get_input(&line))
+		if (get_input(&line, &data))
 			break ;
 		parse_input(&data, line);
 		// if (!data.status)
 		// exec(&data);
-		// sig_handler(data);
 		if (data.cmd)
 			clear_nodes((void *)&(data.cmd), sizeof(t_cmd));
-		// if (data.quit)
-		// break ;
+		if (data.quit)
+			break ;
+		pause();
 	}
 }

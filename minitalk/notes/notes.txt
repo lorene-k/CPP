@@ -1,0 +1,21 @@
+SIGINT: Sent when you press Ctrl+C. It tells the process to stop running.
+SIGTERM: A polite request to terminate a process.
+SIGKILL: A forceful command to stop a process immediately.
+SIGUSR1 and SIGUSR2: These are user-defined signals, meaning you can assign them a specific meaning in your program.
+
+
+When a process receives a signal, it can handle it in different ways:
+
+Ignore the signal (certain signals cannot be ignored, such as SIGKILL and SIGSTOP)
+Use a default action (like terminating the process).
+Handle the signal with a custom function (called a signal handler)
+
+>> If a signal is caught, the process registers a function with the kernel to handle the interruption.
+>> If a signal executes its default behavior, it indicates that the process is using the SIG_DFL signal
+
+struct sigaction sa;
+  
+   sigemptyset(&sa.sa_mask);
+   sa.sa_flags = SA_RESTART | SA_SIGINFO;
+   sa.sa_handler = SIG_DFL;
+   sigaction(SIGINT, &sa, NULL);
