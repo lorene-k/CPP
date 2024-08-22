@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:48:26 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/22 16:29:09 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:21:48 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,38 @@ static char	**token_to_str(t_token **token, int n_nodes)
 	return (token_tab);
 }
 
-// static int	ft_strchr_index(const char *s, int c)
-// {
-// 	size_t	i;
+static int	ft_strchr_index(const char *s, int c)
+{
+	size_t	i;
 
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		if (s[i] == (char)c)
-// 			return ((int)i);
-// 		i++;
-// 	}
-// 	if (*s == (char)c)
-// 		return ((int)i);
-// 	return (-1);
-// }
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((int)i);
+		i++;
+	}
+	if (*s == (char)c)
+		return ((int)i);
+	return (-1);
+}
 
-// static int	check_expansion(t_token **token, t_infos **infos)
-// {
-// 	int	i;
+static int	check_expansion(t_token **token, t_infos **infos)
+{
+	int		i;
+	char	*tmp;
 
-// 	i = ft_strchr_index((*token)->value, '$');
-// 	if (!(*token)->s_quote && i != -1
-// 		&& (*token)->value[i + 1] && ft_isalpha((*token)->value[i + 1]))
-// 		(*token)->value = replace_str_var(infos, (*token)->value); // valgrind
-// }
+	i = ft_strchr_index((*token)->value, '$');
+	tmp = ft_strdup((*token)->value);
+	if (!(*token)->s_quote && i != -1 && (*token)->value[i + 1]
+		&& ft_isalpha((*token)->value[i + 1]))
+	{	
+		free((*token)->value);
+		(*token)->value = NULL;
+		(*token)->value = replace_str_var(infos, tmp);
+	}
+	free(tmp);
+}
 
 static t_token	*create_tokens(char *line, t_infos **infos, int *n_nodes)
 {
@@ -94,7 +101,7 @@ static t_token	*create_tokens(char *line, t_infos **infos, int *n_nodes)
 		if (token->error)
 			return (clear_tokens(&token), NULL);
 		token->len = ft_strlen(token->value);
-		// check_expansion(&token, infos);
+		check_expansion(&token, infos);
 	}
 	return (get_first_node(token));
 }
@@ -119,9 +126,9 @@ char	**generate_tokens_array(char *line, t_infos **infos)
 // 	int i = 0;
 
 // 	// char *line = ft_strdup("TOKEN1 hello\"this \'is \'a token\" break \'another \"token\'");
-// 	char *line = ft_strdup("TEST\"last token\" TEST2 \'token 3 \tTEST\'TEST4 TEST5");
-	
-// 	printf("LINE = %s\nEOL\n", line);
+// 	char *line = ft_strdup("cat >in | cat>out 9709 DLSL[D O]");
+
+// 	printf("LINE = %s\nEOL\n\n", line);
 
 // 	token_tab = generate_tokens_array(line, 0);
 // 	if (!token_tab)

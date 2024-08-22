@@ -6,19 +6,13 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:34:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/22 15:38:17 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/22 16:54:45 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEST_H
 
-# define PARSE_H
-
-# include "libft/get_next_line/get_next_line.h"
-# include "libft/libft_src/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+# define TEST_H
 
 typedef struct s_infos	t_infos;
 
