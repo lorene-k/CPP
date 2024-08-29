@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:15:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/16 15:03:09 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/08/23 12:49:54 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	parse_token(t_token **token, t_cmd *cmd, t_data *data) //loop on sing
 	return (0);
 }
 
-void	parser(t_token *token, t_data *data) // loop on tokens
+void	parser(t_token *token, t_data *data)
 {
 	t_cmd *cmd;
 
