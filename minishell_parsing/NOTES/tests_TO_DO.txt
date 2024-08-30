@@ -1,0 +1,13 @@
+    INVALID STRINGS
+- alpha + num
+- alpha + punctuation
+- alpha + operator
+- num + alpha
+- num + punctuation
+- num + operator
+- operator + num
+- operator + punctuation
+- operator + alpha
+- punctuation + num
+- punctuation + punctuation
+- punctuation + operator

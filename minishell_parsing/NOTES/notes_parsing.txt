@@ -1,0 +1,118 @@
+PT 1 STEPS
+1. LEXER : scan line and tokenize
+2. ENV VARIABLES
+3. PARSE : build command table w/ tokens
+>> HANDLE ERRORS
+
+
+STRUCTS 
+   
+   1. SIMPLE_CMD
+    - char *cmd;
+    - char **args;
+    - int n_args; (?)
+    - t_redirect *redirection;
+
+    2. REDIRECTION
+    - int in;
+    - int out;
+    - int err;
+
+    3. DATA (cmd)
+    - cmd_n;
+    - char *in;
+    - char *out;
+    - char *err_file; (?)
+    
+
+LEXER
+    TYPES
+    - constants (integers, doubles, characters, strings)
+    - operators (arithmetic, logical, relational)
+    - punctuation (commas, semicolons, braces)
+    - keywords (reserved words with predefined meanings like if, while, return)
+
+
+
+    PARSING
+
+1. Identify and Handle Token Types:
+
+--- String Tokens:
+- First String: If current_command->name is NULL, set current_command->name to the token value.
+- Subsequent Strings: If current_command->name is already set, add the token value to current_command->args.
+- Redirection Tokens:
+
+--- Input Redirection (<):
+- Check that the next token is a valid filename (and not another operator).
+- Set current_command->input_file to the next token value.
+
+--- Output Redirection (>):
+- Check that the next token is a valid filename.
+- Set current_command->output_file to the next token value and clear the append_output flag.
+
+--- Append Output Redirection (>>):
+- Check that the next token is a valid filename.
+- Set current_command->output_file to the next token value and set the append_output flag.
+--- Pipe Tokens (|):
+
+
+OPERATORS
+Arithmetic Operators:
+
++
+-
+*
+/
+%
+**
+Assignment Operators:
+
+=
++=
+-=
+*=
+/=
+%=
+**=
+Comparison Operators:
+
+-eq
+-ne
+-lt
+-gt
+-le
+-ge
+Logical Operators:
+
+&&
+||
+!
+String Operators:
+
+=
+!=
+-z
+-n
+File Test Operators:
+
+-e
+-f
+-d
+-r
+-w
+-x
+Other Operators:
+
+|
+>
+>>
+<
+<<
+&
+;
+|
+&&
+||
+()
+{}
