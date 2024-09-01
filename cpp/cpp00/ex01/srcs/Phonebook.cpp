@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/01 14:03:19 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/01 14:24:16 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/09/01 14:06:45 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/09/01 14:40:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Phonebook.hpp"
 
-int main(int ac, char **av)
+Phonebook::Phonebook(void)
 {
-    int i;
-    int j;
+    this->_index = 0;
+    std::cout << "Phonebook empty" << std::endl;
+}
 
-    j = 0;
-    if (ac < 2)
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-    else
-        while (av && av[++j])
-        {
-            i = -1;
-            while (av[j][++i])
-                std::cout << (char)std::toupper(av[j][i]);
-        }
-    std::cout << std::endl;
-    return (0);
+Phonebook::~Phonebook(void)
+{
+    std::cout << "Contacts deleted" << std::endl;
 }

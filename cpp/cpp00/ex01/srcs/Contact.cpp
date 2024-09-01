@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/01 14:03:19 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/01 14:24:16 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/09/01 14:05:46 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/09/01 14:20:09 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Contact.hpp"
 
-int main(int ac, char **av)
-{
-    int i;
-    int j;
+Contact::Contact(void){}
 
-    j = 0;
-    if (ac < 2)
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-    else
-        while (av && av[++j])
-        {
-            i = -1;
-            while (av[j][++i])
-                std::cout << (char)std::toupper(av[j][i]);
-        }
-    std::cout << std::endl;
-    return (0);
-}
+Contact::~Contact(void){}
+
