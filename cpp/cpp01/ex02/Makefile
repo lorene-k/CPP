@@ -5,7 +5,7 @@ YELLOW			=	\\033[0;33m
 DEFAULT			=	\\033[0m
 
 # ------------  PROJECT  ---------------------------------------------------- #
-NAME			=	brain0
+NAME			=	brain1
 
 # ------------  DIRECTORIES  ------------------------------------------------- #
 SRC_DIR			=	srcs/
@@ -14,8 +14,7 @@ OBJ_DIR			=	objs/
 
 # ------------  SOURCES  ---------------------------------------------------- #
 SRC_FLS			=	main.cpp \
-					newZombie.cpp \
-					randomChump.cpp \
+					zombieHorde.cpp \
 					Zombie.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
