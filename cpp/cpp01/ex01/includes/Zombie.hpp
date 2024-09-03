@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:04:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/03 15:07:28 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:41:47 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ private:
 
 public:
         Zombie(std::string name);
+        Zombie(void);
         ~Zombie(void);
         void    announce(void);
 };
 
-Zombie	*newZombie(std::string name);
-void	randomChump(std::string name);
+Zombie*    zombieHorde(int N, std::string name);
 
 #endif // **************************************************** ZOMBIE_HPP //

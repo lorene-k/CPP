@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:09:17 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/03 15:25:10 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:47:54 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 int main(void)
 {
-    Zombie *zom = newZombie("foo");
+    int n;
+    std::string name;
+    Zombie *zombies;
     
-    zom->announce();
-    randomChump("bar");
-    delete zom;
+    n = 10;
+    name = "Bro";
+    zombies = zombieHorde(n, name);
+    for (int i = 0; i < n; i++)
+        zombies[i].announce();
+    delete [] zombies;
     return (0);
 }

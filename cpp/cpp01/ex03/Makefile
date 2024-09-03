@@ -5,7 +5,7 @@ YELLOW			=	\\033[0;33m
 DEFAULT			=	\\033[0m
 
 # ------------  PROJECT  ---------------------------------------------------- #
-NAME			=	brain2
+NAME			=	attack
 
 # ------------  DIRECTORIES  ------------------------------------------------- #
 SRC_DIR			=	srcs/
@@ -14,6 +14,9 @@ OBJ_DIR			=	objs/
 
 # ------------  SOURCES  ---------------------------------------------------- #
 SRC_FLS			=	main.cpp \
+					HumanA.cpp \
+					HumanB.cpp \
+					Weapon.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
