@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:06:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/02 17:59:24 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:19:09 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,14 @@ void Phonebook::add_contact(void)
             this->_contacts[this->_index].set_darkest_secret(input);
     }
     input = "";
-    std::cout << "Contact saved in phonebook.\n\n";
-    if (this->_index == 7) //handle 9th contact
-        this->_index = 0; //display message ? //TEST
+    if (this->_index == 7)
+    {    
+        this->_index = 0;
+        std::cout << "Phonebook full : replacing oldest contact\n\n";
+    }
     else
         this->_index += 1;
+    std::cout << "Contact saved in phonebook.\n\n";
 }
 
 /******************************* SEARCH **************************************/
@@ -84,20 +87,21 @@ void Phonebook::search_contact(void)
     }
     while (!std::cin.eof())
     {
-        std::cout << "Enter contact index> ";
+        std::cout << "Enter contact index (between 1 and 8)> ";
         if (std::getline(std::cin, input) && input != "")
         {
             if (input.size() == 1 && (input[0] >= '1' && input[0] <= '8')
                 && this->_contacts[input[0] - 1 - '0'].get_first_name() != "")
                 break ;
         }
-        if (this->_contacts[input[0] - 1 - '0'].get_first_name() == ""
-            && input.size() == 1 && (input[0] >= '1' && input[0] <= '8'))
+        if ((input[0] >= '1' && input[0] <= '8') && input.size() == 1 
+            && this->_contacts[input[0] - 1 - '0'].get_first_name() == "")
             std::cout << "Contact doesn't exist\n\n";
         else if (input != "")
-            std::cout << "Invalid index! ";
+            std::cout << "Invalid index\n\n";
     }
-    this->display_contact(this->_contacts[input[0] - 1 - '0']);
+    if (!std::cin.eof())
+        this->display_contact(this->_contacts[input[0] - 1 - '0']);
 }
 
 /*********************************** DISPLAY *********************************/
@@ -138,8 +142,9 @@ int         display_book(Contact contacts[8])
     std::string str;
     
     i = -1;
+    std::cout << "|----------|----------|----------|----------|" << std::endl;
 	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
-	std::cout << "|__________|__________|__________|__________|" << std::endl;
+	std::cout << "|----------|----------|----------|----------|" << std::endl;
     while (contacts[i + 1].get_first_name() != "" && (++i < 8))
     {
         str = i + 1 + '0';
@@ -150,7 +155,7 @@ int         display_book(Contact contacts[8])
         std::cout << check_spaces(10 - str.size()) << str << "|";
         str = check_len(contacts[i].get_nickname());
         std::cout << check_spaces(10 - str.size()) << str << "|" << std::endl;
-        break ;
     }
+    std::cout << "|----------|----------|----------|----------|" << std::endl;
     return (i);
 }

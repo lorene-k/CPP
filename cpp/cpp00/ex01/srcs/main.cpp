@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:09:17 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/02 15:37:52 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/03 00:29:49 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(void)
     
     while (input != "EXIT")
     {
-        std::cout << "Enter a command> ";
+        std::cout << "Enter a command : ADD, SEARCH or EXIT> ";
         if (!std::getline(std::cin, input))
             return (std::cout << std::endl, 0);
         if (input == "ADD")
