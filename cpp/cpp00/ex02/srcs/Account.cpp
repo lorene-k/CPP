@@ -6,13 +6,12 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 11:50:15 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/03 13:49:01 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:30:33 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
-#include <iomanip>
 #include <ctime>
 
 /******************************* STATICS *************************************/
@@ -23,10 +22,14 @@ int Account::_totalNbWithdrawals = 0;
 
 void Account::_displayTimestamp(void)
 {
-    time_t timestamp;
+    std::time_t timestamp;
+    std::tm     *curr_time;
+    char        buff[16];
 
-    timestamp = time(NULL);
-    std::cout << std::put_time(localtime(&timestamp), "[%Y%m%d_%H%M%S] ");
+    timestamp = std::time(NULL);
+    curr_time = std::localtime(&timestamp);
+    std::strftime(buff, sizeof(buff), "%Y%m%d_%H%M%S", curr_time);
+    std::cout << "[" << buff << "] ";
 }
 
 /******************************* CONSTRUCTOR & DESTRUCTOR ********************/

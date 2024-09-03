@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   Phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:04:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/02 23:30:58 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:13:46 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
+# include <iostream>
+# include <string>
 
 std::string     check_len(std::string str);
 std::string     check_spaces(std::string str);
