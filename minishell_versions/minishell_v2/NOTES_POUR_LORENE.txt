@@ -1,6 +1,0 @@
-Fichier prioritaires (modifies par moi) : main.c parsing.c export.c sigmals.c create_fd.c execution.calloc
-Tu devras modifier ces fichiers directement en y incluant tes ajouts.
-Tu peux aussi faire la creation des tokens sans erreur (dans parsing.c) et gerer lorsqu'il y a une erreur de syntaxe.
-Il faut enfin finaliser avec la gestion des mallocs.
-
-Jutilise les fonctions tests ici pour avoir 0 leaks.
