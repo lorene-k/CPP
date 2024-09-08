@@ -6,13 +6,20 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:09:17 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/05 15:39:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:51:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-int main(int ac, char **av)
+int main(void)
 {
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
+	c = b;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
 	return (0);
 }
