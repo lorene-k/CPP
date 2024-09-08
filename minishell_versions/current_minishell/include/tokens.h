@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 13:34:11 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/05 16:12:55 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:50:33 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_token
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* ERRORS */
-void					print_file_error(t_infos *infos, char *file, int code);
 void					protect_memory_tokens(t_infos *i, char *line,
 							t_token *t, char **tab);
 int						print_cmd_error(char *msg, t_infos *infos, int code);

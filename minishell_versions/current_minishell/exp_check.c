@@ -6,36 +6,37 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 17:13:02 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/05 17:55:06 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:49:05 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "minishell.h"
 
-int exp_check(char *str, int i)
+// Checks if value must be expanded (if in single quotes or not)
+int	exp_check(char *str, int i)
 {
-    int		j;
-    int     opened_quote;
+	int		j;
+	int		opened_quote;
 	char	curr_quote;
 
-    curr_quote = '\0';
+	curr_quote = '\0';
 	opened_quote = 0;
-    j = 0;
-    while (str[j] && j != i)
-    {
-        if (ft_isquote(str[j]))
-        {
-            curr_quote = str[j];
-            opened_quote = 1;
-        }
-        else if (str[j] == curr_quote)
-        {
-            curr_quote = '\0';
-            opened_quote = 0;
-        }
-        j++;
-    }
-    if (curr_quote == '\'')
-        return (0);
-    return (1);
+	j = 0;
+	while (str[j] && j != i)
+	{
+		if (ft_isquote(str[j]) && !opened_quote)
+		{
+			curr_quote = str[j];
+			opened_quote = 1;
+		}
+		else if (str[j] == curr_quote)
+		{
+			curr_quote = '\0';
+			opened_quote = 0;
+		}
+		j++;
+	}
+	if (curr_quote == '\'')
+		return (0);
+	return (1);
 }

@@ -41,8 +41,8 @@ static char	*command_path_parsing(t_infos **infos, char *cmd)
     all_paths = (*infos)->paths;
 
 
-    if (all_paths) // ajoute
-        write(1, "TOO", 3); // ajoute
+    // if (all_paths) // ajoute
+    //     write(1, "TOO", 3); // ajoute
 
 
     if (env_var_exists(*infos, "PATH") == 0) // A FINIR POUR FUNCHECK
@@ -56,8 +56,10 @@ static char	*command_path_parsing(t_infos **infos, char *cmd)
         ||  (ft_strlen(cmd) > 1 && cmd[0] == '/' )
         ||  (ft_strlen(cmd) > 2 && ft_strchr(cmd, '/') != NULL ))
     {
-        if (access(cmd, F_OK) == 0)
+        if (access(cmd, F_OK | X_OK) == 0)
             return (cmd);
+        if (errno == EACCES)
+            return (NULL);
     }
 	while (*all_paths)
 	{
@@ -68,7 +70,7 @@ static char	*command_path_parsing(t_infos **infos, char *cmd)
         free(temp);
         if (!actual_command)
             return(free_infos_error(*infos), NULL);
-		if (access(actual_command, F_OK) == 0)
+		if (access(actual_command, F_OK | X_OK) == 0)
 			return (actual_command);
 		free(actual_command);
 		all_paths++;
@@ -98,6 +100,7 @@ int set_all_cmd_path(t_infos **infos, char **envp)
         while (i < (*infos)->cmd_nb)
         {
             actual_cmd = (*infos)->cmd[i];
+            actual_cmd->cmd_not_found = 0;
             if (!is_builtin(actual_cmd->args[0]))
             {
                 actual_cmd->path = command_path_parsing(infos, actual_cmd->args[0]);
@@ -106,17 +109,15 @@ int set_all_cmd_path(t_infos **infos, char **envp)
                     // ft_putstr_fd(actual_cmd->args[0], 2);
                     //ft_putendl_fd("COMMAND NOT FOUND IN MODIFY_COMMANDS2", 2);
                     //(*infos)->return_code = 127;
-
-
-                    actual_cmd->cmd_not_found = 1;
-                   //sig_id = 127;
-
-
+                    if (errno == EACCES)
+                        actual_cmd->cmd_not_found = 2;
+                    else
+                        actual_cmd->cmd_not_found = 1;
+                    //sig_id = 127;
                     // pour test
                     // A FAIRE : ajouter une variable dans la structure commande indiquer que la commande n'a pas ete executee,
                     // lors de lexecution on check cette var et on affiche un msg derreur
                     //free_and_show_error(infos);
-
                     //return (1);
                 }
                 rename_one_cmd(actual_cmd, infos);

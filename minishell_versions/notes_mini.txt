@@ -1,0 +1,29 @@
+        06/09
+CHANGED FILES : 
+- added check_redirects.c
+- added file in Makefile
+- added function prototypes in minishell.h
+- execution.c : added exit(1) in child() + added "if (!infos->cmd[id]->can_access_file)" condition in execute_one_builtin()
+- modify_commands.c : commented remove_one_inout_and_set_inout()
+- exit.c : signs considered
+
+FOR CMD ERRORS:
+- execution.c : changed child()
+- modify_commands2.c : changed command_path_parsing() + set_all_cmd_path()
+
+        08/09
+- remove_quotes.c : norm OK
+
+
+
+TO DO
+- check command access >> modify_cmds2.c - OK
+- handle output to /dev/full in builtins : echo, pwd, exit - OK
+- fix exit builtin if arg[1] == redirect OR PIPE - OK
+
+- remove forbidden function = strdup, calloc
+- norm + funcheck : remove_quotes.c + builtins + parsing
++ add PROTECT MEMORY
+- handle errors in exec & create_fd
+
+- tester

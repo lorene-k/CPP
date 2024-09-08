@@ -10,6 +10,7 @@
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <errno.h>
 #include "libft.h"
 
 #include "tokens.h"
@@ -147,6 +148,7 @@ void execute_all_cmds(t_infos **infos);
 void execute(t_infos **infos);
 
 // Builtin
+int	check_builtin_error(t_cmd *cmd, char *cmd_name);
 int is_builtin(char *str);
 int ft_pwd(t_infos *infos, t_cmd *cmd);
 int	ft_strcmp(char *s1, char *s2);
@@ -174,5 +176,15 @@ char *replace_str_var_heredoc_new(t_infos *infos, char *str);
 
 int update_path(t_infos *infos);
 void free_infos_child(t_infos **infos);
+
+int exp_check(char *str, int i);
+void delete_first_in_out_in_args(t_infos **infos, t_cmd *actual_cmd);
+int check_token_and_assign(t_infos **infos, char   *actual_token, char *next_token, t_cmd *cmd);
+void remove_one_inout_and_set_inout(t_infos **infos, t_cmd *cmd);
+
+
+// Ajout 8 septembre 17 h 36
+char    *remove_quotes(char *str);
+int modify_args_cmd(t_cmd *cmd, t_infos *infos);
 
 #endif

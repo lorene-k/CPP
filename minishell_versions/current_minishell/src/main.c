@@ -88,8 +88,8 @@ int main(int argc, char **argv, char **envp)
 
    while (1) {
     signals_init();
-    input = get_input_test(&infos); // ne fonctionne pas avec ctrl D et SIGINT et commande cat par ex
-    // input = get_input(&infos); // OBLIGATOIRE POUR LES SIGNAUX ET LE HEREDOC ET LES COMMANDES BLOCANteS COMME CAT
+    //input = get_input_test(&infos); // ne fonctionne pas avec ctrl D et SIGINT et commande cat par ex
+    input = get_input(&infos); // OBLIGATOIRE POUR LES SIGNAUX ET LE HEREDOC ET LES COMMANDES BLOCANteS COMME CAT
 
 
        if (parse(input, &infos, envp) != 0)

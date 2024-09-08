@@ -130,10 +130,11 @@ char *replace_one_return_code_on_str_from_new(t_infos *infos, char *str, int i, 
             if (!second)
                 return (NULL);
 
-            i += 2;
+            // i += 2;
+            i++;
             while(ft_isalnum(str[i]) && i < ft_strlen(str))
                 i++;
-            third = ft_substr(str, i, ft_strlen(str));
+            third = ft_substr(str, i + 1, ft_strlen(str));
             if(!third)
                 return (free(second), NULL);
             final = ft_strjoin(second, third);
@@ -160,6 +161,11 @@ char *replace_str_var_one_new(t_infos *infos, char *str, int heredoc, int *curso
     {
         if (str[i] == '$' && i + 1 < ft_strlen(str) && (ft_isalpha(str[i + 1]))) // Si on tombe sur un $QQCHOSE
         {
+            // if (exp_check(str, i) == 1)
+            if (exp_check(str, i) == 1)
+            {
+            
+                ft_putendl_fd("ERROR EXPCHECK", 2);
             i++;
             var_key = get_first_var_key(infos, str, i);
             if (!var_key)
@@ -171,6 +177,15 @@ char *replace_str_var_one_new(t_infos *infos, char *str, int heredoc, int *curso
             *cursor = i;
             return (new_str);
             break;
+            }
+            // else
+            // {
+            //                     ft_putendl_fd("ERROR EXPCHECK 2!", 2);
+            //     i++;
+            //     *cursor = i;
+            //     // break;
+            // }
+                // i++;
         }
         else if (str[i] == '$' && i + 1 < ft_strlen(str) && str[i + 1] == '?') // Si on tombe sur $?
         {
@@ -181,10 +196,13 @@ char *replace_str_var_one_new(t_infos *infos, char *str, int heredoc, int *curso
             break;
         }
         i++;
+        *cursor = i;
     }
         return (str);
 }
 
+
+/// LEAKS A CORRIGER
 // Appelé pour remplace toutes les occurences $? et $VAR dans une chaine de caractère
 char *replace_str_var_new(t_infos *infos, char *str)
 {
@@ -196,13 +214,25 @@ char *replace_str_var_new(t_infos *infos, char *str)
     if(!str)
         return (NULL);
 
-    if (!contains_env_var(str) && !contains_return_code_var(str))
-        return (ft_strdup(str));
+    char *test = ft_strdup(str);
 
-    while (str != NULL && (contains_env_var(str) || contains_return_code_var(str)))
+    if (!contains_env_var(test) && !contains_return_code_var(test))
+        return (ft_strdup(test));
+
+    while (test != NULL && (contains_env_var(test) || contains_return_code_var(test)))
     {
-        str = replace_str_var_one_new(infos, str, 0, &cursor);
+        test = replace_str_var_one_new(infos, test, 0, &cursor);
+        ft_putendl_fd(test, 1);
+        if (cursor >= ft_strlen(test))
+            break;
+        // write(1, "I", 1);
     }
+
+    // return (replace_str_var_one_new(infos, str, 0, &cursor)); // tests
+
+
+    return(test);
+
     return (str);
 }
 

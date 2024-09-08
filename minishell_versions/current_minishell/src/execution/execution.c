@@ -8,6 +8,11 @@ int execute_one_builtin(t_infos *infos, int id)
 {
     int fds[2];
 
+        if (!infos->cmd[id]->can_access_file)
+        {
+            sig_id = 1;
+            return(1);
+        }
         fds[0] = dup(0);
         fds[1] = dup(1);
         dup2(infos->cmd[id]->fd_out, 1);
@@ -66,14 +71,21 @@ void child(t_infos **infos, t_cmd *cmd, int id, int actual_pipe_id)
     {
 
         if (!cmd->can_access_file)
-            ft_putendl_fd("Error : No such file or directory (fork)", 2);
-        if (cmd->cmd_not_found == 1)
+            exit(1);
+        if (cmd->cmd_not_found)
         {
+            if (cmd->cmd_not_found == 2)
+                ft_putstr_fd("minishell: ", 2);
             ft_putstr_fd(cmd->args[0], 2);
-            ft_putendl_fd(" : Command not found", 2);
+            if (cmd->cmd_not_found == 2)
+                ft_putendl_fd(" : Permission denied", 2);
+            else
+                ft_putendl_fd(" : command not found", 2);
             close_all_pipe(*infos);
             free_infos_child(infos);
-            exit(127);
+            if (cmd->cmd_not_found == 2)
+		        exit(126);
+	        exit(127);
         }
 
         dup2(cmd->fd_out, 1);
@@ -85,7 +97,6 @@ void child(t_infos **infos, t_cmd *cmd, int id, int actual_pipe_id)
             return_code = execute_one_builtin(*infos, id);
             // free_infos(infos);
             free_infos_child(infos);
-            // ft_putendl_fd("TEEEEEEST BUILTIN", 1);
             exit(return_code);
         }
         else
@@ -121,13 +132,13 @@ void wait_all_cmds(t_infos *infos)
 
     if (sig_id == 128 + SIGINT)
     {
-        printf("\nERREUR : Le code de retour de la derniere commande est : %d\n", 128 + SIGINT);
+        // printf("\nERREUR : Le code de retour de la derniere commande est : %d\n", 128 + SIGINT);
         infos->return_code = 128 + SIGINT;
         sig_id = 128 + SIGINT;
     }
     else
     {
-        printf("\nLe code de retour de la derniere commande est : %d\n", WEXITSTATUS(status));
+        // printf("\nLe code de retour de la derniere commande est : %d\n", WEXITSTATUS(status));
         infos->return_code = WEXITSTATUS(status);
         sig_id = WEXITSTATUS(status);
 

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 16:27:01 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/05 18:55:59 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/08 19:56:57 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	check_digit(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]) && str[i] != '-' && str[i] != '+')
 			return (1);
 	}
 	return (0);
@@ -52,10 +52,14 @@ static int	check_arg_n(t_infos *infos, t_cmd *cmd)
 
 int	ft_exit(t_infos *infos, t_cmd *cmd)
 {
-	ft_putendl_fd("exit", 1);
-	if (check_arg_n(infos, cmd))
-		return (1);
-	if (cmd->args_indexes > 2)
-		infos->return_code = check_valid_arg(cmd, infos);
-	exit(infos->return_code);
+	if (infos->cmd_nb == 1)
+	{
+		ft_putendl_fd("exit", 2);
+		if (check_arg_n(infos, cmd))
+			return (1);
+		if (cmd->args_indexes > 2)
+			infos->return_code = check_valid_arg(cmd, infos);
+		exit(infos->return_code);
+	}
+	return (1);
 }

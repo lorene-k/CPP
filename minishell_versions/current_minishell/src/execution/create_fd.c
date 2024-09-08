@@ -70,7 +70,7 @@ void create_file(t_infos **infos)
     i = 0;
     while (i < (*infos)->cmd_nb)
     {
-        if ((*infos)->cmd[i]->outtype == TRUNC)
+        if ((*infos)->cmd[i]->outtype == TRUNC) // >
         {
             (*infos)->cmd[i]->fd_out = open((*infos)->cmd[i]->outfile , O_CREAT | O_RDWR | O_TRUNC, 0644);
             if ((*infos)->cmd[i]->fd_out < 0)
@@ -80,7 +80,7 @@ void create_file(t_infos **infos)
 
             }
         }
-        if ((*infos)->cmd[i]->intype == FILE_REAL)
+        if ((*infos)->cmd[i]->intype == FILE_REAL) // <
         {
             
             (*infos)->cmd[i]->fd_in = open((*infos)->cmd[i]->infile, O_RDONLY);;

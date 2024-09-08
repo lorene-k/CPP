@@ -32,6 +32,7 @@ char **dup_env(t_infos *infos)
     return (new);
 }
 
+// Affiche une ligne de la table des variables d'environnement en ajoutant des ""
 void show_one_line_export(char *str)
 {
     char *right;
@@ -40,6 +41,12 @@ void show_one_line_export(char *str)
 
     i = 0;
     len = ft_strlen(str);
+    if(ft_strchr(str, '=') == NULL)
+    {
+        ft_putendl_fd(str, 1);
+        return ;
+    }
+
     while(i < len)
     {
         write(1, &str[i], 1);
@@ -91,6 +98,7 @@ void print_sorted_export_env(t_infos *infos)
         // MISE EN PLACE DES GUILLEMETS ("") TEST EN COURS : A FAIRE
 
         show_one_line_export(env[i++]);
+        // ft_putendl_fd(env[i++], 1);
 
         //ft_putendl_fd(env[i++], 1);
     }
@@ -129,6 +137,39 @@ void print_sorted_export_env(t_infos *infos)
 //     free(var_content);
 // }
 
+
+void add_var_new(t_infos *infos, char *str)
+{
+    char *var_content;
+    char *var_key;
+    int i;
+
+    // Dans ce cas, la variable a ajouter na pas de valeur
+    if(ft_strchr(str, '=') == NULL)
+        add_env_var(infos, str, NULL);
+    else
+    {
+        i = 0;
+        var_content = ft_strchr(str, '=') + 1;
+        var_content = replace_str_var(infos, var_content); // A MODIFIE
+        while (str[i] != '=')
+            i++;
+        var_key = malloc(sizeof(char) * (i + 1));
+        i = 0;
+        while (str[i] != '=')
+        {
+            var_key[i] = str[i];
+            i++;
+        }
+        var_key[i] = '\0';
+        if (!ft_isalpha(var_key[0]) && !(var_key[0] == '_'))
+            return (ft_putstr_fd("Non valid variable name\n", 2), free(var_key));
+        add_env_var(infos, var_key, var_content);
+        free(var_key);
+        free(var_content);
+    }
+}
+
 // L'ancienne fonction 
 void add_var(t_infos *infos, t_cmd *cmd)
 {
@@ -138,8 +179,10 @@ void add_var(t_infos *infos, t_cmd *cmd)
 
     i = 0;
 
+
+
     var_content = ft_strchr(cmd->args[1], '=') + 1;
-    var_content = replace_str_var(infos, var_content);
+    var_content = replace_str_var(infos, var_content); // A MODIFIE
     
     
     while (cmd->args[1][i] != '=')
@@ -220,7 +263,10 @@ int update_path(t_infos *infos)
                 free_split_new((infos)->paths);
             infos->paths = NULL;
         }
+    return (0);
 }
+
+
 
 
 // L'ancienne fonction
@@ -234,12 +280,20 @@ int ft_export(t_infos *infos, t_cmd *cmd)
         print_sorted_export_env(infos);
         return (0);
     }
-    else if (cmd->args_indexes == 3)
+    else if (cmd->args_indexes >= 3)
     {
 
-        ft_putendl_fd("AVANT ADDVAR", 1);
-        add_var(infos, cmd);
-        ft_putendl_fd("APRES ADDVAR", 1);
+        // ft_putendl_fd("AVANT ADDVAR", 1);
+        // add_var(infos, cmd);
+        // add_var_new(infos, cmd->args[1]);
+        // ft_putendl_fd("APRES ADDVAR", 1);
+
+        int i = 1;
+        while (i < cmd->args_indexes - 1)
+        {
+            add_var_new(infos, cmd->args[i]);
+            i++;
+        }
 
 
         update_path(infos);

@@ -131,6 +131,23 @@ void update_infos(t_infos **infos, char *str, char **envp)
 }
 
 
+
+// Modifie tous les arguments de toutes les commandes
+void modify_all_cmd_args(t_infos **infos)
+{
+    int i;
+
+    i = 0;
+    t_cmd   *actual_cmd;
+    while (i < (*infos)->cmd_nb)
+    {
+        actual_cmd = (*infos)->cmd[i];
+        modify_args_cmd(actual_cmd, *infos);
+        i++;
+    }
+}
+
+
 // Crée les tokens (lexing) a partir de l'input puis crée les structures cmd en y insérant les arguments
 void create_cmds(char *str, t_infos **infos)
 {
@@ -142,7 +159,7 @@ void create_cmds(char *str, t_infos **infos)
 
 
     // MON CODE (FONCTIONNE)
-    cmd_tokens = generate_tokens_array_new(str); // MON CODE (et non celui de loerene)
+    cmd_tokens = generate_tokens_array(str, *infos); // MON CODE (et non celui de loerene)
     if (!cmd_tokens)
     {
                 free_infos_error(*infos);
@@ -150,24 +167,26 @@ void create_cmds(char *str, t_infos **infos)
     }
     int i = 0;
 
+
+
     // EN PAUSE POUR TEST FUNCHECK
-    while(cmd_tokens[i]) 
-    {
+    // while(cmd_tokens[i]) 
+    // {
 
-        write(1, "P", 1);
-	    tmp = replace_str_var_new(*infos, cmd_tokens[i]); // EXPANSION !!!!
-        if(!tmp)
-        {
+    //     write(1, "P", 1);
+	//     tmp = replace_str_var_new(*infos, cmd_tokens[i]); // EXPANSION !!!!
+    //     if(!tmp)
+    //     {
             
-            free_infos_error(*infos);
+    //         free_infos_error(*infos);
 
-        }
+    //     }
 
 
-        free(cmd_tokens[i]);
-        cmd_tokens[i] = tmp;
-        i++;
-    }
+    //     free(cmd_tokens[i]);
+    //     cmd_tokens[i] = tmp;
+    //     i++;
+    // }
 
 
     // LE CODE DE LORENE (NE FONCTIONE PAS : LEAKS)
@@ -185,11 +204,19 @@ void create_cmds(char *str, t_infos **infos)
     {
      free_cmd_tokens(cmd_tokens);
     }
+
+
+    modify_all_cmd_args(infos);
+
 }
+
+
+
 
 // Modifie les commandes en ajoutant et modifiant des valeurs a l'intérieur de leur structure
 void modify_cmds(t_infos **infos, char **envp)
 {
+    
     set_default_cmd_values(infos); // OK
     set_infile_outfile(infos);  // OK
     set_in_out_pipes_and_normal(infos); // OK

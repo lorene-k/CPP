@@ -6,12 +6,15 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:21:31 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/05 18:52:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:45:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "minishell.h"
 
+
+
+// FREE STR
 char    *remove_quotes(char *str)
 {
     int     i;
@@ -46,6 +49,5 @@ char    *remove_quotes(char *str)
         new_str = ft_strdup(str);
     else if (str[j])
         new_str = ft_strjoin_mem(new_str, ft_substr(str, j, i - j));
-    // free(str);
     return (new_str);
 }

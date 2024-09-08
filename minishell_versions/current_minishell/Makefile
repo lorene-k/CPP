@@ -6,7 +6,7 @@
 #    By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/21 18:28:06 by imounjed          #+#    #+#              #
-#    Updated: 2024/09/05 17:07:12 by lkhalifa         ###   ########.fr        #
+#    Updated: 2024/09/06 16:28:00 by lkhalifa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ SRCS = src/main.c src/parsing/parsing.c src/parsing/lexing.c src/parsing/infos.c
 		src/free/free_create_commands.c \
 		src/tokenizer/token_nodes.c src/tokenizer/token_operators.c src/tokenizer/token_utils.c src/tokenizer/token_values.c src/tokenizer/tokens.c src/tokenizer/token_check.c \
 		src/signals.c src/errors/error.c \
-		src/env/env2.c src/env/env.c src/env/env3.c src/env/new_env.c
-
+		src/env/env2.c src/env/env.c src/env/env3.c src/env/new_env.c exp_check.c src/parsing/check_redirects.c \
+		src/parsing/modify_commands3.c remove_quotes.c
 
 
 OBJS = $(SRCS:.c=.o)

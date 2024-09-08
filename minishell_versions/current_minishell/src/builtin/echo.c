@@ -8,6 +8,8 @@ int ft_echo(t_infos *infos, t_cmd *cmd)
 
     i = 1;
     contains_n = 0;
+    if (check_builtin_error(cmd, "echo"))
+        return (1);
     if (cmd->args_indexes > 2 && ft_strcmp(cmd->args[1], "-n") == 0)
         contains_n = 1;
     i += contains_n;

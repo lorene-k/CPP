@@ -104,6 +104,7 @@ int create_commands(char    **cmd_array, t_infos **infos)
                 }
                       i++;
             }
+    return (0);
 }
 
 // Initalise les valeurs de toutes les commandes par une valeur par defaut

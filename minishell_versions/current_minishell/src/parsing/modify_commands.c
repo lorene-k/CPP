@@ -92,44 +92,38 @@ int check_token_and_assign(t_infos **infos, char   *actual_token, char *next_tok
     return (0);
 }
 
-// Supprime les < > << >> et le nom qui suit en boucle, puis l'associe a la commande (grace a une fonction)
-void remove_one_inout_and_set_inout(t_infos **infos, t_cmd *cmd)
-{
-    int arg_id;
-    char *actual_token;
-    char *next_token;
+// Supprime les < > << >> et le nom qui suit en boucle, puis l'associe a la commande (grace a une fonction) // < infile
+// void remove_one_inout_and_set_inout(t_infos **infos, t_cmd *cmd)
+// {
+//     int arg_id;
+//     char *actual_token;
+//     char *next_token;
 
-    arg_id = 0;
-    cmd->can_access_file = 1;
-         while(arg_id < cmd->args_indexes - 2)
-        {
-            actual_token = cmd->args[arg_id];
-            next_token = cmd->args[arg_id + 1];
-            if (check_token_and_assign(infos, actual_token, next_token, cmd) == 1)
-            {
-
-                // Verifie si on peut acceder au fichier apres le > ou le >> ou le < (gestion derreur)
-                    // Si on peut pas alors on ne fait pas execve apres le fork, on affiche un message derreur avant le execve, (en checkant une variable de la structure cmd)
-                    // A FAIRE
-                if (cmd->can_access_file == 1 && ft_strcmp(actual_token, "<") == 0 && access(next_token, F_OK | R_OK) == 0) // A FAIRE : chosiir le bon flag en fonction de < ou > par ex
-                {
-                    ft_putendl_fd("\nACCESS OK", 1);
-                    cmd->can_access_file = 1;
-                }
-                else if (ft_strcmp(actual_token, "<") == 0 && access(next_token, F_OK | R_OK) != 0)
-                {
-                    ft_putendl_fd("\nACCESS NOT OK !!!", 1);
-                    cmd->can_access_file = 0;
-                }
-
-                delete_first_in_out_in_args(infos, cmd);
-                break;
-            }
-            arg_id++;
-        }
-    return ;
-}
-
+//     arg_id = 0;
+//     cmd->can_access_file = 1;
+//          while(arg_id < cmd->args_indexes - 2)
+//         {
+//             actual_token = cmd->args[arg_id]; // < << > >>
+//             next_token = cmd->args[arg_id + 1]; // file.txt 
+//             if (check_token_and_assign(infos, actual_token, next_token, cmd) == 1)
+//             {
+//                 if (cmd->can_access_file == 1 && ft_strcmp(actual_token, "<") == 0 && access(next_token, F_OK | R_OK) == 0) // A FAIRE : chosiir le bon flag en fonction de < ou > par ex
+//                 {
+//                     ft_putendl_fd("\nACCESS OK", 1);
+//                     cmd->can_access_file = 1;
+//                 }
+//                 else if (ft_strcmp(actual_token, "<") == 0 && access(next_token, F_OK | R_OK) != 0)
+//                 {
+//                     ft_putendl_fd("\nACCESS NOT OK !!!", 1);
+//                     cmd->can_access_file = 0;
+//                 }
+//                 delete_first_in_out_in_args(infos, cmd);
+//                 break;
+//             }
+//             arg_id++;
+//         }
+//     return ;
+// }
 
 // Retourne 1 si la commande a pour token au moins un < << > ou >>
 int contains_in_out(t_cmd *cmd)
@@ -155,9 +149,12 @@ void set_infile_outfile(t_infos **infos)
     {
         actual_cmd = (*infos)->cmd[i];
         actual_cmd->can_access_file = 1;
+
         while(contains_in_out(actual_cmd))
         {
-            remove_one_inout_and_set_inout(infos, actual_cmd);
+            remove_one_inout_and_set_inout(infos, actual_cmd); // << EOF > toto < toto, // < < > < < < > <> >> >> > > >ad [> >>] lkdhla
+            if (!actual_cmd->can_access_file)
+                break;
         }
         i++;
     }
