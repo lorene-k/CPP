@@ -1,0 +1,147 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env2_2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/13 17:11:35 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/09/13 17:22:49 by lkhalifa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+// Cree la cle pour chercher dans la table env, ex : "VALEUR= OU VALEUR"
+static char	*create_key_with_equal(t_infos *infos, char *key)
+{
+	char	*temp_key;
+	int		len;
+
+	if (env_contains_value_on_table(infos, key) == 1)
+	{
+		temp_key = ft_strjoin(key, "=");
+		if (!temp_key)
+			return (NULL);
+		len = ft_strlen(key);
+	}
+	else
+	{
+		temp_key = ft_strdup(key);
+		if (!temp_key)
+			return (NULL);
+		len = ft_strlen(temp_key);
+	}
+	temp_key = ft_strjoin(key, "=");
+	if (!temp_key)
+		return (NULL);
+	return (temp_key);
+}
+
+// Ajoute la ligne new_str dans la table env si elle nexiste pas
+static int	add_env_line(t_infos *infos, char *key, char *new_str)
+{
+	int		i;
+	char	*temp_key;
+	int		len;
+	int		z;
+	char	**new_envp;
+
+	i = 0;
+	while (infos->new_envp[i] != NULL)
+		i++;
+	z = 0;
+	new_envp = malloc(sizeof(char *) * (i + 2));
+	if (!new_envp)
+		return (free(temp_key), -1);
+	while (z < i)
+	{
+		new_envp[z] = infos->new_envp[z];
+		z++;
+	}
+	new_envp[z] = ft_strdup(new_str);
+	if (!new_envp[z])
+		return (-1);
+	new_envp[++z] = NULL;
+	free(infos->new_envp); // TEST
+	infos->new_envp = new_envp;
+	return (1);
+}
+
+// Remplace la ligne avec pour key *key et la remplace par new_str
+static int	replace_env_line(t_infos *infos, char *key, char *new_str)
+{
+	int		i;
+	char	*temp_key;
+	int		len;
+
+	i = 0;
+	if (env_var_exists(infos, key) == 1)
+	{
+		temp_key = create_key_with_equal(infos, key);
+		len = ft_strlen(key);
+		while (infos->new_envp[i] != NULL)
+		{
+			if (ft_strncmp(infos->new_envp[i], temp_key, len) == 0)
+			{
+				free(infos->new_envp[i]);
+				infos->new_envp[i] = ft_strdup(new_str);
+				if (!infos->new_envp[i])
+					return (free(temp_key), -1);
+				free(temp_key);
+				return (1);
+			}
+			i++;
+		}
+	}
+	return (0);
+}
+
+// Retourne la nouvelle ligne a ajouter ou remplacer dans la table des var env
+static char	*create_line_env(t_infos *infos, char *key, char *value)
+{
+	char	*temp_str;
+	char	*new_str;
+
+	if (value != NULL || (value == NULL && env_var_exists(infos, key) == 1
+			&& env_contains_value_on_table(infos, key) == 1))
+	{
+		temp_str = ft_strjoin(key, "=");
+		if (!temp_str)
+			return (NULL);
+		new_str = ft_strjoin(temp_str, value);
+		free(temp_str);
+		if (!new_str)
+			return (NULL);
+	}
+	if (env_var_exists(infos, key) == 1 && (value == NULL
+			&& env_contains_value_on_table(infos, key) == 0) || (value == NULL
+			&& env_var_exists(infos, key) == 0))
+		new_str = ft_strdup(key);
+	if (!new_str)
+		return (NULL);
+	return (new_str);
+}
+
+// Ajoute ou remplace une variable d'environnement
+int	add_env_var(t_infos *infos, char *key, char *value)
+{
+	int		i;
+	char	*temp_key;
+	int		len;
+	char	*new_str;
+
+	i = 0;
+	if ((value == NULL && env_var_exists(infos, key) == 1
+			&& env_contains_value_on_table(infos, key) == 1))
+		return (0);
+	new_str = create_line_env(infos, key, value);
+	if (!new_str)
+		protect_memory(infos, 0, 0);
+	if (replace_env_line(infos, key, new_str) == 1)
+		return (free(new_str), 0);
+	if (add_env_line(infos, key, new_str) == 1)
+		return (free(new_str), 0);
+	free(new_str);
+	return (0);
+}
