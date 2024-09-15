@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:35:31 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/12 14:36:23 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/15 20:48:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,9 @@ int	ft_echo(t_infos *infos, t_cmd *cmd)
 	}
 	if (contains_n == 0)
 		ft_putstr_fd("\n", 1);
+	// close(cmd->fd_in);
+	// close(cmd->fd_out);
+	// close(0);
+	// close(1);
 	return (0);
 }

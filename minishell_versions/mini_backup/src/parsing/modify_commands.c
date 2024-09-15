@@ -70,6 +70,8 @@ int	assign_infile_intype(t_infos **infos, char *actual_token, char *next_token,
 {
 	if (ft_strcmp(actual_token, "<") == 0)
 	{
+		if (cmd->infile)
+			free(cmd->infile);
 		cmd->infile = ft_strdup(next_token);
 		if (!cmd->infile)
 			protect_memory(*infos, NULL, NULL);
@@ -95,6 +97,8 @@ int	assign_outfile_outtype(t_infos **infos, char *actual_token,
 {
 	if (ft_strcmp(actual_token, ">") == 0)
 	{
+		if (cmd->outfile)
+			free(cmd->outfile);
 		cmd->outfile = ft_strdup(next_token);
 		if (!cmd->outfile)
 			protect_memory(*infos, NULL, NULL);
@@ -103,6 +107,8 @@ int	assign_outfile_outtype(t_infos **infos, char *actual_token,
 	}
 	if (ft_strcmp(actual_token, ">>") == 0)
 	{
+		if (cmd->outfile)
+			free(cmd->outfile);
 		cmd->outfile = ft_strdup(next_token);
 		if (!cmd->outfile)
 			protect_memory(*infos, NULL, NULL);

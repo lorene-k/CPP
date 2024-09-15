@@ -6,25 +6,15 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 16:26:51 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/13 19:18:28 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:44:12 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// static int	update_pwd(t_infos *infos)
-// {
-// 	char	*buf;
-	
-// 	buf = getenv("OLDPWD");
-// 	add_env_var(infos, "OLDPWD", buf);
-// 	return (0);
-// }
-
 static int	update_pwd(t_infos *infos)
 {
 	char	buffer[512];
-	char *pwd;
 
 	if (getcwd(buffer, 512) != NULL)
 		add_env_var(infos, "OLDPWD", buffer);
@@ -35,7 +25,7 @@ static int	update_pwd(t_infos *infos)
 
 static int	goto_home(t_infos *infos)
 {
-	if (get_env_var(infos, "HOME") != NULL)
+	if (env_var_exists(infos, "HOME") == 1)
 	{
 		update_pwd(infos);
 		if (chdir(get_env_var(infos, "HOME")) < 0)
@@ -50,9 +40,9 @@ static int	goto_oldpwd(t_infos *infos)
 {
 	char	*old_tmp;
 
-	if (get_env_var(infos, "OLDPWD") != NULL)
+	if (env_var_exists(infos, "OLDPWD") == 1)
 	{
-		old_tmp = ft_strdup(get_env_var(infos, "OLDPWD"));
+		old_tmp = get_env_var(infos, "OLDPWD");
 		if (!old_tmp)
 			protect_memory(infos, 0, 0);
 		ft_putendl_fd(old_tmp, 1);

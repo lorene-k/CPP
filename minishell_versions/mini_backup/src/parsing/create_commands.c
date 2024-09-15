@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:18:44 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/12 19:26:24 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/15 16:21:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	create_commands(char **cmd_array, t_infos **infos)
 
 	init_vars(&i, &args_nb, &last_index, &id_cmd);
 	nb_words = get_cmd_array(cmd_array, infos);
+	if (nb_words == -1)
+		return (-1);
 	while (i < nb_words)
 	{
 		if (ft_strcmp(cmd_array[i], "|") != 0)

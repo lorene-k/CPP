@@ -6,7 +6,7 @@
 #    By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/21 18:28:06 by imounjed          #+#    #+#              #
-#    Updated: 2024/09/13 17:14:59 by lkhalifa         ###   ########.fr        #
+#    Updated: 2024/09/15 16:50:52 by lkhalifa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
+CFLAGS = -Wall -Wextra -Werror
+
 all : libft.a $(NAME)
 
 
@@ -35,7 +37,7 @@ libft.a :
 
 
 $(NAME) : $(OBJS)
-	$(CC) -g -o $(NAME) $(OBJS) -lreadline libft.a 
+	$(CC) $(CFLAGS) -g -o $(NAME) $(OBJS) -lreadline libft.a 
 
 
 %.o: %.c

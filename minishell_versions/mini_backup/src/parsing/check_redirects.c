@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 15:38:34 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/13 14:20:37 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/15 16:39:10 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	handle_appendfile(t_cmd *cmd, char *file, int arg_id)
 	fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd < 0)
 		print_file_error(cmd, file);
-	close(fd);
+	else
+		close(fd);
 }
 
 static void	handle_outfile(t_cmd *cmd, char *file)
@@ -30,7 +31,8 @@ static void	handle_outfile(t_cmd *cmd, char *file)
 	fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 		print_file_error(cmd, file);
-	close(fd);
+	else
+		close(fd);
 }
 
 static void	handle_infile(t_cmd *cmd, char *file)
@@ -40,7 +42,8 @@ static void	handle_infile(t_cmd *cmd, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		print_file_error(cmd, file);
-	close(fd);
+	else
+		close(fd);
 }
 
 static void	check_redirect(t_infos **infos, t_cmd *cmd, int arg_id)

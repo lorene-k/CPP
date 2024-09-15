@@ -168,47 +168,114 @@ static char	*get_var_key(t_infos *infos, char *str, char *var_content)
 	return (var_key);
 }
 
-static void	add_var_new(t_infos *infos, char *str)
+// Renvoi 1 si contient uniquement lettres, chiffres ou _ apres le premier char
+int contains_good_characters(char *str)
+{
+	int i;
+
+	i = 0;
+	if (ft_strlen(str) > 1)
+	{
+			while(str[i])
+			{
+				if (!ft_isalnum(str[i]) && !(str[i] == '_'))
+					return (0);
+				i++;
+			}
+	}
+		return (1);
+}
+
+static int	add_var_new(t_infos *infos, char *str)
 {
 	char	*var_content;
 	char	*var_key;
 
 	if (ft_strchr(str, '=') == NULL)
-		add_env_var(infos, str, NULL);
+	{
+		if (!ft_isalpha(str[0]) && !(str[0] == '_'))
+			return (ft_putstr_fd(" not a valid identifier\n", 2), 1);
+		if (contains_good_characters(str))
+			add_env_var(infos, str, NULL);
+		else
+			return (ft_putstr_fd(" not a valid identifier\n", 2), 1);
+	}
 	else
 	{
 		var_content = get_var_content(infos, str);
 		var_key = get_var_key(infos, str, var_content);
 		if (!ft_isalpha(var_key[0]) && !(var_key[0] == '_'))
-			return (ft_putstr_fd("Invalid variable name\n", 2), free(var_key));
+			return (ft_putstr_fd(" not a valid identifier\n", 2), free(var_key), 1);
+		if (!contains_good_characters(var_key))
+			return (ft_putstr_fd(" not a valid identifier\n", 2), free(var_key), 1);
 		add_env_var(infos, var_key, var_content);
 		free(var_key);
 		free(var_content);
 	}
+	return (0);
 }
 
+// Free les paths dans infos si aucun chemin dans var denvironnement (var vide)
+int set_path_null_if_nodata(t_infos *infos)
+{
+	char *tmp;
+
+		tmp = get_env_var((infos), "PATH");
+		if (!tmp)
+		{
+			protect_memory(infos, 0, 0);
+			return (-1);
+		}
+		if (ft_strlen(tmp) == 0)
+		{
+			if ((infos)->paths != NULL)
+				clear_tab((infos)->paths);
+			infos->paths = NULL;
+			free(tmp);
+			return (1);
+		}
+		else
+		{
+			free(tmp);
+			return (0);
+		}
+}
+
+// Met le path a NULL si aucune key dans table env var
+void set_path_null_if_nokey(t_infos *infos)
+{
+		if ((infos)->paths != NULL)
+			clear_tab((infos)->paths);
+		infos->paths = NULL;
+
+}
+
+// Met a jour les chemins pour commandes dans le tableau path de infos
 int	update_path(t_infos *infos)
 {
 	char	*path;
+	char	*tmp;
+	int		path_is_null;
 
 	if (env_var_exists(infos, "PATH") == 1)
 	{
+		if (set_path_null_if_nodata(infos) == 1)
+			return (0);
 		if ((infos)->paths != NULL)
 			clear_tab((infos)->paths);
 		path = get_env_var((infos), "PATH");
 		if (!path)
+		{
+			(infos)->paths = NULL;
 			protect_memory(infos, 0, 0);
+		}
 		(infos)->paths = ft_split(path, ':');
 		if (!(infos)->paths)
 			protect_memory(infos, path, 0);
 		free(path);
 	}
 	else
-	{
-		if ((infos)->paths != NULL)
-			clear_tab((infos)->paths);
-		infos->paths = NULL;
-	}
+		set_path_null_if_nokey(infos);
 	return (0);
 }
 
@@ -216,8 +283,10 @@ int	ft_export(t_infos *infos, t_cmd *cmd)
 {
 	char	*path;
 	int		i;
+	int		not_valid_identifier;
 
 	i = 1;
+	not_valid_identifier = 0;
 	if (cmd->args[1] == NULL)
 	{
 		print_sorted_export_env(infos);
@@ -227,10 +296,10 @@ int	ft_export(t_infos *infos, t_cmd *cmd)
 	{
 		while (i < cmd->args_indexes - 1)
 		{
-			add_var_new(infos, cmd->args[i]);
+			not_valid_identifier = add_var_new(infos, cmd->args[i]);
 			i++;
 		}
 		update_path(infos);
 	}
-	return (0);
+	return (not_valid_identifier);
 }

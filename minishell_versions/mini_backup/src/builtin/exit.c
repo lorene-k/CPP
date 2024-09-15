@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 16:27:01 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/12 17:44:53 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/15 18:47:53 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	check_arg_n(t_infos *infos, t_cmd *cmd)
 	return (0);
 }
 
-int	ft_exit(t_infos *infos, t_cmd *cmd)
+int	ft_exit(t_infos *infos, t_cmd *cmd, int fds[2])
 {
 	int	exit_code;
 
@@ -62,6 +62,8 @@ int	ft_exit(t_infos *infos, t_cmd *cmd)
 			return (1);
 		if (cmd->args_indexes > 2)
 			exit_code = check_valid_arg(cmd, infos);
+		close(fds[0]);
+		close(fds[1]);
 		free_infos_exit(infos);
 		exit(exit_code);
 	}

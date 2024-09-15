@@ -12,32 +12,32 @@
 
 #include "minishell.h"
 
-// static char    *get_input_test_heredoc()
-// {
-//     char *input;
+static char    *get_input_test_heredoc()
+{
+    char *input;
 
-//     int i;
+    int i;
 
-//     i = 0;
+    i = 0;
 
-//     input = ft_calloc(sizeof(char), 512);
-//     if(!input)
-//         exit(1);
-//     ft_putstr_fd("heredoc TEST> ", 1);
-//     if ((i = read(0, input, 511)) == 0)
-//     {
-//         ft_putendl_fd("\nexit", 1);
-//         free(input);
-//         exit(0);
-//     }
-//     else if (i < 0)
-//     {
-//         free(input);
-//         exit(1);
-//     }
-//     (*ft_strchr(input, '\n')) = '\0';
-//     return (input);
-// }
+    input = ft_calloc(sizeof(char), 512);
+    if(!input)
+        exit(1);
+    ft_putstr_fd("heredoc TEST> ", 1);
+    if ((i = read(0, input, 511)) == 0)
+    {
+        ft_putendl_fd("\nexit", 1);
+        free(input);
+        exit(0);
+    }
+    else if (i < 0)
+    {
+        free(input);
+        exit(1);
+    }
+    (*ft_strchr(input, '\n')) = '\0';
+    return (input);
+}
 
 static int	get_filename(int id, int cmd_id, char **file_name,
 		char **cmd_id_str)
@@ -50,7 +50,7 @@ static int	get_filename(int id, int cmd_id, char **file_name,
 	if (!id_str)
 		return (-1);
 	*cmd_id_str = ft_itoa(cmd_id);
-	if (!cmd_id_str)
+	if (!*cmd_id_str)
 		return (free(id_str), -1);
 	*file_name = ft_calloc(ft_strlen(id_str) + 1 + ft_strlen(*cmd_id_str) + 4
 			+ 1, sizeof(char));
@@ -145,8 +145,8 @@ void	handle_heredoc(t_cmd *cmd, int i, t_infos *infos, int cmd_id)
 		return ;
 	while (1)
 	{
-		// buf = get_input_test_heredoc(); //TESTS
-		buf = readline("> ");
+		buf = get_input_test_heredoc(); //TESTS
+		// buf = readline("> ");
 		if (check_heredoc_input(buf, cmd, infos))
 			break ;
 		tmp = replace_str_var_heredoc_new(infos, buf);

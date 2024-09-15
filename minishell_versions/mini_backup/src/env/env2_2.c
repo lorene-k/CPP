@@ -32,9 +32,11 @@ static char	*create_key_with_equal(t_infos *infos, char *key)
 			return (NULL);
 		len = ft_strlen(temp_key);
 	}
-	temp_key = ft_strjoin(key, "=");
-	if (!temp_key)
-		return (NULL);
+	// POUR TEST
+	// free(temp_key);
+	// temp_key = ft_strjoin(key, "=");
+	// if (!temp_key)
+	// 	return (NULL);
 	return (temp_key);
 }
 
@@ -79,6 +81,8 @@ static int	replace_env_line(t_infos *infos, char *key, char *new_str)
 	if (env_var_exists(infos, key) == 1)
 	{
 		temp_key = create_key_with_equal(infos, key);
+		if (!temp_key)
+			return (-1);
 		len = ft_strlen(key);
 		while (infos->new_envp[i] != NULL)
 		{
@@ -109,7 +113,19 @@ static char	*create_line_env(t_infos *infos, char *key, char *value)
 		temp_str = ft_strjoin(key, "=");
 		if (!temp_str)
 			return (NULL);
-		new_str = ft_strjoin(temp_str, value);
+
+		
+		////
+		if (value == NULL)
+			new_str = ft_strjoin(temp_str, "");
+		else
+			new_str = ft_strjoin(temp_str, value);
+
+
+////
+		// new_str = ft_strjoin(temp_str, value);
+		if (!new_str)
+			return (NULL);
 		free(temp_str);
 		if (!new_str)
 			return (NULL);
@@ -126,22 +142,31 @@ static char	*create_line_env(t_infos *infos, char *key, char *value)
 // Ajoute ou remplace une variable d'environnement
 int	add_env_var(t_infos *infos, char *key, char *value)
 {
-	int		i;
+	int		ret;
 	char	*temp_key;
 	int		len;
 	char	*new_str;
 
-	i = 0;
+	ret = env_var_exists(infos, key);
+	if (ret == -1)
+		protect_memory(infos, NULL, NULL);	
+
 	if ((value == NULL && env_var_exists(infos, key) == 1
 			&& env_contains_value_on_table(infos, key) == 1))
 		return (0);
 	new_str = create_line_env(infos, key, value);
 	if (!new_str)
 		protect_memory(infos, 0, 0);
-	if (replace_env_line(infos, key, new_str) == 1)
-		return (free(new_str), 0);
-	if (add_env_line(infos, key, new_str) == 1)
-		return (free(new_str), 0);
+		ret = replace_env_line(infos, key, new_str);
+		if (ret == -1)
+			protect_memory(infos, NULL, NULL);
+		else if (ret == 1)
+			return (free(new_str), 0);
+		ret = add_env_line(infos, key, new_str);
+		if (ret == -1)
+			protect_memory(infos, NULL, NULL);
+		else if (ret == 1)
+			return (free(new_str), 0);
 	free(new_str);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:21:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/13 17:34:27 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/15 20:56:11 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,19 @@ static void	close_other_fd(t_infos *infos)
 	i = 0;
 	while (i < infos->cmd_nb)
 	{
-		if (infos->cmd[i]->intype == FILE_REAL
-			|| infos->cmd[i]->intype == HEREDOC)
+		if (infos->cmd[i]->fd_in != -1
+			&& (infos->cmd[i]->intype == FILE_REAL
+			|| infos->cmd[i]->intype == HEREDOC))
 			close(infos->cmd[i]->fd_in);
-		if (infos->cmd[i]->outtype == APPEND
-			|| infos->cmd[i]->outtype == HEREDOC)
-			close(infos->cmd[i]->fd_out);
+		if (infos->cmd[i]->fd_out != -1
+		&& (infos->cmd[i]->outtype == TRUNC
+			|| infos->cmd[i]->outtype == HEREDOC
+			|| infos->cmd[i]->outtype == APPEND))
+			{
+				ft_putendl_fd("CLOSE " ,1);
+							close(infos->cmd[i]->fd_out);
+
+			}
 		i++;
 	}
 }
@@ -94,10 +101,12 @@ int	execute_one_builtin(t_infos *infos, int id)
 	fds[1] = dup(1);
 	dup2(infos->cmd[id]->fd_out, 1);
 	dup2(infos->cmd[id]->fd_in, 0);
-	infos->return_code = select_builtin(&infos, id);
+	infos->return_code = select_builtin(&infos, id, fds);
 	dup2(fds[1], 1);
 	dup2(fds[0], 0);
 	g_sig_id = infos->return_code;
+	close(fds[0]);
+	close(fds[1]);
 	return (infos->return_code);
 }
 

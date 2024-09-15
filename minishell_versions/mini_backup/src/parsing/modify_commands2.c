@@ -163,9 +163,12 @@ int	set_all_cmd_path(t_infos **infos, char **envp)
 	{
 		actual_cmd = (*infos)->cmd[i];
 		actual_cmd->cmd_not_found = 0;
-		if (!is_builtin(actual_cmd->args[0]))
+		if (!actual_cmd->is_empty)
 		{
-			check_and_assign_path(actual_cmd, infos);
+			if (!is_builtin(actual_cmd->args[0]))
+			{
+				check_and_assign_path(actual_cmd, infos);
+			}
 		}
 		i++;
 	}

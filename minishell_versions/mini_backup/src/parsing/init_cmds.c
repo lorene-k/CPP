@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:25:55 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/13 14:20:46 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:51:38 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ t_cmd	*get_cmd(int args_n, char **cmd_array, int last_index, t_infos **infos)
 	z = 0;
 	i = 0;
 	cmd = get_cmd_memory(args_n);
+	if (!cmd)
+		protect_memory(*infos, 0, 0);
 	while (z < (args_n))
 	{
 		cmd->args[z] = ft_strdup(cmd_array[last_index + z]);

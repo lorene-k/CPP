@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:40:31 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/13 17:41:15 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/09/15 18:46:15 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct      s_cmd
     int             can_access_file;
     int             cmd_not_found;
     char            *heredoc_file_name;
+    int             is_empty;
     struct s_cmd    *next;
     struct s_cmd    *previous;
 }                   t_cmd;
@@ -137,7 +138,7 @@ void    signals_init_heredoc();
 void    signals_init_execution();
 
 /* EXECUTION */
-int     select_builtin(t_infos **infos, int id);
+int     select_builtin(t_infos **infos, int id, int fds[2]);
 int     execute_one_builtin(t_infos *infos, int id);
 void    close_all_pipe(t_infos *infos);
 void	child(t_infos **infos, t_cmd *cmd, int id, int actual_pipe_id);
@@ -156,7 +157,7 @@ int     ft_env(t_infos *infos, t_cmd *cmd);
 int     ft_export(t_infos *infos, t_cmd *cmd);
 int     ft_unset(t_infos *infos, t_cmd *cmd);
 int     ft_cd(t_infos *infos, t_cmd *cmd);
-int     ft_exit(t_infos *infos, t_cmd *cmd);
+int     ft_exit(t_infos *infos, t_cmd *cmd, int fds[]);
 
 /* AJOUTS branche env */
 int     env_var_exists(t_infos *infos, char *key);
