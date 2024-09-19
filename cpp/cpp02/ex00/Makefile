@@ -5,7 +5,7 @@ YELLOW			=	\\033[0;33m
 DEFAULT			=	\\033[0m
 
 # ------------  PROJECT  ---------------------------------------------------- #
-NAME			=	harlFilter
+NAME			=	Fixed
 
 # ------------  DIRECTORIES  ------------------------------------------------ #
 SRC_DIR			=	srcs/
@@ -14,7 +14,7 @@ OBJ_DIR			=	objs/
 
 # ------------  SOURCES  ---------------------------------------------------- #
 SRC_FLS			=	main.cpp \
-					Harl.cpp
+					Fixed.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
