@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/08/29 14:34:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:53:09 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,83 +15,61 @@
 # define CUB_H
 
 /* ------------  MACROS  --------------------------------------------------- */
-# define WHITE 0xFFFFFF
-# define BLACK 0x000000
-# define RED 0xFF0000
-# define GREEN 0x00FF00
+# define S_W 1900
+# define S_H 1000
+# define T_SIZE 30 //tile size
+# define FOV 60
+# define ROTATION_SPEED 0.045
+# define PLAYER_SPEED 4
 
 /* ------------  LIBRARIES  ------------------------------------------------ */
-# include "libft/ft_printf/ft_printf.h"
 # include "../libft/get_next_line/get_next_line.h"
 # include "../libft/libft_src/libft.h"
 # include "../mlx_linux/mlx.h"
-
+# include "libft/ft_printf/ft_printf.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include <errno.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include <fcntl.h>
-# include <sys/time.h>
 # include <unistd.h>
 
 /* ------------  STRUCTS  -------------------------------------------------- */
-// typedef struct s_lay
-// {
-// 	int		row;
-// 	int		col;
-// 	int		exit;
-// 	int		coll;
-// 	int		play;
-// }			t_lay;
+typedef struct s_player
+{
+	int         x; // in px
+	int         y; // in px
+	double		angle;
+	float		fov_rd;
+	int         rot; // rotation flag
+	int         l_r; // left right flag
+	int         u_d; // up down flag
+}				t_player;
 
-// typedef struct s_check
-// {
-// 	int		inv_char;
-// 	int		inv_walls;
-// 	int		inv_play;
-// 	int		inv_exit;
-// 	int		inv_coll;
-// 	int		inv_row;
-// 	int		last_line;
-// }			t_check;
+typedef struct s_ray
+{
+	double		angle;
+	double		dist;
+	int			flg;
+}				t_ray;
 
-// typedef struct s_point
-// {
-// 	int		x;
-// 	int		y;
-// }			t_point;
-
-// typedef struct s_img
-// {
-// 	int		w;
-// 	int		h;
-// 	void	*wall;
-// 	void	*coll;
-// 	void	*play;
-// 	void	*exit;
-// 	void	*exit_open;
-// 	void	*floor;
-// 	void	*enem;
-// 	char	*addr;
-// 	int		bits_per_pixel;
-// 	int		line_length;
-// 	int		endian;
-// }			t_img;
-
-// typedef struct s_game
-// {
-// 	void	*mlx;
-// 	void	*win;
-// 	t_img	img;
-// 	t_lay	*lay;
-// 	char	**map;
-// 	int		moves;
-// 	t_point	play_pos;
-// }			t_game;
+typedef struct s_game
+{
+	char		**map;
+	int			p_x;
+	int			p_y;
+	int			w_map;
+	int			h_map;
+	mlx_image_t	*img;
+	mlx_t		*mlx_p;
+	t_ray		*ray;
+	t_player	*ply;
+}				t_game;
 
 /* ------------  FUNCTIONS  ------------------------------------------------ */
-
+/* RAYCASTER */
+void    cast_rays(t_mlx *mlx);
+double  norm_angle(double x);
 
 #endif //CUB_H

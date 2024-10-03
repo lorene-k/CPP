@@ -12,3 +12,4 @@ minilibx_mac/*.o
 *.swp
 .DS_Store
 .vscode
+cub3d/

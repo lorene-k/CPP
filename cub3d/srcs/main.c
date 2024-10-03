@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/05 15:51:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/28 15:18:35 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/10/03 14:11:03 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/10/03 14:14:17 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "cub.h"
 
 int	main(int ac, char **av)
 {
-	char	**map;
-	t_lay	lay;
+	t_data data;
 
-	lay = init_lay();
-	map = check_args(ac, av, &lay);
-	init_game(map, &lay);
+	// data = init_game(); // INIT & PARSE
+	//start_game();
 	return (0);
 }

@@ -8,13 +8,13 @@ DEFAULT			=	\033[0m
 NAME			=	cub3d
 
 # ------------  DIRECTORIES  ------------------------------------------------- #
-SRC_DIR			=	src/
+SRC_DIR			=	srcs/
 INC_DIR			= 	includes/
 OBJ_DIR			=	objs/
 LFT_DIR			=	libft/
 MLX_DIR			=	mlx_linux/
-PARSER_DIR		=	parser/
-UTILS_DIR		=	utils/
+#PARSER_DIR		=	parser/
+#UTILS_DIR		=	utils/
 
 # ------------  SOURCES  ----------------------------------------------------- #
 LFT				=	libft/libft.a

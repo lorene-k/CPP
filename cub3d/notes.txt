@@ -1,0 +1,25 @@
+1. INIT game (store textures in buf) + PARSE map
+
+2. RAY CASTING
+    - calculate ray direction
+    - calculate delta distance
+    - calculate Step and Initial Side Distances
+    - Performing Digital Differential Analysis
+    - calculate Wall Height
+
+3. RENDERING
+    > handle textures
+    - calculate each pixel for a given ray
+    > use mlx_new_image + mlx_get_data_addr
+    > assign RGB value to a pixel (assign the colour to the pixel in the image buffer, and then draw the whole image to the screen at once)
+
+4. Player MOVEMENT
+
+INFO :
+- NO : north texture
+- SO : south texture
+- WE : west texture
+- EA : east texture
+- F : floor color (RGB = 0, 255, 255)
+- C : ceiling color (RGB)
+
