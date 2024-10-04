@@ -13,6 +13,7 @@ INC_DIR			= 	includes/
 OBJ_DIR			=	objs/
 LFT_DIR			=	libft/
 MLX_DIR			=	mlx_linux/
+RC_DIR			=	raycaster/
 #PARSER_DIR		=	parser/
 #UTILS_DIR		=	utils/
 
@@ -20,6 +21,9 @@ MLX_DIR			=	mlx_linux/
 LFT				=	libft/libft.a
 
 SRC_FLS			=	main.c \
+					$(RC_DIR)raycaster.c \
+					$(RC_DIR)utils.c
+
 
 # ------------  FILEPATHS  --------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

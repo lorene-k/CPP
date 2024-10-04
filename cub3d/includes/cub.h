@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:22:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/10/03 17:53:09 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/10/04 17:10:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "../libft/get_next_line/get_next_line.h"
 # include "../libft/libft_src/libft.h"
 # include "../mlx_linux/mlx.h"
-# include "libft/ft_printf/ft_printf.h"
+# include "../libft/ft_printf/ft_printf.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
@@ -51,7 +51,7 @@ typedef struct s_ray
 {
 	double		angle;
 	double		dist;
-	int			flg;
+	int			h_flg;
 }				t_ray;
 
 typedef struct s_game
@@ -70,6 +70,7 @@ typedef struct s_game
 /* ------------  FUNCTIONS  ------------------------------------------------ */
 /* RAYCASTER */
 void    cast_rays(t_mlx *mlx);
+int		unit_circle(float angle, char c);
 double  norm_angle(double x);
 
 #endif //CUB_H
