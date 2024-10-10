@@ -9,7 +9,10 @@ minilibx_mac/*.o
 *.d
 *.so
 *.a
+*.o
 *.swp
 .DS_Store
 .vscode
 cub3d/
+subject.pdf
+notes.txt

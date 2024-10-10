@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:19:36 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/10 06:31:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:10:53 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	clear_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	if (!tab || !*tab)
-		return ;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	*tab = 0;
-}
 
 static int	ft_wcount(const char *str, char c)
 {

@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   handle_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 17:13:14 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/10/10 16:43:41 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/10/10 16:41:47 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/10/10 16:42:08 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-char	*ft_strchr(const char *s, int c)
+int	on_keypress(int keysym, t_game *game)
 {
-	if (!s)
-		return (NULL);
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == (char)c)
-		return ((char *)s);
+	if (keysym == XK_Escape)
+		clear_game(game);
 	return (0);
 }

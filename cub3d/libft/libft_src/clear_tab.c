@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   clear_tab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 14:44:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/10/04 17:09:21 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/10/10 16:07:36 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/10/10 16:07:48 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "libft.h"
 
-//check pos of angle on unit circle to adjust step
-int	unit_circle(float angle, char c)
+void	clear_tab(char **tab)
 {
-	if (c == 'x' && (angle > 0 && angle < M_PI))
-		return (1);
-	if (c == 'y' && (angle > (M_PI / 2) && angle < (3 * M_PI / 2)))
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	if (!tab || !*tab)
+		return ;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	if (tab)
+		free(tab);
+	tab = 0;
 }
 
-double	norm_angle(double x)
+void	clear_int_tab(int **tab, int size)
 {
-	x = fmod(x, 2 * M_PI);
-	if (x < 0)
-		x += 2 * M_PI;
-	return (x);
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:45:08 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/03/09 10:20:52 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:08:07 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+void				clear_tab(char **tab);
+void				clear_int_tab(int **tab, int size);
 int					is_in_charset(char *charset, char c);
 
 int					ft_isalpha(int c);
