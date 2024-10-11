@@ -1,3 +1,23 @@
+                11/10
+- use strcmp in parse_texture for C & F (strncmp not working)
+>> use other libft for parsing
+
+- no need to malloc structs
+
+TO DO :
+- set texture
+- use pixel step
+
+
+
+
+
+
+
+
+
+
+
 1. INIT game (store textures in buf) + PARSE map
 
 2. RAY CASTING
