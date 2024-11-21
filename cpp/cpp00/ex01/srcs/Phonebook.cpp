@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:06:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/03 11:19:09 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:35:17 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,16 +126,6 @@ std::string check_len(std::string str)
     return (str);
 }
 
-std::string check_spaces(size_t n)
-{
-    std::string str;
-
-    str.reserve(n);
-    while (n--)
-        str.append(" ");
-    return (str);
-}
-
 int         display_book(Contact contacts[8])
 {
     int         i;
@@ -148,13 +138,13 @@ int         display_book(Contact contacts[8])
     while (contacts[i + 1].get_first_name() != "" && (++i < 8))
     {
         str = i + 1 + '0';
-        std::cout << "|" << check_spaces(10 - str.size()) << str << "|";
+        std::cout << "|" << std::setw(10) << std::right << str << "|";
         str = check_len(contacts[i].get_first_name());
-        std::cout << check_spaces(10 - str.size()) << str << "|";
+        std::cout << std::setw(10) << std::right << str << "|";
         str = check_len(contacts[i].get_last_name());
-        std::cout << check_spaces(10 - str.size()) << str << "|";
+        std::cout << std::setw(10) << std::right << str << "|";
         str = check_len(contacts[i].get_nickname());
-        std::cout << check_spaces(10 - str.size()) << str << "|" << std::endl;
+        std::cout << std::setw(10) << std::right << str << "|" << std::endl;
     }
     std::cout << "|----------|----------|----------|----------|" << std::endl;
     return (i);
