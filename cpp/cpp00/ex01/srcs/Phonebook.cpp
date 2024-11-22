@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:06:45 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/11/21 18:35:17 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/22 12:03:12 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,16 @@ void Phonebook::search_contact(void)
                 && this->_contacts[input[0] - 1 - '0'].get_first_name() != "")
                 break ;
         }
-        if ((input[0] >= '1' && input[0] <= '8') && input.size() == 1 
+        if (input == "MENU")
+        {    
+            std::cout << "\n";
+            return ;
+        }
+        else if ((input[0] >= '1' && input[0] <= '8') && input.size() == 1 
             && this->_contacts[input[0] - 1 - '0'].get_first_name() == "")
-            std::cout << "Contact doesn't exist\n\n";
+            std::cout << "Contact doesn't exist - Type MENU to exit search mode.\n\n";
         else if (input != "")
-            std::cout << "Invalid index\n\n";
+            std::cout << "Invalid index - Type MENU to exit search mode.\n\n";
     }
     if (!std::cin.eof())
         this->display_contact(this->_contacts[input[0] - 1 - '0']);
