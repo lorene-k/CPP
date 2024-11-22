@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:04:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/06 13:50:29 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:37:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define FIXED_HPP
 
 # include <iostream>
+# include <cmath>
 
 class   Fixed
 {
@@ -27,8 +28,9 @@ public:
         Fixed(const Fixed &fixed);
         Fixed &operator=(const Fixed &fixed);
         ~Fixed();
-        int getRawBits(void) const;
-        void setRawBits(int const raw);
+
+        int     getRawBits(void) const;
+        void    setRawBits(int const raw);
 };
 
 #endif // **************************************************** FIXED_HPP //

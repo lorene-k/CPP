@@ -6,20 +6,20 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:09:17 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/19 15:21:25 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:28:51 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed()
+Fixed::Fixed() : _value(0)
 {
     std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &fixed)
 {
-    std::cout << "Copy constuctor called" << std::endl;
+    std::cout << "Copy constructor called" << std::endl;
     *this = fixed;
 }
 
