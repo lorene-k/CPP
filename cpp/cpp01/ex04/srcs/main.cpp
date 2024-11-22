@@ -6,12 +6,13 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:09:17 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/09/04 15:50:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:59:03 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
+#include <sys/stat.h>
 
 void output_content(std::string content, std::string filename)
 {
@@ -44,14 +45,27 @@ std::string	modify_content(std::string old_content, std::string s1, std::string 
 	return (new_content);
 }
 
+int check_file(const char* file)
+{
+    struct stat		fileStat;
+
+    if (stat(file, &fileStat) != 0)
+        {return (std::cout << "Error: file doesn't exist\n", 1);}
+    if (S_ISDIR(fileStat.st_mode))
+        {return (std::cout << "Error: path refers to a directory\n", 1);}
+	return (0);
+}
+
 std::string	get_content(const char* file)
 {
 	std::string		content;
 	std::string		line;
 	
 	std::ifstream	infile(file);
+	if (check_file(file))
+		return ("");
 	if (!infile)
-		return (std::cout << "Error: could not open file\n", "");
+		return (std::cout << "Error: file can't be opened\n", "");
 	while (std::getline(infile, line))
 	{
 		content += line;
@@ -60,6 +74,8 @@ std::string	get_content(const char* file)
 			break ;
 	}
 	infile.close();
+	if (content == "")
+		std::cout << "Error: file is empty\n";
 	return (content);
 }
 
