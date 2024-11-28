@@ -1,4 +1,0 @@
-Surcharge fonctions
-= fonctions avec le meme nom avec parametres differents
-> permet de specialiser traitement d'une fonction en fonction de ses entrees
-

@@ -14,7 +14,7 @@ OBJ_DIR			=	objs/
 
 # ------------  SOURCES  ---------------------------------------------------- #
 SRC_FLS			=	main.cpp \
-					Fixed.cpp
+					ClapTrap.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

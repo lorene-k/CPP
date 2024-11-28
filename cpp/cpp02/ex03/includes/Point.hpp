@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:04:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/11/25 21:15:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:16:31 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
+#ifndef POINT_HPP
 
-# define FIXED_HPP
+# define POINT_HPP
 
 # include <iostream>
-# include <cmath>
+# include <Fixed.hpp>
 
-class   Fixed
+class   Point
 {
 private:
-        int _value;
-        static const int _fractionalBits = 8;
+        const Fixed _x;
+        const Fixed _y;
 
 public:
-        Fixed();
-        Fixed(const Fixed &fixed);
-        Fixed &operator=(const Fixed &fixed);
-        ~Fixed();
+        Point();
+        Point(const float x, const float y);
+        Point(const Point &point);
+        Point &operator=(const Point &point);
+        ~Point();
 
-        int     getRawBits(void) const;
-        void    setRawBits(int const raw);
+        Fixed getX() const;
+        Fixed getY() const;
 };
 
-#endif // ******************************************************** FIXED_HPP //
+bool bsp( Point const a, Point const b, Point const c, Point const point);
+
+
+#endif // ******************************************************** POINT_HPP //

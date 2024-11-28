@@ -36,11 +36,9 @@ $(NAME):			$(OBJS)
 					@$(CC) $(CPP_FLAGS) -o $(NAME) $(OBJS)
 					@echo "$(GREEN)Compiled $(NAME)$(DEFAULT)"
 
-$(OBJ_DIR)%.o:		$(SRC_DIR)%.cpp | $(OBJ_DIR)
-					@$(CC) $(CPP_FLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJ_DIR):
+$(OBJ_DIR)%.o:		$(SRC_DIR)%.cpp
 					@mkdir -p $(OBJ_DIR)
+					@$(CC) $(CPP_FLAGS) $(INCLUDES) -c $< -o $@
 
 clean:	
 					@$(RM) $(OBJ_DIR)
@@ -48,7 +46,6 @@ clean:
 
 fclean:				clean
 					@$(RM) $(NAME)
-					@$(RM) tests/*.replace
 					@echo "$(RED)Cleaned $(NAME)$(DEFAULT)"
 
 re:					fclean all
