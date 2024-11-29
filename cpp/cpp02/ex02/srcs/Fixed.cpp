@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:09:17 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/11/25 10:14:03 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:14:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 Fixed::Fixed() : _value(0)
 {
-    std::cout << "Default constructor called" << std::endl;
+    // std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &fixed)
 {
-    std::cout << "Copy constuctor called" << std::endl;
+    // std::cout << "Copy constuctor called" << std::endl;
     *this = fixed;
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed)
 {
-    std::cout << "Copy assignment operator called" << std::endl;
+    // std::cout << "Copy assignment operator called" << std::endl;
     if (this != &fixed)
         setRawBits(fixed.getRawBits());
     return (*this);
@@ -33,7 +33,7 @@ Fixed &Fixed::operator=(const Fixed &fixed)
 
 Fixed::~Fixed()
 {
-    std::cout << "Destructor called" << std::endl;
+    // std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits(void) const
@@ -50,13 +50,13 @@ void Fixed::setRawBits(int const raw)
 
 Fixed::Fixed(const int value)
 {
-    std::cout << "Int constructor called" << std::endl;
+    // std::cout << "Int constructor called" << std::endl;
     setRawBits(value << _fractionalBits);
 }
 
 Fixed::Fixed(const float value)
 {
-    std::cout << "Float constructor called" << std::endl;
+    // std::cout << "Float constructor called" << std::endl;
     setRawBits((int)roundf(value * (1 << _fractionalBits)));
 }
 

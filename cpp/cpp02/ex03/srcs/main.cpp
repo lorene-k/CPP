@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:09:17 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/11/25 20:30:41 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/29 15:00:06 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,30 +45,38 @@ bool bsp(const Point a, const Point b, const Point c, const Point point)
     return !(negative && positive);
 }
 
+static void print_point(const Point &point)
+{
+    std::cout << RESET << "Point (" << point.getX() << ", " << point.getY() << "): ";
+}
+
 int main()
 {
     Point a(0, 0);
     Point b(5, 0);
     Point c(0, 5);
 
-    // Tests
-    Point insidePoint(1, 1);
+    Point insidePoint1(1, 1);
+    Point insidePoint2(2, 2);
     Point outsidePoint(6, 6);
     Point edgePoint(2.5, 0);
     Point vertexPoint(0, 0);
 
-    std::cout << "Point (1, 1): "
-              << (bsp(a, b, c, insidePoint) ? "Inside" : "Outside") << std::endl;
+    print_point(insidePoint1);
+    std::cout << (bsp(a, b, c, insidePoint1) ? GREEN "Inside" : RED "Outside") << std::endl;
+    print_point(insidePoint2);
+    std::cout << (bsp(a, b, c, insidePoint2) ? GREEN "Inside" : RED "Outside") << std::endl;
+    print_point(outsidePoint);
+    std::cout << (bsp(a, b, c, outsidePoint) ? GREEN "Inside" : RED "Outside") << std::endl;
+    print_point(edgePoint);
+    std::cout << (bsp(a, b, c, edgePoint) ? GREEN "Inside" : RED "Outside") << std::endl;
+    print_point(vertexPoint);
+    std::cout << (bsp(a, b, c, vertexPoint) ? GREEN "Inside" : RED "Outside") << RESET << std::endl;
 
-    std::cout << "Point (6, 6): "
-              << (bsp(a, b, c, outsidePoint) ? "Inside" : "Outside") << std::endl;
 
-    std::cout << "Point (2.5, 0): "
-              << (bsp(a, b, c, edgePoint) ? "Inside" : "Outside") << std::endl;
-
-    std::cout << "Point (0, 0): "
-              << (bsp(a, b, c, vertexPoint) ? "Inside" : "Outside") << std::endl;
-
+    //TEST pos
+    // std::cout << getSign(outsidePoint, a, b) << std::endl;
+    // std::cout << getSign(outsidePoint, b, c) << std::endl;
+    // std::cout << getSign(outsidePoint, c, a) << std::endl;
     return 0;
 }
-

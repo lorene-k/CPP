@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:04:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/11/25 21:15:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/29 11:51:17 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 class   Fixed
 {
 private:
-        int _value;
-        static const int _fractionalBits = 8;
+        int                     _value;
+        static const int        _fractionalBits = 8;
 
 public:
         Fixed();

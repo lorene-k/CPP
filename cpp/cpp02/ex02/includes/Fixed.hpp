@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:04:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/11/25 21:15:24 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/29 14:32:07 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 # define FIXED_HPP
 
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define YELLOW "\033[0;33m"
+# define BLUE "\033[0;34m"
+# define CYAN "\033[0;36m"
+# define RESET "\033[0m"
+
 # include <iostream>
+# include <cmath>
 
 class   Fixed
 {

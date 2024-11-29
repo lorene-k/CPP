@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:09:17 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/11/25 09:03:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:09:51 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Fixed::Fixed() : _value(0)
 
 Fixed::Fixed(const Fixed &fixed)
 {
-    std::cout << "Copy constuctor called" << std::endl;
+    std::cout << "Copy constructor called" << std::endl;
     *this = fixed;
 }
 

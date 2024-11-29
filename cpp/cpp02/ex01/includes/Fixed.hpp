@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 14:04:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/11/25 21:15:13 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:08:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define FIXED_HPP
 
 # include <iostream>
-
+# include <cmath>
 
 class   Fixed
 {
@@ -31,6 +31,7 @@ public:
         int getRawBits(void) const;
         void setRawBits(int const raw);
 
+        /* EX01 */
         Fixed(const int value);
         Fixed(const float value);
         float toFloat(void) const;
