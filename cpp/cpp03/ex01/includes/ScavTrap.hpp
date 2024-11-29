@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:32:19 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/11/29 17:15:41 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:11:29 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
+#ifndef SCAVTRAP_HPP
 
-# define CLAPTRAP_HPP
+# define SCAVTRAP_HPP
 
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
@@ -21,27 +21,19 @@
 # define CYAN "\033[0;36m"
 # define RESET "\033[0m"
 
-# include <iostream>
-# include <string>
+# include "ClapTrap.hpp"
 
-class   ClapTrap
+class   ScavTrap : public ClapTrap
 {
-protected:
-        std::string _name;
-        int         _hitPoints;
-        int         _energyPoints;
-        int         _attackDamage;
-
 public:
-        ClapTrap();
-        ClapTrap(std::string name);
-        ClapTrap(const ClapTrap &clapTrap);
-        ClapTrap &operator=(const ClapTrap &other);
-        ~ClapTrap();
+        ScavTrap();
+        ScavTrap(std::string name);
+        ScavTrap(const ScavTrap &scavTrap);
+        ScavTrap &operator=(const ScavTrap &other);
+        ~ScavTrap();
         
         void attack(const std::string& target);
-        void takeDamage(unsigned int amount);
-        void beRepaired(unsigned int amount);
+        void guardGate();
 };
 
-#endif // ***************************************************** CLAPTRAP_HPP //
+#endif // ***************************************************** SCAVTRAP_HPP //
