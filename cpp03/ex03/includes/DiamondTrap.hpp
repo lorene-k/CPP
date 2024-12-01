@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:32:19 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/01 19:37:16 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/01 23:33:38 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
 
-# define SCAVTRAP_HPP
+# define DIAMONDTRAP_HPP
 
-# include "ClapTrap.hpp"
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
-class   ScavTrap : public ClapTrap
+class   DiamondTrap : public ScavTrap, public FragTrap
 {
+private:
+        std::string _name;
+
 public:
-        ScavTrap();
-        ScavTrap(std::string name);
-        ScavTrap(const ScavTrap &scavTrap);
-        ScavTrap &operator=(const ScavTrap &other);
-        ~ScavTrap();
+        DiamondTrap();
+        DiamondTrap(std::string name);
+        DiamondTrap(const DiamondTrap &fragTrap);
+        DiamondTrap &operator=(const DiamondTrap &other);
+        ~DiamondTrap();
         
+        void whoAmI();
         void attack(const std::string& target);
-        void guardGate();
 };
 
-#endif // ***************************************************** SCAVTRAP_HPP //
+#endif // ************************************************** DIAMONDTRAP_HPP //

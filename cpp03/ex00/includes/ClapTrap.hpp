@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:32:19 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/11/29 17:14:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:24:14 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define BLUE "\033[0;34m"
 # define CYAN "\033[0;36m"
 # define RESET "\033[0m"
+# define ORANGE "\033[0;38;5;208m"
 
 # include <iostream>
 # include <string>

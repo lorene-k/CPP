@@ -6,52 +6,55 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:11:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/01 21:52:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/02 00:03:53 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-static void testConstructors()
+/************************************************************ FragTrap Tests */
+static void fragConstructors()
 {
     std::cout << CYAN << "===== Constructor Tests =====" << RESET << std::endl;
-    ClapTrap defaultTrap;
-    ClapTrap namedTrap("TEST");
-    ClapTrap copyTrap(namedTrap);
-    ClapTrap assignedTrap;
+    FragTrap defaultTrap;
+    FragTrap namedTrap("TEST");
+    FragTrap copyTrap(namedTrap);
+    FragTrap assignedTrap;
     assignedTrap = defaultTrap;
     std::cout << BLUE "Function exited" << std::endl;
 }
 
-static void testAttack()
+static void fragAttack()
 {
     std::cout << CYAN << "===== Attack Tests =====" << RESET << std::endl;
-    ClapTrap attacker("Warrior");
+    FragTrap attacker("FragWarrior");
     attacker.attack("Target");
     attacker.takeDamage(5);
     attacker.attack("Another Target");
     std::cout << BLUE "Function exited" << std::endl;
 }
 
-static void testDamageAndRepair()
+static void fragRepairHighFive()
 {
-    std::cout << CYAN << "===== Damage and Repair Tests =====" << RESET << std::endl;
-    ClapTrap repairTest("Doctor");
+    std::cout << CYAN << "===== Damage, Repair & High Five Tests =====" << RESET << std::endl;
+    FragTrap repairTest("FragDoctor");
+    repairTest.highFivesGuys();
     repairTest.takeDamage(5);
     repairTest.beRepaired(10);
-    repairTest.takeDamage(15);
+    repairTest.takeDamage(150);
     repairTest.beRepaired(5);
     std::cout << BLUE "Function exited" << std::endl;
 }
 
 int main()
 {
+    std::cout << CYAN << "\n========== FRAGTRAP TESTS ==========" << std::endl;
+    fragConstructors();
     std::cout << std::endl;
-    testConstructors();
+    fragAttack();
     std::cout << std::endl;
-    testAttack();
-    std::cout << std::endl;
-    testDamageAndRepair();
+    fragRepairHighFive();
     std::cout << std::endl;
     return (0);
 }

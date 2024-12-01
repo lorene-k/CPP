@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:32:19 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/01 22:32:15 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/01 23:53:42 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ public:
         ClapTrap &operator=(const ClapTrap &other);
         virtual ~ClapTrap();
         
-        void attack(const std::string& target);
+        void attack(const std::string &target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
 };

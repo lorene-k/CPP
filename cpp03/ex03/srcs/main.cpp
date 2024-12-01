@@ -6,52 +6,64 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:11:09 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/01 21:52:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/02 00:09:52 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
 
-static void testConstructors()
+/************************************************************ DiamondTrap Tests */
+static void diamondConstructors()
 {
     std::cout << CYAN << "===== Constructor Tests =====" << RESET << std::endl;
-    ClapTrap defaultTrap;
-    ClapTrap namedTrap("TEST");
-    ClapTrap copyTrap(namedTrap);
-    ClapTrap assignedTrap;
+    DiamondTrap defaultTrap;
+    DiamondTrap namedTrap("TEST");
+    DiamondTrap copyTrap(namedTrap);
+    DiamondTrap assignedTrap;
     assignedTrap = defaultTrap;
     std::cout << BLUE "Function exited" << std::endl;
 }
 
-static void testAttack()
+static void diamondAttack()
 {
     std::cout << CYAN << "===== Attack Tests =====" << RESET << std::endl;
-    ClapTrap attacker("Warrior");
+    DiamondTrap attacker("DiamondWarrior");
     attacker.attack("Target");
     attacker.takeDamage(5);
     attacker.attack("Another Target");
     std::cout << BLUE "Function exited" << std::endl;
 }
 
-static void testDamageAndRepair()
+static void diamondRepair()
 {
-    std::cout << CYAN << "===== Damage and Repair Tests =====" << RESET << std::endl;
-    ClapTrap repairTest("Doctor");
-    repairTest.takeDamage(5);
-    repairTest.beRepaired(10);
-    repairTest.takeDamage(15);
-    repairTest.beRepaired(5);
+    std::cout << CYAN << "===== Repair Tests =====" << RESET << std::endl;
+    DiamondTrap repairTest("DiamondDoctor");
+    repairTest.takeDamage(30);
+    repairTest.beRepaired(20);
+    repairTest.takeDamage(150);
+    repairTest.beRepaired(30);
+    std::cout << BLUE "Function exited" << std::endl;
+}
+
+static void diamondSpecifics()
+{
+    std::cout << CYAN << "===== High Five & WhoAmI Tests =====" << RESET << std::endl;
+    DiamondTrap guy("DiamondGuy");
+    guy.highFivesGuys();
+    guy.whoAmI();
     std::cout << BLUE "Function exited" << std::endl;
 }
 
 int main()
 {
+    std::cout << CYAN << "\n========== DIAMONDTRAP TESTS ==========" << std::endl;
+    diamondConstructors();
     std::cout << std::endl;
-    testConstructors();
+    diamondAttack();
     std::cout << std::endl;
-    testAttack();
+    diamondRepair();
     std::cout << std::endl;
-    testDamageAndRepair();
+    diamondSpecifics();
     std::cout << std::endl;
     return (0);
 }

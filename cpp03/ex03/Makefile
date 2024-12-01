@@ -5,7 +5,7 @@ YELLOW			=	\\033[0;33m
 DEFAULT			=	\\033[0m
 
 # ------------  PROJECT  ---------------------------------------------------- #
-NAME			=	scavtrap
+NAME			=	diamondtrap
 
 # ------------  DIRECTORIES  ------------------------------------------------ #
 SRC_DIR			=	srcs/
@@ -15,7 +15,9 @@ OBJ_DIR			=	objs/
 # ------------  SOURCES  ---------------------------------------------------- #
 SRC_FLS			=	main.cpp \
 					ClapTrap.cpp \
-					ScavTrap.cpp
+					ScavTrap.cpp \
+					FragTrap.cpp \
+					DiamondTrap.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
