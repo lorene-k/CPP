@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 20:32:55 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/01 19:34:27 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/05 11:54:43 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,28 @@ ClapTrap::~ClapTrap()
 /************************************************************ Public methods */
 void ClapTrap::attack(const std::string& target)
 {
-    if (this->_energyPoints > 0 || this->_hitPoints > 0)
+    if (this->_energyPoints > 0 && this->_hitPoints > 0)
     {
         this->_energyPoints--;
-        std::cout << GREEN << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
+        std::cout << GREEN << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
     }
     else if (this->_energyPoints <= 0)
-        std::cout <<  RED << "ClapTrap " << this->_name << " can't attack: no energy points left!" << std::endl;
+        std::cout <<  RED << this->_name << " can't attack: no energy points left!" << std::endl;
     else if (this->_hitPoints <= 0)
-        std::cout <<  RED << "ClapTrap " << this->_name << " can't attack: no hit points left!" << std::endl;
+        std::cout <<  RED << this->_name << " can't attack: no hit points left!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    this->_hitPoints -= amount;
-    std::cout << ORANGE << this->_name << " takes " << amount << " points of damage!" << std::endl;
+    if (this->_hitPoints > 0)
+    {
+        this->_hitPoints -= amount;
+        if (this->_hitPoints < 0)
+            this->_hitPoints = 0;
+        std::cout << ORANGE << "ClapTrap " << this->_name << " takes " << amount << " points of damage!" << std::endl;
+    }
+    else if (this->_hitPoints == 0)
+        std::cout <<  RED << "ClapTrap " << this->_name << " can't take damage: no hit points left!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)

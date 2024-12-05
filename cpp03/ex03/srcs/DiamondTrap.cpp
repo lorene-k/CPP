@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 16:37:35 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/02 00:08:11 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:11:58 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(o
     _hitPoints = other._hitPoints;
     _energyPoints = other._energyPoints;
     _attackDamage = other._attackDamage;
-
 }
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other)
