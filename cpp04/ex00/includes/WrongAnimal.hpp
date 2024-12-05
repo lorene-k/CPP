@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:09:33 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/05 17:55:01 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:12:18 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
 
-# define ANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 # define RED     "\033[0;31m"
 # define GREEN   "\033[0;32m"
@@ -26,20 +26,20 @@
 # include <iostream>
 # include <string>
 
-class   Animal
+class   WrongAnimal
 {
 protected:
         std::string _type;
 
 public:
-        Animal();
-        Animal(std::string name);
-        Animal(const Animal &copy);
-        Animal &operator=(const Animal &other);
-        virtual ~Animal();
+        WrongAnimal();
+        WrongAnimal(std::string name);
+        WrongAnimal(const WrongAnimal &copy);
+        WrongAnimal &operator=(const WrongAnimal &other);
+        virtual ~WrongAnimal();
 
         std::string getType() const;
-        virtual void makeSound() const;
+        void makeSound() const;
 };
 
-#endif // *******************************************************  ANIMAL_HPP//
+#endif // ****************************************************  WRONGANIMAL_HPP//

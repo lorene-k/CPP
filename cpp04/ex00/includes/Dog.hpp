@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:33:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/03 00:34:01 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:00:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,18 @@
 
 # define DOG_HPP
 
-# define RED     "\033[0;31m"
-# define GREEN   "\033[0;32m"
-# define YELLOW  "\033[0;33m"
-# define BLUE    "\033[0;34m"
-# define CYAN    "\033[0;36m"
-# define RESET   "\033[0m"
-# define ORANGE  "\033[0;38;5;208m"
-# define PURPLE  "\033[0;35m"
-
-# include <iostream>
-# include <string>
 # include "Animal.hpp"
 
-class Dog : public Animal
+class   Dog : public Animal
 {
 public:
-    Dog();
-    Dog(std::string name);
-    Dog(const Dog &copy);
-    Dog &operator=(const Dog &other);
-    ~Dog();
+        Dog();
+        Dog(std::string name);
+        Dog(const Dog &copy);
+        Dog &operator=(const Dog &other);
+        ~Dog();
+
+        void makeSound() const;
 };
 
 #endif // ***************************************************** DOG_HPP //

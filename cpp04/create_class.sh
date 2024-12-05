@@ -1,14 +1,24 @@
 #!/bin/bash
 
-# Check if arguments are provided
+# Check if at least two arguments are provided
 if [ -z "$1" ] || [ -z "$2" ]; then
-    echo "Usage: $0 <ClassName> <Path to Directory>"
+    echo "Usage: $0 <ClassName> [base] <Path to Directory>"
     exit 1
 fi
 
+if [ -z "$3" ]; then
+    OUTPUT_PATH=$2
+else
+    OUTPUT_PATH=$3
+fi
 CLASS_NAME=$1
 UPPER_CLASS_NAME=$(echo "$CLASS_NAME" | tr '[:lower:]' '[:upper:]') # Uppercase class name for include guards
-OUTPUT_PATH=$2
+COLOR_DEFINE=false
+
+# Check if the second argument is "base"
+if [ ! -z "$2" ] && [ "$2" == "base" ]; then
+    COLOR_DEFINE=true
+fi
 
 # Generate .cpp file
 cat << EOF >> "$CLASS_NAME.cpp"
@@ -20,7 +30,7 @@ $CLASS_NAME::$CLASS_NAME()
     std::cout << "$CLASS_NAME default constructor called" << std::endl;
 }
 
-$CLASS_NAME::$CLASS_NAME() :
+$CLASS_NAME::$CLASS_NAME(std::string name) :
 {
     std::cout << "$CLASS_NAME parameterized constructor called" << std::endl;
 }
@@ -31,7 +41,7 @@ $CLASS_NAME::$CLASS_NAME(const $CLASS_NAME &other)
     *this = other;
 }
 
-$CLASS_NAME & $CLASS_NAME::operator=(const $CLASS_NAME &other)
+$CLASS_NAME &$CLASS_NAME::operator=(const $CLASS_NAME &other)
 {
     std::cout << "$CLASS_NAME copy assignment operator overload called" << std::endl;
     if (this != &other) {
@@ -55,6 +65,11 @@ cat << EOF >> "$CLASS_NAME.hpp"
 
 # define ${UPPER_CLASS_NAME}_HPP
 
+EOF
+
+# Add color definitions if "base" is provided as the second argument
+if $COLOR_DEFINE; then
+    cat << EOF >> "$CLASS_NAME.hpp"
 # define RED     "\\033[0;31m"
 # define GREEN   "\\033[0;32m"
 # define YELLOW  "\\033[0;33m"
@@ -66,6 +81,11 @@ cat << EOF >> "$CLASS_NAME.hpp"
 
 # include <iostream>
 # include <string>
+EOF
+fi
+
+# Add common includes and class declaration
+cat << EOF >> "$CLASS_NAME.hpp"
 
 class $CLASS_NAME
 {
@@ -81,10 +101,11 @@ public:
 };
 
 #endif // ***************************************************** ${UPPER_CLASS_NAME}_HPP //
+
 EOF
 
 # Move files to the specified directory
 mv "$CLASS_NAME.cpp" "$OUTPUT_PATH/srcs"
 mv "$CLASS_NAME.hpp" "$OUTPUT_PATH/includes"
 
-echo "Files $CLASS_NAME.cpp and $CLASS_NAME.hpp generated and moved to $OUTPUT_PATH."
+echo "Files $CLASS_NAME.cpp and $CLASS_NAME.hpp generated and moved to $OUTPUT_PATH"
