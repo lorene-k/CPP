@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:12:36 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/05 18:01:22 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/09 19:38:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ Animal::Animal() : _type("DefaultAnimal")
     std::cout << "Animal default constructor called" << std::endl;
 }
 
-Animal::Animal(std::string type) : _type(type)
+Animal::Animal(std::string const &type) : _type(type)
 {
     std::cout << "Animal parameterized constructor called for " << this->_type << std::endl;
 }
 
-Animal::Animal(const Animal &other) : _type(other._type)
+Animal::Animal(Animal const &other) : _type(other._type)
 {
     std::cout << "Animal copy constructor called" << std::endl;
 }
@@ -32,7 +32,7 @@ Animal & Animal::operator=(const Animal &other)
 {
     std::cout << "Animal copy assignment operator overload called" << std::endl;
     if (this != &other)
-        this->_type = other._type;
+        this->_type = other.getType();
     return (*this);
 }
 
@@ -42,9 +42,14 @@ Animal::~Animal()
 }
 
 /************************************************************ Public methods */
-std::string Animal::getType() const
+std::string const &Animal::getType() const
 {
     return (this->_type);
+}
+
+void    Animal::setType(const std::string &type)
+{
+	this->_type = type;
 }
 
 void Animal::makeSound() const

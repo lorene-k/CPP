@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:09:33 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/05 17:55:01 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/09 19:18:56 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ protected:
 
 public:
         Animal();
-        Animal(std::string name);
-        Animal(const Animal &copy);
+        Animal(std::string const &type);
+        Animal(Animal const &copy);
         Animal &operator=(const Animal &other);
         virtual ~Animal();
 
-        std::string getType() const;
+        std::string const &getType() const;
+        void setType(std::string const &type);
         virtual void makeSound() const;
 };
 

@@ -18,10 +18,10 @@ WrongCat::WrongCat() : WrongAnimal("WrongCat")
     std::cout << "WrongCat default constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(std::string type) : WrongAnimal("WrongCat")
+WrongCat::WrongCat(std::string type) : WrongAnimal(type)
 {
     std::cout << "WrongCat parameterized constructor called" << std::endl;
-    _type = type;
+    _type = "WrongCat";
 }
 
 WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other)
@@ -33,10 +33,7 @@ WrongCat &WrongCat::operator=(const WrongCat &other)
 {
     std::cout << "WrongCat copy assignment operator overload called" << std::endl;
     if (this != &other)
-    {    
         WrongAnimal::operator=(other);
-        this->_type = other._type;
-    }
     return (*this);
 }
 
@@ -46,7 +43,17 @@ WrongCat::~WrongCat()
 }
 
 /************************************************************ Public methods */
+std::string const &WrongCat::getType() const
+{
+    return (this->_type);
+}
+
+void    WrongCat::setType(const std::string &type)
+{
+	this->_type = type;
+}
+
 void    WrongCat::makeSound() const
 {
-    std::cout << "Meow" << std::endl;
+    std::cout << "WrongMEOW" << std::endl;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:18:48 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/05 17:05:41 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/09 19:40:38 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,22 @@ Cat::Cat() : Animal("Cat")
     std::cout << "Cat default constructor called" << std::endl;
 }
 
-Cat::Cat(std::string type) : Animal("Cat")
+Cat::Cat(std::string const &type) : Animal(type)
 {
     std::cout << "Cat parameterized constructor called" << std::endl;
-    _type = type;
+    _type = "Cat";
 }
 
-Cat::Cat(const Cat &other) : Animal(other)
+Cat::Cat(Cat const &other) : Animal(other)
 {
     std::cout << "Cat copy constructor called" << std::endl;
 }
 
-Cat &Cat::operator=(const Cat &other)
+Cat &Cat::operator=(Cat const &other)
 {
     std::cout << "Cat copy assignment operator overload called" << std::endl;
     if (this != &other)
-    {    
         Animal::operator=(other);
-        this->_type = other._type;
-    }
     return (*this);
 }
 
@@ -46,7 +43,17 @@ Cat::~Cat()
 }
 
 /************************************************************ Public methods */
+std::string const &Cat::getType() const
+{
+    return (this->_type);
+}
+
+void    Cat::setType(const std::string &type)
+{
+	this->_type = type;
+}
+
 void    Cat::makeSound() const
 {
-    std::cout << "Meow" << std::endl;
+    std::cout << "MEOW" << std::endl;
 }

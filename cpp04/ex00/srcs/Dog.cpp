@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:32:25 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/05 17:05:50 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/09 19:42:57 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ Dog::Dog() : Animal("Dog")
     std::cout << "Dog default constructor called" << std::endl;
 }
 
-Dog::Dog(std::string type) : Animal("Dog")
+Dog::Dog(std::string const &type) : Animal(type)
 {
     std::cout << "Dog parameterized constructor called" << std::endl;
-    _type = type;
+    this->_type = "Dog";
 }
 
-Dog::Dog(const Dog &other) : Animal(other)
+Dog::Dog(Dog const &other) : Animal(other)
 {
     std::cout << "Dog copy constructor called" << std::endl;
 }
@@ -33,10 +33,7 @@ Dog &Dog::operator=(const Dog &other)
 {
     std::cout << "Dog copy assignment operator overload called" << std::endl;
     if (this != &other)
-    {    
         Animal::operator=(other);
-        this->_type = other._type;
-    }
     return (*this);
 }
 
@@ -45,7 +42,17 @@ Dog::~Dog() {
 }
 
 /************************************************************ Public methods */
+std::string const &Dog::getType() const
+{
+    return (this->_type);
+}
+
+void    Dog::setType(const std::string &type)
+{
+	this->_type = type;
+}
+
 void    Dog::makeSound() const
 {
-    std::cout << "Wouaf" << std::endl;
+    std::cout << "WOUAF" << std::endl;
 }

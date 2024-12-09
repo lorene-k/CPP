@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:09:33 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/05 18:12:18 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/09 19:22:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ protected:
 
 public:
         WrongAnimal();
-        WrongAnimal(std::string name);
-        WrongAnimal(const WrongAnimal &copy);
-        WrongAnimal &operator=(const WrongAnimal &other);
+        WrongAnimal(std::string const &name);
+        WrongAnimal(WrongAnimal const &copy);
+        WrongAnimal &operator=(WrongAnimal const &other);
         virtual ~WrongAnimal();
 
-        std::string getType() const;
+        std::string const &getType() const;
+        void setType(std::string const &type);
         void makeSound() const;
 };
 
