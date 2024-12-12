@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:32:25 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/09 19:42:57 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:24:07 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ Dog::Dog() : Animal("Dog")
 Dog::Dog(std::string const &type) : Animal(type)
 {
     std::cout << "Dog parameterized constructor called" << std::endl;
-    this->_type = "Dog";
+    if (type != "Dog")
+        this->_type = "Dog";
 }
 
 Dog::Dog(Dog const &other) : Animal(other)

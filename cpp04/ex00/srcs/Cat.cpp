@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:18:48 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/09 19:40:38 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:25:35 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ Cat::Cat() : Animal("Cat")
 Cat::Cat(std::string const &type) : Animal(type)
 {
     std::cout << "Cat parameterized constructor called" << std::endl;
-    _type = "Cat";
+    if (type != "Cat")    
+        this->_type = "Cat";
 }
 
 Cat::Cat(Cat const &other) : Animal(other)

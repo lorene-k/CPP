@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:10:29 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/12 12:46:20 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:49:16 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 //     Animal* cat = new Cat();
 //     WrongAnimal* wrong_animal = new WrongAnimal();
 //     WrongAnimal* wrong_cat = new WrongCat();
+//     WrongCat* wrong_cat2 = new WrongCat();
     
 //     std::cout << std::endl << CYAN << "===== Type Tests =====" << RESET << std::endl;
 //     std::cout << "animal type = " << animal->getType() << " " << std::endl;
@@ -42,6 +43,8 @@
 //     wrong_animal->makeSound();
 //     std::cout << "wrong cat sound = ";
 //     wrong_cat->makeSound();
+//     std::cout << "wrong cat2 sound = ";
+//     wrong_cat2->makeSound();
     
 //     std::cout << std::endl << CYAN << "===== Destructor Tests =====" << RESET << std::endl;
 //     delete animal;
@@ -49,6 +52,7 @@
 //     delete cat;
 //     delete wrong_animal;
 //     delete wrong_cat;
+//     delete wrong_cat2;
 //     return (0);
 // }
 

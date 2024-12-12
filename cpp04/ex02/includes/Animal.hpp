@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:09:33 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/12 12:56:47 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:04:03 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ public:
 
         std::string const &getType() const;
         void setType(std::string const &type);
-        virtual void makeSound() const;
+        virtual void makeSound() const = 0;
 };
 
 #endif // *******************************************************  ANIMAL_HPP//

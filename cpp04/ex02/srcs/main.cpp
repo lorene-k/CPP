@@ -6,13 +6,22 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:10:29 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/12 14:01:45 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:14:37 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongCat.hpp"
+
+/******************************************** Abstract test - won't compile ! */
+// int main()
+// {
+//     Animal animal1;
+//     Animal *animal2 = new Animal();
+//     delete animal2;
+//     return (0);
+// }
 
 /************************************************************* Complete tests */
 int main()

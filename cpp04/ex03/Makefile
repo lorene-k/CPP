@@ -5,7 +5,7 @@ YELLOW			=	\\033[0;33m
 DEFAULT			=	\\033[0m
 
 # ------------  PROJECT  ---------------------------------------------------- #
-NAME			=	brain
+NAME			=	abstract
 
 # ------------  DIRECTORIES  ------------------------------------------------ #
 SRC_DIR			=	srcs/
@@ -14,12 +14,9 @@ OBJ_DIR			=	objs/
 
 # ------------  SOURCES  ---------------------------------------------------- #
 SRC_FLS			=	main.cpp \
-					Animal.cpp \
-					Dog.cpp \
-					Cat.cpp \
-					WrongAnimal.cpp \
-					WrongCat.cpp \
-					Brain.cpp
+					AMateria.cpp \
+					ICharacter.cpp \
+					IMateriaSource.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

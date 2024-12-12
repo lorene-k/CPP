@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 00:33:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/12 12:59:14 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/12/03 00:17:42 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/12/05 17:00:26 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
+#ifndef WRONGCAT_HPP
 
-# define DOG_HPP
+# define WRONGCAT_HPP
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+# include "WrongAnimal.hpp"
 
-class   Dog : public Animal
+class   WrongCat : public WrongAnimal
 {
-private:
-        Brain *_brain;
-
 public:
-        Dog();
-        Dog(std::string const &type);
-        Dog(Dog const &copy);
-        Dog &operator=(const Dog &other);
-        ~Dog();
+        WrongCat();
+        WrongCat(std::string name);
+        WrongCat(const WrongCat &copy);
+        WrongCat &operator=(const WrongCat &other);
+        ~WrongCat();
 
         std::string const &getType(void) const;
 	void setType(std::string const &type);
-        void makeSound() const;
+        void makeSound() const; 
 };
 
-#endif // ***************************************************** DOG_HPP //
+#endif // ****************************************************** WRONGCAT_HPP //
