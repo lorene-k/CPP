@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:17:42 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/12 12:59:09 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:50:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
         Cat(std::string const &type);
         Cat(Cat const &copy);
         Cat &operator=(const Cat &other);
-        ~Cat();
+        virtual ~Cat();
 
         std::string const &getType(void) const;
 	void setType(std::string const &type);

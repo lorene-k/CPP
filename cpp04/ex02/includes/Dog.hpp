@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:33:58 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/12 12:59:14 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:59:52 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ public:
         std::string const &getType(void) const;
 	void setType(std::string const &type);
         void makeSound() const;
+        
+        Brain *getBrain() const; // For deep copy test
 };
 
 #endif // ***************************************************** DOG_HPP //

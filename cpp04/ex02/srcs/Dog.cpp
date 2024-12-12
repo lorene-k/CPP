@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 00:32:25 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/12 13:42:48 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:00:19 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,9 @@ void    Dog::setType(const std::string &type)
 void    Dog::makeSound() const
 {
     std::cout << "WOUAF" << std::endl;
+}
+
+Brain *Dog::getBrain() const
+{
+    return (this->_brain);
 }

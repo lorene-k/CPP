@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:10:29 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/12 14:14:37 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:58:44 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ int main()
             std::cout << "Cat" << RESET << std::endl;
         delete animals[i];
     }
+
+    std::cout << std::endl << CYAN << "===== Deep Copy Test =====" << RESET << std::endl;
+    const Dog dog;
+    const Dog copy = dog;
+    
+    std::cout << YELLOW << "dog brain address: " << dog.getBrain() << std::endl;
+    std::cout << YELLOW << "copy brain address: " << copy.getBrain() << RESET << std::endl;
     return (0);
 }
 
