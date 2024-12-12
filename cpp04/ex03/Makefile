@@ -5,7 +5,7 @@ YELLOW			=	\\033[0;33m
 DEFAULT			=	\\033[0m
 
 # ------------  PROJECT  ---------------------------------------------------- #
-NAME			=	abstract
+NAME			=	materia
 
 # ------------  DIRECTORIES  ------------------------------------------------ #
 SRC_DIR			=	srcs/
@@ -15,8 +15,10 @@ OBJ_DIR			=	objs/
 # ------------  SOURCES  ---------------------------------------------------- #
 SRC_FLS			=	main.cpp \
 					AMateria.cpp \
-					ICharacter.cpp \
-					IMateriaSource.cpp
+					Character.cpp \
+					Cure.cpp \
+					Ice.cpp \
+					MateriaSource.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

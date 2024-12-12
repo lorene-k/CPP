@@ -6,12 +6,14 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:12:17 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/12 14:14:49 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:40:45 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ICharacter.cpp"
-#include "IMateriaSource.cpp"
+#include "Character.hpp"
+#include "MateriaSource.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
 /************************************************************** Subject tests */
 int main()
