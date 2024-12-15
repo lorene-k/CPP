@@ -5,7 +5,7 @@ YELLOW			=	\\033[0;33m
 DEFAULT			=	\\033[0m
 
 # ------------  PROJECT  ---------------------------------------------------- #
-NAME			=	bureaucrat
+NAME			=	form
 
 # ------------  DIRECTORIES  ------------------------------------------------ #
 SRC_DIR			=	srcs/
@@ -14,7 +14,9 @@ OBJ_DIR			=	objs/
 
 # ------------  SOURCES  ---------------------------------------------------- #
 SRC_FLS			=	main.cpp \
-					Bureaucrat.cpp
+					Bureaucrat.cpp \
+					GradeExceptions.cpp \
+					Form.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
