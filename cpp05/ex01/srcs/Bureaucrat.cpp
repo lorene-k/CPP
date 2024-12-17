@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:04:30 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/15 23:37:23 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/16 22:48:16 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ Bureaucrat::Bureaucrat(std::string const &name, int grade) : _name(name), _grade
     try
     {
         if (grade < 1)
-            throw GradeTooHighException();
+            throw Bureaucrat::GradeTooHighException();
         else if (grade > 150)
-            throw GradeTooLowException();
+            throw Bureaucrat::GradeTooLowException();
     }
-    catch (GradeTooHighException &e)
+    catch (Bureaucrat::GradeTooHighException &e)
     {
-        std::cerr << RED << e.what() << ": changed to 1" << RESET << std::endl;
+        std::cerr << ORANGE << e.what() << RED << " (changed to 1)" << RESET << std::endl;
         _grade = 1;
     }
-    catch (GradeTooLowException &e)
+    catch (Bureaucrat::GradeTooLowException &e)
     {
-        std::cerr << RED << e.what() << ": changed to 150" << RESET << std::endl;
+        std::cerr << ORANGE << e.what() << RED << " (changed to 150)" << RESET << std::endl;
         _grade = 150;
     }
 }
@@ -77,12 +77,12 @@ void Bureaucrat::incrementGrade()
     try
     {
         if (this->_grade - 1 < 1)
-            throw GradeTooHighException();
+            throw Bureaucrat::GradeTooHighException();
         this->_grade--;
     }
-    catch (GradeTooHighException &e)
+    catch (Bureaucrat::GradeTooHighException &e)
     {
-        std::cerr << RED << "Can't change grade for " << this->_name << ": " << e.what() << RESET << std::endl;
+        std::cerr << RED << "Can't change grade for " << this->_name << ": " << ORANGE << e.what() << RESET << std::endl;
     }
 }
 
@@ -91,26 +91,41 @@ void Bureaucrat::decrementGrade()
     try
     {
         if (this->_grade + 1 > 150)
-            throw GradeTooLowException();
+            throw Bureaucrat::GradeTooLowException();
         this->_grade++;
     }
-    catch (GradeTooLowException &e)
+    catch (Bureaucrat::GradeTooLowException &e)
     {
-        std::cerr << RED << "Can't change grade for " << this->_name << ": " << e.what() << RESET << std::endl;
+        std::cerr << RED << "Can't change grade for " << this->_name << ": " << ORANGE << e.what() << RESET << std::endl;
     }
 }
 
-void Bureaucrat::signForm(Form &form) // COMPLETE THIS
+void Bureaucrat::signForm(Form &form)
 {
     try
     {
         form.beSigned(*this);
+        if (form.getSigned() == true)
+            std::cout << PURPLE << "Bureaucrat " << this->_name << " signed " << form.getName() << " Form" << RESET << std::endl;
+        else
+            throw Bureaucrat::GradeTooLowException();
     }
-    catch (GradeTooLowException &e)
+    catch (Bureaucrat::GradeTooLowException &e)
     {
         std::cerr << RED << "Bureaucrat " << this->_name
-        << " couldn't sign " << form.getName() << " Form because " << e.what() << RESET << std::endl;
+        << " couldn't sign " << form.getName() << " Form because: " << ORANGE << e.what() << RESET << std::endl;
     }
+}
+
+/*********************************************************** Grade exceptions */
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return ("Bureaucrat Grade is too high");
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return ("Bureaucrat Grade is too low");
 }
 
 /*********************************************************** Stream overloads */

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/15 23:43:49 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/18 00:17:26 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,42 @@
 int main()
 {
     std::cout << std::endl << CYAN << "===== Constructors =====" << RESET << std::endl;
-    Bureaucrat b1("Bob", 1);
-    Bureaucrat b2(b1);
-    Bureaucrat b3 = b2;
-    Bureaucrat b4("John", 151);
+    Bureaucrat bob("Bob", 1);
+    Bureaucrat john("John", 151);
 
     std::cout << std::endl << CYAN << "===== Bureaucrat Stream overloads =====" << RESET << std::endl;
-    std::cout << b1 << std::endl;
-    std::cout << b2 << std::endl;
-    std::cout << b3 << std::endl;
+    std::cout << bob << std::endl;
+    std::cout << john << std::endl;
     
     std::cout << std::endl << CYAN << "===== Increment/decrement =====" << RESET << std::endl;
-    b1.incrementGrade();
-    b2.decrementGrade();
-    b4.decrementGrade();
+    bob.incrementGrade();
+    john.decrementGrade();
+    std::cout << bob << std::endl;
+    std::cout << john << std::endl;
+    john.incrementGrade();
+    std::cout << "Grade incremented for " << john << std::endl;
     
-    std::cout << b1 << std::endl;
-    std::cout << b2 << std::endl;
-    std::cout << b4 << std::endl;
-
     std::cout << std::endl << CYAN << "===== Forms constructors =====" << RESET << std::endl;
-    Form f1("Test1", 1, 1);
-    Form f2("Test2", 150, 150);
-    Form f3(f1);
-    Form f4 = f2;
-    Form f5("Test5", 0, 0);
+    Form f1("Test1", 149, 1);
+    Form f2(f1);
+    Form f3 = f2;
+    Form f4("Test4", 0, 151);
 
     std::cout << std::endl << CYAN << "===== Form Stream overloads =====" << RESET << std::endl;
     std::cout << f1 << std::endl;
     std::cout << f2 << std::endl;
-    std::cout << f5 << std::endl;
+    std::cout << f3 << std::endl;
+    std::cout << f4 << std::endl;
 
     std::cout << std::endl << CYAN << "===== Form functions =====" << RESET << std::endl;
-    b1.signForm(f1);
-    b4.signForm(f1);
-    f2.beSigned(b1);
+    bob.signForm(f1);
+    bob.signForm(f1);
+    john.signForm(f4);
+
+    std::cout << std::endl << "BOB : " << bob << std::endl;
+    std::cout << "JOHN : " << john << std::endl;
+    std::cout << "F1 : " << f1 << std::endl;
+    std::cout << "F4 : " << f4 << std::endl;
 
     std::cout << std::endl;
     
