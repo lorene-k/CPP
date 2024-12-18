@@ -16,7 +16,9 @@ OBJ_DIR			=	objs/
 SRC_FLS			=	main.cpp \
 					Bureaucrat.cpp \
 					AForm.cpp \
-					PresidentialPardonForm.cpp
+					PresidentialPardonForm.cpp \
+					RobotomyRequestForm.cpp \
+					ShrubberyCreationForm.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

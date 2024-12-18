@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:04:20 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/18 00:40:18 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/19 00:17:50 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 # define BUREAUCRAT_HPP
 
-# define RED     "\033[0;31m"
-# define GREEN   "\033[0;32m"
-# define YELLOW  "\033[0;33m"
-# define BLUE    "\033[0;34m"
-# define CYAN    "\033[0;36m"
-# define RESET   "\033[0m"
-# define ORANGE  "\033[0;38;5;208m"
-# define PURPLE  "\033[0;35m"
+# define RESET  "\033[0m"
+# define RED    "\033[0;31m"
+# define ORANGE "\033[0;38;5;208m"
+# define YELLOW "\033[0;33m"
+# define GREEN  "\033[0;32m"
+# define BLUE   "\033[0;34m"
+# define CYAN   "\033[0;36m"
+# define PURPLE "\033[0;35m"
+# define MAUVE  "\033[38;5;177m"
 
 # include <iostream>
 # include <string>
@@ -46,6 +47,7 @@ public:
     void incrementGrade();
     void decrementGrade();
     void signForm(AForm &form);
+    void executeForm(AForm const &form);
 
     class GradeTooHighException : public std::exception
     {

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 23:17:03 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/17 23:26:41 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/19 00:18:04 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define SHRUBBERYCREATIONFORM_HPP
 
+# include <fstream>
 # include "AForm.hpp"
 
 class ShrubberyCreationForm : public AForm
@@ -28,7 +29,7 @@ public:
     ShrubberyCreationForm &operator=(ShrubberyCreationForm const &other);
     virtual ~ShrubberyCreationForm();
 
-    void execute(Bureaucrat const & executor) const;
+    void executeAction() const;
 };
 
 #endif // ***************************************** SHRUBBERYCREATIONFORM_HPP //

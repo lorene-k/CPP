@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:04:30 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/16 21:35:23 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:06:48 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,10 @@ Bureaucrat::Bureaucrat() : _name("defaultName"), _grade(150)
 Bureaucrat::Bureaucrat(std::string const &name, int grade) : _name(name), _grade(grade)
 {
     std::cout << "Bureaucrat parameterized constructor called" << std::endl;
-    try
-    {
-        if (grade < 1)
-            throw Bureaucrat::GradeTooHighException();
-        else if (grade > 150)
-            throw Bureaucrat::GradeTooLowException();
-    }
-    catch (Bureaucrat::GradeTooHighException &e)
-    {
-        std::cerr << RED << e.what() << ": changed to 1" << RESET << std::endl;
-        _grade = 1;
-    }
-    catch (Bureaucrat::GradeTooLowException &e)
-    {
-        std::cerr << RED << e.what() << ": changed to 150" << RESET << std::endl;
-        _grade = 150;
-    }
+    if (grade < 1)
+        throw Bureaucrat::GradeTooHighException();
+    else if (grade > 150)
+        throw Bureaucrat::GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &other) : _name(other._name), _grade(other._grade)
@@ -74,30 +61,16 @@ std::string const Bureaucrat::getName() const
 
 void Bureaucrat::incrementGrade()
 {
-    try
-    {
-        if (this->_grade - 1 < 1)
-            throw Bureaucrat::GradeTooHighException();
-        this->_grade--;
-    }
-    catch (Bureaucrat::GradeTooHighException &e)
-    {
-        std::cerr << RED << "Can't change grade for " << this->_name << ": " << e.what() << RESET << std::endl;
-    }
+    if (this->_grade - 1 < 1)
+        throw Bureaucrat::GradeTooHighException();
+    this->_grade--;
 }
 
 void Bureaucrat::decrementGrade()
 {
-    try
-    {
-        if (this->_grade + 1 > 150)
-            throw Bureaucrat::GradeTooLowException();
-        this->_grade++;
-    }
-    catch (Bureaucrat::GradeTooLowException &e)
-    {
-        std::cerr << RED << "Can't change grade for " << this->_name << ": " << e.what() << RESET << std::endl;
-    }
+    if (this->_grade + 1 > 150)
+        throw Bureaucrat::GradeTooLowException();
+    this->_grade++;
 }
 
 /********************************************************** Exception classes */

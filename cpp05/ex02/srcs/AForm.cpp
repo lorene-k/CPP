@@ -6,28 +6,11 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 21:18:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/18 00:53:14 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/19 00:16:35 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
-
-//********************************************************** Helper functions */
-static void handleHighGrade(const AForm::GradeTooHighException &e, int toSign, int toExecute)
-{
-    if (toSign < 1)
-        std::cerr << RED << "Invalid grade to sign (changed to 1): " << ORANGE << e.what() << RESET << std::endl;
-    if (toExecute < 1)
-        std::cerr << RED << "Invalid grade to execute (changed to 1): " << ORANGE << e.what()  << RESET << std::endl;
-}
-
-static void handleLowGrade(const AForm::GradeTooLowException &e, int toSign, int toExecute)
-{
-    if (toSign > 150)
-        std::cerr << RED << "Invalid grade to sign (changed to 150): " << ORANGE << e.what() << RESET << std::endl;
-    if (toExecute > 150)
-        std::cerr << RED << "Invalid grade to execute (changed to 150): " << ORANGE << e.what() << RESET << std::endl;
-}
 
 /************************************************** Constructors & destructor */
 AForm::AForm() : _name("defaultName"), _signed(false), _gradeToSign(150), _gradeToExecute(150)
@@ -40,24 +23,10 @@ AForm::AForm(std::string const &name, int const &gradeToSign, int const &gradeTo
     _gradeToExecute(gradeToExecute < 1 ? 1 : (gradeToExecute > 150 ? 150 : gradeToExecute))
 {
     std::cout << "AForm parameterized constructor called" << std::endl;
-    try
-    {
-        if (gradeToSign < 1 || gradeToExecute < 1)
-            throw AForm::GradeTooHighException();
-    }
-    catch (AForm::GradeTooHighException &e)
-    {
-        handleHighGrade(e, gradeToSign, gradeToExecute);
-    }
-    try
-    {
-        if (gradeToSign > 150 || gradeToExecute > 150)
-            throw AForm::GradeTooLowException();
-    }
-    catch (AForm::GradeTooLowException &e)
-    {
-        handleLowGrade(e, gradeToSign, gradeToExecute);
-    }
+    if (gradeToSign < 1 || gradeToExecute < 1)
+        throw AForm::GradeTooHighException();
+    if (gradeToSign > 150 || gradeToExecute > 150)
+        throw AForm::GradeTooLowException();
 }
 
 AForm::AForm(AForm const &other) : _name(other._name), _signed(other._signed),
@@ -105,19 +74,21 @@ int AForm::getGradeToExecute() const
 /************************************************************* Public methods */
 void AForm::beSigned(Bureaucrat const &bureaucrat)
 {
-    try
-    {
-        if (bureaucrat.getGrade() > this->_gradeToSign)
-            throw(AForm::GradeTooLowException());
-        else if (this->_signed == true)
-            std::cout << RED << this->_name << " already signed" << RESET << std::endl;
-        else if (this->_signed == false)
-            this->_signed = true;
-    }
-    catch (AForm::GradeTooLowException &e)
-    {
-        std::cerr << RED << this->_name << " can't be signed: " << ORANGE << e.what() << RESET << std::endl;
-    }
+    if (bureaucrat.getGrade() > this->_gradeToSign)
+        throw(AForm::GradeTooLowException());
+    else if (this->_signed == true)
+        std::cout << ORANGE << this->_name << " already signed" << RESET << std::endl;
+    else if (this->_signed == false)
+        this->_signed = true;
+}
+
+void AForm::execute(Bureaucrat const &bureaucrat) const
+{
+    if (this->_signed == false)
+        throw(AForm::FormNotSignedException());
+    if (bureaucrat.getGrade() > this->_gradeToExecute)
+        throw(AForm::GradeTooLowException());
+    this->executeAction();
 }
 
 /*********************************************************** Grade exceptions */
@@ -133,7 +104,7 @@ const char *AForm::GradeTooLowException::what() const throw()
 
 const char *AForm::FormNotSignedException::what() const throw()
 {
-    return ("Form is not signed");
+    return ("Form is not signed: can't be executed");
 }
 
 /*********************************************************** Stream overloads */

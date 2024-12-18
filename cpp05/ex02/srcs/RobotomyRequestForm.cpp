@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 00:04:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/18 00:24:00 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/19 00:19:16 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ RobotomyRequestForm::~RobotomyRequestForm()
 }
 
 /************************************************************* Public methods */
-void RobotomyRequestForm::execute(Bureaucrat const &executor) const
+void RobotomyRequestForm::executeAction() const
 {
-    // Makes some drilling noises. Then, informs that <target> has been robotomized successfully 50% of the time.
-    // Otherwise, informs that the robotomy failed.
+    std::cout << PURPLE <<  "Making some drilling noises. " << RESET;
+    if (rand() % 2 == 0)
+        std::cout << MAUVE << this->_target << " has been robotomized successfully." << RESET << std::endl;
+    else
+        std::cout << MAUVE << "Robotomy failed." << RESET << std::endl;
 }

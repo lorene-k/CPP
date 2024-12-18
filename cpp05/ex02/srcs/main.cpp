@@ -6,27 +6,70 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/18 00:51:54 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/19 00:12:48 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main()
 {
     std::cout << std::endl << CYAN << "===== Constructors =====" << RESET << std::endl;
-    PresidentialPardonForm test("target1");
-    Bureaucrat bureaucrat("Bob", 1);
+    PresidentialPardonForm pardon("target1");
+    RobotomyRequestForm robot("target2");
+    ShrubberyCreationForm shrub("target3");
+    Bureaucrat bob("Bob", 150);
+    Bureaucrat john("John", 1);
 
     std::cout << std::endl << CYAN << "===== Stream overloads =====" << RESET << std::endl;
-    std::cout << bureaucrat << std::endl;
-    std::cout << test  << std::endl;
+    std::cout << bob << std::endl;
+    std::cout << john << std::endl;
+    std::cout << pardon  << std::endl;
+    std::cout << robot << std::endl;
     
-    std::cout << std::endl << CYAN << "===== Form functions =====" << RESET << std::endl;
-    test.beSigned(bureaucrat);
-    bureaucrat.signForm(test);
-    test.execute(bureaucrat);
-
-    std::cout << std::endl;
+    std::cout << std::endl << CYAN << "===== Presidential Pardon Form =====" << RESET << std::endl;
+    try {
+    // pardon.beSigned(john);
+    // pardon.beSigned(bob);
+    john.signForm(pardon);
+    pardon.execute(john);
+    pardon.execute(bob);
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << RED << e.what() << RESET << std::endl;
+    }
+    
+    std::cout << std::endl << CYAN << "===== Robotomy Request Form =====" << RESET << std::endl;
+    srand(time(NULL));
+    try {
+    // robot.beSigned(john);
+    // robot.beSigned(bob);
+    john.signForm(robot);
+    robot.execute(john);
+    bob.executeForm(robot);
+    robot.execute(bob);
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << RED << e.what() << RESET << std::endl;
+    }
+    
+    std::cout << std::endl << CYAN << "===== Shrubbery Creation Form =====" << RESET << std::endl;
+    try {
+    // shrub.beSigned(john);
+    // shrub.beSigned(bob);
+    john.signForm(shrub);
+    shrub.execute(john);
+    shrub.execute(bob);
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << RED << e.what() << RESET << std::endl;
+    }
+    
+    // std::cout << std::endl;
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 00:04:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/18 00:51:36 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/19 00:18:32 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,11 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-    std::cout << "RobotomyRequestForm destructor called" << std::endl;
+    std::cout << "PresidentialPardonForm destructor called" << std::endl;
 }
 
 /************************************************************* Public methods */
-void PresidentialPardonForm::execute(Bureaucrat const &bureaucrat) const
+void PresidentialPardonForm::executeAction() const
 {
-    try
-    {
-        if (this->_signed == false)
-            throw AForm::FormNotSignedException();
-    }
-    catch (AForm::FormNotSignedException &e)
-    {
-        std::cerr << RED << this->_name << " can't be executed: " << ORANGE << e.what() << RESET << std::endl;
-    }
-    try
-    {
-        if (bureaucrat.getGrade() > this->_gradeToExecute)
-            throw AForm::GradeTooLowException();
-    }
-    catch (AForm::GradeTooLowException &e)
-    {
-        std::cerr << RED << this->_name << " can't be executed by " << bureaucrat.getName() << ": " << ORANGE << e.what() << RESET << std::endl;
-    }
-    if  (this->_signed == true && bureaucrat.getGrade() <= this->_gradeToExecute)
-        std::cout << PURPLE << this->_target << " has been pardoned by Zaphod Beeblebrox." << RESET << std::endl;
+    std::cout << PURPLE << this->_target << " has been pardoned by Zaphod Beeblebrox." << RESET << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 00:04:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/18 00:41:07 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/19 00:19:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,21 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 }
 
 /************************************************************* Public methods */
-void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+void ShrubberyCreationForm::executeAction() const
 {
-    // Create a file <target>_shrubbery in the working directory, and writes ASCII trees inside it.
+    std::ofstream file(this->_target + "_shrubbery");
+    if (!file)
+    {
+        std::cerr << RED << "Error: failed to create file " << this->_target + "_shrubbery" << RESET << std::endl;
+        return;
+    }
+    file << "       ###" << std::endl;
+    file << "      #o###" << std::endl;
+    file << "    #####o###" << std::endl;
+    file << "   #o#\\#|#/###" << std::endl;
+    file << "    ###\\|/#o#" << std::endl;
+    file << "     # }|{ #" << std::endl;
+    file << "       }|{" << std::endl;
+    file.close();
+    std::cout << PURPLE << "Shrubbery successfully created in " << this->_target + "_shrubbery" << RESET << std::endl;
 }

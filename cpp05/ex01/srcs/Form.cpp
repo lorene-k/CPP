@@ -6,28 +6,11 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 21:18:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/18 00:54:04 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:22:20 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
-
-//********************************************************** Helper functions */
-static void handleHighGrade(const Form::GradeTooHighException &e, int toSign, int toExecute)
-{
-    if (toSign < 1)
-        std::cerr << RED << "Invalid grade to sign (changed to 1): " << ORANGE << e.what() << RESET << std::endl;
-    if (toExecute < 1)
-        std::cerr << RED << "Invalid grade to execute (changed to 1): " << ORANGE << e.what()  << RESET << std::endl;
-}
-
-static void handleLowGrade(const Form::GradeTooLowException &e, int toSign, int toExecute)
-{
-    if (toSign > 150)
-        std::cerr << RED << "Invalid grade to sign (changed to 150): " << ORANGE << e.what() << RESET << std::endl;
-    if (toExecute > 150)
-        std::cerr << RED << "Invalid grade to execute (changed to 150): " << ORANGE << e.what() << RESET << std::endl;
-}
 
 /************************************************** Constructors & destructor */
 Form::Form() : _name("defaultName"), _signed(false), _gradeToSign(150), _gradeToExecute(150)
@@ -35,29 +18,14 @@ Form::Form() : _name("defaultName"), _signed(false), _gradeToSign(150), _gradeTo
     std::cout << "Form default constructor called" << std::endl;
 }
 
-Form::Form(std::string const &name, int const &gradeToSign, int const &gradeToExecute) : _name(name), _signed(false),
-    _gradeToSign(gradeToSign < 1 ? 1 : (gradeToSign > 150 ? 150 : gradeToSign)),
-    _gradeToExecute(gradeToExecute < 1 ? 1 : (gradeToExecute > 150 ? 150 : gradeToExecute))
+Form::Form(std::string const &name, int const &gradeToSign, int const &gradeToExecute) :
+    _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
     std::cout << "Form parameterized constructor called" << std::endl;
-    try
-    {
-        if (gradeToSign < 1 || gradeToExecute < 1)
-            throw Form::GradeTooHighException();
-    }
-    catch (Form::GradeTooHighException &e)
-    {
-        handleHighGrade(e, gradeToSign, gradeToExecute);
-    }
-    try
-    {
-        if (gradeToSign > 150 || gradeToExecute > 150)
-            throw Form::GradeTooLowException();
-    }
-    catch (Form::GradeTooLowException &e)
-    {
-        handleLowGrade(e, gradeToSign, gradeToExecute);
-    }
+    if (gradeToSign < 1 || gradeToExecute < 1)
+        throw Form::GradeTooHighException();
+    if (gradeToSign > 150 || gradeToExecute > 150)
+        throw Form::GradeTooLowException();
 }
 
 Form::Form(Form const &other) : _name(other._name), _signed(other._signed),
@@ -105,19 +73,12 @@ int Form::getGradeToExecute() const
 /************************************************************* Public methods */
 void Form::beSigned(Bureaucrat const &bureaucrat)
 {
-    try
-    {
-        if (bureaucrat.getGrade() > this->_gradeToSign)
-            throw(Form::GradeTooLowException());
-        else if (this->_signed == true)
-            std::cout << RED << this->_name << " Form already signed" << RESET << std::endl;
-        else if (this->_signed == false)
-            this->_signed = true;
-    }
-    catch (Form::GradeTooLowException &e)
-    {
-        std::cerr << RED << this->_name << " Form can't be signed: " << ORANGE << e.what() << RESET << std::endl;
-    }
+    if (this->_signed == true)
+        std::cout << RED << this->_name << " Form already signed" << RESET << std::endl;
+    if (bureaucrat.getGrade() > this->_gradeToSign)
+        throw(Form::GradeTooLowException());
+    else if (this->_signed == false)
+        this->_signed = true;
 }
 
 /*********************************************************** Grade exceptions */
