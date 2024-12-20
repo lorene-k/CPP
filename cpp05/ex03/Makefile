@@ -5,7 +5,7 @@ YELLOW			=	\\033[0;33m
 DEFAULT			=	\\033[0m
 
 # ------------  PROJECT  ---------------------------------------------------- #
-NAME			=	form
+NAME			=	intern
 
 # ------------  DIRECTORIES  ------------------------------------------------ #
 SRC_DIR			=	srcs/
@@ -18,7 +18,8 @@ SRC_FLS			=	main.cpp \
 					AForm.cpp \
 					PresidentialPardonForm.cpp \
 					RobotomyRequestForm.cpp \
-					ShrubberyCreationForm.cpp
+					ShrubberyCreationForm.cpp \
+					Intern.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
@@ -37,7 +38,7 @@ RM				=	rm $(RM_FLAGS)
 all:				${NAME}
 
 $(NAME):			$(OBJS)
-					$(CC) $(CPP_FLAGS) -o $(NAME) $(OBJS)
+					@$(CC) $(CPP_FLAGS) -o $(NAME) $(OBJS)
 					@echo "$(GREEN)Compiled $(NAME)$(DEFAULT)"
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.cpp

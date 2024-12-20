@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:04:30 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/18 19:14:00 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:08:26 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ Bureaucrat::Bureaucrat(Bureaucrat const &other) : _name(other._name), _grade(oth
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &other)
 {
     if (this != &other)
-    {
         this->_grade = other.getGrade();
-        this->_name = other.getName();
-    }
     std::cout << "Bureaucrat copy assignment operator overload called" << std::endl;
     return (*this);
 }
@@ -75,11 +72,10 @@ void Bureaucrat::decrementGrade()
 
 void Bureaucrat::signForm(Form &form)
 {
+    if (form.getSigned() == false && this->_grade > form.getGradeToSign())
+        std::cout << ORANGE << this->_name << " couldn't sign " << form.getName() << " because ";
     form.beSigned(*this);
-    if (form.getSigned() == true)
-        std::cout << PURPLE << "Bureaucrat " << this->_name << " signed " << form.getName() << " Form" << RESET << std::endl;
-    else
-        throw Bureaucrat::GradeTooLowException();
+    std::cout << PURPLE << this->_name << " signed " << form.getName() << RESET << std::endl;
 }
 
 /*********************************************************** Grade exceptions */

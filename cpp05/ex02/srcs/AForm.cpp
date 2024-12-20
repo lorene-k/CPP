@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 21:18:47 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/19 00:16:35 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:12:36 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ AForm::AForm() : _name("defaultName"), _signed(false), _gradeToSign(150), _grade
 }
 
 AForm::AForm(std::string const &name, int const &gradeToSign, int const &gradeToExecute) : _name(name), _signed(false),
-    _gradeToSign(gradeToSign < 1 ? 1 : (gradeToSign > 150 ? 150 : gradeToSign)),
-    _gradeToExecute(gradeToExecute < 1 ? 1 : (gradeToExecute > 150 ? 150 : gradeToExecute))
+        _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
     std::cout << "AForm parameterized constructor called" << std::endl;
     if (gradeToSign < 1 || gradeToExecute < 1)

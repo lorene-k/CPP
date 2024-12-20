@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/18 19:11:26 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:49:52 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,11 @@ int main()
     try {
         b1.incrementGrade();
         b2.decrementGrade();
-        Bureaucrat b4("Bureaucrat4", 151); 
+        Bureaucrat b4("Bureaucrat4", 150); 
         b4.decrementGrade();
     }
-    catch (const Bureaucrat::GradeTooHighException &e) {
+    catch (std::exception &e) {
         std::cerr << RED << "Can't change grade for " << b1.getName() << ": " << e.what() << RESET << std::endl;
-    }
-    catch (const Bureaucrat::GradeTooLowException &e) {
-        std::cerr << RED << "Can't change grade for " << b2.getName() << ": " << e.what() << RESET << std::endl;
     }
     return (0);
 }

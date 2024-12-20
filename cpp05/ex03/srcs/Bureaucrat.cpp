@@ -6,11 +6,11 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:04:30 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/20 16:42:19 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:18:09 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 /************************************************** Constructors & destructor */
 Bureaucrat::Bureaucrat() : _name("defaultName"), _grade(150)
@@ -35,7 +35,9 @@ Bureaucrat::Bureaucrat(Bureaucrat const &other) : _name(other._name), _grade(oth
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &other)
 {
     if (this != &other)
+    {
         this->_grade = other.getGrade();
+    }
     std::cout << "Bureaucrat copy assignment operator overload called" << std::endl;
     return (*this);
 }
@@ -70,15 +72,37 @@ void Bureaucrat::decrementGrade()
     this->_grade++;
 }
 
-/********************************************************** Exception classes */
+void Bureaucrat::signForm(AForm &form)
+{
+    form.beSigned(*this);
+    if (form.getSigned() == true)
+        std::cout << MAUVE << "Bureaucrat " << this->_name << " signed " << form.getName() << " Form" << RESET << std::endl;
+    else
+        throw Bureaucrat::GradeTooLowException();
+}
+
+void Bureaucrat::executeForm(AForm const &form)
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << MAUVE << this->_name << " executed " << form.getName() << " Form" << RESET << std::endl;
+    }
+    catch(const std::exception &e)
+    {
+        std::cerr << RED << this->_name << " cannot execute " << form.getName() << ": " << e.what() << RESET << std::endl;
+    }  
+}
+
+/*********************************************************** Grade exceptions */
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return ("Grade is too high");
+    return ("Bureaucrat Grade is too high");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return ("Grade is too low");
+    return ("Bureaucrat Grade is too low");
 }
 
 /*********************************************************** Stream overloads */

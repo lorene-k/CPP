@@ -33,7 +33,7 @@ RM				=	rm $(RM_FLAGS)
 all:				${NAME}
 
 $(NAME):			$(OBJS)
-					@$(CC) $(CPP_FLAGS) -o $(NAME) $(OBJS)
+					$(CC) $(CPP_FLAGS) -o $(NAME) $(OBJS)
 					@echo "$(GREEN)Compiled $(NAME)$(DEFAULT)"
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.cpp

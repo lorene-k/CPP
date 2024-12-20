@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:04:20 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/16 21:56:46 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:52:06 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Form;
 class Bureaucrat
 {
 private:
-    std::string         _name;
+    std::string const   _name;
     int                 _grade;
 
 public:

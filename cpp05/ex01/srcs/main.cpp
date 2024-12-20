@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/18 19:30:17 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:09:30 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,11 @@ int main()
     bob.signForm(f1);
     bob.signForm(f1);
     john.signForm(f3);
-    f3.beSigned(bob);
     }
-    catch (Form::GradeTooLowException &e)
+    catch (std::exception &e)
     {
         std::cout << RED << e.what() << RESET << std::endl;
     }
-    catch (Form::GradeTooHighException &e)
-    {
-        std::cout << RED << e.what() << RESET << std::endl;
-    }
+    std::cout << f1 << std::endl << std::endl;
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:04:30 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/19 00:11:46 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:17:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &other)
     if (this != &other)
     {
         this->_grade = other.getGrade();
-        this->_name = other.getName();
     }
     std::cout << "Bureaucrat copy assignment operator overload called" << std::endl;
     return (*this);
@@ -77,7 +76,7 @@ void Bureaucrat::signForm(AForm &form)
 {
     form.beSigned(*this);
     if (form.getSigned() == true)
-        std::cout << PURPLE << "Bureaucrat " << this->_name << " signed " << form.getName() << " Form" << RESET << std::endl;
+        std::cout << MAUVE << "Bureaucrat " << this->_name << " signed " << form.getName() << RESET << std::endl;
     else
         throw Bureaucrat::GradeTooLowException();
 }
@@ -87,11 +86,11 @@ void Bureaucrat::executeForm(AForm const &form)
     try
     {
         form.execute(*this);
-        std::cout << PURPLE << this->_name << " executed " << form.getName() << " Form" << RESET << std::endl;
+        std::cout << MAUVE << this->_name << " executed " << form.getName() << RESET << std::endl;
     }
     catch(const std::exception &e)
     {
-        std::cerr << RED << this->_name << " cannot execute " << form.getName() << ": " << e.what() << RESET << std::endl;
+        std::cerr << RED << this->_name << " can't execute " << form.getName() << ": " << e.what() << RESET << std::endl;
     }  
 }
 
