@@ -13,7 +13,9 @@ INC_DIR			= 	includes/
 OBJ_DIR			=	objs/
 
 # ------------  SOURCES  ---------------------------------------------------- #
-SRC_FLS			=	main.cpp
+SRC_FLS			=	main.cpp \
+					Detect.cpp \
+					Display.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

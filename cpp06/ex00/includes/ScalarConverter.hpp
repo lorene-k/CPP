@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/20 17:49:48 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/24 00:24:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@
 
 # include <iostream>
 # include <string>
+# include <limits>
+# include <iomanip>
+
+enum e_type
+{
+    PSEUDO,
+    CHAR,
+    INT,
+    DOUBLE,
+    FLOAT
+};
 
 class ScalarConverter
 {
@@ -34,10 +45,13 @@ private:
     ScalarConverter(std::string const &);
     ScalarConverter(ScalarConverter const &other);
     ScalarConverter &operator=(ScalarConverter const &other);
+    ~ScalarConverter();
 
 public:
     static void convert(std::string &literal);
-    ~ScalarConverter();
 };
+
+int DetectType(std::string &literal);
+void Display(std::string &literal, int type);
 
 #endif // *********************************************** SCALARCONVERTER_HPP //
