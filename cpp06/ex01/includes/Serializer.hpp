@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/20 17:51:37 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:44:42 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,23 @@
 # include <iostream>
 # include <string>
 
-class ScalarConverter
+struct Data
+{
+    int         value;
+};
+
+class Serializer
 {
 private:
-    ScalarConverter();
-    ScalarConverter(std::string const &);
-    ScalarConverter(ScalarConverter const &other);
-    ScalarConverter &operator=(ScalarConverter const &other);
+    Serializer();
+    Serializer(std::string const &);
+    Serializer(Serializer const &other);
+    Serializer &operator=(Serializer const &other);
+    ~Serializer();
 
 public:
-    static void convert(std::string &literal);
-    ~ScalarConverter();
+    static uintptr_t serialize(Data* ptr);
+    static Data* deserialize(uintptr_t raw);
 };
 
 #endif // **************************************************** SERIALIZER_HPP //

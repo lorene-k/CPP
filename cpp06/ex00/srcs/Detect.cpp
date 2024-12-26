@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:33:07 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/24 00:24:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/24 21:27:08 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static bool DetectPseudo(std::string &literal)
 {
     if (literal == "nanf" || literal == "+inff" || literal == "-inff"
-        || literal == "nan" || literal == "+inf" || literal == "-inf")
+        || literal == "nan" || literal == "+inf" || literal == "-inf"
+        || literal == "inf" || literal == "inff") 
         return (true);
     return (false);
 }
@@ -65,7 +66,7 @@ static bool DetectInt(std::string &literal)
 
 static bool DetectChar(std::string &literal)
 {
-    if (literal.length() == 1 && std::isprint(literal[0]))
+    if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0]))
         return (true);
     return (false);
 }

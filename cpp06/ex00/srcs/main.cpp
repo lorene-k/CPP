@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/24 00:38:08 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/24 21:32:50 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void PrintType(int type) //TEST
 void ScalarConverter::convert(std::string &literal)
 {
     int type = DetectType(literal);
-    if (type == -1)
+    if (literal.empty() || type == -1)
     {
         std::cout << "Invalid input literal. Valid input: displayable char, int, double, float" << std::endl;
         return;
@@ -79,12 +79,10 @@ std::cout << "Maximum value for long double: "
 */
 
 /*
-PBS
-- char not working
-- long double overflow >> check
 
 QUESTIONS
 - accept 10. as float ?
+- if input = 78.3, should char output be 'N' ?
 */
 
 
