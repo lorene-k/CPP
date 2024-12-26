@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/26 15:06:10 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/26 15:42:54 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ uintptr_t Serializer::serialize(Data* ptr)
 
 Data* Serializer::deserialize(uintptr_t raw)
 {
-    return (reinterpret_cast<Data*>(raw));
+    return (reinterpret_cast<Data *>(raw));
 }
 
 static void printData(Data* data)
