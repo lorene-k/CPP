@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/27 14:12:51 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:18:17 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <string>
 
 template <typename T>
-void iter(T *arr, int len, void (*f)(T &))
+void iter(T *arr, int len, void (*f)(T const &))
 {
     for (int i = 0; i < len; i++)
         f(arr[i]);

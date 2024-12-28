@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/26 23:41:50 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:07:56 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void    swap(T &a, T &b)
 template <typename T>
 T const &max(T const &x, T const &y)
 {
-    return (x >= y ? x : y);
+    return (x > y ? x : y);
 }
 
 template <typename T>
 T const &min(T const &x, T const &y)
 {
-    return (x <= y ? x : y);
+    return (x < y ? x : y);
 }
 
 #endif // **************************************************** WHATEVER_HPP //

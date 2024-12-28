@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/27 17:19:17 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:36:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 # define ARRAY_TPP
 
-#include "Array.hpp"
+# include "Array.hpp"
 
 template <typename T>
-Array<T>::Array() : _n(0), _array(new T[0]) //or _array(nullptr) ??
+Array<T>::Array() : _array(new T[0]), _n(0)
 {
     std::cout << "Array default constructor called" << std::endl;
 }
@@ -29,7 +29,7 @@ Array<T>::Array(unsigned int n) : _array(new T[n]), _n(n)
 }
 
 template <typename T>
-Array<T>::Array(Array<T> const &src) : _n(src.size()), _array(new T[src.size()])
+Array<T>::Array(Array<T> const &src) : _array(new T[src.size()]), _n(src.size())
 {
     for (unsigned int i = 0; i < src.size(); i++)
         this->_array[i] = src._array[i];

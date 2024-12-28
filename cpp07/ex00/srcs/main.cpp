@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/27 13:52:20 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:14:57 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int main( void )
 //     int b = 2;
 //     std::cout << "a = " << a << ", b = " << b << std::endl;
 //     ::swap(a, b);
-//     std::cout << p << "After swap : " << RESET << "a = " << a << ", b = " << b << std::endl;
+//     std::cout << PURPLE << "After swap : " << RESET << "a = " << a << ", b = " << b << std::endl;
 //     std::cout << PURPLE << "Implicit instanciation " << RESET << "min( a, b ) = " << ::min(a, b) << std::endl;
 //     std::cout << PURPLE << "Explicit instanciation " << RESET << "max( a, b ) = " << ::max<int>(a, b) << std::endl;
 

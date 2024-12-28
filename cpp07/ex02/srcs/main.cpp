@@ -3,35 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/27 17:31:46 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:39:17 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
-
-template <typename T>
-void printTests(Array<T> &array)
-{
-    std::cout << "Size: " << array.size() << std::endl;
-
-    std::cout << "Values: ";
-    for (unsigned int i = 0; i < array.size(); i++)
-        std::cout << array[i] << "; ";
-    std::cout << std::endl;
-
-    try
-    {
-        std::cout << "Value at array[4] = "<< array[4] << std::endl;
-        std::cout << "Value at array[5] = "<< array[5] << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
-}
+#include "printTests.hpp"
 
 int main()
 {
@@ -52,6 +32,10 @@ int main()
     stringArray[0] = "Hello";
     stringArray[1] = "World";
     printTests(stringArray);
+
+    std::cout << MAUVE << "\n===== EMPTY ARRAY TESTS =====" << RESET << std::endl;
+    Array<int> emptyArray;
+    printTests(emptyArray);
 
     std::cout << std::endl << std::endl;
     return (0);
