@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 18:28:44 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/28 18:31:03 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 19:52:06 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void printTests(Array<T> &array)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << std::endl;
+        std::cerr << RED << "Index out of range" << RESET << std::endl;
     }
 }
 

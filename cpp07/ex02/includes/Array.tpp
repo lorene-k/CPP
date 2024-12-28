@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/28 18:36:25 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 19:49:57 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ template <typename T>
 T &Array<T>::operator[](unsigned int i)
 {
     if (i >= this->size())
-        throw std::out_of_range("Index out of range"); // check msg
+        throw std::exception();
     return (this->_array[i]);
 }
 
