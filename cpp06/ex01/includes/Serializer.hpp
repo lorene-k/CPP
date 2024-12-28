@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/26 14:44:42 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:58:26 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # include <iostream>
 # include <string>
+# include <stdint.h> 
 
 struct Data
 {

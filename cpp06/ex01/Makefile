@@ -13,7 +13,8 @@ INC_DIR			= 	includes/
 OBJ_DIR			=	objs/
 
 # ------------  SOURCES  ---------------------------------------------------- #
-SRC_FLS			=	main.cpp
+SRC_FLS			=	main.cpp \
+					Serializer.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/26 15:42:54 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 16:03:23 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
-
-uintptr_t Serializer::serialize(Data* ptr)
-{
-    return (reinterpret_cast<uintptr_t>(ptr));
-}
-
-Data* Serializer::deserialize(uintptr_t raw)
-{
-    return (reinterpret_cast<Data *>(raw));
-}
 
 static void printData(Data* data)
 {
@@ -47,5 +37,3 @@ int main()
     delete data;
     return (0);
 }
-
-// TEST LEAKS

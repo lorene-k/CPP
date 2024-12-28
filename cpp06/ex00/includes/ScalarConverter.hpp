@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/24 00:24:25 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 17:23:29 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # include <string>
 # include <limits>
 # include <iomanip>
+# include <cstdlib>
+# include <sstream>
+# include <cmath>
 
 enum e_type
 {
@@ -51,7 +54,7 @@ public:
     static void convert(std::string &literal);
 };
 
-int DetectType(std::string &literal);
-void Display(std::string &literal, int type);
+int detectType(std::string &literal);
+void display(std::string &literal, int type);
 
 #endif // *********************************************** SCALARCONVERTER_HPP //

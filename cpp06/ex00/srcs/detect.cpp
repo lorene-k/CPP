@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Detect.cpp                                         :+:      :+:    :+:   */
+/*   detect.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:33:07 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/24 21:27:08 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/28 14:40:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-static bool DetectPseudo(std::string &literal)
+static bool detectPseudo(std::string &literal)
 {
     if (literal == "nanf" || literal == "+inff" || literal == "-inff"
         || literal == "nan" || literal == "+inf" || literal == "-inf"
@@ -21,7 +21,7 @@ static bool DetectPseudo(std::string &literal)
     return (false);
 }
 
-static bool DetectDouble(std::string &literal)
+static bool detectDouble(std::string &literal)
 {
     size_t i = 0;
     bool dot = false;
@@ -42,15 +42,15 @@ static bool DetectDouble(std::string &literal)
     return (true);
 }
 
-static bool DetectFloat(std::string &literal)
+static bool detectFloat(std::string &literal)
 {
     
-    if (literal.back() == 'f')
-        literal.pop_back();
-    return (DetectDouble(literal));
+    if (literal.size() > 3 && literal[literal.size() - 1] == 'f')
+        literal.resize(literal.size() - 1);
+    return (detectDouble(literal));
 }
 
-static bool DetectInt(std::string &literal)
+static bool detectInt(std::string &literal)
 {
     size_t i = 0;
     
@@ -64,17 +64,17 @@ static bool DetectInt(std::string &literal)
     return (true);
 }
 
-static bool DetectChar(std::string &literal)
+static bool detectChar(std::string &literal)
 {
     if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0]))
         return (true);
     return (false);
 }
 
-int DetectType(std::string &literal)
+int detectType(std::string &literal)
 {
-    bool (*array[5])(std::string &literal) = {&DetectPseudo, &DetectChar, &DetectInt,
-        &DetectDouble, &DetectFloat};
+    bool (*array[5])(std::string &literal) = {&detectPseudo, &detectChar, &detectInt,
+        &detectDouble, &detectFloat};
     
     for (int i = 0; i < 5; i++)
     {

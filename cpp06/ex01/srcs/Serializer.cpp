@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/28 16:02:56 by lkhalifa         ###   ########.fr       */
+/*   Created: 2024/12/28 15:57:12 by lkhalifa          #+#    #+#             */
+/*   Updated: 2024/12/28 15:57:36 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#include "Serializer.hpp"
 
-int     main()
+uintptr_t Serializer::serialize(Data *ptr)
 {
-    srand(time(NULL));
-    Base *base = generate();
+    return (reinterpret_cast<uintptr_t>(ptr));
+}
 
-    std::cout << MAUVE << "\n===== Pointer-based identify function =====" << RESET << std::endl;
-    identify(base);
-    std::cout << MAUVE << "\n===== Reference-based identify function =====" << RESET << std::endl;
-    identify(*base);
-    
-    std::cout << std::endl;
-    delete base;
-    return (0);
+Data *Serializer::deserialize(uintptr_t raw)
+{
+    return (reinterpret_cast<Data *>(raw));
 }
