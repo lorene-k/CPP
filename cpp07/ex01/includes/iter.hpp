@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/28 18:18:17 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/29 18:40:55 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,14 @@
 # include <string>
 
 template <typename T>
-void iter(T *arr, int len, void (*f)(T const &))
+void iter(T *arr, int len, void (*f)(T &))
+{
+    for (int i = 0; i < len; i++)
+        f(arr[i]);
+}
+
+template <typename T>
+void iter(T const *arr, int len, void (*f)(T const &))
 {
     for (int i = 0; i < len; i++)
         f(arr[i]);
