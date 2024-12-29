@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/26 23:41:50 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/29 19:32:52 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
+#ifndef EASYFIND_HPP
 
-# define WHATEVER_HPP
+# define EASYFIND_HPP
 
 # define RESET  "\033[0m"
 # define RED    "\033[0;31m"
@@ -26,26 +26,17 @@
 
 # include <iostream>
 # include <string>
+# include <algorithm>
+# include <vector>
 
 template <typename T>
-void    swap(T &a, T &b)
+typename T::iterator    easyfind(T &container, int const &i)
 {
-    T   tmp;
-    tmp = a;
-    a = b;
-    b = tmp;
+    typename T::iterator it;
+    it = std::find(container.begin(), container.end(), i);
+    if (it == container.end())
+        throw std::exception();
+    return (it);
 }
 
-template <typename T>
-T const &max(T const &x, T const &y)
-{
-    return (x >= y ? x : y);
-}
-
-template <typename T>
-T const &min(T const &x, T const &y)
-{
-    return (x <= y ? x : y);
-}
-
-#endif // **************************************************** WHATEVER_HPP //
+#endif // **************************************************** EASYFIND_HPP //
