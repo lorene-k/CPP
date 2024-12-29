@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/29 22:06:59 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/29 13:24:07 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,27 @@
 
 int main( void )
 {
-    std::cout << MAUVE << "\n===== TESTS =====" << RESET << std::endl;
-    std::vector<int> test;
+    int                 value;
+    std::vector<int>    test;
+
+    srand(time(NULL));
     for (int i = 0; i < 10; i++)
         test.push_back(i);
-    try
+    
+    std::cout << MAUVE << "\n===== TESTS =====" << RESET << std::endl;
+    for (int i = 0; i < 5; i++)
     {
-        std::cout << "Looking for 5 in container: ";
-        std::cout << (*easyfind(test, 5)) << GREEN << " Found" << RESET << std::endl;
-        std::cout << "Looking for 100 in container: ";
-        std::cout << (*easyfind(test, 100)) << GREEN << "Found" << RESET << std::endl;
+        try
+        {
+            value = rand() % 20;
+            std::cout << "Looking for " << value << " in container: ";
+            std::cout << (*easyfind(test, value)) << GREEN << " Found" << RESET << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cout << RED << "Value not found" << RESET << std::endl;
+        }
     }
-    catch (std::exception &e)
-    {
-        std::cout << RED << "Value not found" << RESET << std::endl;
-    }
-    std::cout << std::endl;
+        std::cout << std::endl;
     return (0);
 }

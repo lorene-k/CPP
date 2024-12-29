@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/29 13:18:23 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/29 15:43:45 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_HPP
+#ifndef SPAN_HPP
 
-# define EASYFIND_HPP
+# define SPAN_HPP
 
 # define RESET  "\033[0m"
 # define RED    "\033[0;31m"
@@ -29,16 +29,37 @@
 # include <cstdlib>
 # include <algorithm>
 # include <vector>
-# include <list>
+# include <numeric>
 
-template <typename T>
-typename T::iterator    easyfind(T &container, int const &i)
+class Span
 {
-    typename T::iterator it;
-    it = std::find(container.begin(), container.end(), i);
-    if (it == container.end())
-        throw std::exception();
-    return (it);
-}
+private:
+    unsigned int        _N;
+    std::vector<int>    _v;
 
-#endif // **************************************************** EASYFIND_HPP //
+public:
+    Span();
+    Span(unsigned int N);
+    Span(const Span &copy);
+    Span &operator=(const Span &copy);
+    ~Span();
+
+    void    addNumber(int num);
+    int     shortestSpan() const;
+    int     longestSpan() const;
+    void    addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+
+    class FullException : public std::exception
+    {
+        public:
+            virtual const char *what() const throw();
+    };
+    
+    class LessThanTwoException : public std::exception
+    {
+        public:
+            virtual const char *what() const throw();
+    };
+};
+
+#endif // ********************************************************** SPAN_HPP //
