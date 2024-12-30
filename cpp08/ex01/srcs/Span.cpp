@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:29:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/29 15:44:05 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2024/12/30 09:59:18 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ Span::~Span()
 /********************************************************** Exception methods */
 const char *Span::FullException::what() const throw()
 {
-    return ("No elements can be added: Span is or will be full");
+    return ("No elements can be added: Span full");
 }
 
 const char *Span::LessThanTwoException::what() const throw()
