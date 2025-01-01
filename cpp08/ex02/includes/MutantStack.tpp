@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/31 09:50:45 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/01 19:33:47 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ MutantStack<T>::MutantStack()
 }
 
 template <typename T>
-MutantStack<T>::MutantStack(std::string const &name)
+MutantStack<T>::MutantStack(std::string const &)
 {
-    // std::cout << "MutantStack " << name << " parameterized constructor called" << std::endl;
+    // std::cout << "MutantStack parameterized constructor called" << std::endl;
 }
 
 template <typename T>

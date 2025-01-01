@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/31 09:32:49 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/01 19:34:02 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class MutantStack : public std::stack<T>
 {
 public:
     MutantStack<T>();
-    MutantStack<T>(std::string const &name);
+    MutantStack<T>(std::string const &);
     MutantStack<T>(MutantStack const &src);
     MutantStack<T> &operator=(MutantStack const &src);
     ~MutantStack<T>();
