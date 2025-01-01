@@ -6,14 +6,24 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/01 19:43:48 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/01 20:23:15 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 
 // *********************************************************** TEST FUNCTIONS //
-static void listTest(void)
+static void myTests(void)
+{
+    std::cout << std::endl << CYAN << "===== MY TESTS =====" << RESET << std::endl;
+    MutantStack<int> mstack;
+    
+    for (int i = 0; i < 10; i++)
+        mstack.push(i);
+    
+}
+
+static void listTests(void)
 {
     std::cout << std::endl << CYAN << "===== LIST TESTS =====" << RESET << std::endl;
     std::list<int> list;
@@ -45,7 +55,7 @@ static void listTest(void)
 }
 
 
-static void mstackSubjectTest(void)
+static void mstackSubjectTests(void)
 {
     std::cout << std::endl << CYAN << "===== MUTANT STACK SUBJECT TESTS =====" << RESET << std::endl;
     MutantStack<int> mstack;
@@ -80,8 +90,9 @@ static void mstackSubjectTest(void)
 // ****************************************************************** MY MAIN //
 int main (void)
 {
-    mstackSubjectTest();
-    listTest();
+    mstackSubjectTests();
+    listTests();
+    myTests();
     
     std::cout << std::endl;
     return (0);
