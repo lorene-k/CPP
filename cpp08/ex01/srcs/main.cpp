@@ -77,26 +77,18 @@ static void spanFunctions(Span &sp)
 }
 
 // ****************************************************************** MY MAIN //
-int main(int ac, char **av)
+int main()
 {
     int spanSize, rangeStart, rangeEnd;
 
-    if (ac != 4)
-    {
-        spanSize = 20000;
-        rangeStart = 1;
-        rangeEnd = 19999;
-        std::cout << "\nUsing default values: spanSize = " << spanSize << ", rangeStart = " << rangeStart << ", rangeEnd = " << rangeEnd << std::endl;
-    }
-    else
-    {
-        spanSize = std::atoi(av[1]);
-        rangeStart = std::atoi(av[2]);
-        rangeEnd = std::atoi(av[3]);
-    }
+    spanSize = 20000;
+    rangeStart = 1;
+    rangeEnd = 19999;
+    std::cout << "\nspanSize = " << spanSize << ", rangeStart = " << rangeStart << ", rangeEnd = " << rangeEnd << std::endl;
+    
     Span sp = Span(spanSize);
     std::vector<int> range;
-    for (int i = rangeStart; i <= rangeEnd; ++i)
+    for (int i = rangeStart; i <= rangeEnd; i++)
         range.push_back(i);
 
     emptySpan(sp);          // Should throw an exception
