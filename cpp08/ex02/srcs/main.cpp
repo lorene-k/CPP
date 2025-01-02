@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/01 20:23:15 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/02 19:59:04 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 // *********************************************************** TEST FUNCTIONS //
 static void myTests(void)
 {
-    std::cout << std::endl << CYAN << "===== MY TESTS =====" << RESET << std::endl;
+    std::cout << std::endl << CYAN << "===== REVERSE ITERATOR TESTS =====" << RESET << std::endl;
     MutantStack<int> mstack;
     
     for (int i = 0; i < 10; i++)
         mstack.push(i);
-    
+
+    MutantStack<int>::reverse_iterator  it = mstack.rbegin();
+    MutantStack<int>::reverse_iterator ite = mstack.rend();
+
+    while (it != ite)
+    {
+        std::cout << *it << std::endl;
+        ++it;
+    }
 }
 
 static void listTests(void)

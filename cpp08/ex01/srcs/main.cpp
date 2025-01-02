@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/30 10:09:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/02 19:58:56 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static void emptySpan(Span &sp)
     }
 }
 
-static void soloElement(Span &sp)
+static void soloElement(Span &sp, int elem)
 {
     std::cout << MAUVE << "\n===== SHORTEST SPAN - 1 ELEMENT ADDED IN CONTAINER =====" << RESET << std::endl;
-    sp.addNumber(0);
+    sp.addNumber(elem);
     try
     {
         std::cout << sp.shortestSpan() << std::endl;
@@ -84,6 +84,7 @@ int main()
     spanSize = 20000;
     rangeStart = 1;
     rangeEnd = 19999;
+    int elem = 0;
     std::cout << "\nspanSize = " << spanSize << ", rangeStart = " << rangeStart << ", rangeEnd = " << rangeEnd << std::endl;
     
     Span sp = Span(spanSize);
@@ -92,7 +93,7 @@ int main()
         range.push_back(i);
 
     emptySpan(sp);          // Should throw an exception
-    soloElement(sp);        // Should throw an exception
+    soloElement(sp, elem);        // Should throw an exception
     addingRange(sp, range); // Adding 1st range should work - Adding range again should throw an exception
     spanFunctions(sp);      // Longest & shortest span will be printed
 

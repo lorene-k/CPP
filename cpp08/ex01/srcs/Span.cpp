@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 14:29:18 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/30 09:59:18 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:31:27 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int     Span::shortestSpan() const
     std::vector<int> tmp = _v;
     std::sort(tmp.begin(), tmp.end());
     int span = tmp[1] - tmp[0];
-    for (long unsigned int i = 0; i < tmp.size() - 1; i++)
+    for (std::size_t i = 0; i < tmp.size() - 1; i++)
     {
         if (tmp[i + 1] - tmp[i] < span)
             span = tmp[i + 1] - tmp[i];
