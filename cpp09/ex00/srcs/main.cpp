@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/02 18:46:09 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:04:36 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int main(int ac, char **av)
 }
 
 /*
+
 GOAL : Output value of a certain amount of bitcoin on a certain date
 
 - use .csv database (= bitcoin price over time)
@@ -34,4 +35,10 @@ RULES
 • A valid value must be either a float or a positive integer, between 0 and 1000.
 
 container : std::map<std::string, float>
+
+1. parse & store values from .csv file into std::map
+2. parse & store input values from .txt
+3. calculate value of bitcoin on input date
+4. 
+
 */

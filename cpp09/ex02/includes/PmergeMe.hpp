@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/03 16:00:19 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/03 15:22:04 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BITCOINEXCHANGE_HPP
+#ifndef PMERGEME_HPP
 
-# define BITCOINEXCHANGE_HPP
+# define PMERGEME_HPP
 
 # define RESET  "\033[0m"
 # define RED    "\033[0;31m"
@@ -27,8 +27,6 @@
 # include <iostream>
 # include <string>
 # include <algorithm>
-# include <map>
 
 
-
-#endif // *********************************************** BITCOINEXCHANGE_HPP //
+#endif // *********************************************************** PMERGEME_HPP //

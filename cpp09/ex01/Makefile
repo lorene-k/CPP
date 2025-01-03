@@ -5,7 +5,7 @@ YELLOW			=	\\033[0;33m
 DEFAULT			=	\\033[0m
 
 # ------------  PROJECT  ---------------------------------------------------- #
-NAME			=	rpn
+NAME			=	RPN
 
 # ------------  DIRECTORIES  ------------------------------------------------ #
 SRC_DIR			=	srcs/
@@ -13,7 +13,8 @@ INC_DIR			= 	includes/
 OBJ_DIR			=	objs/
 
 # ------------  SOURCES  ---------------------------------------------------- #
-SRC_FLS			=	main.cpp
+SRC_FLS			=	main.cpp \
+					RPN.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))

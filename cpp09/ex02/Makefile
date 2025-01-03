@@ -5,7 +5,7 @@ YELLOW			=	\\033[0;33m
 DEFAULT			=	\\033[0m
 
 # ------------  PROJECT  ---------------------------------------------------- #
-NAME			=	btc
+NAME			=	PmergeMe
 
 # ------------  DIRECTORIES  ------------------------------------------------ #
 SRC_DIR			=	srcs/
@@ -14,7 +14,7 @@ OBJ_DIR			=	objs/
 
 # ------------  SOURCES  ---------------------------------------------------- #
 SRC_FLS			=	main.cpp \
-					BitcoinExchange.cpp
+					PmergeMe.cpp
 
 # ------------  FILEPATHS  -------------------------------------------------- #
 SRCS			=	$(addprefix $(SRC_DIR), $(SRC_FLS))
