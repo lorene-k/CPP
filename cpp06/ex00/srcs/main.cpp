@@ -3,41 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2024/12/28 17:37:31 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/05 15:07:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-static void printType(int type)
-{
-    std::cout << MAUVE << "TYPE = ";
-    switch (type)
-    {
-        case CHAR:
-            std::cout << "char";
-            break;
-        case INT:
-            std::cout << "int";
-            break;
-        case FLOAT:
-            std::cout << "float";
-            break;
-        case DOUBLE:
-            std::cout << "double";
-            break;
-        case PSEUDO:
-            std::cout << "pseudo";
-            break;
-        default:
-            std::cout << "invalid";
-            break;
-    }
-    std::cout << RESET << std::endl;
-}
+// static void printType(int type)
+// {
+//     std::cout << MAUVE << "TYPE = ";
+//     switch (type)
+//     {
+//         case CHAR:
+//             std::cout << "char";
+//             break;
+//         case INT:
+//             std::cout << "int";
+//             break;
+//         case FLOAT:
+//             std::cout << "float";
+//             break;
+//         case DOUBLE:
+//             std::cout << "double";
+//             break;
+//         case PSEUDO:
+//             std::cout << "pseudo";
+//             break;
+//         default:
+//             std::cout << "invalid";
+//             break;
+//     }
+//     std::cout << RESET << std::endl;
+// }
 
 void ScalarConverter::convert(std::string &literal)
 {
@@ -47,7 +47,7 @@ void ScalarConverter::convert(std::string &literal)
         std::cout << "Invalid input literal. Valid input: displayable char, int, double, float" << std::endl;
         return;
     }
-    printType(type);
+    // printType(type);
     display(literal, type);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/03 16:00:19 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:20:33 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,28 @@
 # define MAUVE  "\033[38;5;177m"
 
 # include <iostream>
+# include <fstream>
+# include <sstream>
 # include <string>
 # include <algorithm>
 # include <map>
 
+class BitcoinExchange
+{
+private:
+    std::string                     _databasePath;
+    std::map<std::string, float>    _exchangeRates;
 
+public:
+    BitcoinExchange();
+    BitcoinExchange(std::string const &databasePath);
+    BitcoinExchange(BitcoinExchange const &src);
+    BitcoinExchange &operator=(BitcoinExchange const &src);
+    ~BitcoinExchange();
+
+    void loadData(std::string const &databasePath);
+    std::pair<std::string, float> parseData(std::string const &date) const;
+    void printData() const;
+};
 
 #endif // *********************************************** BITCOINEXCHANGE_HPP //

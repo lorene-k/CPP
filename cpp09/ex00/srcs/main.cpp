@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/03 16:04:36 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:21:12 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,18 @@ int main(int ac, char **av)
 {
     if (ac != 2)
     {
-        std::cerr << "Usage: ./ex00 [filename]" << std::endl;
+        std::cerr << "Error: could not open file." << std::endl;
+        return (1);
+    }
+    try
+    {
+        BitcoinExchange btc;
+        btc.loadData("../databases/data.csv");
+        (void)av;
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << "Error: " << e.what() << std::endl;
         return (1);
     }
     return (0);
