@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/05 16:20:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/05 08:53:53 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <iostream>
 # include <fstream>
 # include <sstream>
+# include <iomanip>
 # include <string>
 # include <algorithm>
 # include <map>
@@ -36,6 +37,9 @@ class BitcoinExchange
 private:
     std::string                     _databasePath;
     std::map<std::string, float>    _exchangeRates;
+    std::pair<std::string, float>   parseLine(std::string const &date) const;
+    float                           checkInput(std::string  const &line, std::pair<std::string, float> *data) const;
+    void                            printResult(std::pair<std::string, float> data, float rate) const;
 
 public:
     BitcoinExchange();
@@ -44,9 +48,8 @@ public:
     BitcoinExchange &operator=(BitcoinExchange const &src);
     ~BitcoinExchange();
 
-    void loadData(std::string const &databasePath);
-    std::pair<std::string, float> parseData(std::string const &date) const;
-    void printData() const;
+    void parseData(std::string const &databasePath);
+    void parseInput(std::string const &inputPath);
 };
 
 #endif // *********************************************** BITCOINEXCHANGE_HPP //

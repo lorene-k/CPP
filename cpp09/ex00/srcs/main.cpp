@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/05 16:21:12 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/05 10:31:26 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int main(int ac, char **av)
     try
     {
         BitcoinExchange btc;
-        btc.loadData("../databases/data.csv");
-        (void)av;
+        btc.parseData("databases/data.csv"); // NOT PROTECTED AGAINST INVALID DATA
+        btc.parseInput(av[1]);
     }
     catch (std::exception &e)
     {
