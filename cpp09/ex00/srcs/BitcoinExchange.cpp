@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/05 10:33:07 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/05 15:29:05 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ std::pair<std::string, float> BitcoinExchange::parseLine(std::string const &line
 /*********************************************************** Helper functions */
 static void printError(std::string const &error)
 {
-    std::cout << RED << "Error: " << error << RESET << std::endl;
+    std::cout << "Error: " << error << std::endl;
 }
 
 static bool isValidDate(std::string const &date, std::string const &line)
@@ -76,7 +76,8 @@ static bool isValidDate(std::string const &date, std::string const &line)
     std::istringstream  ss(date);
 
     ss >> year >> d1 >> month >> d2 >> day;
-    if ((ss.fail() || d1 != '-' || d2 != '-')
+    if ((ss.fail() || date.size() != 10
+        || d1 != '-' || d2 != '-')
         || !(year > 2008 && year < 2026)
         || !(month > 0 && month < 13)
         || !(day > 0 && day < 32))
@@ -100,15 +101,37 @@ static bool isValidSeparator(std::istringstream &ss, std::string const &line)
     return (true);
 }
 
+static void checkRemainingValue(std::istringstream &ss, std::string const &line)
+{
+    bool dot = false;
+    char c;
+
+    while (ss.get(c))
+    {
+        if (!std::isdigit(c))
+        {
+            if (c == '.' && !dot)
+                dot = true;
+            else
+            {    
+                printError("bad input => " + line);
+                return ;
+            }
+        }
+    }
+    printError("too large a number.");
+}
+
 static bool isValidValue(std::istringstream &ss, float *value, std::string const &line)
 {
     ss >> *value;
     
-    if (ss.fail() || ss.peek() != EOF)
+    if (ss.fail() || !ss.eof())
     {
-        printError("bad input => " + line);
+        ss.clear();
+        checkRemainingValue(ss, line);
         return (false);
-    }    
+    }
     if (*value < 0)
         printError("not a positive number.");
     else if (*value > 1000)
@@ -117,6 +140,12 @@ static bool isValidValue(std::istringstream &ss, float *value, std::string const
         return (false);
     return (true);
 }
+
+static void printResult(std::pair<std::string, float> const &data, float rate)
+{
+    std::cout << data.first << " => " << data.second << " = " << data.second * rate << std::endl;
+}
+
 
 /************************************************************ Parse input.txt */
 void BitcoinExchange::parseInput(std::string const &inputPath)
@@ -142,7 +171,6 @@ void BitcoinExchange::parseInput(std::string const &inputPath)
 
 float BitcoinExchange::checkInput(std::string const &line, std::pair<std::string, float> *data) const
 {
-    float               rate;
     float               value;
     std::string         date;
     std::istringstream  ss(line);
@@ -150,23 +178,14 @@ float BitcoinExchange::checkInput(std::string const &line, std::pair<std::string
     ss >> date;
     if (!isValidDate(date, line) || !isValidSeparator(ss, line) || !isValidValue(ss, &value, line))
         return (-1);
-    // data = std::make_pair(date, value);
-    //find rate in database
-    return (1); //return rate
+    *data = std::make_pair(date, value);
+    return (findRate(date));
 }
 
-/*
-- read & parse line by line
-- for each line :
-    OK - check date format & line format
-    OK - check value format (between 0 & 1000)
-    - retreive exchange rate
-    - print date from input.txt + value + result (rate * value)
-
-TESTS : 
-- check overflows
-- invalid date
-- invalid data
-- invalid format (separator)
-
-*/
+float BitcoinExchange::findRate(std::string const &date) const
+{
+    std::map<std::string, float>::const_iterator it = this->_exchangeRates.lower_bound(date);
+    if (it == this->_exchangeRates.end())
+        return ((--it)->second);
+    return (it->second);
+}
