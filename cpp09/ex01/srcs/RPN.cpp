@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/06 13:04:39 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:14:03 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,25 +98,3 @@ void RPN::printResult()
         throw std::runtime_error("Error");
     std::cout << this->_stack.top() << std::endl;
 }
-
-
-/*
-- take inverted Polish mathematical expession as argument & output result
-- input numbers = less than 10
-- protect division by 0
-- if error : std::cerr << "" std::endl;
-- handle : "+ - / *"
-
-RPN
-- operators after operands
-
-USE std::stack
-
-Start with an empty stack.
-Scan the expression from left to right.
-If the current token is an operand, push it onto the stack.
-If the current token is an operator, pop the top two operands from the stack, apply the operator to them, and push the result back onto the stack.
-Continue this process until all tokens have been processed.
-The final result is the value remaining on the stack.
-
-*/

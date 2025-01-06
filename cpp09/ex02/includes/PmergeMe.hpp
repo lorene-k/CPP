@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/03 15:22:04 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:25:57 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,28 @@
 
 # include <iostream>
 # include <string>
+# include <limits>
 # include <algorithm>
+# include <vector>
+# include <list>
 
+class PmergeMe
+{
+private:
+    std::vector<int>    _vec;
+    std::list<int>      _lst;
+    void                parse(char **av);
+    void                sort();
+    void                display(char **av);
+
+public:
+    PmergeMe();
+    PmergeMe(std::string const &);
+    PmergeMe(PmergeMe const &src);
+    PmergeMe &operator=(PmergeMe const &src);
+    ~PmergeMe();
+
+    void                process(char **av);
+};
 
 #endif // *********************************************************** PMERGEME_HPP //
