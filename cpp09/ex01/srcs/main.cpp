@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/05 16:01:11 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/06 12:06:26 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int main(int ac, char **av)
 
 /*
 QUESTIONS:
-- only positive integers ?
-- can input start with non digit ? (no?)
+- only positive integers 
+- no need to manage decimals, even as a result ?
 */

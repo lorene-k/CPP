@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/05 16:26:56 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/06 11:13:37 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <sstream>
 # include <algorithm>
 # include <stack>
+# include <cstdio>
 
 class RPN
 {

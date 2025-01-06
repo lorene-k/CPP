@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/05 16:33:04 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/06 13:04:39 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,27 @@ static bool isOperator(char c)
 void RPN::calculate(std::string const &input)
 {
     std::istringstream ss(input);
-    char c;
+    std::string token;
 
-    while (ss >> c)
+    ss >> std::ws;
+    if (input.empty() || input.size() < 3 || ss.peek() == EOF)
+        throw std::runtime_error("Error");
+    while (ss >> token)
     {
-        if (isdigit(c))
-            this->_stack.push(c - '0');
-        else if (isOperator(c))
+        if (isdigit(token[0]) && token.size() == 1)
+            this->_stack.push(static_cast<int>(token[0]) - '0');
+        else if (isOperator(token[0]) && token.size() == 1)
         {
             if (this->_stack.size() < 2)
                 throw std::runtime_error("Error");
-            doOperation(c);
-            ss >> c;
+            doOperation(token[0]);
         }
         else
             throw std::runtime_error("Error");
-        if (ss.eof())
+        ss >> std::ws;
+        if (ss.peek() == EOF)
             printResult();
     }
-    
 }
 
 void RPN::doOperation(char const &c)
@@ -93,7 +95,7 @@ void RPN::doOperation(char const &c)
 void RPN::printResult()
 {
     if (this->_stack.size() != 1)
-        throw std::runtime_error("Error - debug");
+        throw std::runtime_error("Error");
     std::cout << this->_stack.top() << std::endl;
 }
 
