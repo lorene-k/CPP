@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/02 18:49:32 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:26:56 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,25 @@
 
 # include <iostream>
 # include <string>
+# include <sstream>
 # include <algorithm>
+# include <stack>
 
+class RPN
+{
+private:
+    std::stack<int> _stack;
+    void doOperation(char const &c);
+    void printResult();
+
+public:
+    RPN();
+    RPN(std::string const &str);
+    RPN(const RPN &src);
+    RPN &operator=(const RPN &rhs);
+    ~RPN();
+
+    void calculate(std::string const &input);
+};
 
 #endif // *********************************************************** RPN_HPP //

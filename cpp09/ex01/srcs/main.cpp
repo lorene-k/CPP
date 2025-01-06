@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/03 15:18:53 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:01:11 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,25 @@
 
 int main(int ac, char **av)
 {
-    
+    if (ac != 2)
+    {
+        std::cerr << "Usage : ./RPN \"<expression>\"" << std::endl;
+        return (1);
+    }
+    try
+    {
+        RPN rpn;
+        rpn.calculate(av[1]);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
     return (0);
 }
 
 /*
-- take inverted Polish mathematical expession as argument & output result
-- input numbers = less than 10
-- protect division by 0
-- if error : std::cerr << "" std::endl;
-- handle : "+ - / *"
-
-RPN
-- operators after operands
-
-USE std::stack
-
-Start with an empty stack.
-Scan the expression from left to right.
-If the current token is an operand, push it onto the stack.
-If the current token is an operator, pop the top two operands from the stack, apply the operator to them, and push the result back onto the stack.
-Continue this process until all tokens have been processed.
-The final result is the value remaining on the stack.
-
+QUESTIONS:
+- only positive integers ?
+- can input start with non digit ? (no?)
 */
