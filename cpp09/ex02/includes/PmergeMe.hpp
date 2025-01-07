@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/06 14:25:57 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:14:58 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,22 @@
 # include <limits>
 # include <algorithm>
 # include <vector>
-# include <list>
+# include <deque>
+# include <sys/time.h>
+# include <unistd.h>
+# include <iomanip>
 
 class PmergeMe
 {
 private:
     std::vector<int>    _vec;
-    std::list<int>      _lst;
+    std::deque<int>     _deq;
     void                parse(char **av);
-    void                sort();
-    void                display(char **av);
+    void                sortVector();
+    void                sortQueue();
+    void                display(char **av, double vTime, double qTime);
+    void                sortStepTwo(unsigned int start, unsigned int end);
+    void                merge(unsigned int start, unsigned int mid, unsigned int end);
 
 public:
     PmergeMe();

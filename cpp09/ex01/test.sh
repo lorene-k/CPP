@@ -70,6 +70,8 @@ declare -a TESTS=(
     # "6 6 * 9 - 8 / 4 4 * *|54" #requires precision
 )
 
+make
+
 run_test()
 {
     local input=$1
@@ -100,3 +102,5 @@ else
     COLOR=${RED}
 fi
 echo -e "Tests passed: ${COLOR}${PASSED_TESTS}/${TOTAL_TESTS} (${percentage}%)${RESET}"
+
+make fclean

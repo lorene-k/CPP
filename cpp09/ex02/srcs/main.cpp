@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/06 14:01:19 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:54:05 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,48 +33,18 @@ int main(int ac, char **av)
 
 /*
     QUESTIONS
-- accept single int ad input ?
+- accept single int as input ?
+- calculate time to display as well ? (end timer before or after display)
+- should i accept empty strings if there are also at least 2 numbers ?
+- does class make sense ? Should i create 2 classes or a template for each container ?
 
-    STEPS
-PARSE
-- parse input (save std::string)
-- if bad input, throw Error
-SORT
-- sort w/ std::map (save time)
-- sort w/ std::vector (save time)
-DISPLAY
-- display unsorted sequence
-- display sorted sequence
-- display time for each container
+>>> choose how to manage duplicates
 
-    CONTAINERS
-- std::list
-- std::vector
 
-    RULES
-- ARG = positive integer sequence
-- sort with merge-insert sort algorithm
-    > use the Ford-Johnson algorithm
-
-- if error : std::cerr << "" std::endl;
-- choose how to manage duplicates
-
-- use at least 2 different containers
-    > implement your algorithm for each container and avoid using a generic function
+    TESTS
 - handle at least 3000 different integers
+- empty strs
 
-
-DISPLAY 
-• line1 : display an explicit text followed by the unsorted positive integer sequence.
-• line2 : display an explicit text followed by the sorted positive integer sequence.
-• line 3 : display an explicit text indicating the time used by your algorithm by specifying the first container used to sort the sequence.
-• line 4 : display an explicit text indicating the time used by your algorithm by specifying the second container used to sort the positive integer sequence.
-    > indicate the time used to perform all your operations, both the sorting part and the data management part
-    > The format for the display of the time used to carry out your sorting is free
-    but the precision chosen must allow to clearly see the difference between the two containers used
-
-std::vector
-std::deque ?
 
 EXAMPLES :
 /PmergeMe 3 5 9 7 4

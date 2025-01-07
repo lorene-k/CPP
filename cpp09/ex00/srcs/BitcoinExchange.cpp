@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/05 15:29:05 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/07 08:04:42 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,30 @@ std::pair<std::string, float> BitcoinExchange::parseLine(std::string const &line
 }
 
 /*********************************************************** Helper functions */
-static void printError(std::string const &error)
+static bool printError(std::string const &error)
 {
     std::cout << "Error: " << error << std::endl;
+    return (false);
+}
+
+static bool checkValidDay(int year, int month, int day, std::string const &line)
+{
+    switch (month)
+    {
+        case 2:
+            if (day > 28 && !(day == 29 && (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))))
+                return (printError("bad input => " + line));
+            break;
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            if (day > 31)
+                return (printError("bad input => " + line));
+            break;
+        case 4: case 6: case 9: case 11:
+            if (day > 30)
+                return (printError("bad input => " + line));
+            break;
+    }
+    return (true);
 }
 
 static bool isValidDate(std::string const &date, std::string const &line)
@@ -78,14 +99,11 @@ static bool isValidDate(std::string const &date, std::string const &line)
     ss >> year >> d1 >> month >> d2 >> day;
     if ((ss.fail() || date.size() != 10
         || d1 != '-' || d2 != '-')
-        || !(year > 2008 && year < 2026)
+        || !(year > 2008 && year < 2025)
         || !(month > 0 && month < 13)
         || !(day > 0 && day < 32))
-    {
-        printError("bad input => " + line);
-        return (false);
-    }
-    return (true);
+        return (printError("bad input => " + line));
+    return (checkValidDay(year, month, day, line));
 }
 
 static bool isValidSeparator(std::istringstream &ss, std::string const &line)

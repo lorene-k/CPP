@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/05 14:35:33 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/07 07:53:19 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int main(int ac, char **av)
 /*
 QUESTIONS:
 - what to do if the date is lower than lowest date ?
-- what to do if date is after 2025 ?
+- Can i accept only dates up to 2025 included ?
+- return custom & accurate error messages ? Or just general "bad input" like in example ?
 */
 
 /*
