@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/07 14:54:05 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:30:33 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int ac, char **av)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << std::endl;
+        std::cerr << "Error" << e.what() << std::endl;
     }
     return (0);
 }
@@ -34,11 +34,15 @@ int main(int ac, char **av)
 /*
     QUESTIONS
 - accept single int as input ?
+- handle duplicates as errors ?
+    > If yes, use tmp vector, sort it & use std::adjacent_find
+    OR use loop to compare curr to all values
 - calculate time to display as well ? (end timer before or after display)
-- should i accept empty strings if there are also at least 2 numbers ?
+- accept empty strings if there are also at least 2 numbers ?
+- use multiple containers > (several vectors for sorting)
+
 - does class make sense ? Should i create 2 classes or a template for each container ?
 
->>> choose how to manage duplicates
 
 
     TESTS

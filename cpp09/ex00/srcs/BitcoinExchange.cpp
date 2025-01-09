@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/07 08:04:42 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:11:52 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
 /************************************************** Constructors & destructor */
-BitcoinExchange::BitcoinExchange() {}
+BitcoinExchange::BitcoinExchange() : _databasePath("") {}
 
 BitcoinExchange::BitcoinExchange(std::string const &databasePath) : _databasePath(databasePath) {}
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/07 15:14:58 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:34:59 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include <iomanip>
+# include <set>
 
 class PmergeMe
 {
@@ -43,8 +44,7 @@ private:
     void                sortVector();
     void                sortQueue();
     void                display(char **av, double vTime, double qTime);
-    void                sortStepTwo(unsigned int start, unsigned int end);
-    void                merge(unsigned int start, unsigned int mid, unsigned int end);
+    // void                sortStepTwo(unsigned int start, unsigned int end);
 
 public:
     PmergeMe();
