@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/12 19:48:04 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/12 19:51:30 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,25 @@ static void checkNum(std::string const &str)
             throw std::runtime_error(": overflow");
 }
 
-static void printTests(std::vector<int> &a, std::vector<int> &b, std::string str)
-{
-    std::cout << MAUVE << str << RESET << std::endl;
-    for (std::vector<int>::iterator it = a.begin(); it != a.end(); it++) //print main chain
-        std::cout << CYAN << *it << " ";
-    std::cout << std::endl;
-    for (std::vector<int>::iterator it = b.begin(); it != b.end(); it++) //print pend
-        std::cout << BLUE << *it << " ";
-    std::cout << RESET << std::endl << std::endl;
-}
+// static void printTests(std::vector<int> &a, std::vector<int> &b, std::string str)
+// {
+//     std::cout << MAUVE << str << RESET << std::endl;
+//     for (std::vector<int>::iterator it = a.begin(); it != a.end(); it++) //print main chain
+//         std::cout << CYAN << *it << " ";
+//     std::cout << std::endl;
+//     for (std::vector<int>::iterator it = b.begin(); it != b.end(); it++) //print pend
+//         std::cout << BLUE << *it << " ";
+//     std::cout << RESET << std::endl << std::endl;
+// }
 
-static void insertionDebug(std::string title, const char *color, std::vector<int> &jacobsthal, int i, std::vector<int> &a, std::vector<int> &b, int index, int pos, int offset)
-{
-    std::cout << color << title << RESET << std::endl;
-    std::cout << "jacobsthal[i] = " << jacobsthal[i] << std::endl;  //TESTS
-    std::cout << "POS determined from binary search : pos = " << pos << " (start = 0; end = " << a.size() - 1 - offset << std::endl;
-    std::cout << "INSERT at : a.begin() + pos = " << *a.begin() + pos << "; value to insert = " << b[index] << std::endl;
-    std::cout << std::endl;
-}
+// static void insertionDebug(std::string title, const char *color, std::vector<int> &jacobsthal, int i, std::vector<int> &a, std::vector<int> &b, int index, int pos, int offset)
+// {
+//     std::cout << color << title << RESET << std::endl;
+//     std::cout << "jacobsthal[i] = " << jacobsthal[i] << std::endl;  //TESTS
+//     std::cout << "POS determined from binary search : pos = " << pos << " (start = 0; end = " << a.size() - 1 - offset << std::endl;
+//     std::cout << "INSERT at : a.begin() + pos = " << *a.begin() + pos << "; value to insert = " << b[index] << std::endl;
+//     std::cout << std::endl;
+// }
 
 /*********************************************************** Member functions */
 void PmergeMe::process(char **av)
@@ -203,60 +203,6 @@ static int binarySearch(std::vector<int> &a, int start, int end, int n)
     return (start);
 }
 
-// static void insertion(std::vector<int> &a, std::vector<int> &b, int start, int end)
-// {
-//     std::vector<int>    jacobsthal = generateJacobsthal(b.size());
-//     std::set<int>       processed;
-//     int                 offset;
-//     int                 index;
-//     int                 pos;
-//     int                 prevIndex = 1;
-
-//     if (start == 0 && end == static_cast<int>(a.size()) - 1)
-//     {
-//         for (int i = 0; i < 2; i++)
-//         {
-//             // std::cout << "Value to insert = " << b[i] << std::endl;  // TESTS
-//             // std::cout << "jacobsthal index = " << jacobsthal[i] << std::endl << std::endl;
-//             // printTests(a, b, "PRE LOOP TESTS");
-//             pos = binarySearch(a, 0, (int)a.size() - 1, b[i]);
-//             a.insert(a.begin() + pos, b[i]);
-//             processed.insert(i);
-//         }
-//         for (int i = 3; i < (int)jacobsthal.size() - 1; i++)
-//         {
-//             index = jacobsthal[i];
-//             if (index >= (int)b.size())
-//                 index = b.size() - 1;
-//             // if (processed.find(index) != processed.end())
-//             //         continue;
-//             pos = binarySearch(a, 0, (int)a.size() - 1, b[index]);
-//             a.insert(a.begin() + pos, b[index]);
-//             processed.insert(index);
-
-//             // insertionDebug("MAIN LOOP", ORANGE, jacobsthal, i, a, b, index, pos, 0); // TESTS
-//             // printTests(a, b, "INSERTION TESTS"); // TESTS
-
-//             offset = 1;
-//             for (int j = index - 1; j > prevIndex; j--)
-//             {
-//                 // if (processed.find(j) != processed.end())
-//                 //     continue;
-//                 pos = binarySearch(a, 0, (int)a.size() - 1 - offset, b[j]);
-//                 a.insert(a.begin() + pos, b[j]);
-//                 processed.insert(j);
-//                 offset++;
-       
-//             // insertionDebug("REVERSE LOOP", RED, jacobsthal, i, a, b, j, pos, offset); // TESTS
-//             // printTests(a, b, "INSERTION TESTS"); // TESTS
-//             // std::cout << MAUVE << "OFFSET TEST: " << b[j] + offset << RESET << std::endl;
-//             }
-//             prevIndex = index;
-//         }
-//     }
-// }
-
-
 static void insertion(std::vector<int> &a, std::vector<int> &b, int start, int end)
 {
     std::vector<int>    jacobsthal = generateJacobsthal(b.size());
@@ -289,8 +235,8 @@ static void insertion(std::vector<int> &a, std::vector<int> &b, int start, int e
                 processed.insert(j);
                 offset++;
        
-            insertionDebug("REVERSE LOOP", RED, jacobsthal, i, a, b, j, pos, offset); // TESTS
-            printTests(a, b, "INSERTION TESTS"); // TESTS
+            // insertionDebug("REVERSE LOOP", RED, jacobsthal, i, a, b, j, pos, offset); // TESTS
+            // printTests(a, b, "INSERTION TESTS"); // TESTS
             }
             prevIndex = index;
         }
@@ -332,4 +278,5 @@ void PmergeMe::sortVector()
 /*
 TODO : handle time + implement algo for std::deque
 ? use main vector as main chain
+? handle 2 first elements seperately (jacobsthal insertion)
 */
