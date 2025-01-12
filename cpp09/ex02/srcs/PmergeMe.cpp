@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/12 19:51:30 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/12 15:43:14 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,20 +108,20 @@ void PmergeMe::display(char **av, double vTime, double qTime)
 {
     int i = 1;
 
-    std::cout << "Before: ";
+    std::cout << std::endl << CYAN << "Before: ";
     for (; av[i]; i++)
         std::cout << av[i] << " ";
     std::cout << std::endl;
 
-    std::cout << "After:  ";
+    std::cout << BLUE << "After:  ";
     for (std::vector<int>::iterator it = this->_vec.begin(); it != this->_vec.end(); it++)
         std::cout << *it << " ";
-    std::cout << std::endl;
+    std::cout << RESET << std::endl;
 
     std::cout << "Time to process a range of " << (i - 1) << " elements with std::vector : "
         << std::fixed << std::setprecision(5) << vTime << " us" << std::endl;
     std::cout << "Time to process a range of " << (i - 1) << " elements with std::deque  : "
-        << std::fixed << std::setprecision(5) << qTime << " us" << std::endl;
+        << std::fixed << std::setprecision(5) << qTime << " us" << std::endl << std::endl;
 }
 
 /*************************************************** Sorting using std::deque */
@@ -190,12 +190,14 @@ static std::vector<int> generateJacobsthal(int n)
     return (jacobsthal);
 }
 
-static int binarySearch(std::vector<int> &a, int start, int end, int n)
+static int binarySearch(std::vector<int> &a, int start, int end, int key) // ITERATIVE BINARY SEARCH
 {
     while (start <= end)
     {   
         int mid = start + (end - start) / 2;
-        if (a[mid] > n)
+        if (a[mid] == key)
+            return (mid);
+        if (a[mid] > key)
             end = mid - 1;
         else
             start = mid + 1;
@@ -203,9 +205,24 @@ static int binarySearch(std::vector<int> &a, int start, int end, int n)
     return (start);
 }
 
+// static int binarySearch(std::vector<int> &a, int start, int end, int key) // RECURSIVE BINARY SEARCH (slower ?)
+// {
+//     if (end >= start)
+//     {   
+//         int mid = start + (end - start) / 2;
+//         if (a[mid] == key)
+//             return (mid);
+//         if (a[mid] > key)
+//             return (binarySearch(a, start, mid - 1, key));
+//         else
+//             return (binarySearch(a, mid + 1, end, key));
+//     }
+//     return (start);
+// }
+
 static void insertion(std::vector<int> &a, std::vector<int> &b, int start, int end)
 {
-    std::vector<int>    jacobsthal = generateJacobsthal(b.size());
+    std::vector<int>    jacobsthal = generateJacobsthal(b.size() + 1); // check the "+1" adjustment (for b.size() == 3)
     std::set<int>       processed;
     int                 offset;
     int                 index;
@@ -220,7 +237,7 @@ static void insertion(std::vector<int> &a, std::vector<int> &b, int start, int e
             a.insert(a.begin() + pos, b[i]);
             processed.insert(i);
         }
-        for (int i = 3; i < (int)jacobsthal.size() - 1; i++)
+        for (int i = 3; i < (int)jacobsthal.size(); i++)
         {
             offset = 0;
             index = jacobsthal[i];
@@ -234,10 +251,11 @@ static void insertion(std::vector<int> &a, std::vector<int> &b, int start, int e
                 a.insert(a.begin() + pos, b[j]);
                 processed.insert(j);
                 offset++;
-       
-            // insertionDebug("REVERSE LOOP", RED, jacobsthal, i, a, b, j, pos, offset); // TESTS
+            // insertionDebug("MAIN LOOP", RED, jacobsthal, i, a, b, index, pos, offset); // TESTS
             // printTests(a, b, "INSERTION TESTS"); // TESTS
             }
+            if (processed.size() == b.size())
+                break;
             prevIndex = index;
         }
     }
@@ -276,7 +294,11 @@ void PmergeMe::sortVector()
 
 
 /*
-TODO : handle time + implement algo for std::deque
+TODO : implement algo for std::deque
+TODO : handle time
+TODO : write script to exec generate.sh > numbers.txt; then run ./PmergeMe < numbers.txt; then run checkSorted by comparing after (after sorting) & before outputs
+? Optimize merge
+? check how to use offset & if is necessary
 ? use main vector as main chain
 ? handle 2 first elements seperately (jacobsthal insertion)
 */
