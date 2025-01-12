@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 19:55:35 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/12 20:02:09 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/12 11:13:13 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,21 @@
 int main(int ac, char **av)
 {
     if (ac < 2)
+    {   
+        std::cout << "Usgae: ./generate <number of elements>" << std::endl;
         return (0);
+    }
 
-    std::vector<int> numbers(100);
-    for (int i = 0; i < atoi(av[1]); i++)
+    int n = atoi(av[1]);
+    std::vector<int> numbers(n);
+    for (int i = 0; i < n; i++)
         numbers[i] = i;
 
     srand(time(NULL));
     std::random_shuffle(numbers.begin(), numbers.end());
 
-    // Step 3: Print the shuffled vector
-    for (int num : numbers)
-        std::cout << num << " ";
-    return 0;
+    for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+    return (0);
 }
