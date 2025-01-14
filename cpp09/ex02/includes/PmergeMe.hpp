@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/09 15:34:59 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:28:47 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ class PmergeMe
 private:
     std::vector<int>    _vec;
     std::deque<int>     _deq;
-    void                parse(char **av);
+    double              handleVector(char **av);
+    double              handleQueue(char **av);
+    void                checkNum(std::string const &str);
     void                sortVector();
     void                sortQueue();
     void                display(char **av, double vTime, double qTime);
-    // void                sortStepTwo(unsigned int start, unsigned int end);
 
 public:
     PmergeMe();
@@ -54,6 +55,105 @@ public:
     ~PmergeMe();
 
     void                process(char **av);
+    
+    template <typename T>
+    void parse(char **av, T &container)
+    {
+        int n;
+        std::set<int> duplicateChecker;
+    
+        for (int i = 1; av[i]; i++)
+        {
+            checkNum(av[i]);
+            n = std::atoi(av[i]);
+            if (duplicateChecker.insert(n).second == false)
+                throw std::runtime_error(": duplicate");
+            container.push_back(n);
+        }
+    }
 };
+
+template <typename T>
+void merge(T &a, T &b, int start, int mid, int end)
+{
+    int i = start, j = mid + 1;
+    T mergedA, mergedB;
+
+    while (i <= mid && j <= end)
+    {
+        if (a[i] < a[j])
+        {
+            mergedA.push_back(a[i]);
+            mergedB.push_back(b[i]);
+            i++;
+        }
+        else
+        {
+            mergedA.push_back(a[j]);
+            mergedB.push_back(b[j]);
+            j++;
+        }
+    }
+    while (i <= mid)
+    {
+        mergedA.push_back(a[i]);
+        mergedB.push_back(b[i]);
+        i++;
+    }
+    while (j <= end)
+    {
+        mergedA.push_back(a[j]);
+        mergedB.push_back(b[j]);
+        j++;
+    }
+    for (int k = 0; k < (int)mergedA.size(); k++)
+    {
+        a[start + k] = mergedA[k];
+        b[start + k] = mergedB[k];
+    }
+}
+
+template <typename T>
+T generateJacobsthal(size_t n)
+{
+    T jacobsthal(n);
+    jacobsthal[0] = 0;
+    jacobsthal[1] = 1;
+    for (size_t i = 2; i < n; i++)
+        jacobsthal[i] = jacobsthal[i - 1] + (2 * jacobsthal[i - 2]);
+    return (jacobsthal);
+}
+
+/************************************************************* Test functions */
+template <typename T>
+static void printTests(T &a, T &b, std::string str)
+{
+    std::cout << MAUVE << str << RESET << std::endl;
+    for (std::vector<int>::iterator it = a.begin(); it != a.end(); it++) //print main chain
+        std::cout << CYAN << *it << " ";
+    std::cout << std::endl;
+    for (std::vector<int>::iterator it = b.begin(); it != b.end(); it++) //print pend
+        std::cout << BLUE << *it << " ";
+    std::cout << RESET << std::endl << std::endl;
+}
+
+template <typename T>
+static void insertionDebug(std::string title, const char *color, T &jacobsthal, int i, T &a, T &b, int index, int pos, int offset)
+{
+    std::cout << color << title << RESET << std::endl;
+    std::cout << "jacobsthal[i] = " << jacobsthal[i] << std::endl;
+    std::cout << "POS determined from binary search : pos = " << pos << " (start = 0; end = " << a.size() - 1 - offset << std::endl;
+    std::cout << "INSERT at : a.begin() + pos = " << *a.begin() + pos << "; value to insert = " << b[index] << std::endl;
+    std::cout << std::endl;
+}
+
+template <typename T>
+static void testContainer(T &container, const char *color, std::string title)
+{
+    std::cout << color << title;
+    for (typename T::iterator it = container.begin(); it != container.end(); it++)
+        std::cout << *it << " ";
+    std::cout << RESET << std::endl;
+}
 
 #endif // *********************************************************** PMERGEME_HPP //

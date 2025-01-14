@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/12 15:43:14 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:59:38 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,15 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &src)
 
 PmergeMe::~PmergeMe() {}
 
-/*********************************************************** Helper functions */
-static void checkNum(std::string const &str)
+/*********************************************************** Member functions */
+void PmergeMe::process(char **av)
+{
+    double vTime = this->handleVector(av);
+    double qTime = this->handleQueue(av);
+    this->display(av, vTime, qTime);
+}
+
+void    PmergeMe::checkNum(std::string const &str)
 {
     if (str.empty())
         throw std::runtime_error(": invalid input (empty)");
@@ -47,61 +54,6 @@ static void checkNum(std::string const &str)
     long value = std::atol(str.c_str());
     if (value > std::numeric_limits<int>::max())
             throw std::runtime_error(": overflow");
-}
-
-// static void printTests(std::vector<int> &a, std::vector<int> &b, std::string str)
-// {
-//     std::cout << MAUVE << str << RESET << std::endl;
-//     for (std::vector<int>::iterator it = a.begin(); it != a.end(); it++) //print main chain
-//         std::cout << CYAN << *it << " ";
-//     std::cout << std::endl;
-//     for (std::vector<int>::iterator it = b.begin(); it != b.end(); it++) //print pend
-//         std::cout << BLUE << *it << " ";
-//     std::cout << RESET << std::endl << std::endl;
-// }
-
-// static void insertionDebug(std::string title, const char *color, std::vector<int> &jacobsthal, int i, std::vector<int> &a, std::vector<int> &b, int index, int pos, int offset)
-// {
-//     std::cout << color << title << RESET << std::endl;
-//     std::cout << "jacobsthal[i] = " << jacobsthal[i] << std::endl;  //TESTS
-//     std::cout << "POS determined from binary search : pos = " << pos << " (start = 0; end = " << a.size() - 1 - offset << std::endl;
-//     std::cout << "INSERT at : a.begin() + pos = " << *a.begin() + pos << "; value to insert = " << b[index] << std::endl;
-//     std::cout << std::endl;
-// }
-
-/*********************************************************** Member functions */
-void PmergeMe::process(char **av)
-{
-    struct timeval vStart, vEnd, qStart, qEnd;
-
-    gettimeofday(&vStart, NULL);
-    gettimeofday(&qStart, NULL);
-    
-    this->parse(av);
-    this->sortVector();
-    gettimeofday(&vEnd, NULL);
-    this->sortQueue();
-    gettimeofday(&qEnd, NULL); // PB: dissociate time (qEND always > vEND here)
-    
-    double vTime = static_cast<double>(vEnd.tv_sec - vStart.tv_sec) + (vEnd.tv_usec - vStart.tv_usec);
-    double qTime = static_cast<double>(qEnd.tv_sec - qStart.tv_sec) + (qEnd.tv_usec - qStart.tv_usec);
-    this->display(av, vTime, qTime);
-}
-
-void PmergeMe::parse(char **av)
-{
-    int n;
-    std::set<int> duplicateChecker;
-
-    for (int i = 1; av[i]; i++)
-    {
-        checkNum(av[i]);
-        n = std::atoi(av[i]);
-        if (duplicateChecker.insert(n).second == false)
-            throw std::runtime_error(": duplicate");
-        this->_vec.push_back(n);
-        this->_deq.push_back(n);
-    }
 }
 
 void PmergeMe::display(char **av, double vTime, double qTime)
@@ -125,72 +77,110 @@ void PmergeMe::display(char **av, double vTime, double qTime)
 }
 
 /*************************************************** Sorting using std::deque */
-void PmergeMe::sortQueue()
+static std::deque<int>::iterator queueBinarySearch(std::deque<int>::iterator start, std::deque<int>::iterator end, int key)
 {
+    while (start != end)
+    {
+        std::deque<int>::iterator mid = start;
+        if (*mid == key)
+            return (mid);
+        if (*mid > key)
+            end = mid;
+        else
+        {
+            start = mid;
+            ++start;
+        }
+        std::advance(mid, std::distance(start, end) / 2); // Maybe switch order (place below iterator init ?)
+    }
+    return (start);
+}
+
+static void queueInsertion(std::deque<int> &a, std::deque<int> &b, int start, int end)
+{
+    std::deque<int> jacobsthal = generateJacobsthal<std::deque<int> >(b.size() + 1);
+    std::set<int>   processed;
+    int             prevIndex = 1;
+
+    if (start == 0 && end == static_cast<int>(a.size()) - 1)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            std::deque<int>::iterator pos = queueBinarySearch(a.begin(), a.end(), b[i]);
+            a.insert(pos, b[i]);
+            processed.insert(i);
+        }
+        for (int i = 3; i < static_cast<int>(jacobsthal.size()); i++)
+        {
+            int index = jacobsthal[i];
+            if (index >= static_cast<int>(b.size()))
+                index = b.size() - 1;
+            for (int j = index; j > prevIndex; j--)
+            {
+                if (processed.find(j) != processed.end())
+                    continue;
+                std::deque<int>::iterator pos = queueBinarySearch(a.begin(), a.end(), b[j]);
+                a.insert(pos, b[j]);
+                processed.insert(j);
+            }
+            if (processed.size() == b.size())
+                break;
+            prevIndex = index;
+        }
+    }
+}
+
+static void queueMergeInsertion(std::deque<int> &a, std::deque<int> &b, int start, int end)
+{
+    if (start >= end)
+        return ;
+
+    int mid = start + (end - start) / 2;
+    queueMergeInsertion(a, b, start, mid);
+    queueMergeInsertion(a, b, mid + 1, end);
+
+    merge(a, b, start, mid, end);
+    queueInsertion(a, b, start, end);
+}
+
+void PmergeMe::sortQueue() // Change loop to adapt to bidirectionnal iterators
+{
+    std::deque<int>::iterator it = this->_deq.begin();
+    std::deque<int>::iterator ite = this->_deq.end();
+    unsigned int n = this->_deq.size();
+    int odd = n % 2;
+    std::deque<int> a;
+    std::deque<int> b;
+
+    while (std::distance(it, ite) > odd)
+    {
+        std::deque<int>::iterator next = it;
+        std::advance(next, 1);
+        a.push_back(std::max(*it, *next));
+        b.push_back(std::min(*it, *next));
+        std::advance(it, 2);
+    }
+    if (odd)
+        b.push_back(*(this->_deq.rbegin()));
+    queueMergeInsertion(a, b, 0, (n - 1 - odd) / 2);
+    this->_deq = a;
     return ;
 }
 
+double PmergeMe::handleQueue(char **av)
+{
+    struct timeval qStart, qEnd;
+
+    gettimeofday(&qStart, NULL);
+    this->parse(av, this->_deq);
+    this->sortQueue();
+    gettimeofday(&qEnd, NULL);
+    double qTime = static_cast<double>(qEnd.tv_sec - qStart.tv_sec) + (qEnd.tv_usec - qStart.tv_usec);
+    return (qTime);
+}
+
 /************************************************** Sorting using std::vector */
-static void merge(std::vector<int> &a, std::vector<int> &b, int start, int mid, int end)
-{
-    int n1 = mid - start + 1;
-    int n2 = end - mid;
-    std::vector<int> aL(n1), aR(n2), bL(n1), bR(n2);
-
-    for (int i = 0; i < n1; i++) //Copy data to tmp
-    {
-        aL[i] = a[start + i];
-        bL[i] = b[start + i];
-    }
-    for (int j = 0; j < n2; j++)
-    {
-        aR[j] = a[mid + 1 + j];
-        bR[j] = b[mid + 1 + j];
-    }
-    int i = 0, j = 0, k = start;
-    while (i < n1 && j < n2) //Merge tmp into main vectors
-    {
-        if (aL[i] < aR[j])
-        {
-            a[k] = aL[i];
-            b[k] = bL[i];
-            i++;
-        }
-        else
-        {
-            a[k] = aR[j];
-            b[k] = bR[j];
-            j++;
-        }
-        k++;
-    }
-    while (i < n1) //Copy remaining elements
-    {
-        a[k] = aL[i];
-        b[k] = bL[i];
-        i++;
-        k++;
-    }
-    while (j < n2)
-    {
-        a[k] = aR[j];
-        b[k] = bR[j];
-        j++;
-        k++;
-    }
-}
-
-static std::vector<int> generateJacobsthal(int n)
-{
-    std::vector<int> jacobsthal(n);
-    jacobsthal[0] = 0;
-    jacobsthal[1] = 1;
-    for (int i = 2; i < n; i++)
-        jacobsthal[i] = jacobsthal[i - 1] + (2 * jacobsthal[i - 2]);
-    return (jacobsthal);
-}
-
-static int binarySearch(std::vector<int> &a, int start, int end, int key) // ITERATIVE BINARY SEARCH
+static int vectorBinarySearch(std::vector<int> &a, int start, int end, int key)
 {
     while (start <= end)
     {   
@@ -205,24 +195,9 @@ static int binarySearch(std::vector<int> &a, int start, int end, int key) // ITE
     return (start);
 }
 
-// static int binarySearch(std::vector<int> &a, int start, int end, int key) // RECURSIVE BINARY SEARCH (slower ?)
-// {
-//     if (end >= start)
-//     {   
-//         int mid = start + (end - start) / 2;
-//         if (a[mid] == key)
-//             return (mid);
-//         if (a[mid] > key)
-//             return (binarySearch(a, start, mid - 1, key));
-//         else
-//             return (binarySearch(a, mid + 1, end, key));
-//     }
-//     return (start);
-// }
-
-static void insertion(std::vector<int> &a, std::vector<int> &b, int start, int end)
+static void vectorInsertion(std::vector<int> &a, std::vector<int> &b, int start, int end)
 {
-    std::vector<int>    jacobsthal = generateJacobsthal(b.size() + 1); // check the "+1" adjustment (for b.size() == 3)
+    std::vector<int>    jacobsthal = generateJacobsthal<std::vector<int> >(b.size() + 1); // check the "+1" adjustment (for b.size() == 3)
     std::set<int>       processed;
     int                 offset;
     int                 index;
@@ -233,7 +208,7 @@ static void insertion(std::vector<int> &a, std::vector<int> &b, int start, int e
     {
         for (int i = 0; i < 2; i++)
         {
-            pos = binarySearch(a, 0, (int)a.size() - 1, b[i]);
+            pos = vectorBinarySearch(a, 0, (int)a.size() - 1, b[i]);
             a.insert(a.begin() + pos, b[i]);
             processed.insert(i);
         }
@@ -247,7 +222,7 @@ static void insertion(std::vector<int> &a, std::vector<int> &b, int start, int e
             {
                 // if (processed.find(j) != processed.end())
                 //     continue;
-                pos = binarySearch(a, 0, (int)a.size() - 1 - offset, b[j]);
+                pos = vectorBinarySearch(a, 0, (int)a.size() - 1 - offset, b[j]);
                 a.insert(a.begin() + pos, b[j]);
                 processed.insert(j);
                 offset++;
@@ -261,17 +236,17 @@ static void insertion(std::vector<int> &a, std::vector<int> &b, int start, int e
     }
 }
 
-static void mergeInsertion(std::vector<int> &a, std::vector<int> &b, int start, int end)
+static void vectorMergeInsertion(std::vector<int> &a, std::vector<int> &b, int start, int end)
 {
     if (start >= end)
         return ;
 
     int mid = start + (end - start) / 2;
-    mergeInsertion(a, b, start, mid);
-    mergeInsertion(a, b, mid + 1, end);
+    vectorMergeInsertion(a, b, start, mid);
+    vectorMergeInsertion(a, b, mid + 1, end);
 
     merge(a, b, start, mid, end);
-    insertion(a, b, start, end);
+    vectorInsertion(a, b, start, end);
 }
 
 void PmergeMe::sortVector()
@@ -288,17 +263,43 @@ void PmergeMe::sortVector()
     }
     if (odd)
         b.push_back(*(this->_vec.rbegin()));
-    mergeInsertion(a, b, 0, (n - 1 - odd) / 2);
+    vectorMergeInsertion(a, b, 0, (n - 1 - odd) / 2);
     this->_vec = a;
 }
 
+double PmergeMe::handleVector(char **av)
+{
+    struct timeval vStart, vEnd;
+
+    gettimeofday(&vStart, NULL);
+    this->parse(av, this->_vec);
+    this->sortVector();
+    gettimeofday(&vEnd, NULL);
+    double vTime = static_cast<double>(vEnd.tv_sec - vStart.tv_sec) + (vEnd.tv_usec - vStart.tv_usec);
+    return (vTime);
+}
 
 /*
-TODO : implement algo for std::deque
-TODO : handle time
+TODO : optimize algo for std::deque
 TODO : write script to exec generate.sh > numbers.txt; then run ./PmergeMe < numbers.txt; then run checkSorted by comparing after (after sorting) & before outputs
 ? Optimize merge
 ? check how to use offset & if is necessary
 ? use main vector as main chain
 ? handle 2 first elements seperately (jacobsthal insertion)
+? add specialized templae for handleVector & handleQueue
 */
+
+// static int binarySearch(std::vector<int> &a, int start, int end, int key) // RECURSIVE BINARY SEARCH (slower ?)
+// {
+//     if (end >= start)
+//     {   
+//         int mid = start + (end - start) / 2;
+//         if (a[mid] == key)
+//             return (mid);
+//         if (a[mid] > key)
+//             return (binarySearch(a, start, mid - 1, key));
+//         else
+//             return (binarySearch(a, mid + 1, end, key));
+//     }
+//     return (start);
+// }
