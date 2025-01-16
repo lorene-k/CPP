@@ -62,6 +62,13 @@ declare -a TESTS=(
     "3 3 3|Error"
     "a 3 3 |Error"
     "3 + 3 |Error"
+    # DECIMAL RESULTS
+    "3 3 3 3 * + /|0.25"
+    "3 5 /|0.6"
+    "8 3 + 2 * 4 /|5.5"
+    "3 3 3 + /|0.5"
+    "6 6 * 9 - 8 / 4 4 * *|54"
+
 )
 
 make

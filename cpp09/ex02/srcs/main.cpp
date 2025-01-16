@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/16 15:25:20 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:00:16 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,9 @@ int main(int ac, char **av)
 }
 
 /*
-TODO handle for size <= 3
-TODO : accept ac == 2 w/ args in ""
-TODO  accept single int as input >> FIX
-TODO calculate time to display as well >> end timer just after sequence display
-TODO : optimize algo for std::deque
 TODO : remove tests
-? accept empty strings if there are also at least 2 numbers >> NOT CURRENTLY ACCEPTED
-? check how to use offset & if is necessary
-? handle duplicates as errors
+? TODO : optimize algo for std::deque
 ? Optimize merge
 */
 
-
-// TEST
-// ./PmergeMe shuf -i 1-100000 -n 3000 | tr "\n" " "
-// > runs exec w/ 3000 random numbers (between 1 and 100,000) displayed on a saingle line, separated by spaces
+// ./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`

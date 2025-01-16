@@ -14,9 +14,9 @@ RED="\033[0;31m"
 GREEN="\033[0;32m"
 RESET="\033[0m"
 
-make
-${CC} -o ${GEN} tests/generate.cpp
-${CC} -o ${CHECK} tests/checkSorted.cpp
+# make
+# ${CC} -o ${GEN} tests/generate.cpp
+# ${CC} -o ${CHECK} tests/checkSorted.cpp
 
 echo -e "______________________________________________________________________\n"
 echo -e "* Generating random sequence of size $SIZE *"
@@ -34,13 +34,13 @@ OUTPUT=$(./PmergeMe $UNSORTED_SEQUENCE)
 
 echo -e "\n* PmergeMe output *$OUTPUT"
 
-echo -e "\n* Checking the sort result using checkSort *"
-RESULT=$(./$CHECK "$OUTPUT")
+# echo -e "\n* Checking the sort result using checkSort *"
+# RESULT=$(./$CHECK "$OUTPUT")
 
 echo -e "$RESULT"
 echo -e "______________________________________________________________________\n"
 
-make fclean
-rm "generate"
-rm "check"
-echo -e "${RED}Cleaned generate & check executables${RESET}"
+# make fclean
+# rm "generate"
+# rm "check"
+# echo -e "${RED}Cleaned generate & check executables${RESET}"

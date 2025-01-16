@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/16 15:29:45 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:01:50 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,18 @@ void PmergeMe::display(char **av, double vTime, double qTime)
 {
     int i = 1;
 
-    std::cout << std::endl << CYAN << "Before: ";
+    std::cout << std::endl << BLUE << "Before: ";
     for (; av[i]; i++)
         std::cout << av[i] << " ";
     std::cout << std::endl;
-
-    std::cout << BLUE << "After:  ";
+    std::cout << CYAN << "After:  ";
     for (std::vector<int>::iterator it = this->_vec.begin(); it != this->_vec.end(); it++)
         std::cout << *it << " ";
     std::cout << RESET << std::endl;
-    // std::cout << MAUVE << "std::deque: "; //TEST
-    // for (std::vector<int>::iterator it = this->_vec.begin(); it != this->_vec.end(); it++)
-    //     std::cout << *it << " ";
-    // std::cout << RESET << std::endl;
     std::cout << "Time to process a range of " << (i - 1) << " elements with std::vector : "
-        << std::fixed << std::setprecision(5) << vTime << " us" << std::endl;
+        << std::fixed << std::setprecision(5) << vTime << " s" << std::endl;
     std::cout << "Time to process a range of " << (i - 1) << " elements with std::deque  : "
-        << std::fixed << std::setprecision(5) << qTime << " us" << std::endl << std::endl;
+        << std::fixed << std::setprecision(5) << qTime << " s" << std::endl << std::endl;
 }
 
 /*************************************************** Sorting using std::deque */
@@ -180,7 +175,7 @@ double PmergeMe::handleQueue(char **av)
     this->parse(av, this->_deq);
     this->sortQueue();
     gettimeofday(&qEnd, NULL);
-    double qTime = static_cast<double>(qEnd.tv_sec - qStart.tv_sec) + (qEnd.tv_usec - qStart.tv_usec);
+    double qTime = static_cast<double>(qEnd.tv_sec - qStart.tv_sec) + (qEnd.tv_usec - qStart.tv_usec) / 1e6;
     return (qTime);
 }
 
@@ -267,7 +262,6 @@ void PmergeMe::sortVector()
     }
     if (odd)
         b.push_back(*(this->_vec.rbegin()));
-    printTests(a, b, "BEFORE MERGE: "); // TEST
     vectorMergeInsertion(a, b, 0, (n - 1 - odd) / 2);
     this->_vec = a;
 }
@@ -280,6 +274,6 @@ double PmergeMe::handleVector(char **av)
     this->parse(av, this->_vec);
     this->sortVector();
     gettimeofday(&vEnd, NULL);
-    double vTime = static_cast<double>(vEnd.tv_sec - vStart.tv_sec) + (vEnd.tv_usec - vStart.tv_usec);
+    double vTime = static_cast<double>(vEnd.tv_sec - vStart.tv_sec) + (vEnd.tv_usec - vStart.tv_usec) / 1e6;
     return (vTime);
 }

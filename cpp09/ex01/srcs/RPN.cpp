@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/06 14:14:03 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:17:29 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void RPN::calculate(std::string const &input)
     while (ss >> token)
     {
         if (isdigit(token[0]) && token.size() == 1)
-            this->_stack.push(static_cast<int>(token[0]) - '0');
+            this->_stack.push(static_cast<float>(token[0]) - '0');
         else if (isOperator(token[0]) && token.size() == 1)
         {
             if (this->_stack.size() < 2)
@@ -68,9 +68,9 @@ void RPN::calculate(std::string const &input)
 
 void RPN::doOperation(char const &c)
 {
-    int a = this->_stack.top();
+    float a = this->_stack.top();
     this->_stack.pop();
-    int b = this->_stack.top();
+    float b = this->_stack.top();
     this->_stack.pop();
 
     switch (c)

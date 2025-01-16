@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/06 11:13:37 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:16:41 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define MAUVE  "\033[38;5;177m"
 
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include <sstream>
 # include <algorithm>
@@ -34,7 +35,7 @@
 class RPN
 {
 private:
-    std::stack<int> _stack;
+    std::stack<float> _stack;
     void doOperation(char const &c);
     void printResult();
 
