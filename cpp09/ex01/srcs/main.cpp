@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/09 14:09:02 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:22:20 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,4 @@ int main(int ac, char **av)
     return (0);
 }
 
-/*
-QUESTIONS:
-- Only positive integers ?
-- Manage decimal results ?
-- Class design
-*/
+//output decimal results ?
