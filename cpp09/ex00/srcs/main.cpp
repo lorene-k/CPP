@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:02:53 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/07 07:53:19 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:06:51 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int ac, char **av)
     try
     {
         BitcoinExchange btc;
-        btc.parseData("databases/data.csv"); // NOT PROTECTED AGAINST INVALID DATA
+        btc.parseData("databases/data.csv");
         btc.parseInput(av[1]);
     }
     catch (std::exception &e)
@@ -32,18 +32,3 @@ int main(int ac, char **av)
     }
     return (0);
 }
-
-/*
-QUESTIONS:
-- what to do if the date is lower than lowest date ?
-- Can i accept only dates up to 2025 included ?
-- return custom & accurate error messages ? Or just general "bad input" like in example ?
-*/
-
-/*
-TESTS : 
-- check overflows
-- invalid date
-- invalid data
-- invalid format (separator)
-*/

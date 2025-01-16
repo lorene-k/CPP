@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/09 14:11:52 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:04:47 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,8 @@ void BitcoinExchange::parseInput(std::string const &inputPath)
         throw std::runtime_error("invalid file format.");
     while (std::getline(input, line))
     {
+        if (line.empty())
+            continue;
         rate = checkInput(line, &data);
         if (rate != -1)
             printResult(data, rate);
@@ -203,7 +205,12 @@ float BitcoinExchange::checkInput(std::string const &line, std::pair<std::string
 float BitcoinExchange::findRate(std::string const &date) const
 {
     std::map<std::string, float>::const_iterator it = this->_exchangeRates.lower_bound(date);
-    if (it == this->_exchangeRates.end())
+    
+    if (date < this->_exchangeRates.begin()->first)
+        return (printError("no data available for this date => " + date));
+    if (it == this->_exchangeRates.end() || it->first > date)
         return ((--it)->second);
+    if (it->first == date)
+        return (it->second);
     return (it->second);
 }
