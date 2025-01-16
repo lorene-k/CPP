@@ -15,8 +15,8 @@ GREEN="\033[0;32m"
 RESET="\033[0m"
 
 make
-${CC} -o ${GEN} generate.cpp
-${CC} -o ${CHECK} checkSorted.cpp
+${CC} -o ${GEN} tests/generate.cpp
+${CC} -o ${CHECK} tests/checkSorted.cpp
 
 echo -e "______________________________________________________________________\n"
 echo -e "* Generating random sequence of size $SIZE *"

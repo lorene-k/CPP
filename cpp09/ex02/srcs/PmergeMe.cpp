@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/14 14:59:38 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:29:45 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ void PmergeMe::display(char **av, double vTime, double qTime)
     for (std::vector<int>::iterator it = this->_vec.begin(); it != this->_vec.end(); it++)
         std::cout << *it << " ";
     std::cout << RESET << std::endl;
-
+    // std::cout << MAUVE << "std::deque: "; //TEST
+    // for (std::vector<int>::iterator it = this->_vec.begin(); it != this->_vec.end(); it++)
+    //     std::cout << *it << " ";
+    // std::cout << RESET << std::endl;
     std::cout << "Time to process a range of " << (i - 1) << " elements with std::vector : "
         << std::fixed << std::setprecision(5) << vTime << " us" << std::endl;
     std::cout << "Time to process a range of " << (i - 1) << " elements with std::deque  : "
@@ -152,6 +155,8 @@ void PmergeMe::sortQueue() // Change loop to adapt to bidirectionnal iterators
     std::deque<int> a;
     std::deque<int> b;
 
+    if (checkSize(this->_vec, n))
+        return ;
     while (std::distance(it, ite) > odd)
     {
         std::deque<int>::iterator next = it;
@@ -220,8 +225,6 @@ static void vectorInsertion(std::vector<int> &a, std::vector<int> &b, int start,
                 index = b.size() - 1;
             for (int j = index; j > prevIndex; j--)
             {
-                // if (processed.find(j) != processed.end())
-                //     continue;
                 pos = vectorBinarySearch(a, 0, (int)a.size() - 1 - offset, b[j]);
                 a.insert(a.begin() + pos, b[j]);
                 processed.insert(j);
@@ -244,7 +247,6 @@ static void vectorMergeInsertion(std::vector<int> &a, std::vector<int> &b, int s
     int mid = start + (end - start) / 2;
     vectorMergeInsertion(a, b, start, mid);
     vectorMergeInsertion(a, b, mid + 1, end);
-
     merge(a, b, start, mid, end);
     vectorInsertion(a, b, start, end);
 }
@@ -256,6 +258,8 @@ void PmergeMe::sortVector()
     std::vector<int>    a;
     std::vector<int>    b;
 
+    if (checkSize(this->_vec, n))
+        return ;
     for (std::vector<int>::iterator it = this->_vec.begin(); it < (this->_vec.end() - odd); (it += 2))
     {
         a.push_back(std::max(*it, *(it + 1)));
@@ -263,6 +267,7 @@ void PmergeMe::sortVector()
     }
     if (odd)
         b.push_back(*(this->_vec.rbegin()));
+    printTests(a, b, "BEFORE MERGE: "); // TEST
     vectorMergeInsertion(a, b, 0, (n - 1 - odd) / 2);
     this->_vec = a;
 }
@@ -278,28 +283,3 @@ double PmergeMe::handleVector(char **av)
     double vTime = static_cast<double>(vEnd.tv_sec - vStart.tv_sec) + (vEnd.tv_usec - vStart.tv_usec);
     return (vTime);
 }
-
-/*
-TODO : optimize algo for std::deque
-TODO : write script to exec generate.sh > numbers.txt; then run ./PmergeMe < numbers.txt; then run checkSorted by comparing after (after sorting) & before outputs
-? Optimize merge
-? check how to use offset & if is necessary
-? use main vector as main chain
-? handle 2 first elements seperately (jacobsthal insertion)
-? add specialized templae for handleVector & handleQueue
-*/
-
-// static int binarySearch(std::vector<int> &a, int start, int end, int key) // RECURSIVE BINARY SEARCH (slower ?)
-// {
-//     if (end >= start)
-//     {   
-//         int mid = start + (end - start) / 2;
-//         if (a[mid] == key)
-//             return (mid);
-//         if (a[mid] > key)
-//             return (binarySearch(a, start, mid - 1, key));
-//         else
-//             return (binarySearch(a, mid + 1, end, key));
-//     }
-//     return (start);
-// }

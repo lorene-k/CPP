@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/14 14:28:47 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:28:25 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,18 @@ public:
                 throw std::runtime_error(": duplicate");
             container.push_back(n);
         }
+    }
+    
+    template <typename T>
+    int checkSize(T &container, unsigned int n)
+    {
+        if (n == 3 && container[1] > container[2])
+            std::swap(container[1], container[2]);
+        if (n != 1 && n <= 3 && container[0] > container[1])
+            std::swap(container[0], container[1]);
+        if (n <= 3)
+            return (1);
+        return (0);
     }
 };
 
