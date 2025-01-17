@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/16 18:01:50 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:59:50 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ void PmergeMe::process(char **av)
 void    PmergeMe::checkNum(std::string const &str)
 {
     if (str.empty())
-        throw std::runtime_error(": invalid input (empty)");
+        throw std::runtime_error("invalid input (empty)");
     for (unsigned int i = 0; i < str.length(); i++)
     {
         if (!std::isdigit(str[i]) || i > 10)
-            throw std::runtime_error(": invalid input");
+            throw std::runtime_error("invalid input");
     }
     long value = std::atol(str.c_str());
     if (value > std::numeric_limits<int>::max())
-            throw std::runtime_error(": overflow");
+            throw std::runtime_error("overflow");
 }
 
 void PmergeMe::display(char **av, double vTime, double qTime)
@@ -75,25 +75,6 @@ void PmergeMe::display(char **av, double vTime, double qTime)
 }
 
 /*************************************************** Sorting using std::deque */
-static std::deque<int>::iterator queueBinarySearch(std::deque<int>::iterator start, std::deque<int>::iterator end, int key)
-{
-    while (start != end)
-    {
-        std::deque<int>::iterator mid = start;
-        if (*mid == key)
-            return (mid);
-        if (*mid > key)
-            end = mid;
-        else
-        {
-            start = mid;
-            ++start;
-        }
-        std::advance(mid, std::distance(start, end) / 2); // Maybe switch order (place below iterator init ?)
-    }
-    return (start);
-}
-
 static void queueInsertion(std::deque<int> &a, std::deque<int> &b, int start, int end)
 {
     std::deque<int> jacobsthal = generateJacobsthal<std::deque<int> >(b.size() + 1);
@@ -104,7 +85,7 @@ static void queueInsertion(std::deque<int> &a, std::deque<int> &b, int start, in
     {
         for (int i = 0; i < 2; i++)
         {
-            std::deque<int>::iterator pos = queueBinarySearch(a.begin(), a.end(), b[i]);
+            std::deque<int>::iterator pos = std::lower_bound(a.begin(), a.end(), b[i]);
             a.insert(pos, b[i]);
             processed.insert(i);
         }
@@ -117,7 +98,7 @@ static void queueInsertion(std::deque<int> &a, std::deque<int> &b, int start, in
             {
                 if (processed.find(j) != processed.end())
                     continue;
-                std::deque<int>::iterator pos = queueBinarySearch(a.begin(), a.end(), b[j]);
+                std::deque<int>::iterator pos = std::lower_bound(a.begin(), a.end(), b[j]);
                 a.insert(pos, b[j]);
                 processed.insert(j);
             }
@@ -141,7 +122,7 @@ static void queueMergeInsertion(std::deque<int> &a, std::deque<int> &b, int star
     queueInsertion(a, b, start, end);
 }
 
-void PmergeMe::sortQueue() // Change loop to adapt to bidirectionnal iterators
+void PmergeMe::sortQueue()
 {
     std::deque<int>::iterator it = this->_deq.begin();
     std::deque<int>::iterator ite = this->_deq.end();
@@ -197,7 +178,7 @@ static int vectorBinarySearch(std::vector<int> &a, int start, int end, int key)
 
 static void vectorInsertion(std::vector<int> &a, std::vector<int> &b, int start, int end)
 {
-    std::vector<int>    jacobsthal = generateJacobsthal<std::vector<int> >(b.size() + 1); // check the "+1" adjustment (for b.size() == 3)
+    std::vector<int>    jacobsthal = generateJacobsthal<std::vector<int> >(b.size() + 1);
     std::set<int>       processed;
     int                 offset;
     int                 index;
@@ -224,8 +205,6 @@ static void vectorInsertion(std::vector<int> &a, std::vector<int> &b, int start,
                 a.insert(a.begin() + pos, b[j]);
                 processed.insert(j);
                 offset++;
-            // insertionDebug("MAIN LOOP", RED, jacobsthal, i, a, b, index, pos, offset); // TESTS
-            // printTests(a, b, "INSERTION TESTS"); // TESTS
             }
             if (processed.size() == b.size())
                 break;
