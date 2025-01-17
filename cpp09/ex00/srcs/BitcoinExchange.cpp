@@ -6,7 +6,7 @@
 /*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/16 14:04:47 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:54:47 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,15 @@ static void checkRemainingValue(std::istringstream &ss, std::string const &line)
 static bool isValidValue(std::istringstream &ss, float *value, std::string const &line)
 {
     ss >> *value;
+    int dot = 0;
     
+    for (size_t i = 13; i < line.size(); i++)
+    {
+        if (line[i] == '.')
+            dot++;
+        if (dot > 1)
+            return (printError("bad input => " + line));
+    }
     if (ss.fail() || !ss.eof())
     {
         ss.clear();
