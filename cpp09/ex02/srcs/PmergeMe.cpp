@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:35:23 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/17 15:59:50 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/06/07 18:05:46 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,15 @@ static void queueInsertion(std::deque<int> &a, std::deque<int> &b, int start, in
 {
     std::deque<int> jacobsthal = generateJacobsthal<std::deque<int> >(b.size() + 1);
     std::set<int>   processed;
+    int             pos = 0;
     int             prevIndex = 1;
 
     if (start == 0 && end == static_cast<int>(a.size()) - 1)
     {
         for (int i = 0; i < 2; i++)
         {
-            std::deque<int>::iterator pos = std::lower_bound(a.begin(), a.end(), b[i]);
-            a.insert(pos, b[i]);
+            pos = binarySearch(a, 0, (int)a.size() - 1, b[i]);
+            a.insert(a.begin() + pos, b[i]);
             processed.insert(i);
         }
         for (int i = 3; i < static_cast<int>(jacobsthal.size()); i++)
@@ -98,8 +99,8 @@ static void queueInsertion(std::deque<int> &a, std::deque<int> &b, int start, in
             {
                 if (processed.find(j) != processed.end())
                     continue;
-                std::deque<int>::iterator pos = std::lower_bound(a.begin(), a.end(), b[j]);
-                a.insert(pos, b[j]);
+                pos = binarySearch(a, 0, (int)a.size() - 1, b[i]);
+                a.insert(a.begin() + pos, b[j]);
                 processed.insert(j);
             }
             if (processed.size() == b.size())
@@ -161,35 +162,20 @@ double PmergeMe::handleQueue(char **av)
 }
 
 /************************************************** Sorting using std::vector */
-static int vectorBinarySearch(std::vector<int> &a, int start, int end, int key)
-{
-    while (start <= end)
-    {   
-        int mid = start + (end - start) / 2;
-        if (a[mid] == key)
-            return (mid);
-        if (a[mid] > key)
-            end = mid - 1;
-        else
-            start = mid + 1;
-    }
-    return (start);
-}
-
 static void vectorInsertion(std::vector<int> &a, std::vector<int> &b, int start, int end)
 {
     std::vector<int>    jacobsthal = generateJacobsthal<std::vector<int> >(b.size() + 1);
     std::set<int>       processed;
-    int                 offset;
-    int                 index;
-    int                 pos;
+    int                 offset = 0;
+    int                 index = 0;
+    int                 pos = 0;
     int                 prevIndex = 1;
 
     if (start == 0 && end == static_cast<int>(a.size()) - 1)
     {
         for (int i = 0; i < 2; i++)
         {
-            pos = vectorBinarySearch(a, 0, (int)a.size() - 1, b[i]);
+            pos = binarySearch(a, 0, (int)a.size() - 1, b[i]);
             a.insert(a.begin() + pos, b[i]);
             processed.insert(i);
         }
@@ -201,7 +187,7 @@ static void vectorInsertion(std::vector<int> &a, std::vector<int> &b, int start,
                 index = b.size() - 1;
             for (int j = index; j > prevIndex; j--)
             {
-                pos = vectorBinarySearch(a, 0, (int)a.size() - 1 - offset, b[j]);
+                pos = binarySearch(a, 0, (int)a.size() - 1 - offset, b[j]);
                 a.insert(a.begin() + pos, b[j]);
                 processed.insert(j);
                 offset++;

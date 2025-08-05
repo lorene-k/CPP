@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhalifa <lkhalifa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhalifa <lkhalifa@42.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 17:38:12 by lkhalifa          #+#    #+#             */
-/*   Updated: 2025/01/17 16:00:14 by lkhalifa         ###   ########.fr       */
+/*   Updated: 2025/06/07 18:02:16 by lkhalifa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,22 @@ T generateJacobsthal(size_t n)
     for (size_t i = 2; i < n; i++)
         jacobsthal[i] = jacobsthal[i - 1] + (2 * jacobsthal[i - 2]);
     return (jacobsthal);
+}
+
+template <typename T>
+int binarySearch(const T& container, int start, int end, int key)
+{
+    while (start <= end)
+    {
+        int mid = start + (end - start) / 2;
+        if (container[mid] == key)
+            return mid;
+        if (container[mid] > key)
+            end = mid - 1;
+        else
+            start = mid + 1;
+    }
+    return (start);
 }
 
 #endif // *********************************************************** PMERGEME_HPP //
